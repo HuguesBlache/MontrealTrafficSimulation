@@ -230,7 +230,7 @@ od2trips -c od2trips.config.xml -n districts.taz.xml -d OD_Montreal_Auto.od -o o
 
 
 <p align="center">
-  <img width="400" height="500" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/od2trips.png">
+  <img width="600" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/od2trips.png">
   
 </p>
 
@@ -245,7 +245,7 @@ duarouter -c duarcfg_file.trips2routes.duarcfg -ignore-error
 ```
 
 <p align="center">
-  <img width="400" height="500" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/duarouter.png">
+  <img width="600" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/duarouter.png">
   
 </p>
 
