@@ -52,7 +52,9 @@ Le cadre de cette étude est de prendre la circulation sur l'ile de Montréal. A
 
 
 <p align="center">
-  <img src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_BBBike.png">
+  <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_BBBike.png">
+  <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_M2M.png">	
+	
 </p>
 
 Après avoir téléchargé la carte, il faut l'implanter dans SUMO grâce à la ligne de commande suivante
