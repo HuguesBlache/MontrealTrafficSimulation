@@ -212,24 +212,6 @@ Nous pouvons ne prendre en compte que les déplacements en auto qui se produit �
 <h2 align="center" id="autos" >Génération de la demande</h2>
 
 
-
-
-
-# PAS MODIFIÉ
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
 <h3 align="center">Affectation des parcours dans SUMO</h3>
 
 
@@ -251,6 +233,24 @@ Pour cette partie, la fonction <i> <a href="https://sumo.dlr.de/docs/duarouter.h
 ```
 duarouter -c duarcfg_file.trips2routes.duarcfg
 ```
+
+
+
+
+
+# PAS MODIFIÉ
+
+
+
+
+
+
+
+
+
+
+ 
+
 
 
 
