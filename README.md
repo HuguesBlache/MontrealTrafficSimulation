@@ -249,6 +249,15 @@ duarouter -c duarcfg_file.trips2routes.duarcfg -ignore-error
   
 </p>
 
+<h4 align="center" id="duarouter">Resumer de la generation de la demande</h4>
+
+En resumer, voici la demarche de la generation de trajet dans notre simulation
+
+
+<p align="center">
+  <img src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Generation_OD.png">
+  
+</p>
 
 
 # PAS MODIFIÉ
