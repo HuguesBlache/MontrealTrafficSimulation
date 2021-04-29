@@ -6,8 +6,11 @@
 </head>
 <body>
 <h1 align="center">Montréal Traffic Simulation </h1>
+	
  Projet de Maitrise de Hugues Blache 
+ 
 <h2 align="center">Table des matières</h2>
+
 1. <a href="#doc">Documentation SUMO</a><br>
 2. <a href="#carte">Génération du scénario de l'ile de Montréal</a><br>
 3. <a href="#OD">Matrice OD </a><br>
@@ -19,16 +22,22 @@
 8. <a href="#données">Collectes de données</a><br>
 9. <a href="#visualisation">Visualisation</a><br>
 10. <a href="#simulation">Simulation</a><br>
+
 <h2 align="center" id="doc">Documentation SUMO</h2>
+
 Ce projet se réfère principalement à la documentation de <a href="https://sumo.dlr.de/docs/SUMO_User_Documentation.html">Sumo</a> et du Professeur Nicolas Saunier pour le cours <a href="https://github.com/nsaunier/CIV8740/blob/master/guide-sumo.md">CIV8740</a>. Les autres sources seront citées à la fin du document.
+
 <h2 align="center" >Génération du scénario de l'ile de Montréal</h2>
+
 <h3 align="center" id="carte">Topologie de l'ile de Montréal</h3>
+
 Le cadre de cette étude est de prendre la circulation sur l'ile de Montréal. Afin de reprondre au exigences du reseau, les informations concernant l'ile sont importé avec <a href="https://www.openstreetmap.org/">OpenStreetMap (OSM)</a>. Neanmoins, comme le simulateur est une entrée du logiciel <a href="https://www.trafficm2modelling.com/"> M2M</a> et que les données topologiques et que une certaines formes de l'ile est necessaire, le site <a href="https://extract.bbbike.org/">BBbike</a> en est une solution comme le montre la figure suivante :
 <p align="center">
   <img  width="450" height="350" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_BBBike.png">
   <img  width="450" height="350" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_M2M.png">	
 </p>
 Comme les données OSM sont trop lourd pour les temps de calcule de la simulation, un certain nombre de route ont été supprimé du reseau avec la commande NETCONVERT. Le route presente dans le reseau seront les <em>highway.motorway, highway.primary, highway.secondary, highway.tertiary, highway.cycleway, railway.subway, highway.motorway_link, highway.primary_link, highway.secondary_link, highway.tertiary_link</em>
+
 Ce qui donne comme reseau sur SUMO:
 <p align="center">
   <img src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_SUMO.png">
