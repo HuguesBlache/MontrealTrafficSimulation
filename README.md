@@ -1,6 +1,4 @@
-# MontrealTrafficSimulation
-
-!DOCTYPE html>
+<!DOCTYPE html>
 
 <html>
 
@@ -23,7 +21,7 @@
 <h2 align="center">Table des matières</h2>
 
 1. <a href="#doc">Documentation SUMO</a><br>
-2. <a href="#carte">Importation de la carte dans SUMO</a><br>
+2. <a href="#carte">Génération du scénario de l'ile de Montréal</a><br>
 3. <a href="#OD">Matrice OD </a><br>
 4. <a href="#autos">Prise en compte des autos</a><br>
 5. <a href="#TC">Prise en compte du transport en commun</a><br>
@@ -42,16 +40,11 @@ Ce projet se réfère principalement à la documentation de <a href="https://sum
 
 
 
-<h2 align="center" id="carte">Importation de la carte dans SUMO</h2>
+<h2 align="center" >Génération du scénario de l'ile de Montréal</h2>
 
+<h3 align="center" id="carte">Topologie de l'ile de Montréal</h3>
 
-
-Dans un premier temps, pour construire le modèle nous importons des cartes <a href="https://www.openstreetmap.org/">OSM</a>. Cependant, comme nous prennons l'ile de <a href="https://extract.bbbike.org/?sw_lng=-73.978&sw_lat=45.395&ne_lng=-73.468&ne_lat=45.713&format=osm.gz&coords=-73.978%2C45.41%7C-73.934%2C45.395%7C-73.748%2C45.429%7C-73.602%2C45.416%7C-73.529%2C45.45%7C-73.539%2C45.512%7C-73.49%2C45.606%7C-73.468%2C45.713%7C-73.63%2C45.632%7C-73.669%2C45.579%7C-73.732%2C45.535%7C-73.781%2C45.516%7C-73.859%2C45.525%7C-73.971%2C45.47&city=Montreal&lang=en">Montréal</a> et que les données sont grandes, nous utilisons le site <a href="https://extract.bbbike.org/">BBbike</a>, pour pouvoir extraire des grandes parties de cartes.
-
-
-
-
-
+Le cadre de cette étude est de prendre la circulation sur l'ile de Montréal. Afin de reprondre au exigences du reseau, les informations concernant l'ile sont importé avec <a href="https://www.openstreetmap.org/">OpenStreetMap (OSM)</a>. Neanmoins, comme le simulateur est une entrée du logiciel <a href="https://www.trafficm2modelling.com/"> M2M</a> et que les données topologiques et que une certaines formes de l'ile est necessaire, le site <a href="https://extract.bbbike.org/">BBbike</a> en est une solution comme le montre la figure suivante :
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/53098828/81572256-fc7ea580-9370-11ea-92ce-800ad1a8d327.png">
