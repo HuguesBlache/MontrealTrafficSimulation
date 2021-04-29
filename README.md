@@ -200,7 +200,14 @@ Format de la matrice OD (O-format) sur SUMO
 
 Un exemple de <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/Transformation%20matrice%20OD%20en%20O-format-checkpoint.ipynb">code</a> sur JupyterNotebook pour la modification de la matrice.
 
+<h4 align="center">Prise en compte des voitures trajets "exterieur"</h4>
 
+Nous pouvons ne prendre en compte que les déplacements en auto qui se produit à l'intérieur de l'ile de Montreal. Mais si c'est le cas, nous ne comptons pas les déplacements produit de l'ile de Montreal vers l'extérieur (Rive Nord/Sud) qui représente un peu plus de 5% des déplacements. Mais surtout les déplacements venant de l'extérieur qui repésentent un peu plus de 30% des deplacéments venant vers Montreal. Ne pas prendre en compte ces déplacements peuvent engendrer un sous-"régime" des deplacements, et dans ce cas ne pas pouvoir refléter une certaine réalité des déplacements. Pour mieux illustre ces déplacements nous pouvons nous référer au <a href="http://ville.montreal.qc.ca/pls/portal/docs/PAGE/MTL_STATS_FR/MEDIA/DOCUMENTS/PORTAIT%20DES%20D%C9PLACEMENTS%202008%20-%20VILLE%20DE%20MONTR%C9AL.PDF">portrait</a>  des déplacements de 2008 de l'ile de Montréal.
+
+<p align="center">
+  <img width="400" height="500" src="https://user-images.githubusercontent.com/65184943/93515262-54688280-f8f6-11ea-90d3-29930c1acd88.png">
+  <img width="400" height="500" src="https://user-images.githubusercontent.com/65184943/93515271-55011900-f8f6-11ea-96a8-45c5dc962935.png">
+</p>
 
 <h2 align="center" id="autos" >Génération de la demande</h2>
 
@@ -244,103 +251,8 @@ Pour cette partie, la fonction <i> <a href="https://sumo.dlr.de/docs/duarouter.h
 ```
 duarouter -c duarcfg_file.trips2routes.duarcfg
 ```
-<h4 align="center">Prise en compte des voitures trajets "exterieur"</h4>
-
-Pour le moment nous avons pris en compte les déplacements en auto qui se produit à l'intérieur de l'ile de Montreal. De ce fait, nous ne comptons pas les déplacements produit de l'ile de Montreal vers l'extérieur (Rive Nord/Sud) qui représente un peu plus de 5% des déplacements. Mais surtout les déplacements venant de l'extérieur qui repésentent un peu plus de 30% des deplacéments venant vers Montreal. Ne pas prendre en compte ces déplacements peuvent engendrer un sous-"régime" des deplacements, et dans ce cas ne pas pouvoir refléter une certaine réalité des déplacements. Pour mieux illustre ces déplacements nous pouvons nous référer au <a href="http://ville.montreal.qc.ca/pls/portal/docs/PAGE/MTL_STATS_FR/MEDIA/DOCUMENTS/PORTAIT%20DES%20D%C9PLACEMENTS%202008%20-%20VILLE%20DE%20MONTR%C9AL.PDF">portrait</a>  des déplacements de 2008 de l'ile de Montréal.
-
-<p align="center">
-  <img width="400" height="500" src="https://user-images.githubusercontent.com/65184943/93515262-54688280-f8f6-11ea-90d3-29930c1acd88.png">
-  <img width="400" height="500" src="https://user-images.githubusercontent.com/65184943/93515271-55011900-f8f6-11ea-96a8-45c5dc962935.png">
-</p>
-
-<h5 align="center">Nouvelle carte</h5>
-
-Par cela nous devons donc rajouter à la carte un partie de la <a href="https://extract.bbbike.org/?sw_lng=-73.764&sw_lat=45.33&ne_lng=-73.297&ne_lat=45.67&format=osm.gz&coords=-73.764%2C45.378%7C-73.746%2C45.34%7C-73.633%2C45.33%7C-73.578%2C45.346%7C-73.552%2C45.344%7C-73.54%2C45.346%7C-73.532%2C45.349%7C-73.456%2C45.362%7C-73.423%2C45.393%7C-73.397%2C45.417%7C-73.375%2C45.441%7C-73.348%2C45.471%7C-73.352%2C45.498%7C-73.303%2C45.534%7C-73.299%2C45.537%7C-73.297%2C45.551%7C-73.324%2C45.569%7C-73.443%2C45.67%7C-73.506%2C45.604%7C-73.545%2C45.541%7C-73.558%2C45.504%7C-73.565%2C45.472%7C-73.563%2C45.445%7C-73.59%2C45.423%7C-73.62%2C45.424%7C-73.639%2C45.426%7C-73.669%2C45.432%7C-73.717%2C45.405&city=Rive+Sude&lang=en">rive</a> sud et de <a href="https://extract.bbbike.org/?sw_lng=-73.884&sw_lat=45.506&ne_lng=-73.518&ne_lat=45.701&format=osm.gz&coords=-73.884%2C45.548%7C-73.884%2C45.521%7C-73.841%2C45.516%7C-73.799%2C45.507%7C-73.767%2C45.506%7C-73.749%2C45.509%7C-73.73%2C45.516%7C-73.69%2C45.543%7C-73.669%2C45.549%7C-73.651%2C45.568%7C-73.635%2C45.59%7C-73.6%2C45.629%7C-73.567%2C45.663%7C-73.518%2C45.699%7C-73.554%2C45.701%7C-73.592%2C45.69%7C-73.611%2C45.693%7C-73.649%2C45.689%7C-73.713%2C45.68%7C-73.727%2C45.679%7C-73.762%2C45.651%7C-73.775%2C45.638%7C-73.787%2C45.628%7C-73.794%2C45.614%7C-73.828%2C45.596%7C-73.832%2C45.584%7C-73.872%2C45.56&city=Laval&lang=en"> Laval</a>, comme si dessous
 
 
-<p align="center">
-  <img width="400" height="300" src="https://user-images.githubusercontent.com/65184943/93517817-fb025280-f8f9-11ea-90ad-06acdd334901.jpg">
-  <img width="400" height="300" src="https://user-images.githubusercontent.com/65184943/93517797-f89ff880-f8f9-11ea-90bd-2aeda90278c7.jpg">
-</p>
-
-Qui va donne en suite une fraction de la <a href="https://extract.bbbike.org/?sw_lng=-73.978&sw_lat=45.395&ne_lng=-73.468&ne_lat=45.713&format=osm.gz&coords=-73.978%2C45.41%7C-73.934%2C45.395%7C-73.748%2C45.429%7C-73.602%2C45.416%7C-73.529%2C45.45%7C-73.539%2C45.512%7C-73.49%2C45.606%7C-73.468%2C45.713%7C-73.63%2C45.632%7C-73.669%2C45.579%7C-73.732%2C45.535%7C-73.781%2C45.516%7C-73.859%2C45.525%7C-73.971%2C45.47&city=Montreal&lang=en">region</a> de montreal comme si dessous
-<p align="center">
-  <img width="600" height="500" src="https://user-images.githubusercontent.com/65184943/93521326-e3c56400-f8fd-11ea-98be-91337bcd942b.jpg">
-
-</p>
-
-Nous arrions pu prendre les deux carte de Laval et de la Rive Sud pour le fusionner dans netconvert, mais cette etape peut parfois enlever des fractions de routes au modèle (comme des autoroute ou des pont), même en prennant en plus des parties de l'ile de Montreal.
-
-Donc après avoir filtrer quelques routes nous avons cette carte
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/65184943/93522706-e628bd80-f8ff-11ea-8df5-f32bc1d4e1f5.png">
- 
-</p>
-
-<h5 align="center">Fichier TAZ et Matrice</h5>
-
-ce qui nous intéresse dans ce cas, ce n'est pas d'avoir les deplacements à l'interieur des zones periphèriques de l'ile de Montreal, mais d'engendrer des deplacements de l'exterieur à l'interieur de l'ile. Donc nous allons designer le "taz" (polynome) de Laval comme un seul bloque (representé ci dessous)
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/65184943/93523408-fee5a300-f900-11ea-95eb-6e1188bdafa3.png">
- 
-</p>
-
-Nous avons du enlever plus de route pour ce cas, voici la commande 
-
-```
-netconvert --osm-files RegionMontreal.osm --remove-edges.by-type highway.residential,highway.steps,highway.footway,highway.bicycle,railway.rail,highway.pedestrian,highway.unclassified,highway.service,highway.track,highway.living_street,highway.path -o RegionMontreal.net.xml
-```
-Puis pour la Matrice il suffit de rassembler toutes les zones de Laval en un seul bloque pour pouvoir modeliser les deplacements dans Laval (uniformement repartie dans la zones) vers l'ile de Montreal
-
-<table  align="center">
-	<a align="center">
-  <tr>
-    <th>Origine</th>
-    <th>Destination</th> 
-    <th>Nb de vehicules</th>
-  </tr>
-  <tr>
-    <td>Laval 1</td>
-    <td>Montreal 1</td>
-    <td>30</td>
-  </tr>
-  <tr>
-    <td>Laval 2</td>
-    <td>Montreal 1</td>
-    <td>20</td>
-  </tr>
-  <tr>
-    <td>...</td>
-    <td>...</td>
-    <td>..</td>
-  </tr>
-	</a>
-</table>
-
-<table  align="center">
-	<a align="center">
-  <tr>
-    <th>Origine</th>
-    <th>Destination</th> 
-    <th>Nb de vehicules</th>
-  </tr>
-  <tr>
-    <td>Laval </td>
-    <td>Montreal 1</td>
-    <td>50</td>
-  </tr>
-
-  <tr>
-    <td>...</td>
-    <td>...</td>
-    <td>..</td>
-  </tr>
-	</a>
-</table>
-
-Et nous faisons de même pour la rive Sud que nous tranformant dans la matrice <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master\MatriceOD\Auto\RegionMontreal">OD</a>.
 
 
 <h3 align="center">Changement du type de véhicule</h3>
