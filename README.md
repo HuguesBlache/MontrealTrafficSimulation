@@ -1,25 +1,13 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
-<meta charset="utf-8">
-<link href="style.css">
-
+	<meta charset="utf-8">
+	<link href="style.css">
 </head>
-
 <body>
-
 <h1 align="center">Montréal Traffic Simulation </h1>
- 
-
-
-
  Projet de Maitrise de Hugues Blache 
-
 <h2 align="center">Table des matières</h2>
-
 1. <a href="#doc">Documentation SUMO</a><br>
 2. <a href="#carte">Génération du scénario de l'ile de Montréal</a><br>
 3. <a href="#OD">Matrice OD </a><br>
@@ -31,58 +19,27 @@
 8. <a href="#données">Collectes de données</a><br>
 9. <a href="#visualisation">Visualisation</a><br>
 10. <a href="#simulation">Simulation</a><br>
-
-
 <h2 align="center" id="doc">Documentation SUMO</h2>
-
 Ce projet se réfère principalement à la documentation de <a href="https://sumo.dlr.de/docs/SUMO_User_Documentation.html">Sumo</a> et du Professeur Nicolas Saunier pour le cours <a href="https://github.com/nsaunier/CIV8740/blob/master/guide-sumo.md">CIV8740</a>. Les autres sources seront citées à la fin du document.
-
-
-
-
 <h2 align="center" >Génération du scénario de l'ile de Montréal</h2>
-
 <h3 align="center" id="carte">Topologie de l'ile de Montréal</h3>
-
 Le cadre de cette étude est de prendre la circulation sur l'ile de Montréal. Afin de reprondre au exigences du reseau, les informations concernant l'ile sont importé avec <a href="https://www.openstreetmap.org/">OpenStreetMap (OSM)</a>. Neanmoins, comme le simulateur est une entrée du logiciel <a href="https://www.trafficm2modelling.com/"> M2M</a> et que les données topologiques et que une certaines formes de l'ile est necessaire, le site <a href="https://extract.bbbike.org/">BBbike</a> en est une solution comme le montre la figure suivante :
-
-
-
-
-
-
 <p align="center">
-  <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_BBBike.png">
-  <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_M2M.png">	
-	
+  <img  width="450" height="350" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_BBBike.png">
+  <img  width="450" height="350" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_M2M.png">	
+</p>
+Comme les données OSM sont trop lourd pour les temps de calcule de la simulation, un certain nombre de route ont été supprimé du reseau avec la commande NETCONVERT. Le route presente dans le reseau seront les <em>highway.motorway, highway.primary, highway.secondary, highway.tertiary, highway.cycleway, railway.subway, highway.motorway_link, highway.primary_link, highway.secondary_link, highway.tertiary_link</em>
+Ce qui donne comme reseau sur SUMO:
+<p align="center">
+  <img src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_SUMO.png">
 </p>
 
-Après avoir téléchargé la carte, il faut l'implanter dans SUMO grâce à la ligne de commande suivante
-
-```
-netconvert --osm-files Montreal.osm -o Montreal.net.xml
-```
-Comme  le fichier est trop lourd pour un bon fonctionnement de SUMO, il est possible d'enlever certaines routes. Ici nous enlevons les rues résidentielles pour alléger les données
-```
---remove-edges.by-type highway.residential,highway.cycleway,highway.footway,highway.service
-```
-
-Ce qui donne en commande finale
 
 
-```
-netconvert --osm-files Montreal.osm --remove-edges.by-type highway.residential,highway.cycleway,highway.footway,highway.service -o Montreal.net.xml
-```
 
-```
-netconvert --osm-files Montreal.osm --remove-edges.by-type highway.residential,highway.tertiary,highway.tertiary_link,highway.unclassified,highway.trunk,highway.trunk_link,highway.service -o Montreal3.net.xml
 
-```
-Carte sur SumoGui
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/65184943/81831850-db05f100-950b-11ea-96d7-2a6cedd593a6.png">
-</p>
 
+# PAS MODIFIÉ
 
 <h2 align="center" id="OD"> Matrice OD </h2>
 <h3 align="center" id="quartier">Définition des secteurs </h3>
