@@ -176,27 +176,10 @@ L'etape vu plus haut ne renseigner seulement des limites de chaques ORiginie et 
   <SUMO_HOME>/tools/edgesInDistricts.py -n Montreal.net.xml -t Quartier.add.xml
   ```
 
-
-
-
-
-
-
-# PAS MODIFIÉ
-
-Après avoir choisie les lieux, nous devons créer la matrice OD pour les <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/CarteMontreal/OD_Montreal_Auto.od">autos</a>, les bus, modes actifs... Compréhensible par SUMO, il faut donc parfois la modifier.
-
-Pour cette simulation et pour la construction de la matrice OD, nous devons construire les différents secteurs Origine et Destination. Ici nous allons prendre les quartiers de l'Ile de Montreal définie par l'ARTM. La construction se fait par la construction des polygones qui peut se faire de deux façons:
-
-<h3 align="center">Exemple de quartier</h3>
-
-
-
-
-
 <h3 align="center">Changement de format de la Matrice OD</h3>
 
-Sumo n'arrive pas à déchiffrer la forme "classique" de la matrice OD, il faut donc la modifier légèrement. 
+Une premiere étape de l’implantation de la matrice OD à été de modifier la Matrice OD fournis par l’ARTM. Notre modèle, nous oblige à avoir une matrice n*n qui est illisible de manière brute par SUMO. En effet, SUMO ne peut lire que 3 types de Matrice et nous avons choisie de travailler avec un matrice de type "O-Format". Ce type de format est une matrice à n ligne et 3 colones, avec la premier colonne correspont à l’origine, la deuxieme la destination et la derniere le nombre de véhicules generer. Pour ce faire nous avons créer un petit script sur jupyter qui permet de transformer la matrice de cette sorte 
+
 
 Format de la matrice OD "classique"
 
@@ -216,6 +199,21 @@ Format de la matrice OD (O-format) sur SUMO
 | Orig3  | Dest3  |3  |
 
 Un exemple de <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/Transformation%20matrice%20OD%20en%20O-format-checkpoint.ipynb">code</a> sur JupyterNotebook pour la modification de la matrice.
+
+
+
+
+
+
+
+# PAS MODIFIÉ
+
+Après avoir choisie les lieux, nous devons créer la matrice OD pour les <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/CarteMontreal/OD_Montreal_Auto.od">autos</a>, les bus, modes actifs... Compréhensible par SUMO, il faut donc parfois la modifier.
+
+Pour cette simulation et pour la construction de la matrice OD, nous devons construire les différents secteurs Origine et Destination. Ici nous allons prendre les quartiers de l'Ile de Montreal définie par l'ARTM. La construction se fait par la construction des polygones qui peut se faire de deux façons:
+
+
+
 
 
 <h2 align="center" id="autos" >Prise en compte des autos</h2>
