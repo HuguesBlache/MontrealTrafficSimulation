@@ -136,7 +136,11 @@ Donc en rectifiant cette erreur de synchronisation des feux de circulation, on p
 
 <h6 align="center" >Teleportation</h6>
 
-Mise à part le temps de parcours, il faut aussi regarder du cote des vehicules teleporter pour viusaliser un changement. En effet apres avoir sortie les donnees CSV de la simulation, on remarque qu'avant changement le nombre de vehicules teleporter etais 467 contre 97 avec fusion, soit une reduction de 81%.
+Mise à part le temps de parcours, il faut aussi regarder du cote des vehicules teleporter pour viusaliser un changement. Comme representer sur la figure XX, on peut constater une nette distinguation entre d'un cote beaucoup de teleportation pour les scenarios sans fusion de jonction et de leurs avec peu de teleportation avec une fusion.
+
+<p align="center">
+  <img width="560" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/teleportation.png">
+</p>
 
 
 <h2 align="center" id="OD"> Création de la demande</h2>
