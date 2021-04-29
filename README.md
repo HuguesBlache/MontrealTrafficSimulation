@@ -209,6 +209,73 @@ Nous pouvons ne prendre en compte que les déplacements en auto qui se produit �
   <img width="400" height="500" src="https://user-images.githubusercontent.com/65184943/93515271-55011900-f8f6-11ea-96a8-45c5dc962935.png">
 </p>
 
+<h3 align="center">Choix du véhicule</h3>
+
+
+<h5 align="center">Preambule</h5>
+
+
+Le <a href="https://sumo.dlr.de/docs/Definition_of_Vehicles,_Vehicle_Types,_and_Routes.html#available_vtype_attributes"> --vtype </a> permet de specifier l'id du type de vehicules que nous creons ci dessous. Puis le ```--prefix``` permet d'ajouter un prefixe à l'id du vehicule, aui permettra par la suite de differencier le type de vehicule mais aussi de melanger plusieurs modes  
+
+<h5 align="center" id="type">Type de véhicules</h5>
+
+Il existe plusieur <a href="https://sumo.dlr.de/docs/Definition_of_Vehicles,_Vehicle_Types,_and_Routes.html#abstract_vehicle_class"> Class </a>, qui pernent encompte certaines carateristiques par default. Ci dessous nous envons creer 4 type de vehicules different pour notre simulation: 
+
+```xml
+ <vType id="Car" color="0,255,255" length="4.5" vClass="private" emissionClass="HBEFA3/PC_G_EU5"/>
+ <vType id="SUV" color="255,0,255" length="6" vClass="delivery" emissionClass="HBEFA3/PC_G_EU3"/>
+ <vType id="motorcycle" color="0,0,255" length="2" vClass="motorcycle" emissionClass="HBEFA3/PC_G_EU6"/>
+ <vType id="cyclomotor" color="0,255,0" length="2" vClass="moped" emissionClass="HBEFA3/PC_G_EU6"/>
+ 
+```
+
+Nous avons pris un <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/MatriceOD/Copie%20de%20Tableau.xlsx"> modele </a> de vehicules pour chaque classe:
+
+- Car : Toyota Corolla 2013
+- SUV : Ford F 150
+- Motorcycle : Yamaha FZ
+- CycloMotor : Honda Forza 125 
+
+
+De plus, nous allons prendres la documentations de la <a href="https://saaq.gouv.qc.ca/donnees-ouvertes/vehicules-circulation/vehicules-circulation-documentation.pdf"> SAAQ </a> et des <a href="https://bdso.gouv.qc.ca/pls/ken/ken213_afich_tabl.page_tabl?p_iden_tran=REPERBA6Z3O56149094340058BfZ9c&p_lang=1&p_m_o=SAAQ&p_id_ss_domn=718&p_id_raprt=3628#tri_tertr=00&tri_mun=aaaaa"> stastitique </a> du Quebec pour definir le part de ces vehicules dans le parc automobile de l'ile de Montreal :
+
+
+<table  align="center">
+	<a align="center">
+  <tr>
+    <th>Type de vehicules</th>
+    <th>Nombre</th> 
+    <th>Pourcentage</th>
+  </tr>
+  <tr>
+    <td>Automobile</td>
+    <td>563880</td>
+    <td>65%</td>
+  </tr>
+  <tr>
+    <td>SUV/Camion léger</td>
+    <td>269475</td>
+    <td>32%</td>
+  </tr>
+  <tr>
+    <td>MOtocyclette</td>
+    <td>15203</td>
+    <td>2%</td>
+  </tr>
+	<tr>
+    <td>Cyclomoteyr</td>
+    <td>5607</td>
+    <td>1%</td>
+  </tr>
+		</a>
+</table>
+
+
+<h4 align="center">Emissions</h4>
+
+
+https://theicct.org/sites/default/files/info-tools/One%20table%20to%20rule%20them%20all%20v1.pdf
+
 <h2 align="center" id="autos" >Génération de la demande</h2>
 
 
@@ -271,86 +338,6 @@ En resumer, voici la demarche de la generation de trajet dans notre simulation
 
 
 
- 
-
-
-
-
-
-<h3 align="center">Changement du type de véhicule</h3>
-
-<h4 align="center">Choix du véhicule</h4>
-
-
-<h5 align="center">Preambule</h5>
-
-Il existe plusieurs façon de changer le type de véhicule dans notre simulation, dans notre cas nous allons le faire lors de la creation des chemin. Pour cela nous allons suivre les commandes suivante :
-
-```
-od2trips -c od2trips.config.xml -n districts.taz.xml -d OD_Montreal_Auto.od --vtype Car --prefix car -o od_ile.odtrips.xml
-
-```
-
-Le <a href="https://sumo.dlr.de/docs/Definition_of_Vehicles,_Vehicle_Types,_and_Routes.html#available_vtype_attributes"> --vtype </a> permet de specifier l'id du type de vehicules que nous creons ci dessous. Puis le ```--prefix``` permet d'ajouter un prefixe à l'id du vehicule, aui permettra par la suite de differencier le type de vehicule mais aussi de melanger plusieurs modes  
-
-<h5 align="center" id="type">Type de véhicules</h5>
-
-Il existe plusieur <a href="https://sumo.dlr.de/docs/Definition_of_Vehicles,_Vehicle_Types,_and_Routes.html#abstract_vehicle_class"> Class </a>, qui pernent encompte certaines carateristiques par default. Ci dessous nous envons creer 4 type de vehicules different pour notre simulation: 
-
-```xml
- <vType id="Car" color="0,255,255" length="4.5" vClass="private" emissionClass="HBEFA3/PC_G_EU5"/>
- <vType id="SUV" color="255,0,255" length="6" vClass="delivery" emissionClass="HBEFA3/PC_G_EU3"/>
- <vType id="motorcycle" color="0,0,255" length="2" vClass="motorcycle" emissionClass="HBEFA3/PC_G_EU6"/>
- <vType id="cyclomotor" color="0,255,0" length="2" vClass="moped" emissionClass="HBEFA3/PC_G_EU6"/>
- 
-```
-
-Nous avons pris un <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/MatriceOD/Copie%20de%20Tableau.xlsx"> modele </a> de vehicules pour chaque classe:
-
-- Car : Toyota Corolla 2013
-- SUV : Ford F 150
-- Motorcycle : Yamaha FZ
-- CycloMotor : Honda Forza 125 
-
-
-De plus, nous allons prendres la documentations de la <a href="https://saaq.gouv.qc.ca/donnees-ouvertes/vehicules-circulation/vehicules-circulation-documentation.pdf"> SAAQ </a> et des <a href="https://bdso.gouv.qc.ca/pls/ken/ken213_afich_tabl.page_tabl?p_iden_tran=REPERBA6Z3O56149094340058BfZ9c&p_lang=1&p_m_o=SAAQ&p_id_ss_domn=718&p_id_raprt=3628#tri_tertr=00&tri_mun=aaaaa"> stastitique </a> du Quebec pour definir le part de ces vehicules dans le parc automobile de l'ile de Montreal :
-
-
-<table  align="center">
-	<a align="center">
-  <tr>
-    <th>Type de vehicules</th>
-    <th>Nombre</th> 
-    <th>Pourcentage</th>
-  </tr>
-  <tr>
-    <td>Automobile</td>
-    <td>563880</td>
-    <td>65%</td>
-  </tr>
-  <tr>
-    <td>SUV/Camion léger</td>
-    <td>269475</td>
-    <td>32%</td>
-  </tr>
-  <tr>
-    <td>MOtocyclette</td>
-    <td>15203</td>
-    <td>2%</td>
-  </tr>
-	<tr>
-    <td>Cyclomoteyr</td>
-    <td>5607</td>
-    <td>1%</td>
-  </tr>
-		</a>
-</table>
-
-
-<h4 align="center">Emissions</h4>
-
-
-https://theicct.org/sites/default/files/info-tools/One%20table%20to%20rule%20them%20all%20v1.pdf
 
 <h3 align="center">Simulation trajets Autos</h3>
 
