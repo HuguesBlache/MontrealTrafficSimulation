@@ -12,8 +12,8 @@
 <h2 align="center">Table des matières</h2>
 
 1. <a href="#doc">Documentation SUMO</a><br>
-2. <a href="#carte">Génération du scénario de l'ile de Montréal</a><br>
-3. <a href="#OD">Matrice OD </a><br>
+2. <a href="#carte">Génération du reseau de l'ile de Montréal</a><br>
+3. <a href="#OD">Création de la demande </a><br>
 4. <a href="#autos">Prise en compte des autos</a><br>
 5. <a href="#TC">Prise en compte du transport en commun</a><br>
 6. <a href="#actifs">Prise en compte des modes actifs</a><br>
@@ -27,7 +27,7 @@
 
 Ce projet se réfère principalement à la documentation de <a href="https://sumo.dlr.de/docs/SUMO_User_Documentation.html">Sumo</a> et du Professeur Nicolas Saunier pour le cours <a href="https://github.com/nsaunier/CIV8740/blob/master/guide-sumo.md">CIV8740</a>. Les autres sources seront citées à la fin du document.
 
-<h2 align="center" >Génération du scénario de l'ile de Montréal</h2>
+<h2 align="center" >Génération du reseau de l'ile de Montréal</h2>
 
 <h3 align="center" id="carte">Topologie de l'ile de Montréal</h3>
 
@@ -139,25 +139,58 @@ Donc en rectifiant cette erreur de synchronisation des feux de circulation, on p
 Mise à part le temps de parcours, il faut aussi regarder du cote des vehicules teleporter pour viusaliser un changement. En effet apres avoir sortie les donnees CSV de la simulation, on remarque qu'avant changement le nombre de vehicules teleporter etais 467 contre 97 avec fusion, soit une reduction de 81%.
 
 
-# PAS MODIFIÉ
+<h2 align="center" id="OD"> Création de la demande</h2>
 
-<h2 align="center" id="OD"> Matrice OD </h2>
-<h3 align="center" id="quartier">Définition des secteurs </h3>
+Pour la création de la demande, le choix s'est tournée vers la matrice Origine-Destination de l'ARTM datant de 2013. Cette matrice contient de nombreuses informations utile pour la simulation de la circulation. Donc cette étude, l'heure de pointe du matin, comprise entre 5h et 9h sera pris en compte. 
 
-Pour cette simulation et pour la construction de la matrice OD, nous devons construire les différents secteurs Origine et Destination. Ici nous allons prendre les quartiers de l'Ile de Montreal définie par l'ARTM. La construction se fait par la construction des polygones qui peut se faire de deux façons:
+<h3 align="center" id="quartier" >Lieu d'origine et de destination</h3>
 
-- Construction manuelle des polygones (manière lente s'il y a beaucoup de quartier !!)
-- Implanter les limites des zones étudiées avec les points géométriques
+Pour importer une matrice Origine-Destination dans SUMO, il faut d'abord renseigner au logiciel les districts ou les traffic assignment zone (<a href="https://sumo.dlr.de/docs/Demand/Importing_O/D_Matrices.html">TAZ</a>) qui serviront d'arriver ou de depart des véhicles.
 
-<h3 align="center">Exemple de quartier</h3>
+La premiere etape consite à determiner le limite administratifs de ces fichiers TAZ, pour cette simulation se sont les limites administratifs de l'ARTM qui ont été pris en compte et la ville de Montréal des <a href="http://donnees.ville.montreal.qc.ca/dataset/polygones-arrondissements">limites</a> des arrondissements.
 
 
+Les fichiers  permettront de déterminer toutes les sections de routes qui appartiennent à une zone. Dans notre étude de cas nous allons déterminer les routes qui appartiennent à chaque secteur pour ensuite créer les déplacements.
 
-La carte ci-dessous représente le quartier du Plateau Mont-Royal de Montréal (indicateur 106 de la matrice OD). Lors que la simulation (expliqué plus bas), toutes les voitures seront générées aléatoirement dans cette zone rouge d'origine.
+```xml
+<tazs>
+    <taz id="<TAZ_ID>" edges="<EDGE_ID> <EDGE_ID> ..."/>
+
+    ... further traffic assignment zones (districts) ...
+
+</tazs>
+```
+
+La carte ci-dessous représente le quartier du Plateau Mont-Royal de Montréal (indicateur 106 de la matrice OD). Lors que la simulation toutes les voitures seront générées aléatoirement dans cette zone rouge d'origine.
 
 <p align="center">
   <img width="460" height="300" src="https://user-images.githubusercontent.com/65184943/86967899-41d50e80-c139-11ea-907e-d64b432a1c0a.png">
 </p>
+
+
+<h4 align="center">Route dans les TAZ</h4>
+
+L'etape vu plus haut ne renseigner seulement des limites de chaques ORiginie et Destination sans prendre en consideration les routes à l'interieur de cette dernièreé. Appliquer la fonction <i><a href="https://sumo.dlr.de/docs/Tools/District.html"> edgesInDistricts.py </a></i> aux polygonnes créés dans la section <i>Définition des <a href="#quartier">secteurs </a></i>. Ceci permet ainsi de créer dans un fichier <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/CarteMontreal/districts.taz.xml">TAZ</a>  les limites administratives, est ainsi créer les routes. Voici un exemple de code
+
+  ```
+  <SUMO_HOME>/tools/edgesInDistricts.py -n Montreal.net.xml -t Quartier.add.xml
+  ```
+
+
+
+
+
+
+
+# PAS MODIFIÉ
+
+Après avoir choisie les lieux, nous devons créer la matrice OD pour les <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/CarteMontreal/OD_Montreal_Auto.od">autos</a>, les bus, modes actifs... Compréhensible par SUMO, il faut donc parfois la modifier.
+
+Pour cette simulation et pour la construction de la matrice OD, nous devons construire les différents secteurs Origine et Destination. Ici nous allons prendre les quartiers de l'Ile de Montreal définie par l'ARTM. La construction se fait par la construction des polygones qui peut se faire de deux façons:
+
+<h3 align="center">Exemple de quartier</h3>
+
+
 
 
 
@@ -188,41 +221,7 @@ Un exemple de <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/Tr
 <h2 align="center" id="autos" >Prise en compte des autos</h2>
 
 
-<h3 align="center">Lieu d'origine et de destination</h3>
 
-
-<h4 align="center">Fichier TAZ</h4>
-
-Pour créer les fichiers TAZ qui nous permettront de simuler les déplacements des véhicules, nous allons prendre les quartiers définis dans la section <i>Définition des <a href="#quartier">secteurs </a></i>
-
-Les fichiers <a href="https://sumo.dlr.de/docs/Demand/Importing_O/D_Matrices.html">TAZ</a> (Traffic Assignment Zone) permettront de déterminer toutes les sections de routes qui appartiennent à une zone. Dans notre étude de cas nous allons déterminer les routes qui appartiennent à chaque secteur pour ensuite créer les déplacements.
-```xml
-<tazs>
-    <taz id="<TAZ_ID>" edges="<EDGE_ID> <EDGE_ID> ..."/>
-
-    ... further traffic assignment zones (districts) ...
-
-</tazs>
-```
-
-<h4 align="center">Limite administrative de Montréal</h4>
-
-Mise à part délimitation des secteurs de l'ARTM, la ville de Montréal a mis en libre service les <a href="http://donnees.ville.montreal.qc.ca/dataset/polygones-arrondissements">limites</a> des arrondissements.
-
-Pour ensuite créer les lieux d'origines, il peut y avoir deux approches.
-
-- Mettre les lieux d'origine et de destination au "centre" de chaque zone dans le fichier <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/CarteMontreal/TAZ_Montreal.taz.xml">TAZ</a>. Cependant, cette approche est simpliste mais peut être utile pour le début de la modélisation.
-
-- Appliquer la fonction <i><a href="https://sumo.dlr.de/docs/Tools/District.html"> edgesInDistricts.py </a></i> aux polygonnes créés dans la section <i>Définition des <a href="#quartier">secteurs </a></i>
-
-  ```
-  <SUMO_HOME>/tools/edgesInDistricts.py -n Montreal.net.xml -t Quartier.add.xml
-  ```
-
-  ceci permet ainsi de créer dans un fichier <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/CarteMontreal/districts.taz.xml">TAZ</a>  les limites administratives, est ainsi créer les routes.
-
-
-Après avoir choisie les lieux, nous devons créer la matrice OD pour les <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/CarteMontreal/OD_Montreal_Auto.od">autos</a>, les bus, modes actifs... Compréhensible par SUMO, il faut donc parfois la modifier.
  
 
 
