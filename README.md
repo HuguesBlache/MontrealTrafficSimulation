@@ -14,7 +14,7 @@
 1. <a href="#doc">Documentation SUMO</a><br>
 2. <a href="#carte">Génération du reseau de l'ile de Montréal</a><br>
 3. <a href="#OD">Création de la demande </a><br>
-4. <a href="#autos">Prise en compte des autos</a><br>
+4. <a href="#autos">Génération de la demande</a><br>
 5. <a href="#TC">Prise en compte du transport en commun</a><br>
 6. <a href="#actifs">Prise en compte des modes actifs</a><br>
 7. <a href="#fusion">Fusion des modes</a><br>
@@ -202,21 +202,20 @@ Un exemple de <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/Tr
 
 
 
+<h2 align="center" id="autos" >Génération de la demande</h2>
+
 
 
 
 
 # PAS MODIFIÉ
 
-Après avoir choisie les lieux, nous devons créer la matrice OD pour les <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/CarteMontreal/OD_Montreal_Auto.od">autos</a>, les bus, modes actifs... Compréhensible par SUMO, il faut donc parfois la modifier.
-
-Pour cette simulation et pour la construction de la matrice OD, nous devons construire les différents secteurs Origine et Destination. Ici nous allons prendre les quartiers de l'Ile de Montreal définie par l'ARTM. La construction se fait par la construction des polygones qui peut se faire de deux façons:
 
 
 
 
 
-<h2 align="center" id="autos" >Prise en compte des autos</h2>
+
 
 
 
