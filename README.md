@@ -217,13 +217,22 @@ Nous pouvons ne prendre en compte que les déplacements en auto qui se produit �
 
 <h4 align="center">od2trips</h4>
 
-Après avoir construit le fichier TAZ et créé la Matrice OD, nous pouvons maintenant construire les déplacements sur notre modèle. La fonction <i> <a href="https://sumo.dlr.de/docs/od2trips.html"> od2trips.py </a> </i> permet d'affecter les voyages de chaques véhicules (traject Origine jusqu'à la destination) dans un nouveau fichier
+
+
+
+Après avoir construit le fichier TAZ et créé la Matrice OD, nous pouvons maintenant construire les déplacements sur notre modèle. La fonction <i> <a href="https://sumo.dlr.de/docs/od2trips.html"> od2trips.py </a> </i> permet d'affecter les voyages de chaques véhicules (traject Origine jusqu'à la destination) dans un nouveau fichier à partir de la matrice OD et des TAZ que nous avons definies. Pour notre simulation, nous voulons que la repartitions des trajets soit uniforme, on peut l'utiliser avec la commande <i>spread.uniform </i>
+
 
 ```
-od2trips -c od2trips.config.xml -n districts.taz.xml -d OD_Montreal_Auto.od -o od_ile.odtrips.xml
+od2trips -c od2trips.config.xml -n districts.taz.xml -d OD_Montreal_Auto.od -o od_ile.odtrips.xml --spread.uniform true
 
 ```
-PS: Le fichier peut être plus ou moins lourd selon le nombre de véhicules et la distance parcouru.
+
+
+<p align="center">
+  <img src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/od2trips.png">
+  
+</p>
 
 
 <h4 align="center" id="duarouter">duarouter</h4>
