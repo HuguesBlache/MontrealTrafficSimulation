@@ -230,20 +230,24 @@ od2trips -c od2trips.config.xml -n districts.taz.xml -d OD_Montreal_Auto.od -o o
 
 
 <p align="center">
-  <img src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/od2trips.png">
+  <img width="400" height="500" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/od2trips.png">
   
 </p>
 
 
 <h4 align="center" id="duarouter">duarouter</h4>
 
-Pour cette partie, la fonction <i> <a href="https://sumo.dlr.de/docs/duarouter.html"> duarouter.py </a> </i> permet de créer les chemins des véhcules ainsi que de simuler la "demande" de chaque route.
+Après avoir créer des trajets indivuelle a partir de la matrice OD grace à od2Trips, on peut utiliser la fonction <i> <a href="https://sumo.dlr.de/docs/duarouter.html"> duarouter.py </a> </i> qui permet de generer des itiniraires de plus court chemin à l'aide des trajet que nous avons construit. Nous avons pris l'option ignore-error afin de ne pas interroptre les calculs en cas d'erreur de calcule.
+
 
 ```
-duarouter -c duarcfg_file.trips2routes.duarcfg
+duarouter -c duarcfg_file.trips2routes.duarcfg -ignore-error
 ```
 
-
+<p align="center">
+  <img width="400" height="500" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/duarouter.png">
+  
+</p>
 
 
 
