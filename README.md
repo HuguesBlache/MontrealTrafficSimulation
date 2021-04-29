@@ -47,8 +47,16 @@ Ce qui donne comme reseau sur SUMO:
 </p>
 
 
+Le tableau suivant represente la compraison entre l'importation brute et le filtrage de route de la carte de l'ile de Montréal pour des entites jugé utile par la suite.
 
-
+|Entité | Sans reduction | Avec prise en compte | Reduction| 
+| ------------- | ------------- |------------- |------------- |
+| Nodes | 82354  |21919 | 73,4% |
+| Edges | 186732  |35866 | 80,7% |
+| Dead-end junctions | 14368 |149  | 99%|
+| Priority junctions | 50194 |18335 | 63,5%|
+| Right-before-left junctions  | 14178  |410 | 97%|
+| Traffic light junctions | 3397  |3025 | 11% |
 
 
 # PAS MODIFIÉ
