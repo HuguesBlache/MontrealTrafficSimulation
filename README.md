@@ -59,6 +59,86 @@ Le tableau suivant represente la compraison entre l'importation brute et le filt
 | Traffic light junctions | 3397  |3025 | 11% |
 
 
+<h3 align="center" id="feux">Intersection et feux de circulation</h3>
+
+<h4 align="center" id="feux">Temps de cycle</h4>
+
+
+Un des probleme recurant dans SUMO est le temps de cycle des feux de circulation qui parfois ne correspondes pas à la valeurs des villes etudier. Or n'ayant pas acces au plan de feux de la ville de Montréal, les cycles seront defini par default à 90 secondes  
+
+
+<h4 align="center" id="feux">Fusion de jonction</h4>
+
+Un des problèmes qui peut subvenir lors du téléchargement de certains secteurs : parfois les feux de circulation d'un carrefour à plusieurs branches passent au vert simultanément. 
+
+<p align="center">
+  <img width="460" height="300" src="https://user-images.githubusercontent.com/65184943/86969904-82825700-c13c-11ea-963b-cac24d041739.png">
+    <img width="460" height="300" src="https://user-images.githubusercontent.com/65184943/86971270-ddb54900-c13e-11ea-9607-de2aabbc94c1.png">
+ 
+</p>
+
+Si un probleme preciste, comme vu plus haut, une des solutions est de "fusionner" les jonction proche pour en créer un seul, et donc un seul feux de circulation. Pour cela, il existe de nombreux paramètre sur <a href="https://sumo.dlr.de/docs/netconvert.html#junctions">netconvert</a> dont le --junctions.join, qui  permet de joindre deux feux de circulation proche. 
+
+Après avoir lancer la construction du reseau on peut remarquer que le problème est "resolu" en partie. Car le feux est synchronisé en fonction des voies de circulation, comme le montre l'image si dessous. 
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/65184943/93613822-59cdd780-f99f-11ea-84a9-460a3d6725dc.png">
+</p>
+
+
+<h5 align="center" >Impacte sur la simualation</h5>
+
+<h6 align="center" >Temps de parcours</h6>
+
+Nous pouvons d'abord regarder la differance au niveau du temps de parcours (duration,WaitingTime,TimeLose) des deux types de cartes que nous avons produit (feux de circulation fusionner, pas de chagement à l'importation). Pour cela nous allons prendre une base d'un peu plus de 5000 vehicules identique, et nous allons vusaliser les données du TripInfo (expliqué dans la section collectes de <a href="#tripinfo"> données </a>). Ainsi nous trouvons: 
+<table  align="center">
+	<a align="center">
+  <tr>
+    <th>Carte</th>
+    <th>Temps de parcours moyen (en s)</th> 
+    <th>Ecart Type</th>
+    <th>Temps d'attentes moyen (en s)</th>
+    <th>Ecart Type</th>
+    <th>Temps perdu (en s)</th>
+    <th>Ecart Type</th>
+  </tr>
+  <tr>
+    <td>Sans changement</td>
+    <td>1305</td>
+     <td>998</td>
+    <td>697</td>
+     <td>751</td>
+    <td>882</td>
+     <td>869</td>
+  </tr>
+  <tr>
+    <td>Fusion des jonction</td>
+    <td>852</td>
+    <td>544</td>
+    <td>285</td>
+    <td>277</td>
+    <td>429</td>
+    <td>373</td>
+  </tr>
+   <tr>
+    <td>Reduction (en %)</td>
+    <td>35%</td>
+    <td>...</td>
+    <td>59%</td>
+    <td>...</td>
+    <td>51%</td>
+    <td>...</td>
+  </tr>
+		</a>
+</table>
+
+Donc en rectifiant cette erreur de synchronisation des feux de circulation, on peut voir que les facteurs temps peuvent être reduit de parfois de moitier. Il est donc important de prendre en compte ce genre de detaille, car il peut affecter les decisions que l'on peut avoir qvec ce type de modèle (exemple: Lien entre temps perdu et economie perdu...)
+
+<h6 align="center" >Teleportation</h6>
+
+Mise à part le temps de parcours, il faut aussi regarder du cote des vehicules teleporter pour viusaliser un changement. En effet apres avoir sortie les donnees CSV de la simulation, on remarque qu'avant changement le nombre de vehicules teleporter etais 467 contre 97 avec fusion, soit une reduction de 81%.
+
+
 # PAS MODIFIÉ
 
 <h2 align="center" id="OD"> Matrice OD </h2>
@@ -577,91 +657,7 @@ netconvert --osm-files Montreal.osm --remove-edges.by-type railway.rail,highway.
 </p>
 
 
-<h2 align="center" id="feux">Feux de circulation</h2>
 
-<h3 align="center" id="feux">Temps de cycle</h3>
-
-Un des probleme recurant dans SUMO est le temps de cycle des feux de circulation qui parfois ne correspondes pas à la valeurs des villes etudier. Car par default le temps de cycle est de 90s dans SUMO, comme vu sur l'image ci dessous.
-
-<p align="center">
-
-  <img src="https://user-images.githubusercontent.com/65184943/86970926-42bc6f00-c13e-11ea-98ce-6456d62b5d62.png">
-</p>
-
-
-Pour palier à cela, Il est possible d'affecter des cycles prédéfinies de feux que nous devons faire avant la simulation. Pour cette simulation nous allons commencer avec des cycles de 90 secondes (par default sur SUMO), car beaucoup de feux ont ce cycle sur l'ile de Montréal (peut changer dans d'autres villes)
-
-<h3 align="center" id="feux">Fusion de jonction</h3>
-
-Un des problèmes qui peut subvenir lors du téléchargement de certains secteurs : parfois les feux de circulation d'un carrefour à plusieurs branches passent au vert simultanément. 
-
-
-<p align="center">
-  <img width="460" height="300" src="https://user-images.githubusercontent.com/65184943/86969904-82825700-c13c-11ea-963b-cac24d041739.png">
-    <img width="460" height="300" src="https://user-images.githubusercontent.com/65184943/86971270-ddb54900-c13e-11ea-9607-de2aabbc94c1.png">
- 
-</p>
-
-Si un probleme preciste, comme vu plus haut, une des solutions est de "fusionner" les jonction proche pour en créer un seul, et donc un seul feux de circulation. Pour cela, il existe de nombreux paramètre sur <a href="https://sumo.dlr.de/docs/netconvert.html#junctions">netconvert</a> dont le --junctions.join, qui  permet de joindre deux feux de circulation proche. 
-
-Après avoir lancer la construction du reseau on peut remarquer que le problème est "resolu" en partie. Car le feux est synchronisé en fonction des voies de circulation, comme le montre l'image si dessous. 
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/65184943/93613822-59cdd780-f99f-11ea-84a9-460a3d6725dc.png">
-</p>
-
-
-<h4 align="center" >Impacte sur la simualation</h4>
-
-<h5 align="center" >Temps de parcours</h5>
-
-Nous pouvons d'abord regarder la differance au niveau du temps de parcours (duration,WaitingTime,TimeLose) des deux types de cartes que nous avons produit (feux de circulation fusionner, pas de chagement à l'importation). Pour cela nous allons prendre une base d'un peu plus de 5000 vehicules identique, et nous allons vusaliser les données du TripInfo (expliqué dans la section collectes de <a href="#tripinfo"> données </a>). Ainsi nous trouvons: 
-<table  align="center">
-	<a align="center">
-  <tr>
-    <th>Carte</th>
-    <th>Temps de parcours moyen (en s)</th> 
-    <th>Ecart Type</th>
-    <th>Temps d'attentes moyen (en s)</th>
-    <th>Ecart Type</th>
-    <th>Temps perdu (en s)</th>
-    <th>Ecart Type</th>
-  </tr>
-  <tr>
-    <td>Sans changement</td>
-    <td>1305</td>
-     <td>998</td>
-    <td>697</td>
-     <td>751</td>
-    <td>882</td>
-     <td>869</td>
-  </tr>
-  <tr>
-    <td>Fusion des jonction</td>
-    <td>852</td>
-    <td>544</td>
-    <td>285</td>
-    <td>277</td>
-    <td>429</td>
-    <td>373</td>
-  </tr>
-   <tr>
-    <td>Reduction (en %)</td>
-    <td>35%</td>
-    <td>...</td>
-    <td>59%</td>
-    <td>...</td>
-    <td>51%</td>
-    <td>...</td>
-  </tr>
-		</a>
-</table>
-
-Donc en rectifiant cette erreur de synchronisation des feux de circulation, on peut voir que les facteurs temps peuvent être reduit de parfois de moitier. Il est donc important de prendre en compte ce genre de detaille, car il peut affecter les decisions que l'on peut avoir qvec ce type de modèle (exemple: Lien entre temps perdu et economie perdu...)
-
-<h5 align="center" >Teleportation</h5>
-
-Mise à part le temps de parcours, il faut aussi regarder du cote des vehicules teleporter pour viusaliser un changement. En effet apres avoir sortie les donnees CSV de la simulation, on remarque qu'avant changement le nombre de vehicules teleporter etais 467 contre 97 avec fusion, soit une reduction de 81%.
 
 <h2 align="center" id="données">Collectes de données</h2>
 
