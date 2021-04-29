@@ -32,13 +32,16 @@ Ce projet se réfère principalement à la documentation de <a href="https://sum
 <h3 align="center" id="carte">Topologie de l'ile de Montréal</h3>
 
 Le cadre de cette étude est de prendre la circulation sur l'ile de Montréal. Afin de reprondre au exigences du reseau, les informations concernant l'ile sont importé avec <a href="https://www.openstreetmap.org/">OpenStreetMap (OSM)</a>. Neanmoins, comme le simulateur est une entrée du logiciel <a href="https://www.trafficm2modelling.com/"> M2M</a> et que les données topologiques et que une certaines formes de l'ile est necessaire, le site <a href="https://extract.bbbike.org/">BBbike</a> en est une solution comme le montre la figure suivante :
+
 <p align="center">
   <img  width="450" height="350" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_BBBike.png">
   <img  width="450" height="350" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_M2M.png">	
 </p>
+
 Comme les données OSM sont trop lourd pour les temps de calcule de la simulation, un certain nombre de route ont été supprimé du reseau avec la commande NETCONVERT. Le route presente dans le reseau seront les <em>highway.motorway, highway.primary, highway.secondary, highway.tertiary, highway.cycleway, railway.subway, highway.motorway_link, highway.primary_link, highway.secondary_link, highway.tertiary_link</em>
 
 Ce qui donne comme reseau sur SUMO:
+
 <p align="center">
   <img src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_SUMO.png">
 </p>
