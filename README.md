@@ -108,7 +108,7 @@ Nous pouvons d'abord regarder la differance au niveau du temps de parcours (dura
      <td>998</td>
     <td>697</td>
      <td>751</td>
-    <td>882</td>
+    <td>308.8</td>
      <td>869</td>
   </tr>
   <tr>
@@ -117,7 +117,7 @@ Nous pouvons d'abord regarder la differance au niveau du temps de parcours (dura
     <td>544</td>
     <td>285</td>
     <td>277</td>
-    <td>429</td>
+    <td>236</td>
     <td>373</td>
   </tr>
    <tr>
@@ -134,6 +134,15 @@ Nous pouvons d'abord regarder la differance au niveau du temps de parcours (dura
 
 Donc en rectifiant cette erreur de synchronisation des feux de circulation, on peut voir que les facteurs temps peuvent être reduit de parfois de moitier. Il est donc important de prendre en compte ce genre de detaille, car il peut affecter les decisions que l'on peut avoir qvec ce type de modèle (exemple: Lien entre temps perdu et economie perdu...)
 
+On peut aussi le voir sur la repartition des vitesses comme sur le boxplot qui suit, oû l'on constate que la vitesse est relativement plus grades avec une simulation avec fusion 
+
+
+<p align="center">
+  <img width="560" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/dist_vitess_junct.png">
+</p>
+
+
+
 <h6 align="center" >Teleportation</h6>
 
 Mise à part le temps de parcours, il faut aussi regarder du cote des vehicules teleporter pour viusaliser un changement. Comme representer sur la figure XX, on peut constater une nette distinguation entre d'un cote beaucoup de teleportation pour les scenarios sans fusion de jonction et de leurs avec peu de teleportation avec une fusion.
@@ -142,6 +151,7 @@ Mise à part le temps de parcours, il faut aussi regarder du cote des vehicules 
   <img width="560" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/teleportation.png">
 </p>
 
+Au vu de la sensibilité de ses deux scénariosn, dans la suite du projet nous prendrons pour la simulation les reseaux avec des fusions des jonctions
 
 <h2 align="center" id="OD"> Création de la demande</h2>
 
