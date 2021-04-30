@@ -12,20 +12,23 @@
 <h2 align="center">Table des matières</h2>
 
 1. <a href="#doc">Documentation SUMO</a><br>
-2. <a href="#carte">Génération du reseau de l'ile de Montréal</a><br>
-3. <a href="#OD">Création de la demande </a><br>
-4. <a href="#autos">Génération de la demande</a><br>
-5. <a href="#TC">Prise en compte du transport en commun</a><br>
-6. <a href="#actifs">Prise en compte des modes actifs</a><br>
-7. <a href="#fusion">Fusion des modes</a><br>
-7. <a href="#feux">Feux de circulation</a><br>
-8. <a href="#données">Collectes de données</a><br>
-9. <a href="#visualisation">Visualisation</a><br>
-10. <a href="#simulation">Simulation</a><br>
+2. <a href="#doc">Contexte</a><br>
+3. <a href="#carte">Génération du reseau de l'ile de Montréal</a><br>
+4. <a href="#OD">Création de la demande </a><br>
+5. <a href="#autos">Génération de la demande</a><br>
+6. <a href="#TC">Prise en compte du transport en commun</a><br>
+7. <a href="#actifs">Prise en compte des modes actifs</a><br>
+8. <a href="#fusion">Fusion des modes</a><br>
+9. <a href="#feux">Feux de circulation</a><br>
+10. <a href="#données">Collectes de données</a><br>
+11. <a href="#visualisation">Visualisation</a><br>
+12. <a href="#simulation">Simulation</a><br>
 
 <h2 align="center" id="doc">Documentation SUMO</h2>
 
 Ce projet se réfère principalement à la documentation de <a href="https://sumo.dlr.de/docs/SUMO_User_Documentation.html">Sumo</a> et du Professeur Nicolas Saunier pour le cours <a href="https://github.com/nsaunier/CIV8740/blob/master/guide-sumo.md">CIV8740</a>. Les autres sources seront citées à la fin du document.
+
+<h2 align="center" id="doc">Contexte</h2>
 
 <h2 align="center" >Génération du reseau de l'ile de Montréal</h2>
 
@@ -61,11 +64,16 @@ Le tableau suivant represente la compraison entre l'importation brute et le filt
 
 <h3 align="center" id="feux">Intersection et feux de circulation</h3>
 
+
 <h4 align="center" id="feux">Temps de cycle</h4>
 
 
 Un des probleme recurant dans SUMO est le temps de cycle des feux de circulation qui parfois ne correspondes pas à la valeurs des villes etudier. Or n'ayant pas acces au plan de feux de la ville de Montréal, les cycles seront defini par default à 90 secondes  
 
+
+<h4 align="center" id="feux">Paramètres</h4>
+
+No turn
 
 <h4 align="center" id="feux">Fusion de jonction</h4>
 
@@ -152,6 +160,64 @@ Mise à part le temps de parcours, il faut aussi regarder du cote des vehicules 
 </p>
 
 Au vu de la sensibilité de ses deux scénariosn, dans la suite du projet nous prendrons pour la simulation les reseaux avec des fusions des jonctions
+
+<h3 align="center" id="TC">Implantation des arrets de bus</h3>
+
+Après avoir construit notre reseau, il est possible de gréfer à notre modèle des arrets de bus et des informations des trajets. Pour cela, il existe des <a href="https://sumo.dlr.de/docs/Tutorials/PT_from_OpenStreetMap.html"> fonctions </a> qui peuvent directement implanter dans SUMO pour recuper les information des trajets de bus selon les relations dans OpenStreetMap. C'est commande sont:
+
+ <ul  align="center">
+  <li  align="center" >osm.stop-output.length : Cette fonction permet de difinire des longueur des arrets de bus par default, nous prendrons 20 metres</li>
+  <li  align="center">ptstop-output : Cette fonction permet de renseigner sur les emplacements des arrets des bus sur notre carte</li>
+  <li  align="center">ptline-output: Cette fonction permet de renseigner sur les trajets des lignes de bus</li>
+</ul> 
+
+Ce qui nous donnes la commandes suivante:
+
+
+```
+netconvert --osm-files <Files> -o <Files> --osm.stop-output.length 20 --ptstop-output ptstop.add.xml --ptline-output ptlines.xml
+
+```
+Pour visualiser la emplacement dans la simulation, il faut ajouter un fichier additionnel dans le .sumocfg qui porte le nom où ce situe le fihcier des arrets, ici ```ptstop.add.xml```
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/65184943/89458738-8900f000-d735-11ea-9789-a006f17a5e5b.png">
+    
+</p>
+
+
+
+Pour notre simulation nous prendrons les <a href="https://wiki.openstreetmap.org/wiki/Relation"> relations </a>  des lignes de la <a href="https://wiki.openstreetmap.org/wiki/Bus_routes_in_Montr%C3%A9al"> STM </a> (Société de transport de Montréal)
+
+
+
+<img width="30" height="30" src="https://user-images.githubusercontent.com/65184943/87172123-bb880c00-c2a1-11ea-8b11-ff689734475f.jpg"> Les <i> ptstop </i> et les <i> ptline </i> peuvent parfois ne pas prendre en compte certaines lignes et arrêts si les <a href="https://wiki.openstreetmap.org/wiki/Relation"> relations </a>  dans OSM ne sont pas bien construites.
+
+
+
+<h4 align="center" id="mauvaise">Mauvaise relation</h4>
+
+Une mauvaise relation ne sera pas prise en compte par SUMO. Il peut y avoir plusieurs raisons:
+
+- Les arrêts de bus qui ne sont bien placés ou "hors" de la route
+- Les chemins (ways) ne sont pas pris en compte dans la relation
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/65184943/87174223-dc9e2c00-c2a4-11ea-8346-2265984c09c7.png">
+    
+</p>
+
+<h4 align="center">Bonne relation</h4>
+
+La bonne relation sera contrairement à la <a href="#mauvaise"> mauvaise </a> bien prise en compte par SUMO
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/65184943/87174266-eaec4800-c2a4-11ea-8869-0ef4552443ed.png">
+ </p>
+
+
+Dans notre simulation  de l'ile de Montreal, il manquera donc quelques lignes de bus comme le bus 54 vu ci haut
+
+
 
 <h2 align="center" id="OD"> Création de la demande</h2>
 
@@ -612,51 +678,6 @@ Ci on prend en compte le pourcentage par tranche horraire, nous aurons
 
 Nous allons donc prendre ce pourcentage pour le mettre à niveau le nombre de voiture sur la simulation
 
-<h2 align="center" id="TC">Prise en compte du transport en commun</h2>
-
-Après avoir implanté les trajets d'autos, il est possible de gréfer à notre modèle les trajets de bus. Pour cela, il existe des <a href="https://sumo.dlr.de/docs/Tutorials/PT_from_OpenStreetMap.html"> fonctions </a> qui peuvent directement créer des trajets de bus selon les relations créées dans OpenStreetMap. Pour notre simulation nous prendrons les <a href="https://wiki.openstreetmap.org/wiki/Relation"> relations </a>  des lignes de la <a href="https://wiki.openstreetmap.org/wiki/Bus_routes_in_Montr%C3%A9al"> STM </a> (Société de transport de Montréal)
-
-<h3 align="center">Information des lignes existantes sur la carte OSM</h3>
-
-```
-netconvert --osm-files Montreal.xml -o Montreal.net.xml --osm.stop-output.length 20 
-    --ptstop-output ptstop.add.xml --ptline-output ptlines.xml
-
-```
-
-Pour visualiser la emplacement dans la simulation, il faut ajouter un fichier additionnel dans le .sumocfg qui porte le no où ce situe le fihcier des arrets, ici ```ptstop.add.xml```
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/65184943/89458738-8900f000-d735-11ea-9789-a006f17a5e5b.png">
-    
-</p>
-
-
-<img width="30" height="30" src="https://user-images.githubusercontent.com/65184943/87172123-bb880c00-c2a1-11ea-8b11-ff689734475f.jpg"> Les <i> ptstop </i> et les <i> ptline </i> peuvent parfois ne pas prendre en compte certaines lignes et arrêts si les <a href="https://wiki.openstreetmap.org/wiki/Relation"> relations </a>  dans OSM ne sont pas bien construites.
-
-
-
-<h4 align="center" id="mauvaise">Mauvaise relation</h4>
-
-Une mauvaise relation ne sera pas prise en compte par SUMO. Il peut y avoir plusieurs raisons:
-
-- Les arrêts de bus qui ne sont bien placés ou "hors" de la route
-- Les chemins (ways) ne sont pas pris en compte dans la relation
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/65184943/87174223-dc9e2c00-c2a4-11ea-8346-2265984c09c7.png">
-    
-</p>
-
-<h4 align="center">Bonne relation</h4>
-
-La bonne relation sera contrairement à la <a href="#mauvaise"> mauvaise </a> bien prise en compte par SUMO
-
-<p align="center">
-<img src="https://user-images.githubusercontent.com/65184943/87174266-eaec4800-c2a4-11ea-8869-0ef4552443ed.png">
- </p>
-
-
-Dans notre simulation  de l'ile de Montreal, il manquera donc quelques lignes de bus comme le bus 54 vu ci haut
 
 <h3 align="center">Implentation des trajets</h3>
 
