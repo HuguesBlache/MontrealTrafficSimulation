@@ -227,7 +227,7 @@ Nous pouvons ne prendre en compte que les déplacements en auto qui se produit �
 
 Pour essayer de representer un simulation de la circulation heterogene, nous nous avons decidé de prendre en compte plusieurs type de véhicules dans notre simulation.
 
-<h5 align="center" id="type">Catégories automobile</h5>
+<h4 align="center" id="type">Catégories automobile</h4>
 
 Il est spécifié dans la matrice OD que nous utilisons dans notre simulation que les trajets automobile correponds à un melanges Automobile et Moto sans renseignement du pourcentages. Pour spécifier se pourcentage et ainsi distinguer les differentes categories de véhicules, nous nous sommes dériger vers  la <a href="https://saaq.gouv.qc.ca/donnees-ouvertes/vehicules-circulation/vehicules-circulation-documentation.pdf"> SAAQ </a> et des <a href="https://bdso.gouv.qc.ca/pls/ken/ken213_afich_tabl.page_tabl?p_iden_tran=REPERBA6Z3O56149094340058BfZ9c&p_lang=1&p_m_o=SAAQ&p_id_ss_domn=718&p_id_raprt=3628#tri_tertr=00&tri_mun=aaaaa"> stastitique </a> du Quebec pour definir le part de ces vehicules promenade dans le parc automobile de l'ile de Montreal :
 
@@ -264,7 +264,7 @@ Il est spécifié dans la matrice OD que nous utilisons dans notre simulation qu
 
 
 Puis, pour prendre des modèle type <a href="https://journalmetro.com/automobile/419357/les-vehicules-les-plus-vendus-en-2013/"> vendu </a> en 2013 avec leur <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/MatriceOD/Copie%20de%20Tableau.xlsx
-"> carateristique</a>  qui sont les suivant
+"> carateristique</a>  et les valeurs Vclass de SUMO qui sont les suivants:
 
 
 <table  align="center">
@@ -273,33 +273,43 @@ Puis, pour prendre des modèle type <a href="https://journalmetro.com/automobile
     <th>Modele</th>
     <th>Longueur (m)</th> 
     <th>Hauteur (m)</th>
+    <th>vClass </th>
+    <th>maxSpeed (m/s) </th>
   </tr>
   <tr>
     <td>Toyota Corolla 2013</td>
     <td>4,5</td>
     <td>1,76</td>
+    <td>private</td>
+    <td>55.56</td>
   </tr>
   <tr>
     <td>Ford F 150</td>
     <td>5,9</td>
     <td>1,9</td>
+    <td>delivery</td>
+    <td>55.56</td>
   </tr>
   <tr>
     <td>Yamaha FZ</td>
     <td>2,07</td>
     <td>0.8</td>
+    <td>motorcycle</td>
+    <td>55.56</td>
   </tr>
 	<tr>
     <td>Honda Forza 125</td>
     <td>2140</td>
     <td>0.78</td>
+    <td>moped</td>
+    <td>16.67</td>
   </tr>
 		</a>
 </table>
 
 
 
-<h4 align="center">Emissions</h4>
+<h5 align="center">Emissions</h5>
 
 
 https://theicct.org/sites/default/files/info-tools/One%20table%20to%20rule%20them%20all%20v1.pdf
@@ -340,15 +350,15 @@ https://theicct.org/sites/default/files/info-tools/One%20table%20to%20rule%20the
 </table>
 
 
-<h4 align="center">Commande Vtype</h4>
+<h5 align="center">Commande Vtype</h5>
 
 Il existe plusieur <a href="https://sumo.dlr.de/docs/Definition_of_Vehicles,_Vehicle_Types,_and_Routes.html#abstract_vehicle_class"> Class </a>, qui pernent encompte certaines carateristiques par default. Ci dessous nous envons creer 4 type de vehicules different pour notre simulation: 
 
 ```xml
- <vType id="Car" color="0,255,255" length="4.5" vClass="private" emissionClass="HBEFA3/PC_G_EU5"/>
- <vType id="SUV" color="255,0,255" length="6" vClass="delivery" emissionClass="HBEFA3/PC_G_EU3"/>
- <vType id="motorcycle" color="0,0,255" length="2" vClass="motorcycle" emissionClass="HBEFA3/PC_G_EU6"/>
- <vType id="cyclomotor" color="0,255,0" length="2" vClass="moped" emissionClass="HBEFA3/PC_G_EU6"/>
+ <vType id="Car" color="0,255,255" length="4.5" vClass="private" emissionClass="HBEFA3/PC_G_EU5" probability="0.65" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="27.78"/>
+<vType id="SUV" color="255,0,255" length="6" vClass="delivery" emissionClass="HBEFA3/PC_G_EU3" probability="0.32" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="27.78"/>
+<vType id="motorcycle" color="0,0,255" length="2" vClass="motorcycle" emissionClass="HBEFA3/PC_G_EU6" probability="0.02" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="27.78"/>
+<vType id="cyclomotor" color="0,255,0" length="2" vClass="moped" emissionClass="HBEFA3/PC_G_EU6"  probability="0.01" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="27.78"/>
  
 ```
 
