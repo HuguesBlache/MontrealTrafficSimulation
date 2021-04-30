@@ -611,7 +611,6 @@ Pour execter le fihcier od2trips il suffit de prendre suivre la commande suivant
 
 ```
 od2trips -c od2trips.config.xml 
-
 ```
 
 <h4 align="center" id="duarouter">duarouter</h4>
@@ -668,8 +667,22 @@ En resumer, voici la demarche de la generation de trajet dans notre simulation
 </p>
 
 
+<h4 align="center">Construction des trajets de bus</h4>
+
+La construction des itenairaises de bus sont legerement differents que celle des voitures, il faut faire faire suivre un chemin special au bus pour qu'il s'arrete à tout les arret desiser. Pour ce faire la fonction <i> <a href="https://github.com/eclipse/sumo/tree/master/tests/tools/public_transport/ptlines2flows"> ptlines2flows.py </a> </i>. peut faire ces trajets.
 
 
+
+<p align="center">
+  <img width="600" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/ptlines2flow.png">
+  
+</p>
+
+Voici par exemple la commande que nous pouvons faire à notre reseau
+```
+ptlines2flows.py -n Montreal.net.xml -s ptstop.add.xml -l ptlines.xml -o flows.rou.xml -p 600 --use-osm-routes
+```
+La partie ```-p 600``` correspond, en secondes, à l'intervalle de temps entres chaques bus d'une même ligne sur un même arret. A ce moment de la simulation les bus tourne à "vide", pourons par la suite faire des trajets intermodaux 
 
 <h2 align="center" id="Simulation">Simulation</h2>
 
@@ -749,21 +762,6 @@ Ci on prend en compte le pourcentage par tranche horraire, nous aurons
 Nous allons donc prendre ce pourcentage pour le mettre à niveau le nombre de voiture sur la simulation
 
 
-<h3 align="center">Implentation des trajets</h3>
-
-Tout d'abord, on peut créer des trajets de bus grâce à la fonction <i> <a href="https://github.com/eclipse/sumo/tree/master/tests/tools/public_transport/ptlines2flows"> ptlines2flows.py </a> </i>.
-2
-```
-ptlines2flows.py -n Montreal.net.xml -s ptstop.add.xml -l ptlines.xml 
-    -o flows.rou.xml -p 600 --use-osm-routes
-
-```
-La partie ```-p 600``` correspond, en secondes, à l'intervalle de temps entres chaques bus d'une même ligne sur un même arret. A ce moment de la simulation les bus tourne à "vide", pourons par la suite faire des trajets intermodaux 
-
-
-<p align="center">
-<img src="https://user-images.githubusercontent.com/65184943/89458733-88685980-d735-11ea-8628-0b614b5bb6ff.png">
- </p>
 
 
 
