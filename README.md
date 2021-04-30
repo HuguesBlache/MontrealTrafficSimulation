@@ -181,7 +181,7 @@ netconvert --osm-files <Files> -o <Files> --osm.stop-output.length 20 --ptstop-o
 Pour visualiser la emplacement dans la simulation, il faut ajouter un fichier additionnel dans le .sumocfg qui porte le nom où ce situe le fihcier des arrets, ici ```ptstop.add.xml```
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/65184943/89458738-8900f000-d735-11ea-9789-a006f17a5e5b.png">
+  <img width="500" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/arret_bus.png">
     
 </p>
 
