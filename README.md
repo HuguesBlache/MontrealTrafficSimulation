@@ -17,12 +17,8 @@
 4. <a href="#OD">Création de la demande </a><br>
 5. <a href="#autos">Génération de la demande</a><br>
 6. <a href="#Simulation">Simulation</a><br>
-7. <a href="#actifs">Prise en compte des modes actifs</a><br>
-8. <a href="#fusion">Fusion des modes</a><br>
-9. <a href="#feux">Feux de circulation</a><br>
-10. <a href="#données">Collectes de données</a><br>
-11. <a href="#visualisation">Visualisation</a><br>
-12. <a href="#simulation">Simulation</a><br>
+7. <a href="#Calibration">Calibration</a><br>
+
 
 <h2 align="center" id="doc">Documentation SUMO</h2>
 
@@ -686,17 +682,38 @@ La partie ```-p 600``` correspond, en secondes, à l'intervalle de temps entres 
 
 <h2 align="center" id="Simulation">Simulation</h2>
 
+La section suivante presente énumerer les étapes pour la simulation
+
 <h3 align="center">Graine</h3>
+
+Un aspect important dans la simulation du traffic est l'apect stochastiques d'une simulation afin de s'approcher au mieux des phénomes réel de la simulation grâce à la simulation. Or Sumo utilise  un algorithm, <i> <a href="https://sumo.dlr.de/docs/Simulation/Randomness.html">Mersenne Twister </a> </i> qui fixe le nombres aléatoires choisies pour la construction du modèle et de ce fait rend les simulations déterministes. Et ceci impacte de nombreuse valeur:
+
+ <ul  align="center">
+  <li  align="center" >Distributions des itinéraires</li>
+  <li  align="center">Repartition des types de véhicules</li>
+  <li  align="center">Distribution des vitesses</li>
+  <li  align="center">Le modèle de suivi des véhicules (Car-Following)</li>
+  <li  align="center">Heure de depart et d'arrivée</li>
+  <li  align="center">Distribution des flux</li>	
+</ul> 
+
+Pour palier le plus possible à ce problemes qui rend l'analyse plus difficile, il est possible des changer ces valeurs fixes en effectuant differentes simulation à l'aide de graine, <i> seed </i> qu'il faut spécifier à chaque nouvelle simulation. 
+
+
+<h3 align="center">Distribution des graines</h3>
+
+Afin des diversifié au maximun la répartion des graines, nous prennons differentes valeurs de graines dans tout le processus de construction des affectations des iteraire. Nous commencons par le faire avec od2trips, puis avec Duarouter et le lancement de la simulation. Que nous avons construit dans un fichier batch, dont voici un exmple
 
 ```batch
 FOR /L %%s IN (110,20,190) DO (
   ECHO %%s
-  od2trips -c od2trips.config.xml --output-prefix seed%%s
-  duarouter -c VoitureAM.trips2routes.duarcfg.xml  --route-files  seed%%sod_ileVoitureAM.odtrips.xml  --output-prefix seed%%s --ignore-errors true 
-  sumo.exe --seed %%s -c C:\Users\hugue\ProjetPoly\Scenario\Jointure_Etude_Retard\Avec_Jointure\Graine.sumocfg --route-files seed%%stripsvoiture.odtrips.rou.xml  
+  od2trips -c od2trips.config.xml --seed%%s --output-prefix seed%%s
+  duarouter -c VoitureAM.trips2routes.duarcfg.xml --seed%%s --route-files  seed%%sod_ileVoitureAM.odtrips.xml  --output-prefix seed%%s --ignore-errors true 
+  sumo.exe --seed %%s -c Graine.sumocfg --route-files seed%%stripsvoiture.odtrips.rou.xml  
 )
 
 ```
+Avec le ficher Graine.sumocfg:
 
 ```xml
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
@@ -710,6 +727,10 @@ FOR /L %%s IN (110,20,190) DO (
   </time>
 </configuration>
 ```
+
+
+<h2 align="center" id="Calibration">Calibration</h2>
+
 
 
 # PAS MODIFIÉ
