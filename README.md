@@ -197,20 +197,70 @@ Une premiere étape de l’implantation de la matrice OD à été de modifier la
 
 Format de la matrice OD "classique"
 
-| Origine-Destination  | Dest 1|Dest 2|Dest 3|
-| ------------- | ------------- | ------------- | ------------- |
-| **Orig1**  | 1 |2 |3  |
-| **Orig2**  | 4  |5 |6  |
-| **Orig3**  |7  |8  |9  |
+
+<table  align="center">
+	<a align="center">
+  <tr>
+    <th>Origine-Destination</th>
+    <th>Dest 1</th> 
+    <th>Dest 2</th>
+    <th>Dest 3</th>
+  </tr>
+  <tr>
+    <td>**Orig1**</td>
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+  </tr>
+    <tr>
+    <td>**Orig2**</td>
+    <td>4</td>
+    <td>5</td>
+    <td>6</td>
+  </tr>
+    <tr>
+    <td>**Orig3**</td>
+    <td>7</td>
+    <td>8</td>
+    <td>9</td>
+  </tr>
+		
+	</a>
+</table>
 
 Format de la matrice OD (O-format) sur SUMO
 
-|Origine | Destination | Nombre d'auto |
-| ------------- | ------------- |------------- |
-| Orig1 | Dest1  |1  |
-| Orig1  | Dest2 |2  |
-|... | ...  |... |
-| Orig3  | Dest3  |3  |
+<table  align="center">
+	<a align="center">
+  <tr>
+    <th>Origine </th>
+    <th>Destination</th> 
+    <th>Nombre d'auto</th>
+ 
+  </tr>
+  <tr>
+    <td>Orig1</td>
+    <td>Dest1</td>
+    <td>1</td>
+  </tr>
+    <tr>
+    <td>Orig1</td>
+    <td>Dest2</td>
+    <td>2</td>
+  </tr>
+   <tr>
+    <td>...</td>
+    <td>...</td>
+    <td>...</td>
+  </tr>
+    <tr>
+    <td>Orig3</td>
+    <td>Dest3</td>
+    <td>9</td>
+  </tr>
+		
+	</a>
+</table>
 
 Un exemple de <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/Transformation%20matrice%20OD%20en%20O-format-checkpoint.ipynb">code</a> sur JupyterNotebook pour la modification de la matrice.
 
@@ -369,6 +419,20 @@ https://theicct.org/sites/default/files/info-tools/One%20table%20to%20rule%20the
 		</a>
 </table>
 
+
+
+<h5 align="center">Commande Vtype</h5>
+
+Il existe plusieur <a href="https://sumo.dlr.de/docs/Definition_of_Vehicles,_Vehicle_Types,_and_Routes.html#abstract_vehicle_class"> Class </a>, qui pernent encompte certaines carateristiques par default. Ci dessous nous envons creer 4 type de vehicules different pour notre simulation: 
+
+```xml
+ <vType id="Car" color="0,255,255" length="4.5" vClass="private" emissionClass="HBEFA3/PC_G_EU5" probability="0.65" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="55.56"/>
+<vType id="SUV" color="255,0,255" length="5,9" vClass="delivery" emissionClass="HBEFA3/PC_G_EU3" probability="0.32" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="55.56"/>
+<vType id="motorcycle" color="0,0,255" length="2,07" vClass="motorcycle" emissionClass="HBEFA3/PC_G_EU6" probability="0.02" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="55.56"/>
+<vType id="cyclomotor" color="0,255,0" length="2.14" vClass="moped" emissionClass="HBEFA3/PC_G_EU6"  probability="0.01" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="16.67"/>
+ 
+```
+
 <h4 align="center" id="type">Catégories bus</h4>
 
 La demarche est la même que pour la definition des véhicules, mais pour simplifier la simulation, nous ne prendrons qu'un seul type de <a href="https://www.stm.info/sites/default/files/affairespubliques/Communiques/Annexes/annexe_2_fiche_tech._lfs_nova.pdf">bus </a>.
@@ -398,18 +462,6 @@ La demarche est la même que pour la definition des véhicules, mais pour simpli
 	</a>
 </table>
 
-
-<h5 align="center">Commande Vtype</h5>
-
-Il existe plusieur <a href="https://sumo.dlr.de/docs/Definition_of_Vehicles,_Vehicle_Types,_and_Routes.html#abstract_vehicle_class"> Class </a>, qui pernent encompte certaines carateristiques par default. Ci dessous nous envons creer 4 type de vehicules different pour notre simulation: 
-
-```xml
- <vType id="Car" color="0,255,255" length="4.5" vClass="private" emissionClass="HBEFA3/PC_G_EU5" probability="0.65" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="55.56"/>
-<vType id="SUV" color="255,0,255" length="5,9" vClass="delivery" emissionClass="HBEFA3/PC_G_EU3" probability="0.32" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="55.56"/>
-<vType id="motorcycle" color="0,0,255" length="2,07" vClass="motorcycle" emissionClass="HBEFA3/PC_G_EU6" probability="0.02" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="55.56"/>
-<vType id="cyclomotor" color="0,255,0" length="2.14" vClass="moped" emissionClass="HBEFA3/PC_G_EU6"  probability="0.01" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="16.67"/>
- 
-```
 
 <h2 align="center" id="autos" >Génération de la demande</h2>
 
