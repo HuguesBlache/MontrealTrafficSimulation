@@ -31,11 +31,11 @@ Ce projet se réfère principalement à la documentation de <a href="https://sum
 <h2 align="center" id="doc">Contexte</h2>
 
 <p align="center">
-  <img  width="450" height="550" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Sumo_M2M.png">	
+  <img  width="650" height="450" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Sumo_M2M.png">	
 </p>
 
 <p align="center">
-  <img  width="550" height="450" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/V2X_App.png">	
+  <img  width="650" height="450" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/V2X_App.png">	
 </p>
 
 <h2 align="center" >Génération du reseau de l'ile de Montréal</h2>
