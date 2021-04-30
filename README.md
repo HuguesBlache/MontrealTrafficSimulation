@@ -224,7 +224,7 @@ Quelques solutions sont possibles pour les implanter ce manques ...
 Voici une comparaison du nombre d'arret de bus avec la réalité et notre resea:
 
 <table  align="center">
-	<a align="center">
+	
   <tr>
     <th>Entité</th>
     <th>Réalité</th> 
@@ -244,7 +244,6 @@ Voici une comparaison du nombre d'arret de bus avec la réalité et notre resea:
     <td>51,8%</td>
   </tr>
    
-		</a>
 </table>
 
 
