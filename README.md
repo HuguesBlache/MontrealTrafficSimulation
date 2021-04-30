@@ -299,13 +299,24 @@ Puis, pour prendre des modèle type <a href="https://journalmetro.com/automobile
   </tr>
 	<tr>
     <td>Honda Forza 125</td>
-    <td>2140</td>
+    <td>2.140</td>
     <td>0.78</td>
     <td>moped</td>
     <td>16.67</td>
   </tr>
 		</a>
 </table>
+
+Comme les vitesses entre chaques véhicules n'est identiques dans la réalité, nous decidons que les differentes vitesses des véhicules suivront une distribtion normal à l'aide de la commande <i> speedFactor </i> et en spécifiant <i>normc (moyenne, dev, min, max) </i>. Et dans notre cas nous prendons: 
+
+ <ul  align="center">
+  <li  align="center" >moyen = 1</li>
+  <li  align="center">dev = 0.1</li>
+  <li  align="center">min = 0.60</li>
+  <li  align="center">max = 1.3</li>
+</ul> 
+
+Ce qui signifie que 90% des véhicules roules entres roules entres 60% et 130% de la vitesse autorisé sur une route specifiques.
 
 <h5 align="center">Car-Following Model</h5>
 
@@ -359,15 +370,16 @@ https://theicct.org/sites/default/files/info-tools/One%20table%20to%20rule%20the
 </table>
 
 
+
 <h5 align="center">Commande Vtype</h5>
 
 Il existe plusieur <a href="https://sumo.dlr.de/docs/Definition_of_Vehicles,_Vehicle_Types,_and_Routes.html#abstract_vehicle_class"> Class </a>, qui pernent encompte certaines carateristiques par default. Ci dessous nous envons creer 4 type de vehicules different pour notre simulation: 
 
 ```xml
- <vType id="Car" color="0,255,255" length="4.5" vClass="private" emissionClass="HBEFA3/PC_G_EU5" probability="0.65" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="27.78"/>
-<vType id="SUV" color="255,0,255" length="6" vClass="delivery" emissionClass="HBEFA3/PC_G_EU3" probability="0.32" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="27.78"/>
-<vType id="motorcycle" color="0,0,255" length="2" vClass="motorcycle" emissionClass="HBEFA3/PC_G_EU6" probability="0.02" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="27.78"/>
-<vType id="cyclomotor" color="0,255,0" length="2" vClass="moped" emissionClass="HBEFA3/PC_G_EU6"  probability="0.01" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="27.78"/>
+ <vType id="Car" color="0,255,255" length="4.5" vClass="private" emissionClass="HBEFA3/PC_G_EU5" probability="0.65" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="55.56"/>
+<vType id="SUV" color="255,0,255" length="5,9" vClass="delivery" emissionClass="HBEFA3/PC_G_EU3" probability="0.32" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="55.56"/>
+<vType id="motorcycle" color="0,0,255" length="2,07" vClass="motorcycle" emissionClass="HBEFA3/PC_G_EU6" probability="0.02" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="55.56"/>
+<vType id="cyclomotor" color="0,255,0" length="2.14" vClass="moped" emissionClass="HBEFA3/PC_G_EU6"  probability="0.01" accel="2.6" decel="4.5" sigma="0.5"  speedFactor="normc(1.0,0.1,0.6,1.3)" maxSpeed="16.67"/>
  
 ```
 
