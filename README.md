@@ -701,51 +701,6 @@ FOR /L %%s IN (110,20,190) DO (
 
 # PAS MODIFIÉ
 
-
-
-
-
-
-
-
-
-Arrivé à cette étape, nous pouvons déja commencer à simuler notre modèle avec les trajets d'autos dans SUMO.
-
-Par étapes:
-
-- Création sur fichier <i><a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/CarteMontreal/Montreal.sumocfg"> Montreal.sumocfg </a> </i>
-
-- Visualation directe sur SUMO GUI
-
-  - Circulation 
-  
-  
-<p align="center">
-  <img  src="https://user-images.githubusercontent.com/65184943/87171442-ae1e5200-c2a0-11ea-82bf-ec953620d907.png">
-   
- 
-</p>
-
-
-<p align="center">
-  <img  src="https://user-images.githubusercontent.com/65184943/87171434-ab236180-c2a0-11ea-8db3-253d1d4b64ea.png">
-   
- 
-</p>
-
-   - Données
-  
- <p align="center" id="courbe">
-  <img img width="300" height="500" src="https://user-images.githubusercontent.com/65184943/87579863-9da51780-c6a4-11ea-9d93-669ea1eb4d63.png">
-   <img img width="700" height="500" src="https://user-images.githubusercontent.com/65184943/87579877-a269cb80-c6a4-11ea-9548-455758dad1a9.png">
-  </p>
-  
-  <p align="center">
-  
- 
-  
-  </p>
-  Dans cette exemple on prendre les données d'insertion des vehicules dans notre modèle, qui peut être sortie en format <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/CarteMontreal/insertion.csv">CSV </a>
  
 <h4 align="center" id="TC">Heure de pointe</h4>
 
@@ -812,28 +767,6 @@ La partie ```-p 600``` correspond, en secondes, à l'intervalle de temps entres 
 
 
 
-Nous pouvons aussi choisir par type de mode pour ce concentrer sur un seul  
-
-```
---types bus,subway,train
-
-```
-<h3 align="center">Type de vehicules</h3>
-
-Comme dans la section <a href="#type"> choix </a> de l'automobile, nous pouvons modifier les carateristique du bus. Cela permettra par la suite de modifier l'offre de transport en commun en augmentant par exemple le nombre de place par bus.
-
-<h3 align="center">Demande des Transports en commun</h3>
-
-La partie de la matrice <a href="#OD"> OD </a> est similaire à la section des <a href="#autos"> autos </a>.
-
-<h4 align="center">Type de vehicules</h4>
-
-Comme dans la section <a href="#type"> choix </a> de l'automobile, nous pouvons modifier les carateristique du bus. Cela permettra par la suite de modifier l'offre de transport en commun en augmentant par exemple le nombre de place par bus.
-
-
-
-
-
 
 <h2 align="center" id="actifs">Prise en compte des modes actifs</h2>
 <h3 align="center">Vélo</h3>
@@ -882,21 +815,6 @@ Pour cela il suffit de rajouter quelques lignes dans la construiction de la <a h
 ```
 netconvert --osm-files Montreal.osm --remove-edges.by-type railway.rail,highway.tertiary,highway.tertiary_link,highway.residential,highway.unclassified,highway.trunk,highway.trunk_link,highway.service,highway.footway,highway.path,highway.pedestrian,highway.steps,highway.track  --sidewalks.guess --crossings.guess  --lefthand -o Montreal.net.xml
 ```
-
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/65184943/88960887-2e1d5380-d272-11ea-989e-64770015d3bf.png">
-</p>
-<h2 align="center" id="fusion">Fusion des modes</h2>
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/65184943/88939297-5ac27280-d254-11ea-99d3-6c183e3b8a5f.png">
-</p>
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/65184943/89328322-3bb05000-d65b-11ea-9543-331e1e4b808c.png">
-</p>
-
-
 
 
 <h2 align="center" id="données">Collectes de données</h2>
