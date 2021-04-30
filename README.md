@@ -199,7 +199,7 @@ Format de la matrice OD "classique"
 
 
 <table  align="center">
-	<a align="center">
+	
   <tr>
     <th>Origine-Destination</th>
     <th>Dest 1</th> 
@@ -225,13 +225,13 @@ Format de la matrice OD "classique"
     <td>9</td>
   </tr>
 		
-	</a>
+	
 </table>
 
 Format de la matrice OD (O-format) sur SUMO
 
 <table  align="center">
-	<a align="center">
+	
   <tr>
     <th>Origine </th>
     <th>Destination</th> 
@@ -259,7 +259,7 @@ Format de la matrice OD (O-format) sur SUMO
     <td>9</td>
   </tr>
 		
-	</a>
+	
 </table>
 
 Un exemple de <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/Transformation%20matrice%20OD%20en%20O-format-checkpoint.ipynb">code</a> sur JupyterNotebook pour la modification de la matrice.
