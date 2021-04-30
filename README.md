@@ -215,8 +215,37 @@ La bonne relation sera contrairement à la <a href="#mauvaise"> mauvaise </a> bi
  </p>
 
 
-Dans notre simulation  de l'ile de Montreal, il manquera donc quelques lignes de bus comme le bus 54 vu ci haut
+Quelques solutions sont possibles pour les implanter ce manques ...
 
+
+
+<h4 align="center" id="mauvaise">Comparaison du nombre d'arret de bus</h4>
+
+Voici une comparaison du nombre d'arret de bus avec la réalité et notre resea:
+
+<table  align="center">
+	<a align="center">
+  <tr>
+    <th>Entité</th>
+    <th>Réalité</th> 
+    <th>Simulation</th>
+    <th>Difference</th>
+  </tr>
+  <tr>
+    <td>Nombre d'arret</td>
+    <td>8788</td>
+     <td>2074</td>
+    <td>76,4%</td>
+  </tr>
+  <tr>
+    <td>Nombre de lignes</td>
+    <td>216</td>
+    <td>104</td>
+    <td>51,8%</td>
+  </tr>
+   
+		</a>
+</table>
 
 
 <h2 align="center" id="OD"> Création de la demande</h2>
