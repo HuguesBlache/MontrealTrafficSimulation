@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<configuration>
+		<report>
+			<xml-validation value="never"/>
+			<no-step-log value="true"/>
+			<ignore-errors value="true"/>
+		</report>
+</configuration>
