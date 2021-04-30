@@ -674,7 +674,7 @@ La construction des itenairaises de bus sont legerement differents que celle des
 
 
 <p align="center">
-  <img width="600" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/ptlines2flow.png">
+  <img width="500" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/ptlines2flow.png">
   
 </p>
 
