@@ -708,12 +708,12 @@ Afin des diversifié au maximun la répartion des graines, nous prennons differe
 FOR /L %%s IN (110,20,190) DO (
   ECHO %%s
   od2trips -c od2trips.config.xml --seed%%s --output-prefix seed%%s
-  duarouter -c VoitureAM.trips2routes.duarcfg.xml --seed%%s --route-files  seed%%sod_ileVoitureAM.odtrips.xml  --output-prefix seed%%s --ignore-errors true 
-  sumo.exe --seed %%s -c Graine.sumocfg --route-files seed%%stripsvoiture.odtrips.rou.xml  
+  duarouter -c duarouter_configuration.xml --seed%%s --route-files  seed%%s<od2trips_output>  --output-prefix seed%%s 
+  sumo.exe --seed %%s -c Simulation.sumocfg --route-files seed%%s<duarouter_output> 
 )
 
 ```
-Avec le ficher Graine.sumocfg:
+Avec le ficher Simulation.sumocfg.xml:
 
 ```xml
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
