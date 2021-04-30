@@ -16,7 +16,7 @@
 3. <a href="#carte">Génération du reseau de l'ile de Montréal</a><br>
 4. <a href="#OD">Création de la demande </a><br>
 5. <a href="#autos">Génération de la demande</a><br>
-6. <a href="#TC">Prise en compte du transport en commun</a><br>
+6. <a href="#Simulation">Simulation</a><br>
 7. <a href="#actifs">Prise en compte des modes actifs</a><br>
 8. <a href="#fusion">Fusion des modes</a><br>
 9. <a href="#feux">Feux de circulation</a><br>
@@ -571,31 +571,83 @@ La demarche est la même que pour la definition des véhicules, mais pour simpli
 Après avoir construit le fichier TAZ et créé la Matrice OD, nous pouvons maintenant construire les déplacements sur notre modèle. La fonction <i> <a href="https://sumo.dlr.de/docs/od2trips.html"> od2trips.py </a> </i> permet d'affecter les voyages de chaques véhicules (traject Origine jusqu'à la destination) dans un nouveau fichier à partir de la matrice OD et des TAZ que nous avons definies. Pour notre simulation, nous voulons que la repartitions des trajets soit uniforme, on peut l'utiliser avec la commande <i>spread.uniform </i>
 
 
-```
-od2trips -c od2trips.config.xml -n districts.taz.xml -d OD_Montreal_Auto.od -o od_ile.odtrips.xml --spread.uniform true
-
-```
-
-
 <p align="center">
   <img width="600" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/od2trips.png">
   
 </p>
 
 
+On peut créer un fichier des different paramettre enoncer plus haute ainsi qu'un prefix des véhciles afin de construire les types véhicles. Nous nommerons ce fichier <i> od2trips.config.xml</i>
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	<input>
+		<taz-files value=<Taz_files>/>
+		<od-matrix-files value=<OD_Matrix_Files>/>
+	</input>
+	
+	<output>
+		<output-file value=<Name_file>/>
+	</output>
+	
+	<processing>
+		<prefix value=<String_value> />
+		<spread.uniform value="true" />
+	</processing>
+</configuration>
+
+```
+Pour execter le fihcier od2trips il suffit de prendre suivre la commande suivante:
+
+```
+od2trips -c od2trips.config.xml 
+
+```
+
 <h4 align="center" id="duarouter">duarouter</h4>
 
 Après avoir créer des trajets indivuelle a partir de la matrice OD grace à od2Trips, on peut utiliser la fonction <i> <a href="https://sumo.dlr.de/docs/duarouter.html"> duarouter.py </a> </i> qui permet de generer des itiniraires de plus court chemin à l'aide des trajet que nous avons construit. Nous avons pris l'option ignore-error afin de ne pas interroptre les calculs en cas d'erreur de calcule.
-
-
-```
-duarouter -c duarcfg_file.trips2routes.duarcfg -ignore-error
-```
 
 <p align="center">
   <img width="600" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/duarouter.png">
   
 </p>
+
+On peut créer un fichier des different paramettre enoncer plus haute. Nous nommerons ce fichier <i> duarouter_configuration.xml</i>
+
+```xml
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<configuration>
+	<input>
+		<net-file value=<Network_files/>
+		<route-files value=<od2trips_output_files>/>
+		<additional value=<Vtype_Files> />
+	</input>
+	
+	<output>
+		<output-file value=<Name_file>/>
+	</output>
+
+	<report>
+		<xml-validation value="never"/>
+		<no-step-log value="true"/>
+		<ignore-error value="true"/>
+	</report>
+</configuration>
+```
+
+Pour execter le fihcier avec duarouter il suffit de prendre suivre la commande suivante:
+
+
+```
+duarouter -c duarouter_configuration.xml
+```
 
 <h4 align="center" id="duarouter">Resumer de la generation de la demande</h4>
 
@@ -608,6 +660,37 @@ En resumer, voici la demarche de la generation de trajet dans notre simulation
 </p>
 
 
+
+
+
+<h2 align="center" id="Simulation">Simulation</h2>
+
+<h3 align="center">Graine</h3>
+
+```batch
+FOR /L %%s IN (110,20,190) DO (
+  ECHO %%s
+  od2trips -c od2trips.config.xml --output-prefix seed%%s
+  duarouter -c VoitureAM.trips2routes.duarcfg.xml  --route-files  seed%%sod_ileVoitureAM.odtrips.xml  --output-prefix seed%%s --ignore-errors true 
+  sumo.exe --seed %%s -c C:\Users\hugue\ProjetPoly\Scenario\Jointure_Etude_Retard\Avec_Jointure\Graine.sumocfg --route-files seed%%stripsvoiture.odtrips.rou.xml  
+)
+
+```
+
+```xml
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+  <input>
+    <net-file value="carte/MontrealAvecJoin.net.xml"/>
+  </input>
+  <time>
+    <begin value="18000"/>
+    <end value="36000"/>
+    <step-length value="1"/>
+  </time>
+</configuration>
+```
+
+
 # PAS MODIFIÉ
 
 
@@ -617,10 +700,6 @@ En resumer, voici la demarche de la generation de trajet dans notre simulation
 
 
 
-
-
-
-<h3 align="center">Simulation trajets Autos</h3>
 
 Arrivé à cette étape, nous pouvons déja commencer à simuler notre modèle avec les trajets d'autos dans SUMO.
 
