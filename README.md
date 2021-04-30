@@ -307,7 +307,16 @@ Puis, pour prendre des modèle type <a href="https://journalmetro.com/automobile
 		</a>
 </table>
 
+<h5 align="center">Car-Following Model</h5>
 
+Par default nous utiliserons le modèle de poursuite de SUMO, celui de Krauss, qui à pour caratéristique
+
+ <ul  align="center">
+  <li  align="center" >accel = 2.60</li>
+  <li  align="center">decel = 4.50</li>
+  <li  align="center">sigma = 0.50</li>
+  <li  align="center">tau = 1</li>
+</ul> 
 
 <h5 align="center">Emissions</h5>
 
