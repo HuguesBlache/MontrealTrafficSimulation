@@ -740,20 +740,16 @@ Voici quelques differences visible entre chaque simulation pour une simulation a
 
 <h2 align="center" id="Calibration">Calibration</h2>
 
-
-
-# PAS MODIFIÉ
-
- 
-<h4 align="center" id="TC">Heure de pointe</h4>
+<h3 align="center" id="TC">Heure de pointe</h3>
 
 Nous n'avons pas calibrer les données de la matrice OD à la "realité", ce qui donne dans la <a href="#courbe"> courbe </a> un maximun de vehicules au depart de la simualtion. Or nous devrions voire une courbe en "cloche". POur le verifier, nous pouvons visualiser les données ouvertes de <a href="https://www.bixi.com/fr/page-27"> Bixi </a> qui permetra de voire la tendance sur la plage horraire 5h-9h.
 
-Apres exploitation des <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/MatriceOD/OD_2014-09%20(version%201).csv">données</a> nous avons des courbes du type.
+Apres exploitation des <a href="https://github.com/HuguesBlache/MontrealTrafficSimulation/tree/master/Data/Bixi">données</a> nous avons des courbes du type.
+
 
 <p align="center">
-<img width="400" height="300" src="https://user-images.githubusercontent.com/65184943/93345446-d24a6200-f800-11ea-9ae6-fdac7f205252.png">
-<img width="400" height="300" src="https://user-images.githubusercontent.com/65184943/93345464-d7a7ac80-f800-11ea-82cb-50edfda9a1a2.png">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Pointe5%4010.png">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/PointeJourn%C3%A9e.png">
 </p>
 
 Ci on prend en compte le pourcentage par tranche horraire, nous aurons 
@@ -762,34 +758,49 @@ Ci on prend en compte le pourcentage par tranche horraire, nous aurons
 	<a align="center">
   <tr>
     <th>Tranche horraire</th>
-    <th>Nombre de velo</th> 
+    <th>Nombre de velo moyen</th> 
     <th>Pourcentage</th>
   </tr>
   <tr>
     <td>5h-6h</td>
-    <td>436</td>
-    <td>10%</td>
+    <td>75</td>
+    <td>1.6%</td>
   </tr>
   <tr>
     <td>6h-7h</td>
-    <td>854</td>
-    <td>19%</td>
+    <td>329</td>
+    <td>7%</td>
   </tr>
   <tr>
     <td>7h-8h</td>
-    <td>2037</td>
-    <td>45%</td>
+    <td>1484</td>
+    <td>31,7%</td>
   </tr>
 	<tr>
     <td>8h-9h</td>
-    <td>1179</td>
-    <td>26%</td>
+    <td>279</td>
+    <td>59.7%</td>
   </tr>
 		</a>
 </table>
 
 
-Nous allons donc prendre ce pourcentage pour le mettre à niveau le nombre de voiture sur la simulation
+
+
+
+
+
+
+
+# SUITE
+# NON
+# MODIFIÉ
+# POUR
+# LE
+# MOMENT
+ 
+
+
 
 
 
