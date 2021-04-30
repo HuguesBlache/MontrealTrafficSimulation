@@ -351,7 +351,7 @@ https://theicct.org/sites/default/files/info-tools/One%20table%20to%20rule%20the
   <tr>
     <td>Ford F 150</td>
     <td>13</td>
-    <td>Euro5</td>
+    <td>Euro3</td>
     <td>PC_G_EU3</td>
   </tr>
   <tr>
@@ -369,6 +369,34 @@ https://theicct.org/sites/default/files/info-tools/One%20table%20to%20rule%20the
 		</a>
 </table>
 
+<h4 align="center" id="type">Catégories bus</h4>
+
+La demarche est la même que pour la definition des véhicules, mais pour simplifier la simulation, nous ne prendrons qu'un seul type de <a href="https://www.stm.info/sites/default/files/affairespubliques/Communiques/Annexes/annexe_2_fiche_tech._lfs_nova.pdf">bus </a>.
+
+<table  align="center">
+	<a align="center">
+  <tr>
+    <th>Modele</th>
+    <th>Longueur (m)</th> 
+    <th>Hauteur (m)</th>
+    <th>vClass </th>
+    <th>maxSpeed (m/s) </th>
+    <th>Consomation</th> 
+    <th>Nomre Euro</th>
+    <th>SUMO</th>
+  </tr>
+  <tr>
+    <td>Nova Bus</td>
+    <td>12,2</td>
+    <td>3.25</td>
+    <td>Bus</td>
+    <td>27.78</td>
+    <td><a href="http://www.bv.transports.gouv.qc.ca/mono/1018809.pdf"> 45</a></td>
+    <td>Euro6</td>
+    <td>PC_G_EU6</td>
+  </tr>
+	</a>
+</table>
 
 
 <h5 align="center">Commande Vtype</h5>
