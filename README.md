@@ -223,35 +223,13 @@ Nous pouvons ne prendre en compte que les déplacements en auto qui se produit �
   <img width="400" height="500" src="https://user-images.githubusercontent.com/65184943/93515271-55011900-f8f6-11ea-96a8-45c5dc962935.png">
 </p>
 
-<h3 align="center">Choix du véhicule</h3>
+<h3 align="center">Definition des véhicules</h3>
 
+Pour essayer de representer un simulation de la circulation heterogene, nous nous avons decidé de prendre en compte plusieurs type de véhicules dans notre simulation.
 
-<h5 align="center">Preambule</h5>
+<h5 align="center" id="type">Catégories automobile</h5>
 
-
-Le <a href="https://sumo.dlr.de/docs/Definition_of_Vehicles,_Vehicle_Types,_and_Routes.html#available_vtype_attributes"> --vtype </a> permet de specifier l'id du type de vehicules que nous creons ci dessous. Puis le ```--prefix``` permet d'ajouter un prefixe à l'id du vehicule, aui permettra par la suite de differencier le type de vehicule mais aussi de melanger plusieurs modes  
-
-<h5 align="center" id="type">Type de véhicules</h5>
-
-Il existe plusieur <a href="https://sumo.dlr.de/docs/Definition_of_Vehicles,_Vehicle_Types,_and_Routes.html#abstract_vehicle_class"> Class </a>, qui pernent encompte certaines carateristiques par default. Ci dessous nous envons creer 4 type de vehicules different pour notre simulation: 
-
-```xml
- <vType id="Car" color="0,255,255" length="4.5" vClass="private" emissionClass="HBEFA3/PC_G_EU5"/>
- <vType id="SUV" color="255,0,255" length="6" vClass="delivery" emissionClass="HBEFA3/PC_G_EU3"/>
- <vType id="motorcycle" color="0,0,255" length="2" vClass="motorcycle" emissionClass="HBEFA3/PC_G_EU6"/>
- <vType id="cyclomotor" color="0,255,0" length="2" vClass="moped" emissionClass="HBEFA3/PC_G_EU6"/>
- 
-```
-
-Nous avons pris un <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/MatriceOD/Copie%20de%20Tableau.xlsx"> modele </a> de vehicules pour chaque classe:
-
-- Car : Toyota Corolla 2013
-- SUV : Ford F 150
-- Motorcycle : Yamaha FZ
-- CycloMotor : Honda Forza 125 
-
-
-De plus, nous allons prendres la documentations de la <a href="https://saaq.gouv.qc.ca/donnees-ouvertes/vehicules-circulation/vehicules-circulation-documentation.pdf"> SAAQ </a> et des <a href="https://bdso.gouv.qc.ca/pls/ken/ken213_afich_tabl.page_tabl?p_iden_tran=REPERBA6Z3O56149094340058BfZ9c&p_lang=1&p_m_o=SAAQ&p_id_ss_domn=718&p_id_raprt=3628#tri_tertr=00&tri_mun=aaaaa"> stastitique </a> du Quebec pour definir le part de ces vehicules dans le parc automobile de l'ile de Montreal :
+Il est spécifié dans la matrice OD que nous utilisons dans notre simulation que les trajets automobile correponds à un melanges Automobile et Moto sans renseignement du pourcentages. Pour spécifier se pourcentage et ainsi distinguer les differentes categories de véhicules, nous nous sommes dériger vers  la <a href="https://saaq.gouv.qc.ca/donnees-ouvertes/vehicules-circulation/vehicules-circulation-documentation.pdf"> SAAQ </a> et des <a href="https://bdso.gouv.qc.ca/pls/ken/ken213_afich_tabl.page_tabl?p_iden_tran=REPERBA6Z3O56149094340058BfZ9c&p_lang=1&p_m_o=SAAQ&p_id_ss_domn=718&p_id_raprt=3628#tri_tertr=00&tri_mun=aaaaa"> stastitique </a> du Quebec pour definir le part de ces vehicules promenade dans le parc automobile de l'ile de Montreal :
 
 
 <table  align="center">
@@ -285,10 +263,94 @@ De plus, nous allons prendres la documentations de la <a href="https://saaq.gouv
 </table>
 
 
+Puis, pour prendre des modèle type <a href="https://journalmetro.com/automobile/419357/les-vehicules-les-plus-vendus-en-2013/"> vendu </a> en 2013 avec leur <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/MatriceOD/Copie%20de%20Tableau.xlsx
+"> carateristique</a>  qui sont les suivant
+
+
+<table  align="center">
+	<a align="center">
+  <tr>
+    <th>Modele</th>
+    <th>Longueur (m)</th> 
+    <th>Hauteur (m)</th>
+  </tr>
+  <tr>
+    <td>Toyota Corolla 2013</td>
+    <td>4,5</td>
+    <td>1,76</td>
+  </tr>
+  <tr>
+    <td>Ford F 150</td>
+    <td>5,9</td>
+    <td>1,9</td>
+  </tr>
+  <tr>
+    <td>Yamaha FZ</td>
+    <td>2,07</td>
+    <td>0.8</td>
+  </tr>
+	<tr>
+    <td>Honda Forza 125</td>
+    <td>2140</td>
+    <td>0.78</td>
+  </tr>
+		</a>
+</table>
+
+
+
 <h4 align="center">Emissions</h4>
 
 
 https://theicct.org/sites/default/files/info-tools/One%20table%20to%20rule%20them%20all%20v1.pdf
+
+<table  align="center">
+	<a align="center">
+  <tr>
+    <th>Modele</th>
+    <th>Consomation</th> 
+    <th>Nomre Euro</th>
+    <th>SUMO</th>
+  </tr>
+  <tr>
+    <td>Toyota Corolla 2013</td>
+    <td>7,6</td>
+    <td>Euro5</td>
+    <td>PC_G_EU5</td>
+  </tr>
+  <tr>
+    <td>Ford F 150</td>
+    <td>13</td>
+    <td>Euro5</td>
+    <td>PC_G_EU3</td>
+  </tr>
+  <tr>
+    <td>Yamaha FZ</td>
+    <td>5,6</td>
+    <td>Euro6</td>
+    <td>PC_G_EU6</td>
+  </tr>
+	<tr>
+    <td>Honda Forza 125</td>
+    <td>2,3</td>
+    <td>Euro6</td>
+    <td>PC_G_EU6</td>
+  </tr>
+		</a>
+</table>
+
+
+<h4 align="center">Commande Vtype</h4>
+
+Il existe plusieur <a href="https://sumo.dlr.de/docs/Definition_of_Vehicles,_Vehicle_Types,_and_Routes.html#abstract_vehicle_class"> Class </a>, qui pernent encompte certaines carateristiques par default. Ci dessous nous envons creer 4 type de vehicules different pour notre simulation: 
+
+```xml
+ <vType id="Car" color="0,255,255" length="4.5" vClass="private" emissionClass="HBEFA3/PC_G_EU5"/>
+ <vType id="SUV" color="255,0,255" length="6" vClass="delivery" emissionClass="HBEFA3/PC_G_EU3"/>
+ <vType id="motorcycle" color="0,0,255" length="2" vClass="motorcycle" emissionClass="HBEFA3/PC_G_EU6"/>
+ <vType id="cyclomotor" color="0,255,0" length="2" vClass="moped" emissionClass="HBEFA3/PC_G_EU6"/>
+ 
+```
 
 <h2 align="center" id="autos" >Génération de la demande</h2>
 
