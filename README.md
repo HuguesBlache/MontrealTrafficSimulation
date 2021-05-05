@@ -67,6 +67,9 @@ Le tableau suivant represente la compraison entre l'importation brute et le filt
 | Right-before-left junctions  | 14178  |410 | 97%|
 | Traffic light junctions | 3397  |3025 | 11% |
 
+<h4 align="center" id="Pont_Topologie">Ajout </h3>
+
+
 
 <h3 align="center" id="feux">Intersection et feux de circulation</h3>
 
@@ -790,7 +793,7 @@ Ci on prend en compte le pourcentage par tranche horraire, nous aurons
 
 
 
-
+Pour ce faire on utilisera la commande --scale dans od2trips
 
 
 
