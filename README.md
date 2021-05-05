@@ -588,6 +588,16 @@ Après avoir construit le fichier TAZ et créé la Matrice OD, nous pouvons main
 
 On peut créer un fichier des different paramettre enoncer plus haute ainsi qu'un prefix des véhciles afin de construire les types véhicles. Nous nommerons ce fichier <i> od2trips.config.xml</i>
 
+
+Nous prendrons les paramètres suivant pour notre simulation
+
+ <ul  align="center">
+  <li  align="center" >Scale: Permet de definir le pourcentage que l'on veut inserer de la matrice OD de notre simulation</li>
+  <li  align="center" >Spread.uniform : De generer les trajet de maniere uniforme dans le temps</li>
+  <li  align="center" >Prefix : Assigne un prefix de chaque trajet de la simualation</li>
+</ul> 
+
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -622,6 +632,16 @@ Après avoir créer des trajets indivuelle a partir de la matrice OD grace à od
   <img width="600" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/duarouter.png">
   
 </p>
+
+Nous prendrons les paramètres suivant pour notre simulation
+
+ <ul  align="center">
+  <li  align="center" >ignore-error: Permet de continuer le calcul des itenaires en cas d'erreur de calcul pour un trajet individuelle</li>
+  <li  align="center">with-taz: Permet d'utiliser les zones OD pour l'entrée et la sortie des trajets, dans notre cas cette configuration est esensielle pour recalculer des alternative de trajet si il y a une erreur de trajet</li>
+  <li  align="center">routing-algorithm: Permet de definir l'algorthime de routage, dans notre cas nous prendrons l'alogorithme de dijkstra</li>
+  <li  align="center">no-step-log: Permet de désactiver les sortie de la console sur les etapes d'analyse</li>
+</ul> 
+
 
 On peut créer un fichier des different paramettre enoncer plus haute. Nous nommerons ce fichier <i> duarouter_configuration.xml</i>
 
