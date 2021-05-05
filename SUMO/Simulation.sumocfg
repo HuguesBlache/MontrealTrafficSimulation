@@ -7,7 +7,7 @@
   </time>
   
   <report>
-	<no-warnings value="true"/>
+	  <no-warnings value="true"/>
   </report>
 
 </configuration>
