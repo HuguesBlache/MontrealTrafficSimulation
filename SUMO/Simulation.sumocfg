@@ -2,8 +2,12 @@
  
   <time>
     <begin value="18000"/>
-    <end value="32400"/>
+    <end value="40000"/>
     <step-length value="1"/>
   </time>
+  
+  <report>
+	<no-warnings value="true"/>
+  </report>
 
 </configuration>
