@@ -57,6 +57,7 @@ Le cadre de cette étude est de prendre la circulation sur l'ile de Montréal. A
 L'API Overpass permet d'extraite des zones de la base de données OSM à l'aide de requette 
 
 
+
 Comme les données OSM sont trop lourd pour les temps de calcule de la simulation, un certain nombre de route ont été supprimé du reseau avec la commande NETCONVERT. Le route presente dans le reseau seront les <em>highway.motorway, highway.primary, highway.secondary, highway.tertiary, highway.cycleway, railway.subway, highway.motorway_link, highway.primary_link, highway.secondary_link, highway.tertiary_link, highway.trunk, highway.trunk_link</em>
 
 
@@ -92,9 +93,89 @@ Le tableau suivant represente la compraison entre l'importation brute et le filt
 | Right-before-left junctions  | 14178  |410 | 97%|
 | Traffic light junctions | 3397  |3025 | 11% |
 
-<h4 align="center" id="Pont_Topologie">Ajout </h3>
 
 
+
+
+<h4 align="center" id="Type de Route">Type de Route</h3>
+
+Type de route pris dans notre etude
+Information pris dans: https://wiki.openstreetmap.org/wiki/Key:highway
+<table  align="center">
+	<a align="center">
+  <tr>
+    <th>Key</th>
+    <th>Value</th> 
+    <th>Comment</th>
+   
+  </tr>
+  <tr>
+    <td>Highway</td>
+    <td>motorway</td>
+     <td>A restricted access major divided highway, normally with 2 or more running lanes plus emergency hard shoulder. Equivalent to the Freeway, Autobahn, etc.. </td>
+  </tr>
+   <tr>
+    <td>Highway</td>
+    <td>motorway_link</td>
+     <td>The link roads (sliproads/ramps) leading to/from a motorway from/to a motorway or lower class highway. Normally with the same motorway restrictions. </td>
+  </tr>
+  <tr>
+    <td>Highway</td>
+    <td> 	trunk</td>
+     <td>The most important roads in a country's system that aren't motorways. (Need not necessarily be a divided highway.) </td>
+  </tr>
+   <tr>
+    <td>Highway</td>
+    <td>trunk_link</td>
+     <td>The link roads (sliproads/ramps) leading to/from a trunk road from/to a trunk road or lower class highway. </td>
+  </tr>
+  <tr>
+    <td>Highway</td>
+    <td>primary</td>
+     <td>The next most important roads in a country's system. (Often link larger towns.)  </td>
+  </tr>
+   <tr>
+    <td>Highway</td>
+    <td>primary_link</td>
+     <td>The link roads (sliproads/ramps) leading to/from a primary road from/to a primary road or lower class highway. </td>
+  </tr>
+   <tr>
+    <td>Highway</td>
+    <td> 	secondary</td>
+     <td>The next most important roads in a country's system. (Often link towns.) </td>
+  </tr>
+   <tr>
+    <td>Highway</td>
+    <td> 	secondary_link</td>
+     <td>The link roads (sliproads/ramps) leading to/from a secondary road from/to a secondary road or lower class highway.</td>
+  </tr>
+  <tr>
+    <td>Highway</td>
+    <td> 	tertiary</td>
+     <td>The next most important roads in a country's system. (Often link smaller towns and villages) </td>
+  </tr>
+   <tr>
+    <td>Highway</td>
+    <td> 	tertiary_link</td>
+     <td>The link roads (sliproads/ramps) leading to/from a tertiary road from/to a tertiary road or lower class highway. </td>
+  </tr>
+    <tr>
+    <td>Highway</td>
+    <td> 	 	unclassified</td>
+     <td>The least important through roads in a country's system – i.e. minor roads of a lower classification than tertiary, but which serve a purpose other than access to properties. (Often link villages and hamlets.)
+	     
+The word 'unclassified' is a historical artefact of the UK road system and does not mean that the classification is unknown; you can use highway=road for that. </td>
+  </tr>
+    <tr>
+    <td>Highway</td>
+    <td> 	 	residential</td>
+     <td>Roads which serve as an access to housing, without function of connecting settlements. Often lined with housing. </td>
+  </tr>
+  
+  
+  
+</a>		
+</table>
 
 <h3 align="center" id="feux">Intersection et feux de circulation</h3>
 
