@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<configuration>
+		<processing>
+			<prefix value="voiture"/>
+			<spread.uniform  value="true" />
+			<vtype value="delivery" />
+		</processing>
+</configuration>

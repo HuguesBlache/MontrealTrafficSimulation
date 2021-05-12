@@ -1,0 +1,9 @@
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+ 
+  <time>
+    <begin value="18000"/>
+    <end value="32400"/>
+    <step-length value="1"/>
+  </time>
+
+</configuration>

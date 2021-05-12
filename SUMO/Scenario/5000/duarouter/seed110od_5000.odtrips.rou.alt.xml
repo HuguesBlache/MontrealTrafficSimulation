@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 05/06/21 12:16:56 by Eclipse SUMO duarouter Version 1.7.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/duarouterConfiguration.xsd">
+
+    <input>
+        <net-file value=".\Carte\net\MontrealJointure.net.xml"/>
+        <additional-files value="./Vtype/Vtype.xml,.\TAZ\TAZ.taz.xml"/>
+        <route-files value="./Scenario/5000/od2trips/seed110od_5000.odtrips.xml"/>
+    </input>
+
+    <output>
+        <output-file value="./Scenario/5000/duarouter/od_5000.odtrips.rou.xml"/>
+        <output-prefix value="seed110"/>
+        <alternatives-output value="./Scenario/5000/duarouter/od_5000.odtrips.rou.alt.xml"/>
+    </output>
+
+    <processing>
+        <with-taz value="true"/>
+    </processing>
+
+    <report>
+        <xml-validation value="never"/>
+        <xml-validation.routes value="never"/>
+        <ignore-errors value="true"/>
+        <no-step-log value="true"/>
+    </report>
+
+    <random_number>
+        <seed value="110"/>
+    </random_number>
+
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd"/>

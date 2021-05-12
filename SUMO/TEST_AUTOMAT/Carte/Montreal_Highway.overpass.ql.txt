@@ -1,0 +1,6 @@
+area[wikidata="Q2826806"]->.montreal;
+rel(area.montreal)[highway~"(motorway|primary|secondary|tertiary|motorway_link|primary_link|secondary_link|tertiary_link|trunk|trunk_link)"];
+node(area.montreal)[highway~"(motorway|primary|secondary|tertiary|motorway_link|primary_link|secondary_link|tertiary_link|trunk|trunk_link)"];
+way(area.montreal)[highway~"(motorway|primary|secondary|tertiary|motorway_link|primary_link|secondary_link|tertiary_link|trunk|trunk_link)"];
+(._;>;);
+out;
