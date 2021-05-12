@@ -8,7 +8,7 @@ netconvert --osm-files ./Carte/CarteMontreal.osm -o ./Carte/MontrealJointure.net
 REM Compilation des Taz et créeation de Taz
 
 wget  -O ".\Taz\Taz.osm" --post-file=".\Taz\nomquartier.xml" "https://overpass.nchc.org.tw/api/interpreter"
-python C:\Users\hugue\Sumo\tools\contributed\saga\generateTAZBuildingsFromOSM.py --osm ./Taz/Taz.osm --net ./Carte/MontrealJointure.net.xml --taz-output .\Taz\Taz.xml  --poly-output .\Taz\poly.xml --weight-output .\Taz\test.xml
+python .\function\generateTAZBuildingsFromOSM.py --osm ./Taz/Taz.osm --net ./Carte/MontrealJointure.net.xml --taz-output .\Taz\Taz.xml  --poly-output .\Taz\poly.xml --weight-output .\Taz\test.xml
 
 
 FOR /L %%s IN (110,20,190) DO (
