@@ -49,68 +49,22 @@ Ce projet se réfère principalement à la documentation de <a href="https://sum
 Le cadre de cette étude est de prendre la circulation sur l'ile de Montréal. Afin de reprondre au exigences du reseau, les informations concernant l'ile sont importé avec <a href="https://www.openstreetmap.org/">OpenStreetMap (OSM)</a>. Neanmoins, comme le simulateur est une entrée du logiciel <a href="https://www.trafficm2modelling.com/"> M2M</a> et que les données topologiques et que une certaines formes de l'ile est necessaire, la stratégie à été de prendre la relation de OSM de l'<a href="https://fr.wikipedia.org/wiki/fr:Agglom%C3%A9ration%20de%20Montr%C3%A9al?uselang=fr"> Agglomeration </a> de Montréal, qui s'est fait assigner le code <i> <a href="https://www.openstreetmap.org/relation/8508277">Q2826806 </a></i>
 
 <p align="center">
-  <img src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_BBBike.png"
-        alt="Trulli" style="width:100%">
-    <figcaption  align="middle" >Relation Ile de Montreal</figcaption>
-</p>
-
-<p align="center">
-  <img  width="450" height="350" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_M2M.png"
-        alt="Capture_M2M">
-    <figcaption align="center" >Delimitation du Simulateur</figcaption>
-    
+	
+  <img  width="800"  src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_BBBike.png">
+    <figcaption>Fig.X - Relation de l'ile de Montréal</figcaption>
 </p>
 
 
-<h4 align="center" id="carte">OverPass API</h4>
-
-L'API Overpass permet d'extraite des zones de la base de données OSM à l'aide de requette 
-
-
-
-Comme les données OSM sont trop lourd pour les temps de calcule de la simulation, un certain nombre de route ont été supprimé du reseau avec la commande NETCONVERT. Le route presente dans le reseau seront les <em>highway.motorway, highway.primary, highway.secondary, highway.tertiary, highway.cycleway, railway.subway, highway.motorway_link, highway.primary_link, highway.secondary_link, highway.tertiary_link, highway.trunk, highway.trunk_link</em>
-
-
-
-```ql
-
-area[wikidata="Q2826806"]->.montreal;
-rel(area.montreal)[highway~"(motorway|primary|secondary|tertiary|motorway_link|primary_link|secondary_link|tertiary_link|trunk|trunk_link)"];
-node(area.montreal)[highway~"(motorway|primary|secondary|tertiary|motorway_link|primary_link|secondary_link|tertiary_link|trunk|trunk_link)"];
-way(area.montreal)[highway~"(motorway|primary|secondary|tertiary|motorway_link|primary_link|secondary_link|tertiary_link|trunk|trunk_link)"];
-(._;>;);
-out;
-
-```
-
-
-
-Ce qui donne comme reseau sur SUMO:
-
-<p align="center">
-  <img src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_SUMO.png">
+<p align="center"> 
+  <img  width="800"  src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_M2M.png">
+     <figcaption>Fig.X - Delimitateur du simulateur</figcaption>
 </p>
-
-
-Le tableau suivant represente la compraison entre l'importation brute et le filtrage de route de la carte de l'ile de Montréal pour des entites jugé utile par la suite.
-
-|Entité | Sans reduction | Avec prise en compte | Reduction| 
-| ------------- | ------------- |------------- |------------- |
-| Nodes | 82354  |21919 | 73,4% |
-| Edges | 186732  |35866 | 80,7% |
-| Dead-end junctions | 14368 |149  | 99%|
-| Priority junctions | 50194 |18335 | 63,5%|
-| Right-before-left junctions  | 14178  |410 | 97%|
-| Traffic light junctions | 3397  |3025 | 11% |
-
-
-
-
 
 <h4 align="center" id="Type de Route">Type de Route</h3>
 
-Type de route pris dans notre etude
-Information pris dans: https://wiki.openstreetmap.org/wiki/Key:highway
+L'etude pourtant sur la mobilité terrestre, la simulation de compte qu'une certains type de route spécifiques. Dont voici la liste* ci-dessous
+
+
 <table  align="center">
 	<a align="center">
   <tr>
@@ -181,15 +135,348 @@ The word 'unclassified' is a historical artefact of the UK road system and does 
     <td> 	 	residential</td>
      <td>Roads which serve as an access to housing, without function of connecting settlements. Often lined with housing. </td>
   </tr>
-  
-  
-  
+    
 </a>		
 </table>
 
+  
+ * Information pris dans le <a href="https://wiki.openstreetmap.org/wiki/Key:highway">wiki</a> OSM 
+
+
+<h4 align="center" id="carte">OverPass API</h4>
+
+L'API Overpass permet d'extraite des zones de la base de données OSM à l'aide de requette 
+
+
+
+Ainsi la commande suivante à été pris en compte pour la prise en compte du reseau
+
+```ql
+
+area[wikidata="Q2826806"]->.montreal;
+rel(area.montreal)[highway~"(motorway|primary|secondary|tertiary|motorway_link|primary_link|secondary_link|tertiary_link|trunk|trunk_link|unclassified|residential)"];
+node(area.montreal)[highway~"(motorway|primary|secondary|tertiary|motorway_link|primary_link|secondary_link|tertiary_link|trunk|trunk_link|unclassified|residential)"];
+way(area.montreal)[highway~"(motorway|primary|secondary|tertiary|motorway_link|primary_link|secondary_link|tertiary_link|trunk|trunk_link|unclassified|residential)"];
+(._;>;);
+out;
+
+```
+WGET
+
+Avec un appelle dans netconvert sans commande spécifique, il est possible de relever certaines caractéristiques topologiques des données extraite
+
+<table>	
+  <tr>
+    <th>Entité</th>
+    <th>Unité</th> 
+  
+  </tr>
+  
+   <tr>
+    <td>Area</td>
+    <td>Unité</td> 
+  </tr>
+   <tr>
+    <td>Edges Lenght</td>
+    <td>7934</td> 
+  </tr>
+  <tr>
+    <td>Edges avec 1 Lines Lenght/td>
+    <td>6695</td> 
+  </tr>
+  
+ <tr>
+    <td>Edges  avec 2 Lines Lenght</td>
+    <td>800</td> 
+  </tr>
+  
+  <tr>
+    <td>Edges  avec 3 Lines Lenght</td>
+    <td>382</td> 
+  </tr>
+  
+ 
+  <tr>
+    <td>MotorWay Lenght (Km)</td>
+    <td>466,8</td> 
+  </tr>
+  
+  <tr>
+    <td>Trunk Lenght (Km)</td>
+    <td>14,4</td> 
+  </tr>
+  
+  <tr>
+    <td>Primary Lenght (Km)</td>
+    <td>194</td> 
+  </tr>
+  
+   <tr>
+    <td>Secondary Lenght (Km)</td>
+    <td>927</td> 
+  </tr>
+  
+  <tr>
+    <td>Terciary Lenght (Km)</td>
+    <td>1092</td> 
+  </tr>
+  
+   <tr>
+    <td>Residential Lenght (Km)</td>
+    <td>4976</td> 
+  </tr>
+  
+  
+   <tr>
+    <td>Unclassified Lenght (Km)</td>
+    <td>263</td> 
+  </tr>
+  
+</table>
+
+
+
+
+
+
+<h4 align="center" id="carte">Filtrage des types de route</h4>
+
+Comme les données OSM sont trop lourd pour les temps de calcule de la simulation et selon le calculateur pris en compte. Ainsi un certain nombre de route du reseau peut être supprimé ou gradé lors de la commande NETCONVERT avec les instructions <i>keeg.egdes-by.types</i> ou <i>remove.egdes-by.types</i>
+
+Les figures suivant representes les differents filtrages possibles:
+
+
+<div align="center">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/comparaison_net/CarteSumo.png">
+
+<table>	
+  <tr>
+    <th>Entité</th>
+    <th>Unité</th> 
+  
+  </tr>
+<tr>
+    <td>Edge Lenght (km)</td>
+    <td>7935 </td> 
+</tr>
+<tr>
+    <td>Pourcentage</td>
+    <td>100</td> 
+</tr>
+<tr>
+    <td>Temps de chargement (s)</td>
+    <td>33,7</td> 
+</tr>
+<tr>
+    <td>Pourcentage</td>
+    <td>100</td> 
+</tr>
+<tr>
+    <td>Taille du Fichier (Ko)</td>
+    <td>187697</td> 
+</tr>
+  </table>
+<figcaption>Fig.X - Topologie sans filtrage</figcaption>	
+</div>
+
+
+ 
+ 
+<div align="center">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/comparaison_net/CarteSans_UN.png">
+
+<table>	
+  <tr>
+    <th>Entité</th>
+    <th>Unité</th> 
+  
+  </tr>
+<tr>
+    <td>Edge Lenght (km)</td>
+    <td>7672</td> 
+</tr>
+<tr>
+    <td>Pourcentage</td>
+    <td>96,7</td> 
+</tr>
+
+<tr>
+    <td>Temps de chargement (s)</td>
+    <td>33,1</td> 
+</tr>
+<tr>
+    <td>Taille du Fichier (Ko)</td>
+    <td>183078</td> 
+</tr>
+  </table>
+<figcaption>Fig.X - Topologie sans les underclassified</figcaption>	
+</div> 
+
+<div align="center">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/comparaison_net/CarteSans_Un_Res.png">
+
+<table>	
+  <tr>
+    <th>Entité</th>
+    <th>Unité</th> 
+  
+  </tr>
+<tr>
+    <td>Edge Lenght (km)</td>
+    <td>2696</td> 
+</tr>
+<tr>
+    <td>Pourcentage</td>
+    <td>34</td> 
+</tr>
+
+<tr>
+    <td>Temps de chargement (s)</td>
+    <td>4.7</td> 
+</tr>
+<tr>
+    <td>Taille du Fichier (Ko)</td>
+    <td>45515</td> 
+</tr>
+  </table>
+<figcaption>Fig.X - Topologie sans les underclassified et residentielle</figcaption>	
+</div> 
+
+<div align="center">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/comparaison_net/CarteSans_Un_Res_Ter.png">
+
+<table>	
+  <tr>
+    <th>Entité</th>
+    <th>Unité</th> 
+  
+  </tr>
+<tr>
+    <td>Edge Lenght (km)</td>
+    <td>1603</td> 
+</tr>
+<tr>
+    <td>Pourcentage</td>
+    <td>20</td> 
+</tr>
+
+<tr>
+    <td>Temps de chargement (s)</td>
+    <td>3.77</td> 
+</tr>
+<tr>
+    <td>Taille du Fichier (Ko)</td>
+    <td>27460</td> 
+</tr>
+  </table>
+<figcaption>Fig.X - Topologie sans les underclassified,residentielle et Tersiary</figcaption>	
+</div> 
+ 
+<div align="center">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/comparaison_net/CarteSans_Un_Res_Ter_Sec.png">
+
+<table>	
+  <tr>
+    <th>Entité</th>
+    <th>Unité</th> 
+  
+  </tr>
+<tr>
+    <td>Edge Lenght (km)</td>
+    <td>675</td> 
+</tr>
+<tr>
+    <td>Pourcentage</td>
+    <td>8.5</td> 
+</tr>
+
+<tr>
+    <td>Temps de chargement (s)</td>
+    <td>2.16</td> 
+</tr>
+<tr>
+    <td>Taille du Fichier (Ko)</td>
+    <td>8469</td> 
+</tr>
+  </table>
+<figcaption>Fig.X - Topologie sans les underclassified,residentielle,Tersiary et Secondary</figcaption>	
+</div> 
+
+<div align="center">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/comparaison_net/CarteSans_Un_Res_Ter_Sec_Pri.png">
+
+<table>	
+  <tr>
+    <th>Entité</th>
+    <th>Unité</th> 
+  
+  </tr>
+<tr>
+    <td>Edge Lenght (km)</td>
+    <td>481</td> 
+</tr>
+<tr>
+    <td>Pourcentage</td>
+    <td>6.1</td> 
+</tr>
+
+<tr>
+    <td>Temps de chargement (s)</td>
+    <td>0.74</td> 
+</tr>
+<tr>
+    <td>Taille du Fichier (Ko)</td>
+    <td>3903</td> 
+</tr>
+  </table>
+<figcaption>Fig.X - Topologie sans les underclassified,residentielle,Tersiary, Secondary et Primary</figcaption>	
+</div> 
+
+
+<div align="center">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/comparaison_net/CarteSans_Un_Res_Ter_Sec_Pri_Trunk.png">
+
+<table>	
+  <tr>
+    <th>Entité</th>
+    <th>Unité</th> 
+  
+  </tr>
+<tr>
+    <td>Edge Lenght (km)</td>
+    <td>466.8</td> 
+</tr>
+<tr>
+    <td>Pourcentage</td>
+    <td>5.88</td> 
+</tr>
+
+<tr>
+    <td>Temps de chargement (s)</td>
+    <td>0.2414</td> 
+</tr>
+<tr>
+    <td>Taille du Fichier (Ko)</td>
+    <td>3728</td> 
+</tr>
+  </table>
+<figcaption>Fig.X - Topologie sans les underclassified,residentielle,Tersiary, Secondary,Primary et Trunk</figcaption>	
+</div> 
+   
+   
+  
+Ainsi, il est possible de comparer le temps de charge de la carte avec la taille du reseau:
+
+
+  
+
 <p align="center">
   <img src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/temp_netconvert.png">
+	<figcaption>Fig.X - Comparaison entre taille du reseau et temps de chargement avec netconvert</figcaption>	
 </p>
+
+
+Il est bien de relever qu'il y a une nette difference de chargement lors du filtrage des rues residentielles pour la commande netconvert. Ceci ce traduit par le pourcentage de rues residentielles que representes le reseau, environ 63% du reseau. Le choix pour la simulation et de ca performance sera donc de selectionner le type de topologie et le temps que cela engendre pour les calcules
 
 
 <h3 align="center" id="feux">Intersection et feux de circulation</h3>
