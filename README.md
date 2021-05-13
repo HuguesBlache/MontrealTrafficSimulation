@@ -180,23 +180,56 @@ Avec un appelle dans netconvert sans commande spécifique, il est possible de re
     <td>Edges Lenght</td>
     <td>7934</td> 
   </tr>
+  <tr>
+    <td>Edges avec 1 Lines Lenght/td>
+    <td>6695</td> 
+  </tr>
   
+ <tr>
+    <td>Edges  avec 2 Lines Lenght</td>
+    <td>800</td> 
+  </tr>
   
+  <tr>
+    <td>Edges  avec 3 Lines Lenght</td>
+    <td>382</td> 
+  </tr>
   
-  
+ 
   <tr>
     <td>MotorWay Lenght (Km)</td>
     <td>466,8</td> 
   </tr>
   
   <tr>
-    <td>MotorWay Lenght (Km)</td>
-    <td>466,8</td> 
+    <td>Trunk Lenght (Km)</td>
+    <td>14,4</td> 
   </tr>
   
   <tr>
-    <td>MotorWay Lenght (Km)</td>
-    <td>466,8</td> 
+    <td>Primary Lenght (Km)</td>
+    <td>194</td> 
+  </tr>
+  
+   <tr>
+    <td>Secondary Lenght (Km)</td>
+    <td>927</td> 
+  </tr>
+  
+  <tr>
+    <td>Terciary Lenght (Km)</td>
+    <td>1092</td> 
+  </tr>
+  
+   <tr>
+    <td>Residential Lenght (Km)</td>
+    <td>4976</td> 
+  </tr>
+  
+  
+   <tr>
+    <td>Unclassified Lenght (Km)</td>
+    <td>263</td> 
   </tr>
   
 </table>
@@ -443,7 +476,7 @@ Ainsi, il est possible de comparer le temps de charge de la carte avec la taille
 </p>
 
 
-Il est bien de relever qu'il y a une nette difference de chargement lors du filtrage des rues residentielles pour la commande netconvert. Ceci ce traduit par le pourcentage 
+Il est bien de relever qu'il y a une nette difference de chargement lors du filtrage des rues residentielles pour la commande netconvert. Ceci ce traduit par le pourcentage de rues residentielles que representes le reseau, environ 63% du reseau. Le choix pour la simulation et de ca performance sera donc de selectionner le type de topologie et le temps que cela engendre pour les calcules
 
 
 <h3 align="center" id="feux">Intersection et feux de circulation</h3>
