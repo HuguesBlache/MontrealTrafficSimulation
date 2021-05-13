@@ -2,6 +2,9 @@
 REM Compilation des cartes et créeation de la carte
 
 wget  -O ".\Carte\CarteMontreal.osm" --post-file=".\Carte\Montreal_Highway.overpass.ql.txt" "https://overpass.nchc.org.tw/api/interpreter"
+
+REM wget  -O ".\Carte\CarteMontrealBus.osm" --post-file="Commande_Bus.txt" "https://overpass.nchc.org.tw/api/interpreter"
+
 netconvert --osm-files ./Carte/CarteMontreal.osm -o ./Carte/MontrealJointure.net.xml  --remove-edges.by-type highway.unclassified,highway.residential
 
 
