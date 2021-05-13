@@ -956,6 +956,7 @@ Nous prendrons les paramètres suivant pour notre simulation
   <li  align="center" >Scale: Permet de definir le pourcentage que l'on veut inserer de la matrice OD de notre simulation</li>
   <li  align="center" >Spread.uniform : De generer les trajet de maniere uniforme dans le temps</li>
   <li  align="center" >Prefix : Assigne un prefix de chaque trajet de la simualation</li>
+  <li  align="center" >Timeline : Premet de decouper la matrice en tranche horraire et definir des probabilité d'insertion de véhicules pour ces tranche</li>	
 </ul> 
 
 
@@ -975,6 +976,7 @@ Nous prendrons les paramètres suivant pour notre simulation
 	<processing>
 		<prefix value=<String_value> />
 		<spread.uniform value="true" />
+		<timeline value="<TIME>:<PROB>"/>
 	</processing>
 </configuration>
 
@@ -991,7 +993,6 @@ Après avoir créer des trajets indivuelle a partir de la matrice OD grace à od
 
 <p align="center">
   <img width="600" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/duarouter.png">
-  
 </p>
 
 Nous prendrons les paramètres suivant pour notre simulation
@@ -1144,38 +1145,19 @@ Apres exploitation des <a href="https://github.com/HuguesBlache/MontrealTrafficS
 
 Ci on prend en compte le pourcentage par tranche horraire, nous aurons 
 
-<table  align="center">
-	<a align="center">
-  <tr>
-    <th>Tranche horraire</th>
-    <th>Nombre de velo moyen</th> 
-    <th>Pourcentage</th>
-  </tr>
-  <tr>
-    <td>5h-6h</td>
-    <td>75</td>
-    <td>1.6%</td>
-  </tr>
-  <tr>
-    <td>6h-7h</td>
-    <td>329</td>
-    <td>7%</td>
-  </tr>
-  <tr>
-    <td>7h-8h</td>
-    <td>1484</td>
-    <td>31,7%</td>
-  </tr>
-	<tr>
-    <td>8h-9h</td>
-    <td>279</td>
-    <td>59.7%</td>
-  </tr>
-		</a>
-</table>
+<table  align="center"><a align="center">
+  <tr><th>Tranche horraire</th><th>Nombre de velo moyen</th> <th>Pourcentage</th></tr>
+  <tr><td>5h-6h</td><td>75</td><td>1.6%</td></tr>
+  <tr><td>6h-7h</td><td>329</td><td>7%</td></tr>
+  <tr><td>7h-8h</td><td>1484</td><td>31,7%</td></tr>
+ <tr><td>8h-9h</td><td>279</td><td>59.7%</td></tr>
+</a></table>
 
+Pour ce faire, la commande --timeline à été priviligé comme enoncer dans les explications de la méthodologie
 
-
+```xml
+ <timeline value="18000:1,6,21600:7,25200:31,28800:59,7"/>
+```
 
 
 Pour ce faire on utilisera la commande --scale dans od2trips
