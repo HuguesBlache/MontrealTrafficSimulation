@@ -739,6 +739,15 @@ Pour faire reconnaitre les delimitations de l'OSM dans les reseaux de SUMO, il e
   <Sumo_HOME>\tools\contributed\saga\generateTAZBuildingsFromOSM.py --osm ./Taz/Taz.osm --net ./Carte/MontrealJointure.net.xml --taz-output .\Taz\Taz.xml  --poly-output .\Taz\poly.xml --weight-output .\Taz\test.xml
   ```
   
+ On peut definir le cheminiment de la fonction comme: 
+ 
+ 
+ <p align="center">
+  <img width="600" src=" https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/GenerateTazBul.png">
+</p>
+
+
+  
   Neanmois, en fonction de la taille du reseau choisie, il peu avoir une differences de temps de chargement:
 
 <h3 align="center">Changement de format de la Matrice OD</h3>
