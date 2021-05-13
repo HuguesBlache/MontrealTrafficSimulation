@@ -2,7 +2,7 @@ $O;D2
 * From-Time To-Time
 5.00 9.00
 * Factor
-0.01
+1
 *
 * some
 * additional
