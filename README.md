@@ -17,7 +17,8 @@
 4. <a href="#OD">Création de la demande </a><br>
 5. <a href="#autos">Génération de la demande</a><br>
 6. <a href="#Simulation">Simulation</a><br>
-7. <a href="#Calibration">Calibration</a><br>
+7. <a href="#Collecte">Collecte de données</a><br>
+8. <a href="#Calibration">Calibration</a><br>
 
 
 
@@ -873,6 +874,10 @@ Voici quelques differences visible entre chaque simulation pour une simulation a
   <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/meanTravelTime.png">
 </p>
 
+
+
+
+<h2 align="center" id="Collecte">Collecte de données</h2>
 
 <h2 align="center" id="Calibration">Calibration</h2>
 
