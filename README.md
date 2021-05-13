@@ -46,12 +46,21 @@ Ce projet se réfère principalement à la documentation de <a href="https://sum
 <h3 align="center" id="carte">Topologie de l'ile de Montréal</h3>
 
 
-Le cadre de cette étude est de prendre la circulation sur l'ile de Montréal. Afin de reprondre au exigences du reseau, les informations concernant l'ile sont importé avec <a href="https://www.openstreetmap.org/">OpenStreetMap (OSM)</a>. Neanmoins, comme le simulateur est une entrée du logiciel <a href="https://www.trafficm2modelling.com/"> M2M</a> et que les données topologiques et que une certaines formes de l'ile est necessaire, le site <a href="https://extract.bbbike.org/">BBbike</a> en est une solution comme le montre la figure suivante :
+Le cadre de cette étude est de prendre la circulation sur l'ile de Montréal. Afin de reprondre au exigences du reseau, les informations concernant l'ile sont importé avec <a href="https://www.openstreetmap.org/">OpenStreetMap (OSM)</a>. Neanmoins, comme le simulateur est une entrée du logiciel <a href="https://www.trafficm2modelling.com/"> M2M</a> et que les données topologiques et que une certaines formes de l'ile est necessaire, la stratégie à été de prendre la relation de OSM de l'<a href="https://fr.wikipedia.org/wiki/fr:Agglom%C3%A9ration%20de%20Montr%C3%A9al?uselang=fr"> Agglomeration </a> de Montréal, qui s'est fait assigner le code <i> <a href="https://www.openstreetmap.org/relation/8508277">Q2826806 </a></i>
 
 <p align="center">
-  <img  width="450" height="350" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_BBBike.png">
-  <img  width="450" height="350" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_M2M.png">	
+  <img src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_BBBike.png"
+        alt="Trulli" style="width:100%">
+    <figcaption  align="middle" >Relation Ile de Montreal</figcaption>
 </p>
+
+<p align="center">
+  <img  width="450" height="350" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_M2M.png"
+        alt="Capture_M2M">
+    <figcaption align="center" >Delimitation du Simulateur</figcaption>
+    
+</p>
+
 
 <h4 align="center" id="carte">OverPass API</h4>
 
