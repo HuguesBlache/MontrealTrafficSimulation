@@ -165,7 +165,7 @@ WGET
 
 Avec un appelle dans netconvert sans commande spécifique, il est possible de relever certaines caractéristiques topologiques des données extraite
 
-<table>	
+<table  align="center">
   <tr>
     <th>Entité</th>
     <th>Unité</th> 
@@ -749,6 +749,53 @@ Pour faire reconnaitre les delimitations de l'OSM dans les reseaux de SUMO, il e
 
   
   Neanmois, en fonction de la taille du reseau choisie, il peu avoir une differences de temps de chargement:
+  
+  
+<table  align="center">
+	
+  <tr>
+    <th>Type</th>
+    <th>Pourcentage</th> 
+    <th>Temps de simulation en (ms)</th>
+    <th>Taille du Fichier (ko)</th>
+  </tr>
+  <tr>
+    <td>Entier</td>
+    <td>100</td>
+    <td>417968</td>
+    <td>1082</td>
+  </tr>
+   <tr>
+    <td>Sans_Un</td>
+    <td>96.7</td>
+    <td>414060</td>
+	<td>1059</td>
+</td>
+    
+  
+   <tr>
+    <td>Sans_Un_Res</td>
+    <td>34</td>
+    <td>144982</td>
+    <td>361</td>
+  </tr>
+   <tr>
+    <td>Sans_Un_Res_Te</td>
+    <td>20.2</td>
+    <td>79036</td>
+    <td>199</td>
+  </tr>
+   
+</table>
+
+  
+  
+   <p align="center">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/chargement_TAZ.png">
+</p>
+
+
+  
 
 <h3 align="center">Changement de format de la Matrice OD</h3>
 
