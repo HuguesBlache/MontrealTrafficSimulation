@@ -63,84 +63,9 @@ Le cadre de cette étude est de prendre la circulation sur l'ile de Montréal. A
 
 <h4 align="center" id="Type de Route">Type de Route</h3>
 
-L'etude pourtant sur la mobilité terrestre, la simulation de compte qu'une certains type de route spécifiques. Dont voici la liste* ci-dessous
+L'etude pourtant sur la mobilité terrestre, la simulation de compte qu'une certains type de route spécifiques. Dont la liste* ce trouve en <a href="Route_Type"> annexe </a> 
 
 
-<table  align="center">
-	<a align="center">
-  <tr>
-    <th>Key</th>
-    <th>Value</th> 
-    <th>Comment</th>
-   
-  </tr>
-  <tr>
-    <td>Highway</td>
-    <td>motorway</td>
-     <td>A restricted access major divided highway, normally with 2 or more running lanes plus emergency hard shoulder. Equivalent to the Freeway, Autobahn, etc.. </td>
-  </tr>
-   <tr>
-    <td>Highway</td>
-    <td>motorway_link</td>
-     <td>The link roads (sliproads/ramps) leading to/from a motorway from/to a motorway or lower class highway. Normally with the same motorway restrictions. </td>
-  </tr>
-  <tr>
-    <td>Highway</td>
-    <td> 	trunk</td>
-     <td>The most important roads in a country's system that aren't motorways. (Need not necessarily be a divided highway.) </td>
-  </tr>
-   <tr>
-    <td>Highway</td>
-    <td>trunk_link</td>
-     <td>The link roads (sliproads/ramps) leading to/from a trunk road from/to a trunk road or lower class highway. </td>
-  </tr>
-  <tr>
-    <td>Highway</td>
-    <td>primary</td>
-     <td>The next most important roads in a country's system. (Often link larger towns.)  </td>
-  </tr>
-   <tr>
-    <td>Highway</td>
-    <td>primary_link</td>
-     <td>The link roads (sliproads/ramps) leading to/from a primary road from/to a primary road or lower class highway. </td>
-  </tr>
-   <tr>
-    <td>Highway</td>
-    <td> 	secondary</td>
-     <td>The next most important roads in a country's system. (Often link towns.) </td>
-  </tr>
-   <tr>
-    <td>Highway</td>
-    <td> 	secondary_link</td>
-     <td>The link roads (sliproads/ramps) leading to/from a secondary road from/to a secondary road or lower class highway.</td>
-  </tr>
-  <tr>
-    <td>Highway</td>
-    <td> 	tertiary</td>
-     <td>The next most important roads in a country's system. (Often link smaller towns and villages) </td>
-  </tr>
-   <tr>
-    <td>Highway</td>
-    <td> 	tertiary_link</td>
-     <td>The link roads (sliproads/ramps) leading to/from a tertiary road from/to a tertiary road or lower class highway. </td>
-  </tr>
-    <tr>
-    <td>Highway</td>
-    <td> 	 	unclassified</td>
-     <td>The least important through roads in a country's system – i.e. minor roads of a lower classification than tertiary, but which serve a purpose other than access to properties. (Often link villages and hamlets.)
-	     
-The word 'unclassified' is a historical artefact of the UK road system and does not mean that the classification is unknown; you can use highway=road for that. </td>
-  </tr>
-    <tr>
-    <td>Highway</td>
-    <td> 	 	residential</td>
-     <td>Roads which serve as an access to housing, without function of connecting settlements. Often lined with housing. </td>
-  </tr>
-    
-</a>		
-</table>
-
-  
  * Information pris dans le <a href="https://wiki.openstreetmap.org/wiki/Key:highway">wiki</a> OSM 
 
 
@@ -164,78 +89,7 @@ out;
 ```
 WGET
 
-Avec un appelle dans netconvert sans commande spécifique, il est possible de relever certaines caractéristiques topologiques des données extraite
-
-<table  align="center">
-  <tr>
-    <th>Entité</th>
-    <th>Unité</th> 
-  
-  </tr>
-  
-   <tr>
-    <td>Area</td>
-    <td>Unité</td> 
-  </tr>
-   <tr>
-    <td>Edges Lenght</td>
-    <td>7934</td> 
-  </tr>
-  <tr>
-    <td>Edges avec 1 Lines Lenght/td>
-    <td>6695</td> 
-  </tr>
-  
- <tr>
-    <td>Edges  avec 2 Lines Lenght</td>
-    <td>800</td> 
-  </tr>
-  
-  <tr>
-    <td>Edges  avec 3 Lines Lenght</td>
-    <td>382</td> 
-  </tr>
-  
- 
-  <tr>
-    <td>MotorWay Lenght (Km)</td>
-    <td>466,8</td> 
-  </tr>
-  
-  <tr>
-    <td>Trunk Lenght (Km)</td>
-    <td>14,4</td> 
-  </tr>
-  
-  <tr>
-    <td>Primary Lenght (Km)</td>
-    <td>194</td> 
-  </tr>
-  
-   <tr>
-    <td>Secondary Lenght (Km)</td>
-    <td>927</td> 
-  </tr>
-  
-  <tr>
-    <td>Terciary Lenght (Km)</td>
-    <td>1092</td> 
-  </tr>
-  
-   <tr>
-    <td>Residential Lenght (Km)</td>
-    <td>4976</td> 
-  </tr>
-  
-  
-   <tr>
-    <td>Unclassified Lenght (Km)</td>
-    <td>263</td> 
-  </tr>
-  
-</table>
-
-
+Avec un appelle dans netconvert sans commande spécifique, il est possible de relever certaines caractéristiques topologiques des données extraite disponible en <a ref="Description_du_reseau"> annexe </a>
 
 
 
@@ -1333,6 +1187,44 @@ Pour ce faire on utilisera la commande --scale dans od2trips
 
 <h2 align="center" id="Annexe">Annexe</h2>
 
+<h3 align="center" id="Road_Type">Type de Route</h3>
+
+<table  align="center"><a align="center">
+<tr><th>Key</th><th>Value</th><th>Comment</th></tr>
+<tr><td>Highway</td><td>motorway</td><td>A restricted access major divided highway, normally with 2 or more running lanes plus emergency hard shoulder. Equivalent to the Freeway, Autobahn, etc.. </td></tr>
+<tr><td>Highway</td><td>motorway_link</td><td>The link roads (sliproads/ramps) leading to/from a motorway from/to a motorway or lower class highway. Normally with the same motorway restrictions.</td></tr>
+<tr><td>Highway</td><td>trunk</td><td>The most important roads in a country's system that aren't motorways. (Need not necessarily be a divided highway.) </td></tr>
+<tr><td>Highway</td><td>trunk_link</td><td>The link roads (sliproads/ramps) leading to/from a trunk road from/to a trunk road or lower class highway. </td></tr>
+<tr><td>Highway</td><td>primary</td><td>The next most important roads in a country's system. (Often link larger towns.)  </td></tr>
+<tr><td>Highway</td><td>primary_link</td><td>The link roads (sliproads/ramps) leading to/from a primary road from/to a primary road or lower class highway. </td></tr>
+<tr><td>Highway</td> <td>secondary</td><td>The next most important roads in a country's system. (Often link towns.) </td></tr>
+<tr><td>Highway</td><td>secondary_link</td><td>The link roads (sliproads/ramps) leading to/from a secondary road from/to a secondary road or lower class highway.</td></tr>
+<tr><td>Highway</td><td>tertiary</td><td>The next most important roads in a country's system. (Often link smaller towns and villages) </td></tr>
+<tr><td>Highway</td><td>Tertiary_link</td><td>The link roads (sliproads/ramps) leading to/from a tertiary road from/to a tertiary road or lower class highway. </td></tr>
+<tr><td>Highway</td><td>Unclassified</td><td>The least important through roads in a country's system – i.e. minor roads of a lower classification than tertiary, but which serve a purpose other than access to properties. (Often link villages and hamlets.)The word 'unclassified' is a historical artefact of the UK road system and does not mean that the classification is unknown; you can use highway=road for that. </td></tr>
+<tr><td>Highway</td><td>residential</td><td>Roads which serve as an access to housing, without function of connecting settlements. Often lined with housing. </td></tr>
+</a></table>
+
+<h3 align="center" id="Description_du_reseau">Description du reseau</h3>
+
+<table  align="center">
+<tr><th>Entité</th><th>Unité</th></tr>
+<tr><td>Area</td><td>Unité</td> </tr>
+<tr><td>Edges Lenght</td> <td>7934</td></tr>
+<tr><td>Edges avec 1 Lines Lenght/td><td>6695</td> </tr>
+<tr><td>Edges  avec 2 Lines Lenght</td><td>800</td></tr>
+<tr><td>Edges  avec 3 Lines Lenght</td><td>382</td> </tr>
+<tr><td>MotorWay Lenght (Km)</td> <td>466,8</td> </tr>
+<tr><td>Trunk Lenght (Km)</td><td>14,4</td> </tr>
+<tr><td>Primary Lenght (Km)</td><td>194</td> </tr> 
+<tr><td>Secondary Lenght (Km)</td><td>927</td> </tr>
+<tr><td>Terciary Lenght (Km)</td><td>1092</td> </tr>
+<tr><td>Residential Lenght (Km)</td><td>4976</td> </tr>
+<tr><td>Unclassified Lenght (Km)</td><td>263</td> </tr></table>
+
+<h3 align="center" id="Description_SM">Description des SM</h3>
+
+Description des differents limitations administratifs utiliser dans le modèle
 <table  align="center">
 <tr><th>ARTM_ID</th><th>TAZ</th><th>Name</th><th>Aire [km2]</th></tr>
 <tr><td>122</td><td>197561</td><td>Westmount</td><td>4,36250012974578</td></tr>
