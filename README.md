@@ -689,13 +689,51 @@ Les fichiers  permettront de déterminer toutes les sections de routes qui appar
 La carte ci-dessous représente le quartier du Plateau Mont-Royal de Montréal (indicateur 106 de la matrice OD). Lors que la simulation toutes les voitures seront générées aléatoirement dans cette zone rouge d'origine.
 
 <p align="center">
-  <img width="460" height="300" src="https://user-images.githubusercontent.com/65184943/86967899-41d50e80-c139-11ea-907e-d64b432a1c0a.png">
+  <img width="460" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/plateauTAZ.png">
 </p>
 
 
-<h4 align="center">Route dans les TAZ</h4>
+<h4 align="center">Importation des TAZ</h4>
 
-L'etape vu plus haut ne renseigner seulement des limites de chaques ORiginie et Destination sans prendre en consideration les routes à l'interieur de cette dernièreé. Appliquer la fonction <i><a href="https://sumo.dlr.de/docs/Tools/District.html"> edgesInDistricts.py </a></i> aux polygonnes créés dans la section <i>Définition des <a href="#quartier">secteurs </a></i>. Ceci permet ainsi de créer dans un fichier <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/CarteMontreal/districts.taz.xml">TAZ</a>  les limites administratives, est ainsi créer les routes. Voici un exemple de code
+Pour importer les differents Secteur Municipale dans notre études, le choix s'est tourner vers une commande Overpass afini de renseigner sur les limites de chaques Originies et Destitanations avec la commande suivante:
+
+```ql
+area[name="Agglomération de Montréal"]->.montreal;
+rel(area.montreal)["boundary"="administrative"]["name"~"(Senneville|Centre-ville périphérique|Sud-Ouest|Notre-Dame-de-Grâce|Côte-des-Neiges|Plateau Mont-Royal|Ahuntsic|Saint-Michel|Rosemont|Sud-Est|Mercier|Pointe-aux-Trembles|Rivière-des-Prairies|Montréal-Est|Anjou|Montréal-Nord|Saint-Laurent|Mont-Royal|Outremont|Westmount|Hampstead|Côte-Saint-Luc|Montréal-Ouest|Saint-Pierre|Verdun|Lachine|Dorval|Pointe-Claire|Dollard-Des-Ormeaux|LÎle-Bizard–Sainte-Geneviève|Sainte-Geneviève|Pierrefonds-Roxboro|Kirkland|Beaconsfield|Baie-D'Urfé|Sainte-Anne-de-Bellevue|Senneville|Saint-Léonard|LaSalle|Ville-Marie)"]["wikidata"!~"(Q3393516|Q3433601|Q66725800|Q66459099|Q2827732|Q66711940|Q66711949|Q66619984|Q66659445)"];
+(._;>;);
+out geom;
+```
+
+Ce qui donne les differents secteurs municipaux:
+
+<p align="center">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/TaZ_Overpass.png">
+</p>
+
+Par comparaison, les secteurs etudiés par l'ARTM sont les suivants:
+
+<p align="center">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Taz_ARTM.png">
+</p>
+
+Il est soulevé que certaines secteurs municipaux de l'ARTM n'apparaisse pas dans les secteurs pris en compte dans la commande Overpass. Ceci s'expliquer que parfois selon le niveau de la couche choisie sur OSM des délimitations qui rassemblent deux limitations de l'artm (Par exemple la zone 114 et 113, n'est qu'une seule zones sur OSM). 
+
+Ainsi afin de facilité le plus possible l'automatisation du projet et de la simulation, il a été choisie de rassembler quelques zones de la matrice OD (somme des lignes et colonnes):
+
+<ul  align="center">
+  <li  align="center" >136/135/133 PierreFonds, Sainte genevieve et Roxboro -> Pierrefonds-Roxboro</li>
+  <li  align="center">111/112 Sud-Est et Mercier –> Mercier–Hochelaga-Maisonneuve</li>
+  <li  align="center">110 avec une partie de 107 Rosemont et une partie de Villeray (Petite Patrie) -> Rosemont–La Petite-Patrie</li>
+  <li  align="center">109 est une partie de 107 Saint Michel et une partie de Villeray (Parc-Extension) -> Villeray–Saint-Michel–Parc-Extension</li>
+  <li  align="center">105/104 Notre Dame de Grace et Cote des neiges -> Cote des neige_Notre Dame de Grace</li>
+  <li  align="center">102/101 : Centre-Ville et centre-ville périphériques -> Quartier Ville Marie (Pour OSM)</li>
+</ul> 
+ 
+Au vu de la granularité de la simualtion (Secteur minicipale), cela n'est pas utile de visez des secteurs excate pour ce projet et de l'analyse de toute l'ile
+
+
+
+Appliquer la fonction <i><a href="https://sumo.dlr.de/docs/Tools/District.html"> edgesInDistricts.py </a></i> aux polygonnes créés dans la section <i>Définition des <a href="#quartier">secteurs </a></i>. Ceci permet ainsi de créer dans un fichier <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/CarteMontreal/districts.taz.xml">TAZ</a>  les limites administratives, est ainsi créer les routes. Voici un exemple de code
 
   ```
   <SUMO_HOME>/tools/edgesInDistricts.py -n Montreal.net.xml -t Quartier.add.xml
@@ -1227,7 +1265,10 @@ Ci on prend en compte le pourcentage par tranche horraire, nous aurons
 
 Pour ce faire on utilisera la commande --scale dans od2trips
 
+<h2 align="center" id="Collecte">Discussion</h2>
 
+- GTFS
+- Secteur TAzz
 
 # SUITE
 # NON
