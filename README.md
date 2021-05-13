@@ -743,7 +743,7 @@ Pour faire reconnaitre les delimitations de l'OSM dans les reseaux de SUMO, il e
  
  
  <p align="center">
-  <img width="600" src=" https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/GenerateTazBul.png">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/GenerateTazBul.png">
 </p>
 
 
