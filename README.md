@@ -19,6 +19,7 @@
 6. <a href="#Simulation">Simulation</a><br>
 7. <a href="#Collecte">Collecte de données</a><br>
 8. <a href="#Calibration">Calibration</a><br>
+9. <a href="#Annexe">Annexe</a><br>
 
 
 
@@ -731,6 +732,8 @@ Ainsi afin de facilité le plus possible l'automatisation du projet et de la sim
  
 Au vu de la granularité de la simualtion (Secteur minicipale), cela n'est pas utile de visez des secteurs excate pour ce projet et de l'analyse de toute l'ile
 
+
+
 <h5 align="center">Reconnaissance des TAZ dans le reseau</h5>
 
 Pour faire reconnaitre les delimitations de l'OSM dans les reseaux de SUMO, il est possible d'utilise la fonction generateTAZBuildingsFromOSM.py qui permet d'extraire l'esemble des routes presentes dans les limites adminstratives renseigner. Pour ce faire les limites definie plus haute seront pris en compte. La commande suivant sera pris en compte
@@ -1327,6 +1330,46 @@ Pour ce faire on utilisera la commande --scale dans od2trips
 
 - GTFS
 - Secteur TAzz
+
+<h2 align="center" id="Annexe">Annexe</h2>
+
+<table  align="center">
+<tr><th>ARTM_ID</th><th>TAZ</th><th>Name</th><th>Aire [km2]</th></tr>
+<tr><td>122</td><td>197561</td><td>Westmount</td><td>4,36250012974578</td></tr>
+<tr><td>130</td><td>197562</td><td>Dorval</td><td>39,0593228540409</td></tr>
+<tr><td>120</td><td>197567</td><td>Mont-Royal</td><td>10,8008968444416</td></tr>
+<tr><td>123</td><td>197569</td><td>Hampstead</td><td>1,8849887211046</td></tr>
+<tr><td>131</td><td>197576</td><td>Pointe-Claire</td><td>38,6473614658978</td></tr>
+<tr><td>137</td><td>197577</td><td>Kirkland</td><td>12,5171922380251</td></tr>
+<tr><td>138</td><td>197578</td><td>Beaconsfield</td><td>22,4031783524039</td></tr>
+<tr><td>139</td><td>197579</td><td>Baie-D'Urfé</td><td>7,65684655205541</td></tr>
+<tr><td>140</td><td>197580</td><td>Sainte-Anne-de-Bellevue</td><td>14,5322558976101</td></tr>
+<tr><td>141</td><td>197583</td><td>Senneville</td><td>22,2903473207173</td></tr>
+<tr><td>132</td><td>197601</td><td>Dollard-Des-Ormeaux</td><td>17,9511405853573</td></tr>
+<tr><td>101,102</td><td>1572820</td><td>Ville-Marie</td><td>29,2208827294673</td></tr>
+<tr><td>115</td><td>1634159</td><td>Montréal-Est</td><td>15,7508467246033</td></tr>
+<tr><td>106</td><td>1878503</td><td>Plateau Mont-Royal</td><td>9,24304323608709</td></tr>
+<tr><td>124</td><td>5361655</td><td>Côte-Saint-Luc</td><td>9,77951784329642</td></tr>
+<tr><td>126,129</td><td>5363262</td><td>Arrondissement de Lachine</td><td>23,2106883296288</td></tr>
+<tr><td>125</td><td>7022381</td><td>Montréal-Ouest</td><td>1,61060606785383</td></tr>
+<tr><td>113,114</td><td>8802299</td><td>Rivière-des-Prairies–Pointe-aux-Trembles</td><td>68,8772235520387</td></tr>
+<tr><td>116</td><td>8803286</td><td>Anjou</td><td>15,1656834642695</td></tr>
+<tr><td>111,112</td><td>8803356</td><td>Mercier–Hochelaga-Maisonneuve</td><td>38,0635773039326</td></tr>
+<tr><td>118</td><td>8803462</td><td>Montréal-Nord</td><td>13,8329359420784</td></tr>
+<tr><td>108</td><td>8803535</td><td>Ahuntsic-Cartierville</td><td>39,2945996582235</td></tr>
+<tr><td>107,109</td><td>8803536</td><td>Villeray–Saint-Michel–Parc-Extension</td><td>20,6190943767103</td></tr>
+<tr><td>117</td><td>8803537</td><td>Saint-Léonard</td><td>14,78885877074</td></tr>
+<tr><td>110</td><td>8803540</td><td>Rosemont–La Petite-Patrie</td><td>18,6757551362398</td></tr>
+<tr><td>121</td><td>8803553</td><td>Outremont</td><td>4,99210671977815</td></tr>
+<tr><td>128</td><td>8805426</td><td>LaSalle</td><td>34,1193239432363</td></tr>
+<tr><td>127</td><td>8805573</td><td>Verdun</td><td>25,7808089039482</td></tr>
+<tr><td>103</td><td>8805747</td><td>Le Sud-Ouest</td><td>29,9708966584688</td></tr>
+<tr><td>119</td><td>8806186</td><td>Saint-Laurent</td><td>54,9279755735267</td></tr>
+<tr><td>104,105</td><td>8806187</td><td>Côte-des-Neiges–Notre-Dame-de-Grâce</td><td>32,6900583956751</td></tr>
+<tr><td>133,135,136</td><td>8806364</td><td>Pierrefonds-Roxboro</td><td>68,9451595215531</td></tr>
+<tr><td>134</td><td>8806483</td><td>L'Île-Bizard–Sainte-Geneviève</td><td>41,697710545267</td></tr>
+</table>
+
 
 # SUITE
 # NON
