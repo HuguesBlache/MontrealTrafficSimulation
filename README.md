@@ -731,13 +731,15 @@ Ainsi afin de facilité le plus possible l'automatisation du projet et de la sim
  
 Au vu de la granularité de la simualtion (Secteur minicipale), cela n'est pas utile de visez des secteurs excate pour ce projet et de l'analyse de toute l'ile
 
+<h5 align="center">Reconnaissance des TAZ dans le reseau</h5>
 
-
-Appliquer la fonction <i><a href="https://sumo.dlr.de/docs/Tools/District.html"> edgesInDistricts.py </a></i> aux polygonnes créés dans la section <i>Définition des <a href="#quartier">secteurs </a></i>. Ceci permet ainsi de créer dans un fichier <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/CarteMontreal/districts.taz.xml">TAZ</a>  les limites administratives, est ainsi créer les routes. Voici un exemple de code
+Pour faire reconnaitre les delimitations de l'OSM dans les reseaux de SUMO, il est possible d'utilise la fonction generateTAZBuildingsFromOSM.py qui permet d'extraire l'esemble des routes presentes dans les limites adminstratives renseigner. Pour ce faire les limites definie plus haute seront pris en compte. La commande suivant sera pris en compte
 
   ```
-  <SUMO_HOME>/tools/edgesInDistricts.py -n Montreal.net.xml -t Quartier.add.xml
+  <Sumo_HOME>\tools\contributed\saga\generateTAZBuildingsFromOSM.py --osm ./Taz/Taz.osm --net ./Carte/MontrealJointure.net.xml --taz-output .\Taz\Taz.xml  --poly-output .\Taz\poly.xml --weight-output .\Taz\test.xml
   ```
+  
+  Neanmois, en fonction de la taille du reseau choisie, il peu avoir une differences de temps de chargement:
 
 <h3 align="center">Changement de format de la Matrice OD</h3>
 
