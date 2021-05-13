@@ -1133,30 +1133,61 @@ Voici quelques differences visible entre chaque simulation pour une simulation a
 
 <h3 align="center" id="TC">Heure de pointe</h3>
 
-Nous n'avons pas calibrer les données de la matrice OD à la "realité", ce qui donne dans la <a href="#courbe"> courbe </a> un maximun de vehicules au depart de la simualtion. Or nous devrions voire une courbe en "cloche". POur le verifier, nous pouvons visualiser les données ouvertes de <a href="https://www.bixi.com/fr/page-27"> Bixi </a> qui permetra de voire la tendance sur la plage horraire 5h-9h.
+Nous n'avons pas calibrer les données de la matrice OD à la "realité", ce qui donne dans la <a href="#courbe"> courbe </a> un maximun de vehicules au depart de la simualtion. Or nous devrions voire une courbe decouper et avec un pic à l'heure de pointe. Qui est representer dans les figure suivante: 
+
+<p align="center">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/uniforme.png">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/decoupage.png">
+</p>
+
+
+
+POur le verifier, nous pouvons visualiser les données ouvertes de <a href="https://www.bixi.com/fr/page-27"> Bixi </a> qui permetra de voire la tendance sur la plage horraire 5h-9h.
 
 Apres exploitation des <a href="https://github.com/HuguesBlache/MontrealTrafficSimulation/tree/master/Data/Bixi">données</a> nous avons des courbes du type.
-
 
 <p align="center">
 <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Pointe5%4010.png">
 <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/PointeJourn%C3%A9e.png">
 </p>
 
-Ci on prend en compte le pourcentage par tranche horraire, nous aurons 
+
+Le choix s'est egalement tourner en prennant en compte les comptages des véhciules au interesection, dont voici quelques representation pour des passage de voiture et de camion leger en heure de pointe:
+
+<p align="center">
+<img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/compatage_voiture.png">
+
+</p>
+ 
+Étant donnéer que les decoupage sont en tranche de 15 min, il à etait choisie de faire de meme pour le decoupage de la matrice OD
+
+Ci on prend en compte le pourcentage par tranche horraire, donne
 
 <table  align="center"><a align="center">
-  <tr><th>Tranche horraire</th><th>Nombre de velo moyen</th> <th>Pourcentage</th></tr>
-  <tr><td>5h-6h</td><td>75</td><td>1.6%</td></tr>
-  <tr><td>6h-7h</td><td>329</td><td>7%</td></tr>
-  <tr><td>7h-8h</td><td>1484</td><td>31,7%</td></tr>
- <tr><td>8h-9h</td><td>279</td><td>59.7%</td></tr>
+<tr><th>Periode</th><th>Pourcentage</th><tr>
+<tr><td>18000</td><td>0,2</td></tr>
+<tr><td>18900</td><td>0,2</td></tr>
+<tr><td>19800</td><td>0,2</td></tr>
+<tr><td>20700</td><td>0,2</td></tr>
+<tr><td>21600</td><td>0,4</td></tr>
+<tr><td>22500</td><td>0,8</td></tr>
+<tr><td>23400</td><td>5,2</td></tr>
+<tr><td>24300</td><td>6,1</td></tr>
+<tr><td>25200</td><td>6,9</td></tr>
+<tr><td>26100</td><td>7,8</td></tr>
+<tr><td>27000</td><td>9,8</td></tr>
+<tr><td>27900</td><td>10,1</td></tr>
+<tr><td>28800</td><td>11,3</td></tr>
+<tr><td>29700</td><td>11,5</td></tr>
+<tr><td>30600</td><td>10,8</td></tr>
+<tr><td>31500</td><td>9,3</td></tr>
+<tr><td>32400</td><td>7,2</td></tr>
 </a></table>
 
 Pour ce faire, la commande --timeline à été priviligé comme enoncer dans les explications de la méthodologie
 
 ```xml
- <timeline value="18000:1,6,21600:7,25200:31,28800:59,7"/>
+ <timeline value="18000:0.2,18900:0.2,19800:0.2,20700:0.2,21600:0.4,22500:0.8,23400:5.2,24300:6.1,25200:6.9,26100:7.8,27000:9.8,27900:10.1,28800:11.3,29700:11.5,30600:10.8,31500:9.3,32400:7.2"/>
 ```
 
 
