@@ -542,58 +542,51 @@ La carte ci-dessous représente le quartier du Plateau Mont-Royal de Montréal (
 
 <h4 align="center">Importation des TAZ</h4>
 
-Pour importer les differents Secteur Municipale dans notre études, le choix s'est tourner vers une commande Overpass afini de renseigner sur les limites de chaques Originies et Destitanations avec la commande suivante:
 
-```ql
-area[name="Agglomération de Montréal"]->.montreal;
-rel(area.montreal)["boundary"="administrative"]["name"~"(Senneville|Centre-ville périphérique|Sud-Ouest|Notre-Dame-de-Grâce|Côte-des-Neiges|Plateau Mont-Royal|Ahuntsic|Saint-Michel|Rosemont|Sud-Est|Mercier|Pointe-aux-Trembles|Rivière-des-Prairies|Montréal-Est|Anjou|Montréal-Nord|Saint-Laurent|Mont-Royal|Outremont|Westmount|Hampstead|Côte-Saint-Luc|Montréal-Ouest|Saint-Pierre|Verdun|Lachine|Dorval|Pointe-Claire|Dollard-Des-Ormeaux|LÎle-Bizard–Sainte-Geneviève|Sainte-Geneviève|Pierrefonds-Roxboro|Kirkland|Beaconsfield|Baie-D'Urfé|Sainte-Anne-de-Bellevue|Senneville|Saint-Léonard|LaSalle|Ville-Marie)"]["wikidata"!~"(Q3393516|Q3433601|Q66725800|Q66459099|Q2827732|Q66711940|Q66711949|Q66619984|Q66659445)"];
-(._;>;);
-out geom;
-```
-
-Ce qui donne les differents secteurs municipaux:
-
-<p align="center">
-  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/TaZ_Overpass.png">
-</p>
-
-Par comparaison, les secteurs etudiés par l'ARTM sont les suivants:
+Les secteurs etudiés par l'ARTM sont les suivants:
 
 <p align="center">
   <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Taz_ARTM.png">
 </p>
 
-Il est soulevé que certaines secteurs municipaux de l'ARTM n'apparaisse pas dans les secteurs pris en compte dans la commande Overpass. Ceci s'expliquer que parfois selon le niveau de la couche choisie sur OSM des délimitations qui rassemblent deux limitations de l'artm (Par exemple la zone 114 et 113, n'est qu'une seule zones sur OSM). 
-
-Ainsi afin de facilité le plus possible l'automatisation du projet et de la simulation, il a été choisie de rassembler quelques zones de la matrice OD (somme des lignes et colonnes):
-
-<ul  align="center">
-  <li  align="center" >136/135/133 PierreFonds, Sainte genevieve et Roxboro -> Pierrefonds-Roxboro</li>
-  <li  align="center">111/112 Sud-Est et Mercier –> Mercier–Hochelaga-Maisonneuve</li>
-  <li  align="center">110 avec une partie de 107 Rosemont et une partie de Villeray (Petite Patrie) -> Rosemont–La Petite-Patrie</li>
-  <li  align="center">109 est une partie de 107 Saint Michel et une partie de Villeray (Parc-Extension) -> Villeray–Saint-Michel–Parc-Extension</li>
-  <li  align="center">105/104 Notre Dame de Grace et Cote des neiges -> Cote des neige_Notre Dame de Grace</li>
-  <li  align="center">102/101 : Centre-Ville et centre-ville périphériques -> Quartier Ville Marie (Pour OSM)</li>
-</ul> 
+ Afin de convertir c'est limites administratives dans SUMO, nous allons prendre les fihcier shp diponible et les rentrer dans SUMO à l'aide de PolyConvert
  
-Au vu de la granularité de la simualtion (Secteur minicipale), cela n'est pas utile de visez des secteurs excate pour ce projet et de l'analyse de toute l'ile
-
-
-
-<h5 align="center">Reconnaissance des TAZ dans le reseau</h5>
-
-Pour faire reconnaitre les delimitations de l'OSM dans les reseaux de SUMO, il est possible d'utilise la fonction generateTAZBuildingsFromOSM.py qui permet d'extraire l'esemble des routes presentes dans les limites adminstratives renseigner. Pour ce faire les limites definie plus haute seront pris en compte. La commande suivant sera pris en compte
-
-  ```
-  <Sumo_HOME>\tools\contributed\saga\generateTAZBuildingsFromOSM.py --osm ./Taz/Taz.osm --net ./Carte/MontrealJointure.net.xml --taz-output .\Taz\Taz.xml  --poly-output .\Taz\poly.xml --weight-output .\Taz\test.xml
-  ```
-  
- On peut definir le cheminiment de la fonction comme: 
+ <h5 align="center">PolyConvert</h5>
  
+ La fonction Polyconvert permet d'importer des shapes geometrique selon differente source, ce qui nous interraisse dans notre cas, c'est d'importer des sources SHP
+ 
+ 
+* n: Represente la topograhpie du reseau etudier
+* shapefile-prefixe: Reads shapes from shapefiles FILE+
+* shapefile.guess-projection: Guesses the shapefile's projection
+* shapefile.traditional-axis-mapping : Use traditional axis order (lon, lat)
+
+La commande sera la suivante:
+
+```
+polyconvert -n CarteMontreal_Sans_Un_Res.net.xml --shapefile-prefixes SM_OD2018 --layer 111 --shapefile.guess-projection true --shapefile.traditional-axis-mapping true --fill false
+```
+ 
+ 
+ La carte ci-dessous représente le quartier du Plateau Mont-Royal de Montréal convertie en polygone.
  
  <p align="center">
-  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/GenerateTazBul.png">
+  <img width="460" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Plateau.png">
 </p>
+
+
+<h5 align="center">edgesInDistricts.py</h5>
+
+Après avoir decrit les differents polygones qui traduit la limite de chaque Secteur Municipaux, il reste à reconnaitre les differentes routes existantes dans chaques TAZ. Pour ce faire nous pouvons utiliser la fonction edgesInDistricts.py qui prend comme parametre:
+
+* n: Represente la topograhpie du reseau etudier
+* t: represente les limites admministif definies plus haut.
+
+```
+python <SUMO_HOME>/tools/edgesInDistricts.py -n Montreal.net.xml -t Quartier.add.xml
+```
+  
+
 
 
   
