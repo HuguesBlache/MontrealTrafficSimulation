@@ -435,39 +435,55 @@ Au vu de la sensibilité de ses deux scénariosn, dans la suite du projet nous p
 
 <h3 align="center" id="TC">Implantation des arrets de bus</h3>
 
-Après avoir construit notre reseau, il est possible de gréfer à notre modèle des arrets de bus et des informations des trajets. Pour cela, il existe des <a href="https://sumo.dlr.de/docs/Tutorials/PT_from_OpenStreetMap.html"> fonctions </a> qui peuvent directement implanter dans SUMO pour recuper les information des trajets de bus selon les relations dans OpenStreetMap. C'est commande sont:
+<h4 align="center" id="TC">Topologie des bus</h4>
 
- <ul  align="center">
-  <li  align="center" >osm.stop-output.length : Cette fonction permet de difinire des longueur des arrets de bus par default, nous prendrons 20 metres</li>
-  <li  align="center">ptstop-output : Cette fonction permet de renseigner sur les emplacements des arrets des bus sur notre carte</li>
-  <li  align="center">ptline-output: Cette fonction permet de renseigner sur les trajets des lignes de bus</li>
-</ul> 
+Après avoir construit notre reseau, il est possible de gréfer à notre modèle des arrets de bus et des informations des trajets. Pour cela, il existe des <a href="https://sumo.dlr.de/docs/Tutorials/PT_from_OpenStreetMap.html"> fonctions </a> qui peuvent directement implanter dans SUMO pour recuper les information des trajets de bus selon les relations dans OpenStreetMap.
 
-Ce qui nous donnes la commandes suivante:
+Comme pour les cartes, le choix d'importer les données de Bus ce fait par le biais de OverPass à l'aide de la commande:
 
-
+```ql
+area[name="Agglomération de Montréal"]->.montreal;
+rel(area.montreal)["network"="STM"];
+(._;>;);
+out geom;
 ```
-netconvert --osm-files <Files> -o <Files> --osm.stop-output.length 20 --ptstop-output ptstop.add.xml --ptline-output ptlines.xml
-
-```
-Pour visualiser la emplacement dans la simulation, il faut ajouter un fichier additionnel dans le .sumocfg qui porte le nom où ce situe le fihcier des arrets, ici ```ptstop.add.xml```
+Certains routes type de routes qui n'ont pas été pris lors de topologies de la carte sont pris en compte, à savoir les routes de services et living_street. Cela permettra à certains bus de pouvoir faire des demis-tours lors des fins trajets. Avec la visualisation dans la figure suivante:
 
 <p align="center">
-  <img width="500" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/arret_bus.png">
-    
+<img width="500" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/bus_osm.png"> 
 </p>
-
-
 
 Pour notre simulation nous prendrons les <a href="https://wiki.openstreetmap.org/wiki/Relation"> relations </a>  des lignes de la <a href="https://wiki.openstreetmap.org/wiki/Bus_routes_in_Montr%C3%A9al"> STM </a> (Société de transport de Montréal)
 
 
 
-<img width="30" height="30" src="https://user-images.githubusercontent.com/65184943/87172123-bb880c00-c2a1-11ea-8b11-ff689734475f.jpg"> Les <i> ptstop </i> et les <i> ptline </i> peuvent parfois ne pas prendre en compte certaines lignes et arrêts si les <a href="https://wiki.openstreetmap.org/wiki/Relation"> relations </a>  dans OSM ne sont pas bien construites.
+<img width="30" height="30" src="https://user-images.githubusercontent.com/65184943/87172123-bb880c00-c2a1-11ea-8b11-ff689734475f.jpg"> Les <i> ptstop </i> et les <i> ptline </i> peuvent parfois ne pas prendre en compte certaines lignes et arrêts si les <a href="https://wiki.openstreetmap.org/wiki/Relation"> relations </a>  dans OSM ne sont pas bien construites. Comme le renseigne le tableau suivant:
 
+<table  align="center"><a align="center">
+<tr><th>Colour</th><th> 	Meaning </th>	<th>To do</th></tr>
+<tr><td><img src="https://wiki.openstreetmap.org/w/images/3/3b/State_Routing.svg"><img src="https://wiki.openstreetmap.org/w/images/0/00/State_Stop.svg"></td><td>	The map data is unknown </td><td>	Please verify and/or complete</td></tr>
+<tr><td><img src="https://wiki.openstreetmap.org/w/images/f/f4/State_Routing0.svg"><img src="https://wiki.openstreetmap.org/w/images/archive/a/af/20150922051209%21State_Stop0.svg"></td><td> The map contains no or little data </td><td>	Please complete</td></tr>
+<tr><td><img src="https://wiki.openstreetmap.org/w/images/1/10/State_Routing1.svg"><img src="https://wiki.openstreetmap.org/w/images/archive/b/b9/20150922051220%21State_Stop1.svg"></td><td>The map contains partial data </td><td>	Please complete</td></tr>
+<tr><td><img src="https://wiki.openstreetmap.org/w/images/3/32/State_Routing2.svg"><img src="https://wiki.openstreetmap.org/w/images/archive/0/01/20150922051231%21State_Stop2.svg"> </td><td>The map is largely complete (please describe missing data) </td><td>	Please complete</td></tr>
+<tr><td><img src="https://wiki.openstreetmap.org/w/images/a/a1/State_Routing3.svg"><img src="https://wiki.openstreetmap.org/w/images/archive/f/fd/20150922051241%21State_Stop3.svg"></td><td>The map is complete (in the opinion of a mapper) </td><td>	Please check and correct any errors</td></tr>
+<tr><td><img src="https://wiki.openstreetmap.org/w/images/e/ea/State_Routing4.svg"><img src="https://wiki.openstreetmap.org/w/images/archive/4/42/20150922051251%21State_Stop4.svg"> </td><td>The map is complete (verified by 2 mappers). Indicate Date when checked </td><td>	Please update as needed</td></tr>
+<tr><td><img src="https://wiki.openstreetmap.org/w/images/9/9e/State_RoutingX.svg"><img src="https://wiki.openstreetmap.org/w/images/a/a9/State_StopX.svg"> </td><td>The map data is present, but the route no longer exist. </td><td>	Please remove the route data </td></tr>
+</a></table>
 
+Pour le cas de la STM, les differents lignes locals sont definies comme:
 
-<h4 align="center" id="mauvaise">Mauvaise relation</h4>
+<table  align="center"><a align="center">
+<tr><th>Type</th><th> Nombre </th>	<th>Pourcentage</th></tr>
+<tr><td><img src="https://wiki.openstreetmap.org/w/images/a/a1/State_Routing3.svg"><img src="https://wiki.openstreetmap.org/w/images/archive/f/fd/20150922051241%21State_Stop3.svg"></td><td> 28 </td>	<th>18,5%</td></tr>
+<tr><td><img src="https://wiki.openstreetmap.org/w/images/3/32/State_Routing2.svg"><img src="https://wiki.openstreetmap.org/w/images/archive/f/fd/20150922051241%21State_Stop3.svg"></td><td> 2 </td>	<th>1,3%</td></tr>
+<tr><td><img src="https://wiki.openstreetmap.org/w/images/1/10/State_Routing1.svg"><img src="https://wiki.openstreetmap.org/w/images/archive/f/fd/20150922051241%21State_Stop3.svg"></td><td> 120 </td>	<th>78,9%</td></tr>
+<tr><td><img src="https://wiki.openstreetmap.org/w/images/f/f4/State_Routing0.svg"><img src="https://wiki.openstreetmap.org/w/images/archive/f/fd/20150922051241%21State_Stop3.svg"></td><td>1 </td>	<th>0,66%</td></tr>
+<tr><td><img src="https://wiki.openstreetmap.org/w/images/3/3b/State_Routing.svg"><img src="https://wiki.openstreetmap.org/w/images/archive/f/fd/20150922051241%21State_Stop3.svg"></td><td> 1 </td>	<th>0,66%</td></tr>
+</a></table>	
+
+Il est relever qu'un bonne partie des données de la STM ne sont pas bienm pris en compte lors de l'importation dans la simulation. En effet, plus de 79% des bus et lignes ne contient que partiellement ou pas de données des lignes se qui peut avoir des consequences lors des implentations dans la simulation
+On peut reprenter les probleme de la maniere suivante
+<h5 align="center" id="mauvaise">Mauvaise relation</h5>
 
 Une mauvaise relation ne sera pas prise en compte par SUMO. Il peut y avoir plusieurs raisons:
 
@@ -478,7 +494,7 @@ Une mauvaise relation ne sera pas prise en compte par SUMO. Il peut y avoir plus
     
 </p>
 
-<h4 align="center">Bonne relation</h4>
+<h5 align="center">Bonne relation</h5>
 
 La bonne relation sera contrairement à la <a href="#mauvaise"> mauvaise </a> bien prise en compte par SUMO
 
@@ -487,7 +503,36 @@ La bonne relation sera contrairement à la <a href="#mauvaise"> mauvaise </a> bi
  </p>
 
 
-Quelques solutions sont possibles pour les implanter ce manques ...
+Quelques solutions sont possibles pour les implanter ce manques d'information, qui sont pris en compte dans la partie discussion
+
+
+<h4 align="center" id="TC">Commande</h4>
+
+Pour prendre en compte les arrets de bus en fonctions des types de topologies choisies de notre simulation, une solution est de le compiler directement à l'aide de Netconvert avec les commandes suivante:
+
+ <ul  align="center">
+  <li  align="center" >osm.stop-output.length : Cette fonction permet de difinire des longueur des arrets de bus par default, nous prendrons 20 metres</li>
+  <li  align="center">ptstop-output : Cette fonction permet de renseigner sur les emplacements des arrets des bus sur notre carte</li>
+  <li  align="center">ptline-output: Cette fonction permet de renseigner sur les trajets des lignes de bus</li>
+</ul> 
+
+Ce qui donnes comme instructions à SUM
+
+```
+netconvert --osm-files <Files> -o <Files> --osm.stop-output.length 20 --ptstop-output ptstop.add.xml --ptline-output ptlines.xml
+
+```
+Pour visualiser la emplacement dans la simulation, il faut ajouter un fichier additionnel dans le .sumocfg qui porte le nom où ce situe le fihcier des arrets, ici ```ptstop.add.xml```
+
+<p align="center">
+  <img width="500" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/arret_bus.png">
+</p>
+
+
+<h5 align="center" id="TC">Commande</h5>
+
+
+
 
 
 
@@ -497,9 +542,7 @@ Voici une comparaison du nombre d'arret de bus avec la réalité et notre resea:
 
 <table  align="center">
 	
-  <tr>
-    <th>Entité</th>
-    <th>Réalité</th> 
+  <tr><th>Entité</th><th>Réalité</th> 
     <th>Simulation</th>
     <th>Difference</th>
   </tr>
