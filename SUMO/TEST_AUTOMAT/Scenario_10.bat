@@ -3,22 +3,18 @@ REM Compilation des cartes et créeation de la carte
 
  REM wget  -O ".\Carte\CarteMontreal.osm" --post-file=".\Carte\Montreal_Highway.overpass.ql.txt" "https://overpass.nchc.org.tw/api/interpreter"
 
-REM Importation des lignes de Bus
- REM wget  -O ".\Carte\CarteMontrealBus.osm" --post-file="./Bus/Commande_Bus.txt" "https://overpass.nchc.org.tw/api/interpreter"
-
-
 Rem Net convert
  REM netconvert --osm-files ./Carte/CarteMontreal.osm,.\Carte\CarteMontrealBus.osm -o ./Carte/MontrealJointure.net.xml  --ptstop-output ./Bus/ptstop.xml --ptline-output ./Bus/ptlines.xml --no-warnings true --remove-edges.by-type highway.unclassified,highway.residential
 
 
+REM CREATION DES TAZ\Taz
 
-REM Compilation des Taz et créeation de Taz
+REM polyconvert -n CarteMontreal_Sans_Un_Res.net.xml --shapefile-prefixes SM_OD2018 --layer 111 --shapefile.guess-projection true --shapefile.traditional-axis-mapping true --fill false -o Polygone.add.xml
+REM SUMO_HOME>/tools/edgesInDistricts.py -n CarteMontreal_Sans_Un_Res.net.xml -t Polygone.add.xml
 
- REM wget  -O ".\Taz\Taz.osm" --post-file=".\Taz\nomquartier.xml" "https://overpass.nchc.org.tw/api/interpreter"
-REM python .\function\generateTAZBuildingsFromOSM.py --osm ./Taz/Taz.osm --net ./Carte/MontrealJointure.net.xml --taz-output .\Taz\Taz.xml  --poly-output .\Taz\poly.xml --weight-output .\Taz\test.xml
+REM Importation des lignes de Bus
 
-REM Creation des flows de bus
-REM python C:\Users\hugue\Sumo/tools/ptlines2flows.py -n ./Carte/MontrealJointure.net.xml  -s ./Bus/ptstop.xml -l ./Bus/ptlines.xml --period 600 -o ./Bus/flowspt.rou.xml  --use-osm-routes true -b 18000 -e 32400 --ignore-errors true
+REM python tools/import/gtfs/gtfs2pt.py --network CarteMontreal_Sans_Un_Res.net.xml --gtfs gtfs_STM --date 20200901 -b 18000 -e 32400 
 
 
 FOR /L %%s IN (110,20,190) DO (
