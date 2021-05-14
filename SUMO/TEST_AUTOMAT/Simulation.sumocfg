@@ -5,5 +5,14 @@
     <end value="32400"/>
     <step-length value="1"/>
   </time>
+  
+    
+  <processing>
+	<ignore-route-errors value="true"/>
+  </processing>
+
+	<report>
+		<no-warnings value="true"/>
+	</report>
 
 </configuration>
