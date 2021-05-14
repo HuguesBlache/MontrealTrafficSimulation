@@ -1,16 +1,16 @@
 
 REM Compilation des cartes et créeation de la carte
 
- REM wget  -O ".\Carte\CarteMontreal.osm" --post-file=".\Carte\Montreal_Highway.overpass.ql.txt" "https://overpass.nchc.org.tw/api/interpreter"
+REM wget  -O ".\Carte\CarteMontreal.osm" --post-file=".\Carte\Montreal_Highway.overpass.ql.txt" "https://overpass.nchc.org.tw/api/interpreter"
 
 Rem Net convert
- REM netconvert --osm-files ./Carte/CarteMontreal.osm,.\Carte\CarteMontrealBus.osm -o ./Carte/MontrealJointure.net.xml  --ptstop-output ./Bus/ptstop.xml --ptline-output ./Bus/ptlines.xml --no-warnings true --remove-edges.by-type highway.unclassified,highway.residential
+REM netconvert --osm-files ./Carte/CarteMontreal.osm,.\Carte\CarteMontrealBus.osm -o ./Carte/MontrealJointure.net.xml  --ptstop-output ./Bus/ptstop.xml --ptline-output ./Bus/ptlines.xml --no-warnings true --remove-edges.by-type highway.unclassified,highway.residential
 
 
 REM CREATION DES TAZ\Taz
 
 REM polyconvert -n CarteMontreal_Sans_Un_Res.net.xml --shapefile-prefixes SM_OD2018 --layer 111 --shapefile.guess-projection true --shapefile.traditional-axis-mapping true --fill false -o Polygone.add.xml
-REM SUMO_HOME>/tools/edgesInDistricts.py -n CarteMontreal_Sans_Un_Res.net.xml -t Polygone.add.xml
+REM ./tools/edgesInDistricts.py -n CarteMontreal_Sans_Un_Res.net.xml -t Polygone.add.xml
 
 REM Importation des lignes de Bus
 
