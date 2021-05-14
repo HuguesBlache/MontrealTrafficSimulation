@@ -371,46 +371,14 @@ Après avoir lancer la construction du reseau on peut remarquer que le problème
 <h6 align="center" >Temps de parcours</h6>
 
 Nous pouvons d'abord regarder la differance au niveau du temps de parcours (duration,WaitingTime,TimeLose) des deux types de cartes que nous avons produit (feux de circulation fusionner, pas de chagement à l'importation). Pour cela nous allons prendre une base d'un peu plus de 5000 vehicules identique, et nous allons vusaliser les données du TripInfo (expliqué dans la section collectes de <a href="#tripinfo"> données </a>). Ainsi nous trouvons: 
-<table  align="center">
-	<a align="center">
-  <tr>
-    <th>Carte</th>
-    <th>Temps de parcours moyen (en s)</th> 
-    <th>Ecart Type</th>
-    <th>Temps d'attentes moyen (en s)</th>
-    <th>Ecart Type</th>
-    <th>Temps perdu (en s)</th>
-    <th>Ecart Type</th>
-  </tr>
-  <tr>
-    <td>Sans changement</td>
-    <td>1305</td>
-     <td>998</td>
-    <td>697</td>
-     <td>751</td>
-    <td>308.8</td>
-     <td>869</td>
-  </tr>
-  <tr>
-    <td>Fusion des jonction</td>
-    <td>852</td>
-    <td>544</td>
-    <td>285</td>
-    <td>277</td>
-    <td>236</td>
-    <td>373</td>
-  </tr>
-   <tr>
-    <td>Reduction (en %)</td>
-    <td>35%</td>
-    <td>...</td>
-    <td>59%</td>
-    <td>...</td>
-    <td>51%</td>
-    <td>...</td>
-  </tr>
-		</a>
-</table>
+
+<table  align="center"><a align="center">
+<tr><th>Carte</th><th>Temps de parcours moyen (en s)</th> <th>Ecart Type</th>
+<th>Temps d'attentes moyen (en s)</th><th>Ecart Type</th><th>Temps perdu (en s)</th><th>Ecart Type</th></tr>
+<tr><td>Sans changement</td><td>1305</td><td>998</td><td>697</td><td>751</td><td>308.8</td><td>869</td></tr>
+<tr><td>Fusion des jonction</td><td>852</td><td>544</td><td>285</td><td>277</td><td>236</td><td>373</td></tr>
+<tr><td>Reduction (en %)</td><td>35%</td><td>...</td><td>59%</td><td>...</td><td>51%</td><td>...</td> </tr>
+	</a></table>
 
 Donc en rectifiant cette erreur de synchronisation des feux de circulation, on peut voir que les facteurs temps peuvent être reduit de parfois de moitier. Il est donc important de prendre en compte ce genre de detaille, car il peut affecter les decisions que l'on peut avoir qvec ce type de modèle (exemple: Lien entre temps perdu et economie perdu...)
 
@@ -503,36 +471,32 @@ La bonne relation sera contrairement à la <a href="#mauvaise"> mauvaise </a> bi
  </p>
 
 
-Quelques solutions sont possibles pour les implanter ce manques d'information, qui sont pris en compte dans la partie discussion
+Quelques solutions sont possibles pour les implanter ce manques d'information, notamment implanter les données GTFS directement dans la simulation à l'aide de la fonction GTFS2PT.py
+
+<h5 align="center" id="TC">GTFS2PT</h5>
 
 
-<h4 align="center" id="TC">Commande</h4>
+Cette fonction permet d'omporter des données GTFS dans la simulation apartir de la topologies choies pour construire des trajets de bus. Cependant, le dossier GTFS pour etre appelle doit être en format .ZIP et doit au minimun contenir les fichiers routes.txt, stops.txt, stop_times.txt, trips.txt, calendar.txt et calendar_dates.txt.
 
-Pour prendre en compte les arrets de bus en fonctions des types de topologies choisies de notre simulation, une solution est de le compiler directement à l'aide de Netconvert avec les commandes suivante:
+Pour se faire 3 commandes au minimues doit être pris en compte:
 
- <ul  align="center">
-  <li  align="center" >osm.stop-output.length : Cette fonction permet de difinire des longueur des arrets de bus par default, nous prendrons 20 metres</li>
-  <li  align="center">ptstop-output : Cette fonction permet de renseigner sur les emplacements des arrets des bus sur notre carte</li>
-  <li  align="center">ptline-output: Cette fonction permet de renseigner sur les trajets des lignes de bus</li>
+<ul  align="center">
+  <li  align="center" >network: Ce fichier .net correspond au reseau utiliser pour la simulation</li>
+  <li  align="center">gtfs: Correspond au fichier .ZIP des informations des lignes de BUS</li>
+  <li  align="center">date: En format YYYYMMDD correspond à la journée que l'on veux prendre en compte dans notre simulation (correspond à un jour dans le calendar.txt)</li>
+
 </ul> 
 
-Ce qui donnes comme instructions à SUM
-
+Ainsi la commande type sera :
 ```
-netconvert --osm-files <Files> -o <Files> --osm.stop-output.length 20 --ptstop-output ptstop.add.xml --ptline-output ptlines.xml
-
-```
-Pour visualiser la emplacement dans la simulation, il faut ajouter un fichier additionnel dans le .sumocfg qui porte le nom où ce situe le fihcier des arrets, ici ```ptstop.add.xml```
+python tools/import/gtfs/gtfs2pt.py --network <net-file> --gtfs <gtfs-data-file> --date <YYYYMMDD>
+ ```
+ 
+ Ainsi pour recapituler nous aurons le cheminement suivant
 
 <p align="center">
-  <img width="500" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/arret_bus.png">
-</p>
-
-
-<h5 align="center" id="TC">Commande</h5>
-
-
-
+<img src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/smart_art/GTFS2PT.png">
+ </p>
 
 
 
@@ -541,23 +505,8 @@ Pour visualiser la emplacement dans la simulation, il faut ajouter un fichier ad
 Voici une comparaison du nombre d'arret de bus avec la réalité et notre resea:
 
 <table  align="center">
-	
-  <tr><th>Entité</th><th>Réalité</th> 
-    <th>Simulation</th>
-    <th>Difference</th>
-  </tr>
-  <tr>
-    <td>Nombre d'arret</td>
-    <td>8788</td>
-     <td>2074</td>
-    <td>76,4%</td>
-  </tr>
-  <tr>
-    <td>Nombre de lignes</td>
-    <td>216</td>
-    <td>104</td>
-    <td>51,8%</td>
-  </tr>
+<tr><th>Type</th><th>Nombre d'arret</th><th>Pourcentage</th> <th>Nombre d'arret</th><th>Pourcentage</th></tr>
+<tr><td>Type</td><th>Nombre d'arret</td><td>Pourcentage</td> <th>Nombre d'arret</td><td>Pourcentage</th></tr> 
    
 </table>
 
@@ -1093,22 +1042,7 @@ En resumer, voici la demarche de la generation de trajet dans notre simulation
 </p>
 
 
-<h4 align="center">Construction des trajets de bus</h4>
 
-La construction des itenairaises de bus sont legerement differents que celle des voitures, il faut faire faire suivre un chemin special au bus pour qu'il s'arrete à tout les arret desiser. Pour ce faire la fonction <i> <a href="https://github.com/eclipse/sumo/tree/master/tests/tools/public_transport/ptlines2flows"> ptlines2flows.py </a> </i>. peut faire ces trajets.
-
-
-
-<p align="center">
-  <img width="600" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/ptlines2flow.png">
-  
-</p>
-
-Voici par exemple la commande que nous pouvons faire à notre reseau
-```
-ptlines2flows.py -n Montreal.net.xml -s ptstop.add.xml -l ptlines.xml -o flows.rou.xml -p 600 --use-osm-routes
-```
-La partie ```-p 600``` correspond, en secondes, à l'intervalle de temps entres chaques bus d'une même ligne sur un même arret. A ce moment de la simulation les bus tourne à "vide", pourons par la suite faire des trajets intermodaux 
 
 <h2 align="center" id="Simulation">Simulation</h2>
 
@@ -1799,5 +1733,46 @@ python plot_net_dump.py  -v -n Montreal.net.xml --measures PMx_normed,PMx_normed
 https://sumo.dlr.de/docs/Tools/Visualization.html
 
 <h3 align="center" id="simulation">Simulation</h3>
+
+
+<h4 align="center" id="TC">AUTRE</h4>
+
+Pour prendre en compte les arrets de bus en fonctions des types de topologies choisies de notre simulation, une solution est de le compiler directement à l'aide de Netconvert avec les commandes suivante:
+
+ <ul  align="center">
+  <li  align="center" >osm.stop-output.length : Cette fonction permet de difinire des longueur des arrets de bus par default, nous prendrons 20 metres</li>
+  <li  align="center">ptstop-output : Cette fonction permet de renseigner sur les emplacements des arrets des bus sur notre carte</li>
+  <li  align="center">ptline-output: Cette fonction permet de renseigner sur les trajets des lignes de bus</li>
+</ul> 
+
+Ce qui donnes comme instructions à SUM
+
+```
+netconvert --osm-files <Files> -o <Files> --osm.stop-output.length 20 --ptstop-output ptstop.add.xml --ptline-output ptlines.xml
+
+```
+Pour visualiser la emplacement dans la simulation, il faut ajouter un fichier additionnel dans le .sumocfg qui porte le nom où ce situe le fihcier des arrets, ici ```ptstop.add.xml```
+
+<p align="center">
+  <img width="500" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/arret_bus.png">
+</p>
+<h4 align="center">Construction des trajets de bus</h4>
+
+La construction des itenairaises de bus sont legerement differents que celle des voitures, il faut faire faire suivre un chemin special au bus pour qu'il s'arrete à tout les arret desiser. Pour ce faire la fonction <i> <a href="https://github.com/eclipse/sumo/tree/master/tests/tools/public_transport/ptlines2flows"> ptlines2flows.py </a> </i>. peut faire ces trajets.
+
+
+
+<p align="center">
+  <img width="600" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/ptlines2flow.png">
+  
+</p>
+
+Voici par exemple la commande que nous pouvons faire à notre reseau
+```
+ptlines2flows.py -n Montreal.net.xml -s ptstop.add.xml -l ptlines.xml -o flows.rou.xml -p 600 --use-osm-routes
+```
+La partie ```-p 600``` correspond, en secondes, à l'intervalle de temps entres chaques bus d'une même ligne sur un même arret. A ce moment de la simulation les bus tourne à "vide", pourons par la suite faire des trajets intermodaux 
+
+
 </body>
 </html>
