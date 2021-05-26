@@ -331,7 +331,7 @@ Ainsi, il est possible de comparer le temps de charge de la carte avec la taille
 </p>
 
 
-Il est bien de relever qu'il y a une nette difference de chargement lors du filtrage des rues residentielles pour la commande netconvert. Ceci ce traduit par le pourcentage de rues residentielles que representes le reseau, environ 63% du reseau. Le choix pour la simulation et de ca performance sera donc de selectionner le type de topologie et le temps que cela engendre pour les calcules
+Il est bien de relever qu'il y a une nette difference de chargement lors du filtrage des rues residentielles pour la commande netconvert. Ceci ce traduit par le pourcentage de rues residentielles que representes le reseau, environ 63% du reseau. Le choix pour la simulation et de ca performance sera donc de selectionner le type de topologie et le temps que cela engendre pour les calcules. Pour la suite de l'etude, seul les reseaux ayant l'ensemble des routes ou celle pour laquelle les routes residentielles et unclassifieds seront pris en compte.
 
 
 <h3 align="center" id="feux">Intersection et feux de circulation</h3>
@@ -506,8 +506,7 @@ Voici une comparaison du nombre d'arret de bus avec la réalité et notre resea:
 
 <table  align="center">
 <tr><th>Type</th><th>Nombre d'arret</th><th>Pourcentage</th> <th>Nombre d'arret</th><th>Pourcentage</th></tr>
-<tr><td>Type</td><th>Nombre d'arret</td><td>Pourcentage</td> <th>Nombre d'arret</td><td>Pourcentage</th></tr> 
-   
+<tr><td>Type</td><th>Nombre d'arret</td><td>Pourcentage</td> <th>Nombre d'arret</td><td>Pourcentage</th></tr>   
 </table>
 
 
@@ -585,60 +584,20 @@ Après avoir decrit les differents polygones qui traduit la limite de chaque Sec
 ```
 python <SUMO_HOME>/tools/edgesInDistricts.py -n Montreal.net.xml -t Quartier.add.xml
 ```
-  
-
-
-
-  
-  Neanmois, en fonction de la taille du reseau choisie, il peu avoir une differences de temps de chargement:
+Neanmois, en fonction de la taille du reseau choisie, il peu avoir une differences de temps de chargement:
   
   
 <table  align="center">
-	
-  <tr>
-    <th>Type</th>
-    <th>Pourcentage</th> 
-    <th>Temps de simulation en (ms)</th>
-    <th>Taille du Fichier (ko)</th>
-  </tr>
-  <tr>
-    <td>Entier</td>
-    <td>100</td>
-    <td>417968</td>
-    <td>1082</td>
-  </tr>
-   <tr>
-    <td>Sans_Un</td>
-    <td>96.7</td>
-    <td>414060</td>
-	<td>1059</td>
-</td>
-    
-  
-   <tr>
-    <td>Sans_Un_Res</td>
-    <td>34</td>
-    <td>144982</td>
-    <td>361</td>
-  </tr>
-   <tr>
-    <td>Sans_Un_Res_Te</td>
-    <td>20.2</td>
-    <td>79036</td>
-    <td>199</td>
-  </tr>
-   
+<tr><th>Type</th><th>Pourcentage</th><th>Temps de simulation en (ms)</th><th>Taille du Fichier (ko)</th></tr>
+<tr><td>Entier</td><td>100</td><td>417968</td><td>1082</td></tr>
+<tr><td>Sans_Un</td><td>96.7</td><td>414060</td><td>1059</td></td>
+<tr><td>Sans_Un_Res</td><td>34</td><td>144982</td><td>361</td></tr>
+<tr><td>Sans_Un_Res_Te</td> <td>20.2</td><td>79036</td><td>199</td></tr>  
 </table>
-
   
-  
-   <p align="center">
+<p align="center">
   <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/chargement_TAZ.png">
 </p>
-
-
-  
-
 <h3 align="center">Changement de format de la Matrice OD</h3>
 
 Une premiere étape de l’implantation de la matrice OD à été de modifier la Matrice OD fournis par l’ARTM. Notre modèle, nous oblige à avoir une matrice n*n qui est illisible de manière brute par SUMO. En effet, SUMO ne peut lire que 3 types de Matrice et nous avons choisie de travailler avec un matrice de type "O-Format". Ce type de format est une matrice à n ligne et 3 colones, avec la premier colonne correspont à l’origine, la deuxieme la destination et la derniere le nombre de véhicules generer. Pour ce faire nous avons créer un petit script sur jupyter qui permet de transformer la matrice de cette sorte 
@@ -648,34 +607,10 @@ Format de la matrice OD "classique"
 
 
 <table  align="center">
-	
-  <tr>
-    <th>Origine-Destination</th>
-    <th>Dest 1</th> 
-    <th>Dest 2</th>
-    <th>Dest 3</th>
-  </tr>
-  <tr>
-    <td>**Orig1**</td>
-    <td>1</td>
-    <td>2</td>
-    <td>3</td>
-  </tr>
-    <tr>
-    <td>**Orig2**</td>
-    <td>4</td>
-    <td>5</td>
-    <td>6</td>
-  </tr>
-    <tr>
-    <td>**Orig3**</td>
-    <td>7</td>
-    <td>8</td>
-    <td>9</td>
-  </tr>
-		
-	
-</table>
+<tr><th>Origine-Destination</th><th>Dest 1</th> <th>Dest 2</th> <th>Dest 3</th></tr>
+<tr><td>**Orig1**</td><td>1</td><td>2</td><td>3</td> </tr>
+<tr><td>**Orig2**</td><td>4</td><td>5</td><td>6</td> </tr>
+<tr><td>**Orig3**</td><td>7</td><td>8</td><td>9</td></tr></table>
 
 Format de la matrice OD (O-format) sur SUMO
 
@@ -721,6 +656,70 @@ Nous pouvons ne prendre en compte que les déplacements en auto qui se produit �
   <img width="400" height="500" src="https://user-images.githubusercontent.com/65184943/93515262-54688280-f8f6-11ea-90d3-29930c1acd88.png">
   <img width="400" height="500" src="https://user-images.githubusercontent.com/65184943/93515271-55011900-f8f6-11ea-96a8-45c5dc962935.png">
 </p>
+
+<h4 align="center">Centroïdes</h4>
+
+Dans la simulation present, seul l'ile de Montreal est pris en compte et non les autres secteur municipaux de la region de Montréal que l'ARTM à définie. Dans le cadre preliminaire de la construction  du modele, l'idée pour palier à ce probleme à été de redeninir les SM venant de l'exterieur. En effet comme le montre la figure XX, l'idée à été de relier les differents centroides des differents SM pour visualisées les lieux ou les lignes entre deux centroides decoupe les SM de l'ile de Montréal. Par ce fait, les premier premier SM touché de l'ile devenait des SM d'origine et les derniers des SM d'arrivées
+
+<p align="center">
+  <img width="1000" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/explication_tranformation.png">
+</p>
+
+
+La figure XX representes les differentes centroïdes de la regions de Montréal définies par l'ARTM:
+<p align="center">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/centroide_seul.png">
+</p>
+
+Pour la facilité de la construction des nouvelles assignations des Origines et Destinations, il a été choisies de séparer les trajets venant de l'eterieur et venant sur l'ile de Montréal et les trajets ce deplacent de l'exterieur et allant à l'exterieur en passant par l'ile.
+
+<h4 align="center">Trajet Exterieur vers l'interieur</h4>
+Il est possible de visualiser les different trajets 
+
+
+<p align="center">
+   <img width="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/longueuil-Montreal.png">
+  <img width="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/laval_Montreal.png">
+  <img width="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/couronne_sud_montreal.png">
+  <img width="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/couronne_nord_montreal.png">
+</p>
+
+Ce qui donne en compilant les differentes trajet
+
+<p align="center">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/exterieur_interieur.png">
+</p>
+
+Après avoir transformer les differents Origines et destinations, les trajets pourons être:
+
+<p align="center">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/new_exterieur_interieur.png">
+</p>
+
+<h4 align="center">Trajet Exterieur vers l'interieur</h4>
+
+Il est possible de visualiser les different trajets 
+
+
+<p align="center">
+  <img width="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/longueuil-laval.png">
+  <img width="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/longueuil-couronne_nord.png">
+  <img width="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/laval_couronne_sud.png">
+  <img width="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/couronne_nord_sud.png">
+</p>
+
+Ce qui donne en compilant les differentes trajet
+
+<p align="center">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/ext_ext.png">
+</p>
+
+Après avoir transformer les differents Origines et destinations, les trajets pourons être:
+
+<p align="center">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/new_exterieur_exterieur.png">
+</p>
+
 
 <h3 align="center">Definition des véhicules</h3>
 
