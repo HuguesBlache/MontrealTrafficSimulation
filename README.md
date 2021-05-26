@@ -1128,39 +1128,35 @@ Le choix s'est egalement tourner en prennant en compte les comptages des véhciu
 
 </p>
  
-Étant donnéer que les decoupage sont en tranche de 15 min, il à etait choisie de faire de meme pour le decoupage de la matrice OD
+Étant donnéer que les decoupage sont en tranche de 15 min, il à etait choisie de faire de meme pour le decoupage de la matrice OD, dont les valeurs sont dispoblible en annexe du document
 
-Ci on prend en compte le pourcentage par tranche horraire, donne
 
-<table  align="center"><a align="center">
-<tr><th>Periode</th><th>Pourcentage</th><tr>
-<tr><td>18000</td><td>0,2</td></tr>
-<tr><td>18900</td><td>0,2</td></tr>
-<tr><td>19800</td><td>0,2</td></tr>
-<tr><td>20700</td><td>0,2</td></tr>
-<tr><td>21600</td><td>0,4</td></tr>
-<tr><td>22500</td><td>0,8</td></tr>
-<tr><td>23400</td><td>5,2</td></tr>
-<tr><td>24300</td><td>6,1</td></tr>
-<tr><td>25200</td><td>6,9</td></tr>
-<tr><td>26100</td><td>7,8</td></tr>
-<tr><td>27000</td><td>9,8</td></tr>
-<tr><td>27900</td><td>10,1</td></tr>
-<tr><td>28800</td><td>11,3</td></tr>
-<tr><td>29700</td><td>11,5</td></tr>
-<tr><td>30600</td><td>10,8</td></tr>
-<tr><td>31500</td><td>9,3</td></tr>
-<tr><td>32400</td><td>7,2</td></tr>
-</a></table>
 
 Pour ce faire, la commande --timeline à été priviligé comme enoncer dans les explications de la méthodologie
 
 ```xml
  <timeline value="18000:0.2,18900:0.2,19800:0.2,20700:0.2,21600:0.4,22500:0.8,23400:5.2,24300:6.1,25200:6.9,26100:7.8,27000:9.8,27900:10.1,28800:11.3,29700:11.5,30600:10.8,31500:9.3,32400:7.2"/>
 ```
-
-
 Pour ce faire on utilisera la commande --scale dans od2trips
+
+
+<h4 align="center" id="TC">Summary</h4>
+
+Il est possible de visualisées directement les sorties des vehicules cumuler et dans le reseau dans le temps
+
+<p align="center">
+<img width="400"  src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Pointe5%4010.png">
+<img width="400"  src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/running.png">
+</p>
+
+Il est relever que le temps de parcours moyenne equivaut à 21.5 min
+
+<h4 align="center" id="TC">DataLane</h4>
+
+
+
+<h3 align="center" id="TC">Données Bluetooth</h3>
+
 
 <h2 align="center" id="Discussion">Discussion ou reste</h2>
 
@@ -1310,6 +1306,27 @@ Description des differents limitations administratifs utiliser dans le modèle
 <tr><td>134</td><td>8806483</td><td>L'Île-Bizard–Sainte-Geneviève</td><td>41,697710545267</td></tr>
 </table>
 
+<h3 align="center" id="Description_SM">Decoupage de la matriceOD</h3>
+<table  align="center"><a align="center">
+<tr><th>Periode</th><th>Pourcentage</th><tr>
+<tr><td>18000</td><td>0,2</td></tr>
+<tr><td>18900</td><td>0,2</td></tr>
+<tr><td>19800</td><td>0,2</td></tr>
+<tr><td>20700</td><td>0,2</td></tr>
+<tr><td>21600</td><td>0,4</td></tr>
+<tr><td>22500</td><td>0,8</td></tr>
+<tr><td>23400</td><td>5,2</td></tr>
+<tr><td>24300</td><td>6,1</td></tr>
+<tr><td>25200</td><td>6,9</td></tr>
+<tr><td>26100</td><td>7,8</td></tr>
+<tr><td>27000</td><td>9,8</td></tr>
+<tr><td>27900</td><td>10,1</td></tr>
+<tr><td>28800</td><td>11,3</td></tr>
+<tr><td>29700</td><td>11,5</td></tr>
+<tr><td>30600</td><td>10,8</td></tr>
+<tr><td>31500</td><td>9,3</td></tr>
+<tr><td>32400</td><td>7,2</td></tr>
+</a></table>
 
 # SUITE
 # NON
