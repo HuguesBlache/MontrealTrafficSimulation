@@ -19,7 +19,8 @@
 6. <a href="#Simulation">Simulation</a><br>
 7. <a href="#Collecte">Collecte de données</a><br>
 8. <a href="#Calibration">Calibration</a><br>
-9. <a href="#Annexe">Annexe</a><br>
+9. <a href="#Discusion">Discusion et reste</a><br>
+10. <a href="#Annexe">Annexe</a><br>
 
 
 
@@ -85,7 +86,6 @@ node(area.montreal)[highway~"(motorway|primary|secondary|tertiary|motorway_link|
 way(area.montreal)[highway~"(motorway|primary|secondary|tertiary|motorway_link|primary_link|secondary_link|tertiary_link|trunk|trunk_link|unclassified|residential)"];
 (._;>;);
 out;
-
 ```
 WGET
 
@@ -1162,10 +1162,76 @@ Pour ce faire, la commande --timeline à été priviligé comme enoncer dans les
 
 Pour ce faire on utilisera la commande --scale dans od2trips
 
-<h2 align="center" id="Collecte">Discussion</h2>
+<h2 align="center" id="Discussion">Discussion ou reste</h2>
 
-- GTFS
-- Secteur TAzz
+
+- Prise en compte des données Bluetooth (Corelation avec spearman ?), temps de parcours,speed mean
+- Convergence des valeurs avec plusieurs simulation
+
+- Comparaison matrice od 2013 - 2018 
+- Comparaison pas de Temps
+- Comparaison des simulations misosim et sans
+- Difference au niveau macro et miccro
+- Difference 24h et AM
+
+Discuter de la calibration et insertitudes
+
+<h3 align="center" id="PartieModale">Partie Multimodale</h3>
+
+Dans la poursuite d'une simulations multimodale, la prise en compte des modes actifs peut-être envisage et peut faire partie d'une études à part entiere
+
+<h3 align="center">Vélo</h3>
+
+Selon l'estimation de l'entquete Origine Destination, en 2013 sur l'ile de montréal 2.5\% des deplacements sont du au <a href="https://raw.githubusercontent.com/HuguesBlache/ProjetPoly/master/MatriceOD/Velo/etat_velo_2015.pdf?token=APRKJL4HPHP5WFIJC7LPXW3AQA3OS}">vélo</a>. Et peuvent atteindre un part modele de 10.8\% dans le secteur du plateau Mont-real representer dans la Fig. XX
+
+<p align="center">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/part_mod_velo.png">
+</p>
+
+Il nous été donc tres important que dans notre simulation de prendre en compte ces deplacement, notamment si nous avons integrer le vélo dans les communication V2P des véhicules communicants.
+
+Pour implanter les modes actifs vélo dans notres modèle, les choix sera en plus d'importer les routes "automobiles", de prendre en compte les routes suivantes.
+
+<table  align="center"><a align="center">
+<tr><th>Key</th><th>Value</th><th>Comment</th></tr>
+<tr><td>Highway</td><td>cycleway</td><td>For designated cycleways. Add foot=*, though it may be avoided if default-access-restrictions do apply. </td></tr>
+	</a></table>
+	
+Mais aussi en utilisant les differentes <a href="https://wiki.openstreetmap.org/wiki/Key:highway">configuration </a> et relations des reseaux expresse de l'ile de Montréal avec par exemple la commande:
+	
+```ql
+area[wikidata="Q2826806"]->.montreal;
+rel(area.montreal)[route="bicycle"];
+(._;>;);
+out;
+```
+
+Le choix de véhicules sera pris en fonction des vélos et pour aller plus lons en prennent en compte les plages des differentes types de véhicules (éléctrique, route, de ville ...)
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/65184943/88848400-6fe8c400-d1b6-11ea-8e7c-98ca7cbf0b7b.png">
+</p>
+	
+
+
+https://www.artm.quebec/eod/2013/
+https://github.com/HuguesBlache/ProjetPoly/blob/master/MatriceOD/Velo/etat_velo_2015.pdf
+Puis la suite <a href="#duarouter"> duarouter </a>.
+
+
+
+<h3 align="center">Marche</h3>
+
+Pour le mode actif marche, la construction du modèle requirer quelques modification du reseau. Car dans ce cas, SUMO ne considère pas les pietons comme des vehicules. Pour cela il faut donc contruires des voies pietonnes pour pouvoir ensuire implanter la matrice OD
+
+
+Il existe dans SUMO plusieures manières pour integrer des trotoires dans le modèle. Soit il sont deja present dans le la carte OSM à traver les differentes routes ou l'on peut les integrer sur les bords des routes du reseau.
+
+Pour cela il suffit de rajouter quelques lignes dans la construiction de la <a href="#carte"> carte </a> : ``` --sidewalks.guess``` permet de creer les trotoire ``` --crossings.guess``` creer les passage pietons ``` --walkingareas``` creer les zones de marches sans croisement.
+
+<h3 align="center">Deplacement multimodale</h3>
+
+
 
 <h2 align="center" id="Annexe">Annexe</h2>
 
@@ -1258,55 +1324,6 @@ Description des differents limitations administratifs utiliser dans le modèle
 
 
 
-
-
-<h2 align="center" id="actifs">Prise en compte des modes actifs</h2>
-<h3 align="center">Vélo</h3>
-
-Pour implanter les modes actifs dans notres modèle, nous devons proceder en deux étapes.
-
-<h4 align="center">Construction</h4>
-
-Contrairement à l'exemple vue la construction de la <a href="#carte"> carte <a/>, nous devons prendre en compte les voies cyclable qui peuvent être un chemin pour les velos dans Sumo 
-	<p align="center">
-  <img src="https://user-images.githubusercontent.com/65184943/88848143-0c5e9680-d1b6-11ea-921b-91c1cfe70d66.png">
-</p>
-
-
-<h4 align="center">Changmeent du type de vehicule</h4>
-
- 
-
-Cette partie est très proche de la section des <a href="#autos"> autos </a>. Il suffit de changer d'ajouter le types de vehicules  ``` --- vtype ``` . Pour cela nous suivrons la commande:
-
-```
-od2trips -c od2trips.config.xml -n districts.taz.xml -d OD_Montreal_Velo.od -o od_ileVelo.odtrips.xml
-
-```
-
-https://www.artm.quebec/eod/2013/
-https://github.com/HuguesBlache/ProjetPoly/blob/master/MatriceOD/Velo/etat_velo_2015.pdf
-Puis la suite <a href="#duarouter"> duarouter </a>.
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/65184943/88848400-6fe8c400-d1b6-11ea-8e7c-98ca7cbf0b7b.png">
-</p>
-	
-
-<h3 align="center">Marche</h3>
-
-Pour le mode actif marche, la construction du modèle requirer quelques modification du reseau. Car dans ce cas, SUMO ne considère pas les pietons comme des vehicules. Pour cela il faut donc contruires des voies pietonnes pour pouvoir ensuire implanter la matrice OD
-
-
-<h4 align="center">Trotoire et passage pieton</h4>
-
-Il existe dans SUMO plusieures manières pour integrer des trotoires dans le modèle. Soit il sont deja present dans le la carte OSM, est dans ce cas rien est a faire, sinon il suffit de les construire.
-
-Pour cela il suffit de rajouter quelques lignes dans la construiction de la <a href="#carte"> carte </a> : ``` --sidewalks.guess``` permet de creer les trotoire ``` --crossings.guess``` creer les passage pietons ``` --walkingareas``` creer les zones de marches sans croisement 
-
-```
-netconvert --osm-files Montreal.osm --remove-edges.by-type railway.rail,highway.tertiary,highway.tertiary_link,highway.residential,highway.unclassified,highway.trunk,highway.trunk_link,highway.service,highway.footway,highway.path,highway.pedestrian,highway.steps,highway.track  --sidewalks.guess --crossings.guess  --lefthand -o Montreal.net.xml
-```
 
 
 <h2 align="center" id="données">Collectes de données</h2>
