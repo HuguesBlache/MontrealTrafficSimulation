@@ -1,4 +1,0 @@
-area[name="Agglomération de Montréal"]->.montreal;
-rel(area.montreal)["network"="STM"];
-(._;>;);
-out geom;

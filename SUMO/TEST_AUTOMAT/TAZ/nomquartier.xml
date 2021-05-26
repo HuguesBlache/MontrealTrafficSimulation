@@ -1,5 +1,0 @@
-area[name="Agglomération de Montréal"]->.montreal;
-rel(area.montreal)["boundary"="administrative"]["name"~"(Senneville|Centre-ville périphérique|Sud-Ouest|Notre-Dame-de-Grâce|Côte-des-Neiges|Plateau Mont-Royal|Ahuntsic|Saint-Michel|Rosemont|Sud-Est|Mercier|Pointe-aux-Trembles|Rivière-des-Prairies|Montréal-Est|Anjou|Montréal-Nord|Saint-Laurent|Mont-Royal|Outremont|Westmount|Hampstead|Côte-Saint-Luc|Montréal-Ouest|Saint-Pierre|Verdun|Lachine|Dorval|Pointe-Claire|Dollard-Des-Ormeaux|LÎle-Bizard–Sainte-Geneviève|Sainte-Geneviève|Pierrefonds-Roxboro|Kirkland|Beaconsfield|Baie-D'Urfé|Sainte-Anne-de-Bellevue|Senneville|Saint-Léonard|LaSalle|Ville-Marie)"]["wikidata"!~"(Q3393516|Q3433601|Q66725800|Q66459099|Q2827732|Q66711940|Q66711949|Q66619984|Q66659445)"];
-
-(._;>;);
-out geom;
