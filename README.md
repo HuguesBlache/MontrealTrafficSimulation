@@ -1110,17 +1110,6 @@ Nous n'avons pas calibrer les données de la matrice OD à la "realité", ce qui
 </p>
 
 
-
-POur le verifier, nous pouvons visualiser les données ouvertes de <a href="https://www.bixi.com/fr/page-27"> Bixi </a> qui permetra de voire la tendance sur la plage horraire 5h-9h.
-
-Apres exploitation des <a href="https://github.com/HuguesBlache/MontrealTrafficSimulation/tree/master/Data/Bixi">données</a> nous avons des courbes du type.
-
-<p align="center">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Pointe5%4010.png">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/PointeJourn%C3%A9e.png">
-</p>
-
-
 Le choix s'est egalement tourner en prennant en compte les comptages des véhciules au interesection, dont voici quelques representation pour des passage de voiture et de camion leger en heure de pointe:
 
 <p align="center">
@@ -1138,6 +1127,21 @@ Pour ce faire, la commande --timeline à été priviligé comme enoncer dans les
  <timeline value="18000:0.2,18900:0.2,19800:0.2,20700:0.2,21600:0.4,22500:0.8,23400:5.2,24300:6.1,25200:6.9,26100:7.8,27000:9.8,27900:10.1,28800:11.3,29700:11.5,30600:10.8,31500:9.3,32400:7.2"/>
 ```
 Pour ce faire on utilisera la commande --scale dans od2trips
+
+
+
+<h4 align="center" id="TC">Mesoscopic</h4>
+
+Au vu de la grandeur du reseau il est possible de faire des simulation mésoscopique. Ce modèle utilise les mêmes fichiers qu'une simualtions microscopiques classiques mais en ayant des choix plus grossier avec le changementr de voie.
+
+Par exemple en utilisant les parametres spécifier plus haute, et en utilisant le paramètre --mesosim dans le fichier, les sorties des véhciules cumulées et running seront:
+
+<p align="center">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/runningvehicules_meso.png">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/endedvehicules_meso.png">
+</p>
+
+Dans ce cas, pour cette exemple seul les deplacements de la matrice interieurs ont été pris en compte pour les calcules. Avec seulement pour les véhicules insert nous avons 
 
 
 <h4 align="center" id="TC">Summary</h4>
@@ -1208,6 +1212,14 @@ Le choix de véhicules sera pris en fonction des vélos et pour aller plus lons 
   <img src="https://user-images.githubusercontent.com/65184943/88848400-6fe8c400-d1b6-11ea-8e7c-98ca7cbf0b7b.png">
 </p>
 	
+POur le verifier, nous pouvons visualiser les données ouvertes de <a href="https://www.bixi.com/fr/page-27"> Bixi </a> qui permetra de voire la tendance sur la plage horraire 5h-9h.
+
+Apres exploitation des <a href="https://github.com/HuguesBlache/MontrealTrafficSimulation/tree/master/Data/Bixi">données</a> nous avons des courbes du type.
+
+<p align="center">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Pointe5%4010.png">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/PointeJourn%C3%A9e.png">
+</p>
 
 
 https://www.artm.quebec/eod/2013/
