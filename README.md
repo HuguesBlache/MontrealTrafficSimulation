@@ -1128,6 +1128,8 @@ Pour ce faire, la commande --timeline à été priviligé comme enoncer dans les
 ```
 Pour ce faire on utilisera la commande --scale dans od2trips
 
+<h4 align="center" id="TC">Decalage de la courbe</h4>
+
 <h4 align="center" id="TC">Nombre de simulation à excecuté</h4>
 
 Le logiciel SUMO, comme les autres logiciels de microsmulation de la circulation, prendre un representation de la circualtion de manière stochastique, la question du nombre de simualtions à effectuer pour recuper des données conveneme et acceptables se posent. [Gauthier][HollanderetLiu]
@@ -1154,17 +1156,44 @@ Avec comme données <a href="https://www150.statcan.gc.ca/n1/daily-quotidien/171
 <tr><td>Montréal</td><td>30</td><td>26.8</td><td>44.4</td><td>16.3</td><td>26.0</td> </tr>
 </a></table>
 
-
+<h3 align="center" id="TC">Originie et destination dans l'île</h3>
 <h4 align="center" id="TC">Mesoscopic</h4>
 
 Au vu de la grandeur du reseau il est possible de faire des simulation mésoscopique. Ce modèle utilise les mêmes fichiers qu'une simualtions microscopiques classiques mais en ayant des choix plus grossier avec le changementr de voie.
 
 Par exemple en utilisant les parametres spécifier plus haute, et en utilisant le paramètre --mesosim dans le fichier, les sorties des véhciules cumulées et running seront:
 
+<h4 align="center" id="TC">Mean-Travel_Time</h4>
+
+Comme vu plus haut, il est choisie de prendre les temps de parcours pour voir la represenation avec la réalité. ainsi apres avoir rouler XX simulations pour les differentes parametre od2trips, flow, duarouter. Il est possible de representer les temps moyennes:
+
+
 <p align="center">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/runningvehicules_meso.png">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/endedvehicules_meso.png">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/Mean_travel_int.png">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_flow/Mean_travel_int.png">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/Mean_travel_int.png">
 </p>
+
+<h4 align="center" id="TC">Running</h4>
+
+
+
+<p align="center">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/running_od_int.png">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/ended_od_int.png">
+</p>
+<p align="center">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_flow/running_flow_int.png">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_flow/ended_flow_int.png">
+</p>
+<p align="center">
+<img width="400" height="300" src="<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/running_duarouter_int.png">
+
+<img width="400" height="300" src="<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/ended_duarouter_int.png">
+
+</p>
+
+
 
 Dans ce cas, pour cette exemple seul les deplacements de la matrice interieurs ont été pris en compte pour les calcules. Avec seulement pour les véhicules insert nous avons 
 
