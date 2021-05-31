@@ -1128,6 +1128,31 @@ Pour ce faire, la commande --timeline à été priviligé comme enoncer dans les
 ```
 Pour ce faire on utilisera la commande --scale dans od2trips
 
+<h4 align="center" id="TC">Nombre de simulation à excecuté</h4>
+
+Le logiciel SUMO, comme les autres logiciels de microsmulation de la circulation, prendre un representation de la circualtion de manière stochastique, la question du nombre de simualtions à effectuer pour recuper des données conveneme et acceptables se posent. [Gauthier][HollanderetLiu]
+
+<h4 align="center" id="TC">Mean Travel Time</h4>
+
+Dans le cas de cette simulation et de la construction du modèle, pour identifier la performance de cette dernieres, il est possible de mesurer le temps de trajet moyens
+
+Pour ce faire et comparer avec les données "reel", il est possible de prendre le profil de <a href="https://www12.statcan.gc.ca/census-recensement/2016/dp-pd/prof/details/page.cfm?Lang=F&Geo1=CMACA&Code1=462&Geo2=PR&Code2=24&SearchText=Montreal&SearchType=Begins&SearchPR=01&B1=All&GeoLevel=PR&GeoCode=462&TABID=1&type=0">recensement</a> qui donne les données suivante pour les temps de parcours de dans la Region métropolitaine de montréal sans la distinction de sexe
+
+<table  align="center"><a align="center">
+<tr><th>Caractéristique</th><th>Nombre de deplacement</th><th>Pourcentage</th></tr>
+<tr><td>Moins de 15 min</td><td>18%</td><td></td></tr> 
+<tr><td>15-29 min</td><td>601 250</td><td>32%</td></tr>
+<tr><td>30-44 min</td><td>489 215</td><td>26%</td></tr>
+<tr><td>45-59 min</td><td>235 360</td><td>12,5%</td></tr>
+<tr><td>plus de 60 min</td><td>216 110</td><td>11,5%</td></tr>
+</a></table>
+
+Avec comme données <a href="https://www150.statcan.gc.ca/n1/daily-quotidien/171129/t002c-fra.htm">moyenne</a>
+
+<table  align="center"><a align="center">
+<tr><th>Caractéristique</th><th>Total – Main mode of commuting</th><th>Car, truck or van</th><th>Public transit</th><th>Active transport</th><th>Other method</th></tr>
+<tr><td>Montréal</td><td>30</td><td>26.8</td><td>44.4</td><td>16.3</td><td>26.0</td> </tr>
+</a></table>
 
 
 <h4 align="center" id="TC">Mesoscopic</h4>
