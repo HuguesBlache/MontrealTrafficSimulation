@@ -1056,8 +1056,8 @@ La section precente, presente les differentes simulation ne prennnans en compte 
 
 <h4 align="center" id="TC">Vitesse de calcul</h4>
 <p align="center">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/od2trip_computation_int.png">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/duarouter_computation.png">
+<img width="700" height="300 src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/od2trip_computation_int.png">
+<img width="700" height="300 src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/duarouter_computation.png">
 >
 </p>
 <h4 align="center" id="TC">Mesoscopic</h4>
@@ -1068,9 +1068,9 @@ Par exemple en utilisant les parametres spécifier plus haute, et en utilisant l
 
 <h4 align="center" id="TC">Vitesse de calcul</h4>
 <p align="center">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/Mean_travel_int.png">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_flow/sumo_comput_int.png">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/sumo_comput_int.png">
+<img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/sumo_comput_int.png">
+<img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_flow/sumo_comput_int.png">
+<img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/sumo_comput_int.png">
 </p>
 <h4 align="center" id="TC">Mean-Travel_Time</h4>
 
@@ -1078,9 +1078,9 @@ Comme vu plus haut, il est choisie de prendre les temps de parcours pour voir la
 
 
 <p align="center">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/Mean_travel_int.png">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_flow/Mean_travel_int.png">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/Mean_travel_int.png">
+<img width="700" height="300 src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/Mean_travel_int.png">
+<img width="700" height="300 src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_flow/Mean_travel_int.png">
+<img width="700" height="300 src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/Mean_travel_int.png">
 </p>
 
 <h4 align="center" id="TC">Running</h4>
@@ -1102,8 +1102,16 @@ Moyene
 
 <p align="center">
 <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/runningvehicules_meso_mean.png">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/runningvehicules_meso_mean.png">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/endedvehicules_meso_mean.png">
 </p>
+
+	
+	<p align="center">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/reel_int_meso.png">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/ended_vehicules.png">
+</p>
+
+
 
 
 
