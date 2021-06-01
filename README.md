@@ -31,9 +31,9 @@ Ce projet se réfère principalement à la documentation de <a href="https://sum
 <h2 align="center" id="doc">Introdution et contexte</h2>
 
 Les nouveaux paradigmes concernant les axes de recherche des villes intelligents, ont pu montrer la necessité d'utilisé les technologies de telecommunication pour sont deployemment et pour optimiser des nombreux services. Comme la gestion des reseaux electrique, la gestion du drénages des eau, les services de santé et bien évidemment la gestion de la circulation et transport (par le prisme des ITS notamment).
-  ```
+
   <i> Intelligent Transportation Systems (ITS) is a combination of leading-edge information and communication technologies used in transportation and traffic management systems to improve the safety, efficiency, and sustainability of transportation networks, to reduce traffic congestion and to enhance drivers’ experiences. </i> [<a href="https://www.wsp.com/en-CA/services/intelligent-transportation-systems-its">WSP</a>]
-  ```
+ 
 
 Néanmois, pour le bon fonctionnement de ces <i> smart cities </i> et pour la communications de ces services et applications pluridisplinaires, il est necessaire de mettre en place des communications M2M
 
@@ -111,10 +111,10 @@ Il existe une mutlitude de manière d'importer et de créer un réseaux dans SUM
 
 Néamoins, pour répondre au exigence du simulation LTE et de répresenter au mieux les limites adminsitratives de l'ile de Montréal, il est décider de prendre la relation de OSM de l'<a href="https://fr.wikipedia.org/wiki/fr:Agglom%C3%A9ration%20de%20Montr%C3%A9al?uselang=fr"> Agglomeration </a> de Montréal, qui s'est fait assigner le code <i> <a href="https://www.openstreetmap.org/relation/8508277">Q2826806 </a></i>
 
-  ```
-  A relations in OpenStreetMap is an ordered set of nodes, routes, and even relation, to be made up of logical or geographic relation. [Wiki <a href="https://wiki.openstreetmap.org/wiki/Relation">.OSM</a>]
 
-  ```
+ <i> A relations in OpenStreetMap is an ordered set of nodes, routes, and even relation, to be made up of logical or geographic relation. </i> [Wiki <a href="https://wiki.openstreetmap.org/wiki/Relation">.OSM</a>]
+
+ 
 
 Ainsi, il est possible de visualisées et comparer les deux topographies, avec d'un coté la relation dans OSM sur la Fig XX et la delimitation topographique du simulateur sur la Fig XX
 <p align="center">
@@ -128,10 +128,9 @@ Ainsi, il est possible de visualisées et comparer les deux topographies, avec d
 
 <h4 align="center" id="Type de Route">Type de Route</h3>
 
-  ```
-  Les TAG sont des données de bases, comme les noueds, routes et relation qui decrivent des des attribut geograhpiques de chaque entité comme des routes ou des buildings, par exemple avec les Key et Value [Wiki <a href="https://wiki.openstreetmap.org/wiki/Map_features"/>OSM</a>]
-  
-  ```
+  <i>
+  Les TAG sont des données de bases, comme les noueds, routes et relation qui decrivent des des attribut geograhpiques de chaque entité comme des routes ou des buildings, par exemple avec les Key et Value</i> [Wiki <a href="https://wiki.openstreetmap.org/wiki/Map_features"/>OSM</a>]
+ 
 Les routes dans OSM sont representer par des tags et leurs natures sont parfois mutliple. Il est possible d'extraire de nombreuse informations sur routes variers, comme des routes terrestre, routes maritime ect..
 
 Cependant l'etude pourtant sur la mobilité terrestre et sur les capacités de SUMo, la simulation de compte qu'une certains type de route spécifiques. Dont la liste* ce trouve en <a href="Route_Type"> annexe </a> 
@@ -142,9 +141,9 @@ Comme la construction du modèle priorise les deplacements automobiles, par exem
 
 <h4 align="center" id="carte">OverPass API</h4>
 
-```
-An application programming interface (API) is an interface that defines interactions between multiple software applications or mixed hardware-software intermediaries. It defines the kinds of calls or requests that can be made, how to make them, the data formats that should be used, the conventions to follow, etc.. [<a href="https://en.wikipedia.org/wiki/API">Wikipedia</a>]
-```
+<i>
+An application programming interface (API) is an interface that defines interactions between multiple software applications or mixed hardware-software intermediaries. It defines the kinds of calls or requests that can be made, how to make them, the data formats that should be used, the conventions to follow, etc.. </i> [<a href="https://en.wikipedia.org/wiki/API">Wikipedia</a>]
+
 
 L'API Overpass permet d'extraite des zones et des informations diversent de la base de données OSM à l'aide de requette spécifiques. Il est possible pour s'entrainer et/ou visualiser les commandes d'utilisé certaines interface comme <i><a href=https://overpass-turbo.eu/> overpass-turbo </a></i>
 
