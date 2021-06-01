@@ -321,7 +321,7 @@ Après avoir lancer la construction du reseau on peut remarquer que le problème
 
 <h5 align="center" >Impacte sur la simualation</h5>
 
-Afin d'étudier l'impacte de ce changement de configuration, il a été decider de faire un simulation en generant 5000 vehicules identique à laire de la fonction Randomtrips.py et en prenant la sortie TripInfo (plus de detaile dans la section collectes de <a href="#tripinfo"> données </a>)
+Afin d'étudier l'impacte de ce changement de configuration, il a été choisie de faire un simulation en generant 5000 vehicules identique à l'aide de la fonction Randomtrips.py et en prenant la sortie TripInfo (plus de detaile dans la section collectes de <a href="#tripinfo"> données </a>) et en prenant la topologie sans rue residentielle et unclassified
 
 <h6 align="center" >Temps de parcours</h6>
 
@@ -368,6 +368,8 @@ D'autres problematiques subsites lors de l'importation des cartes, notamment le 
 
 <h3 align="center" id="TC">Implantation des arrets de bus</h3>
 
+La section suivante enumère les differentes demarches prise en compte pour la créations et l'implanter des Transport en commun sur le reseau construit dans les sections precedentes.
+
 <h4 align="center" id="TC">Topologie des bus</h4>
 
 Après avoir construit notre reseau, il est possible de gréfer à notre modèle des arrets de bus et des informations des trajets. Pour cela, il existe des <a href="https://sumo.dlr.de/docs/Tutorials/PT_from_OpenStreetMap.html"> fonctions </a> qui peuvent directement implanter dans SUMO pour recuper les information des trajets de bus selon les relations dans OpenStreetMap.
@@ -380,7 +382,7 @@ rel(area.montreal)["network"="STM"];
 (._;>;);
 out geom;
 ```
-Certains routes type de routes qui n'ont pas été pris lors de topologies de la carte sont pris en compte, à savoir les routes de services et living_street. Cela permettra à certains bus de pouvoir faire des demis-tours lors des fins trajets. Avec la visualisation dans la figure suivante:
+Certains type de routes qui n'ont pas été pris lors de topologies de la carte sont pris en compte, à savoir les routes de services et living_street. Cela permettra à certains bus de pouvoir faire des demis-tours lors des fins trajets. Avec la visualisation dans la figure suivante:
 
 <p align="center">
 <img width="500" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/bus_osm.png"> 
@@ -415,10 +417,11 @@ Pour le cas de la STM, les differents lignes locals sont definies comme:
 </a></table>	
 
 Il est relever qu'un bonne partie des données de la STM ne sont pas bienm pris en compte lors de l'importation dans la simulation. En effet, plus de 79% des bus et lignes ne contient que partiellement ou pas de données des lignes se qui peut avoir des consequences lors des implentations dans la simulation
-On peut reprenter les probleme de la maniere suivante
+Il est possible de representer le probleme de la mianière suivante.
+
 <h5 align="center" id="mauvaise">Mauvaise relation</h5>
 
-Une mauvaise relation ne sera pas prise en compte par SUMO. Il peut y avoir plusieurs raisons:
+Une mauvaise relation ne sera pas prise en compte par SUMO, pour les raisons suivatnes
 
 - Les arrêts de bus qui ne sont bien placés ou "hors" de la route
 - Les chemins (ways) ne sont pas pris en compte dans la relation
@@ -429,7 +432,7 @@ Une mauvaise relation ne sera pas prise en compte par SUMO. Il peut y avoir plus
 
 <h5 align="center">Bonne relation</h5>
 
-La bonne relation sera contrairement à la <a href="#mauvaise"> mauvaise </a> bien prise en compte par SUMO
+La bonne relation sera contrairement à la <a href="#mauvaise"> mauvaise </a> bien prise en compte par SUMO. Cela se traduit par des bons emplacements des arrets de bus et des chemins reliant ces arrets de bus.
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/65184943/87174266-eaec4800-c2a4-11ea-8869-0ef4552443ed.png">
@@ -440,8 +443,10 @@ Quelques solutions sont possibles pour les implanter ce manques d'information, n
 
 <h5 align="center" id="TC">GTFS2PT</h5>
 
+<i>The General Transit Feed Specification (GTFS) is a data specification that allows public transit agencies to publish their transit data in a format that can be consumed by a wide variety of software applications.</i>[<a href="https://gtfs.org/">GTFS</a>]
 
-Cette fonction permet d'omporter des données GTFS dans la simulation apartir de la topologies choies pour construire des trajets de bus. Cependant, le dossier GTFS pour etre appelle doit être en format .ZIP et doit au minimun contenir les fichiers routes.txt, stops.txt, stop_times.txt, trips.txt, calendar.txt et calendar_dates.txt.
+
+Cette fonction permet d'importer des données GTFS dans la simulation apartir de la topologies chosies pour construire des trajets de bus. Cependant, le dossier GTFS pour etre appelle doit être en format .ZIP et doit au minimun contenir les fichiers routes.txt, stops.txt, stop_times.txt, trips.txt, calendar.txt et calendar_dates.txt.
 
 Pour se faire 3 commandes au minimues doit être pris en compte:
 
@@ -457,36 +462,81 @@ Ainsi la commande type sera :
 python tools/import/gtfs/gtfs2pt.py --network <net-file> --gtfs <gtfs-data-file> --date <YYYYMMDD>
  ```
  
- Ainsi pour recapituler nous aurons le cheminement suivant
+La Fig XX represente, de maniere visualer, le cheminement de cette fonction et en representant les sorties des cette fonctions
 
 <p align="center">
 <img src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/smart_art/GTFS2PT.png">
  </p>
 
+ Les principales sorties de cette fonctions sont les suivantes:
+
+ <ul  align="center">
+  <li  align="center" >StopInfo: Fichier correspondant au differents emplacements des arrets de bus</li>
+  <li  align="center">Bus Routes: Fichier .rou qui representer les differents chemin de chaque lignes de bus.</li>
+  <li  align="center">Invalid_Osm_Route: Representer l'ensemble des trajets non pris en compte dans la simulation</li>
+</ul> 
+
 
 
 <h4 align="center" id="mauvaise">Comparaison du nombre d'arret de bus</h4>
 
-Voici une comparaison du nombre d'arret de bus avec la réalité et notre resea:
+Comme le choix de la simulation dependant aussi des choix topologique des reseaux, il est possible de dresser le bilan suivant:
 
 <table  align="center">
 <tr><th>Type</th><th>Nombre d'arret</th><th>Pourcentage</th> <th>Nombre d'arret</th><th>Pourcentage</th></tr>
-<tr><td>Type</td><th>Nombre d'arret</td><td>Pourcentage</td> <th>Nombre d'arret</td><td>Pourcentage</th></tr>   
+<tr><td>Reseau Réel</td><th>Nombre d'arret</td><td>Pourcentage</td> <th>Nombre d'arret</td><td>Pourcentage</th></tr>
+<tr><td>Topologie ensemble des routes</td><th>Nombre d'arret</td><td>Pourcentage</td> <th>Nombre d'arret</td><td>Pourcentage</th></tr>   
+<tr><td>Topologie sans rue residentielle et unclassified</td><th>Nombre d'arret</td><td>Pourcentage</td> <th>Nombre d'arret</td><td>Pourcentage</th></tr>      
 </table>
 
+Il est possible de voir que : SUITE EN FONCTION DES DONNÉES 
 
-<h2 align="center" id="OD"> Création de la demande</h2>
+<h3 align="center" id="OD"> Création de la demande</h3>
 
-Pour la création de la demande, le choix s'est tournée vers la matrice Origine-Destination de l'ARTM datant de 2013. Cette matrice contient de nombreuses informations utile pour la simulation de la circulation. Donc cette étude, l'heure de pointe du matin, comprise entre 5h et 9h sera pris en compte. 
+La section suivante traite de la création de la demande dans le mondele construit.
 
-<h3 align="center" id="quartier" >Lieu d'origine et de destination</h3>
+<h4 align="center" id="quartier" >Enquête Origine Destination</h4>
+
+Tout les 5 ans depuis 1970, l'Autorité régional de transport métropolitain (ARTM) réalisé une enquête, intilé Enquête <a href="https://www.artm.quebec/eod-en-savoir-plus/">Origine-Destination<a>, qui permet d'obtenir de nombreuse information relative au deplacement de personnes. Que se soit des deplacements en modes actifs, en TC, en auto voire mutlimodale dans la grande region métropolitaine de Montréal.
+
+<i> Nous designons ici les deplacement multimodale, comme les deplacements partant d'une Origine i à une Destination j en utilisant au minimun 2 modes de transport </i>
+
+Les données proviennent à la fois de données d'enquête telephonique, d'enquete Web mais aussi des point de comptages, dit <a href="https://www.artm.quebec/enquete-cordon/">enquête-cordons<a>.
+
+Facteur de Ponderation ?
+
+En terme de granularité spaciale, l'enquete OD à de nombreux echellons, partant du agglomeration specifique, par exemple tout Laval, à l'adresse individuelles de chaque personnes enquêter. Dans le cas de cette simulation, le choix de conserver plus où mois certains type de routes, à reprocher conclue pour prendre les decoupages des secteurs municipaux comme plus petite echelles spaciales de notres études. Ces resulats sont de la formes:
+
+<div class="cmath">
+ `O_i-D_j=Nb_Deplacement_i_j`   
+ </div>
+
+Avec `O_i` l'Origine i du deplacement du trajets et `D_i` la destination j du déplacement.
+
+En terme de granularité temporaire, les plages horraires se reppartise dans un bloques de 24h jusqu'a la plage horraire de la demi-heure (A verifier). Dans le cas de notre simulation, il est convenu de prendre la plage de la pointe du matin, entre 5h et 9h, comme expliquer dans les sections precedentes. Le découpage horraires sera expliquer à la suite.
+
+Puis la création de la demande, deux matrice été accesible pour la construction du modeles
+
+<ul>
+  <li>L'enquete Origine-Destination de 2013</li>
+  <li>L'enquete Origine-Destination de 2018</li> 
+</ul>  
+
+Pour les deplacements des automobiles seulement, dans un premier temps il est resortie que le modele prendrer en compte les deplacements automobile conducteur (c'est à dire sans passager) en comptant les trajets retours.
+
+<h4 align="center" id="quartier" >Lieu d'origine et de destination</h4>
+
+Le lieu des origines et destination de Montréal sont définies pour cette simulation comme les <a href="https://www.donneesquebec.ca/recherche/dataset/artm-secteurs-municipaux-od13">secteur</a> administratifs de l'ARTM qui ont été pris en compte dont on peut representer sur la FigXX
+
+<p align="center">
+  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Taz_ARTM.png">
+</p>
+
+<h5 align="center">Importation des TAZ</h5>
 
 Pour importer une matrice Origine-Destination dans SUMO, il faut d'abord renseigner au logiciel les districts ou les traffic assignment zone (<a href="https://sumo.dlr.de/docs/Demand/Importing_O/D_Matrices.html">TAZ</a>) qui serviront d'arriver ou de depart des véhicles.
 
-La premiere etape consite à determiner le limite administratifs de ces fichiers TAZ, pour cette simulation se sont les limites administratifs de l'ARTM qui ont été pris en compte et la ville de Montréal des <a href="http://donnees.ville.montreal.qc.ca/dataset/polygones-arrondissements">limites</a> des arrondissements.
-
-
-Les fichiers  permettront de déterminer toutes les sections de routes qui appartiennent à une zone. Dans notre étude de cas nous allons déterminer les routes qui appartiennent à chaque secteur pour ensuite créer les déplacements.
+Ces fichiers contenant permettront de déterminer toutes les sections de routes qui appartiennent à une zone. Dans notre étude de cas nous allons déterminer les routes qui appartiennent à chaque secteur pour ensuite créer les déplacements.
 
 ```xml
 <tazs>
@@ -497,28 +547,19 @@ Les fichiers  permettront de déterminer toutes les sections de routes qui appar
 </tazs>
 ```
 
-La carte ci-dessous représente le quartier du Plateau Mont-Royal de Montréal (indicateur 106 de la matrice OD). Lors que la simulation toutes les voitures seront générées aléatoirement dans cette zone rouge d'origine.
+Par exemple la carte ci-dessous représente le quartier du Plateau Mont-Royal de Montréal (indicateur 106 de la matrice OD). 
 
 <p align="center">
   <img width="460" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/plateauTAZ.png">
 </p>
 
 
-<h4 align="center">Importation des TAZ</h4>
-
-
-Les secteurs etudiés par l'ARTM sont les suivants:
-
-<p align="center">
-  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Taz_ARTM.png">
-</p>
-
- Afin de convertir c'est limites administratives dans SUMO, nous allons prendre les fihcier shp diponible et les rentrer dans SUMO à l'aide de PolyConvert
+ Afin de convertir ces secteur muninipaux dans SUMO, nous allons prendre les fichier shp diponible et les rentrer dans SUMO à l'aide de PolyConvert
  
  <h5 align="center">PolyConvert</h5>
  
  La fonction Polyconvert permet d'importer des shapes geometrique selon differente source, ce qui nous interraisse dans notre cas, c'est d'importer des sources SHP
- 
+
  
 * n: Represente la topograhpie du reseau etudier
 * shapefile-prefixe: Reads shapes from shapefiles FILE+
@@ -530,7 +571,6 @@ La commande sera la suivante:
 ```
 polyconvert -n CarteMontreal_Sans_Un_Res.net.xml --shapefile-prefixes SM_OD2018 --layer 111 --shapefile.guess-projection true --shapefile.traditional-axis-mapping true --fill false
 ```
- 
  
  La carte ci-dessous représente le quartier du Plateau Mont-Royal de Montréal convertie en polygone.
  
@@ -551,7 +591,7 @@ python <SUMO_HOME>/tools/edgesInDistricts.py -n Montreal.net.xml -t Quartier.add
 ```
 Neanmois, en fonction de la taille du reseau choisie, il peu avoir une differences de temps de chargement:
   
-  
+  A VERIFIER
 <table  align="center">
 <tr><th>Type</th><th>Pourcentage</th><th>Temps de simulation en (ms)</th><th>Taille du Fichier (ko)</th></tr>
 <tr><td>Entier</td><td>100</td><td>417968</td><td>1082</td></tr>
@@ -563,12 +603,15 @@ Neanmois, en fonction de la taille du reseau choisie, il peu avoir une differenc
 <p align="center">
   <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/chargement_TAZ.png">
 </p>
+
+Il est relever encore une fois que le temps de chargement different encore entre les differentes types de reseau. CONTINUER A MODIFIER
+
 <h3 align="center">Changement de format de la Matrice OD</h3>
 
 Une premiere étape de l’implantation de la matrice OD à été de modifier la Matrice OD fournis par l’ARTM. Notre modèle, nous oblige à avoir une matrice n*n qui est illisible de manière brute par SUMO. En effet, SUMO ne peut lire que 3 types de Matrice et nous avons choisie de travailler avec un matrice de type "O-Format". Ce type de format est une matrice à n ligne et 3 colones, avec la premier colonne correspont à l’origine, la deuxieme la destination et la derniere le nombre de véhicules generer. Pour ce faire nous avons créer un petit script sur jupyter qui permet de transformer la matrice de cette sorte 
 
 
-Format de la matrice OD "classique"
+**Format de la matrice OD "classique"**
 
 
 <table  align="center">
@@ -577,41 +620,17 @@ Format de la matrice OD "classique"
 <tr><td>**Orig2**</td><td>4</td><td>5</td><td>6</td> </tr>
 <tr><td>**Orig3**</td><td>7</td><td>8</td><td>9</td></tr></table>
 
-Format de la matrice OD (O-format) sur SUMO
+**Format de la matrice OD (O-format) sur SUMO**
 
 <table  align="center">
-	
-  <tr>
-    <th>Origine </th>
-    <th>Destination</th> 
-    <th>Nombre d'auto</th>
- 
-  </tr>
-  <tr>
-    <td>Orig1</td>
-    <td>Dest1</td>
-    <td>1</td>
-  </tr>
-    <tr>
-    <td>Orig1</td>
-    <td>Dest2</td>
-    <td>2</td>
-  </tr>
-   <tr>
-    <td>...</td>
-    <td>...</td>
-    <td>...</td>
-  </tr>
-    <tr>
-    <td>Orig3</td>
-    <td>Dest3</td>
-    <td>9</td>
-  </tr>
-		
-	
+<tr><th>Origine </th><th>Destination</th> <th>Nombre d'auto</th>
+ </tr> <tr>  <td>Orig1</td>  <td>Dest1</td>  <td>1</td></tr>  
+ <tr><td>Orig1</td><td>Dest2</td>  <td>2</td></tr>
+ <tr><td>...</td>  <td>...</td>  <td>...</td></tr>
+  <tr>  <td>Orig3</td>  <td>Dest3</td>  <td>9</td></tr>	
 </table>
 
-Un exemple de <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/Transformation%20matrice%20OD%20en%20O-format-checkpoint.ipynb">code</a> sur JupyterNotebook pour la modification de la matrice.
+Un exemple de <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/Transformation%20matrice%20OD%20en%20O-format-checkpoint.ipynb">code</a> sur JupyterNotebook pour la modification de la matrice est disponible dans le repertoire
 
 <h4 align="center">Prise en compte des voitures trajets "exterieur"</h4>
 
@@ -639,9 +658,8 @@ La figure XX representes les differentes centroïdes de la regions de Montréal 
 Pour la facilité de la construction des nouvelles assignations des Origines et Destinations, il a été choisies de séparer les trajets venant de l'eterieur et venant sur l'ile de Montréal et les trajets ce deplacent de l'exterieur et allant à l'exterieur en passant par l'ile.
 
 <h4 align="center">Trajet Exterieur vers l'interieur</h4>
-Il est possible de visualiser les different trajets 
 
-
+A fin de mieux visualiser les differents 'trajet' à vol d'oiseau des differents trajets, il est possible de separer en fonction des differents agglomeration
 <p align="center">
    <img width="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/longueuil-Montreal.png">
   <img width="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/laval_Montreal.png">
@@ -649,13 +667,13 @@ Il est possible de visualiser les different trajets
   <img width="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/couronne_nord_montreal.png">
 </p>
 
-Ce qui donne en compilant les differentes trajet
+Ce qui donne en compilant les differentes trajet des aglomeration la Fig XX
 
 <p align="center">
   <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/exterieur_interieur.png">
 </p>
 
-Après avoir transformer les differents Origines et destinations, les trajets pourons être:
+Après avoir transformer les differents Origines et destinations comme expliquer plus haute, les nouvelles Origines et Destiniation seront:
 
 <p align="center">
   <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/new_exterieur_interieur.png">
@@ -663,7 +681,7 @@ Après avoir transformer les differents Origines et destinations, les trajets po
 
 <h4 align="center">Trajet Exterieur vers l'interieur</h4>
 
-Il est possible de visualiser les different trajets 
+Par la même demarche que la section precedent, ont peut separer les trajet exterieur vers exterieur de la sorte:
 
 
 <p align="center">
@@ -673,13 +691,13 @@ Il est possible de visualiser les different trajets
   <img width="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/couronne_nord_sud.png">
 </p>
 
-Ce qui donne en compilant les differentes trajet
+Ce qui donne en compilant les differentes trajet:
 
 <p align="center">
   <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/ext_ext.png">
 </p>
 
-Après avoir transformer les differents Origines et destinations, les trajets pourons être:
+Ainsi, les nouvelles Origines et destinations seront:
 
 <p align="center">
   <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/centroide/new_exterieur_exterieur.png">
@@ -688,86 +706,33 @@ Après avoir transformer les differents Origines et destinations, les trajets po
 
 <h3 align="center">Definition des véhicules</h3>
 
-Pour essayer de representer un simulation de la circulation heterogene, nous nous avons decidé de prendre en compte plusieurs type de véhicules dans notre simulation.
+Pour essayer de representer un simulation de la circulation heterogene, et notamment en ingerant un mutlitude de differents véhicles disponibles dans notre reseau. De plus, la longueur et les types de véhicules ont un impacte directe sur la circulation. Cette section traite donc de la construction de ces differents véhicules.
 
 <h4 align="center" id="type">Catégories automobile</h4>
 
-Il est spécifié dans la matrice OD que nous utilisons dans notre simulation que les trajets automobile correponds à un melanges Automobile et Moto sans renseignement du pourcentages. Pour spécifier se pourcentage et ainsi distinguer les differentes categories de véhicules, nous nous sommes dériger vers  la <a href="https://saaq.gouv.qc.ca/donnees-ouvertes/vehicules-circulation/vehicules-circulation-documentation.pdf"> SAAQ </a> et des <a href="https://bdso.gouv.qc.ca/pls/ken/ken213_afich_tabl.page_tabl?p_iden_tran=REPERBA6Z3O56149094340058BfZ9c&p_lang=1&p_m_o=SAAQ&p_id_ss_domn=718&p_id_raprt=3628#tri_tertr=00&tri_mun=aaaaa"> stastitique </a> du Quebec pour definir le part de ces vehicules promenade dans le parc automobile de l'ile de Montreal :
-
+Les deux matrice de l'enquete OD de Montréal stipule que les trajets automobile correpond à un melanges automobile et Motocyle sans renseignement spécifique de la part des deux "types" de véhicules. Pour spécifier se pourcentage et ainsi distinguer les differentes categories de véhicules, nous nous sommes dériger vers  la <a href="https://saaq.gouv.qc.ca/donnees-ouvertes/vehicules-circulation/vehicules-circulation-documentation.pdf"> SAAQ </a> et des <a href="https://bdso.gouv.qc.ca/pls/ken/ken213_afich_tabl.page_tabl?p_iden_tran=REPERBA6Z3O56149094340058BfZ9c&p_lang=1&p_m_o=SAAQ&p_id_ss_domn=718&p_id_raprt=3628#tri_tertr=00&tri_mun=aaaaa"> stastitique </a> du Quebec pour definir le part de ces vehicules promenade dans le parc automobile de l'ile de Montreal. Pour la quel, il à été possible de distingué 4 grande catégories de véhicules.
 
 <table  align="center">
 	<a align="center">
-  <tr>
-    <th>Type de vehicules</th>
-    <th>Nombre</th> 
-    <th>Pourcentage</th>
-  </tr>
-  <tr>
-    <td>Automobile</td>
-    <td>563880</td>
-    <td>65%</td>
-  </tr>
-  <tr>
-    <td>SUV/Camion léger</td>
-    <td>269475</td>
-    <td>32%</td>
-  </tr>
-  <tr>
-    <td>MOtocyclette</td>
-    <td>15203</td>
-    <td>2%</td>
-  </tr>
-	<tr>
-    <td>Cyclomoteyr</td>
-    <td>5607</td>
-    <td>1%</td>
-  </tr>
-		</a>
+  <tr><th>Type de vehicules</th>  <th>Nombre</th>   <th>Pourcentage</th></tr>
+  <tr> <td>Automobile</td>  <td>563880</td>  <td>65%</td></tr>
+  <tr> <td>SUV/Camion léger</td> <td>269475</td> <td>32%</td></tr>
+  <tr> <td>MOtocyclette</td><td>15203</td><td>2%</td></tr>
+	<tr> <td>Cyclomoteyr</td> <td>5607</td> <td>1%</td>
+  </tr></a>
 </table>
 
-
-Puis, pour prendre des modèle type <a href="https://www.goodcarbadcar.net/canada-30-best-selling-vehicles-in-2013/"> vendu </a> en 2013 avec leur <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/MatriceOD/Copie%20de%20Tableau.xlsx
+Afin des distinguers au mieux les differentes catégories de véhicules choisies dans la parc automobile de notre réseau, les différentes caétgories seront representer par un véhcules types pour les modèles les plus<a href="https://www.goodcarbadcar.net/canada-30-best-selling-vehicles-in-2013/"> vendu </a> en 2013 avec leur <a href="https://github.com/HuguesBlache/ProjetPoly/blob/master/MatriceOD/Copie%20de%20Tableau.xlsx
 "> carateristique</a>  et les valeurs Vclass de SUMO qui sont les suivants:
 
-
 <table  align="center">
-	<a align="center">
-  <tr>
-    <th>Modele</th>
-    <th>Longueur (m)</th> 
-    <th>Hauteur (m)</th>
-    <th>vClass </th>
-    <th>maxSpeed (m/s) </th>
-  </tr>
-  <tr>
-    <td>Toyota Corolla 2013</td>
-    <td>4,5</td>
-    <td>1,76</td>
-    <td>private</td>
-    <td>55.56</td>
-  </tr>
-  <tr>
-    <td>Ford F 150</td>
-    <td>5,9</td>
-    <td>1,9</td>
-    <td>delivery</td>
-    <td>55.56</td>
-  </tr>
-  <tr>
-    <td>Yamaha FZ</td>
-    <td>2,07</td>
-    <td>0.8</td>
-    <td>motorcycle</td>
-    <td>55.56</td>
-  </tr>
-	<tr>
-    <td>Honda Forza 125</td>
-    <td>2.140</td>
-    <td>0.78</td>
-    <td>moped</td>
-    <td>16.67</td>
-  </tr>
-		</a>
+<a align="center">
+<tr><th>Modele</th><th>Longueur (m)</th> <th>Hauteur (m)</th><th>vClass </th><th>maxSpeed (m/s) </th></tr>
+<tr><td>Toyota Corolla 2013</td><td>4,5</td><td>1,76</td>  <td>private</td><td>55.56</td></tr>
+<tr><td>Ford F 150</td><td>5,9</td>  <td>1,9</td>  <td>delivery</td>  <td>55.56</td></tr>
+<tr>  <td>Yamaha FZ</td>   <td>2,07</td>  <td>0.8</td>  <td>motorcycle</td> <td>55.56</td></tr>
+<tr> <td>Honda Forza 125</td>  <td>2.140</td>  <td>0.78</td>  <td>moped</td>  <td>16.67</td></tr>
+	</a>
 </table>
 
 Comme les vitesses entre chaques véhicules n'est identiques dans la réalité, nous decidons que les differentes vitesses des véhicules suivront une distribtion normal à l'aide de la commande <i> speedFactor </i> et en spécifiant <i>normc (moyenne, dev, min, max) </i>. Et dans notre cas nous prendons: 
@@ -794,45 +759,7 @@ Par default nous utiliserons le modèle de poursuite de SUMO, celui de Krauss, q
 
 <h5 align="center">Emissions</h5>
 
-
-https://theicct.org/sites/default/files/info-tools/One%20table%20to%20rule%20them%20all%20v1.pdf
-
-<table  align="center">
-	<a align="center">
-  <tr>
-    <th>Modele</th>
-    <th>Consomation</th> 
-    <th>Nomre Euro</th>
-    <th>SUMO</th>
-  </tr>
-  <tr>
-    <td>Toyota Corolla 2013</td>
-    <td>7,6</td>
-    <td>Euro5</td>
-    <td>PC_G_EU5</td>
-  </tr>
-  <tr>
-    <td>Ford F 150</td>
-    <td>13</td>
-    <td>Euro3</td>
-    <td>PC_G_EU3</td>
-  </tr>
-  <tr>
-    <td>Yamaha FZ</td>
-    <td>5,6</td>
-    <td>Euro6</td>
-    <td>PC_G_EU6</td>
-  </tr>
-	<tr>
-    <td>Honda Forza 125</td>
-    <td>2,3</td>
-    <td>Euro6</td>
-    <td>PC_G_EU6</td>
-  </tr>
-		</a>
-</table>
-
-
+Il est possible de prendre en considérations les emissions, mais dans notre cas, voir la partie discussion
 
 <h5 align="center">Commande Vtype</h5>
 
@@ -885,7 +812,7 @@ La demarche est la même que pour la definition des véhicules, mais pour simpli
 <h4 align="center">od2trips</h4>
 
 
-
+Lors que la simulation toutes les voitures seront générées aléatoirement dans cette zone rouge d'origine selon les stragies choisies.
 
 Après avoir construit le fichier TAZ et créé la Matrice OD, nous pouvons maintenant construire les déplacements sur notre modèle. La fonction <i> <a href="https://sumo.dlr.de/docs/od2trips.html"> od2trips.py </a> </i> permet d'affecter les voyages de chaques véhicules (traject Origine jusqu'à la destination) dans un nouveau fichier à partir de la matrice OD et des TAZ que nous avons definies. Pour notre simulation, nous voulons que la repartitions des trajets soit uniforme, on peut l'utiliser avec la commande <i>spread.uniform </i>
 
@@ -1225,10 +1152,13 @@ Il est relever que le temps de parcours moyenne equivaut à 21.5 min
 - Comparaison des simulations misosim et sans
 - Difference au niveau macro et miccro
 - Difference 24h et AM
+- Carte à Puce
 
 Discuter de la calibration et insertitudes
 
-<h3 align="center" id="PartieModale">Feux de circulation</h3>
+
+
+<h3 align="center" id="Feux de circulation">Feux de circulation</h3>
 
 Definition du temps de cycle de chaque feux de circulation
 
@@ -1296,7 +1226,20 @@ Pour cela il suffit de rajouter quelques lignes dans la construiction de la <a h
 <h3 align="center">Deplacement multimodale</h3>
 
 
+<h5 align="center">Emissions</h5>
 
+
+https://theicct.org/sites/default/files/info-tools/One%20table%20to%20rule%20them%20all%20v1.pdf
+
+<table  align="center">
+	<a align="center">
+  <tr><th>Modele</th><th>Consomation</th> <th>Nomre Euro</th><th>SUMO</th></tr>
+  <tr>  <td>Toyota Corolla 2013</td>  <td>7,6</td>  <td>Euro5</td>  <td>PC_G_EU5</td></tr>
+  <tr>  <td>Ford F 150</td>  <td>13</td>  <td>Euro3</td>  <td>PC_G_EU3</td></tr>
+  <tr> <td>Yamaha FZ</td>  <td>5,6</td>  <td>Euro6</td>  <td>PC_G_EU6</td></tr>
+	<tr>  <td>Honda Forza 125</td>  <td>2,3</td>  <td>Euro6</td>  <td>PC_G_EU6</td>
+  </tr>	</a>
+</table>
 <h2 align="center" id="Annexe">Annexe</h2>
 
 <h3 align="center" id="Road_Type">Type de Route</h3>
