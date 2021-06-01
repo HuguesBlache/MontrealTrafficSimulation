@@ -7,7 +7,7 @@
 <body>
 <h1 align="center">Montréal Traffic Simulation </h1>
 	
- Projet de Maitrise de Hugues Blache 
+La construction du modèle de microsimulation fait partie du projet de Maitrise de Hugues Blache pour Polytechnique de Montréal 
  
 <h2 align="center">Table des matières</h2>
 
@@ -28,35 +28,99 @@
 
 Ce projet se réfère principalement à la documentation de <a href="https://sumo.dlr.de/docs/SUMO_User_Documentation.html">Sumo</a> et du Professeur Nicolas Saunier pour le cours <a href="https://github.com/nsaunier/CIV8740/blob/master/guide-sumo.md">CIV8740</a>. Les autres sources seront citées à la fin du document.
 
-<h2 align="center" id="doc">Contexte</h2>
+<h2 align="center" id="doc">Introdution et contexte</h2>
+
+Les nouveaux paradigmes concernant les axes de recherche des villes intelligents, ont pu montrer la necessité d'utilisé les technologies de telecommunication pour sont deployemment et pour optimiser des nombreux services. Comme la gestion des reseaux electrique, la gestion du drénages des eau, les services de santé et bien évidemment la gestion de la circulation et transport (par le prisme des ITS notamment).
+  ```
+  <i> Intelligent Transportation Systems (ITS) is a combination of leading-edge information and communication technologies used in transportation and traffic management systems to improve the safety, efficiency, and sustainability of transportation networks, to reduce traffic congestion and to enhance drivers’ experiences. </i> [<a href="https://www.wsp.com/en-CA/services/intelligent-transportation-systems-its">WSP</a>]
+  ```
+
+Néanmois, pour le bon fonctionnement de ces <i> smart cities </i> et pour la communications de ces services et applications pluridisplinaires, il est necessaire de mettre en place des communications M2M
+
+Les communications Machine-to-Machine (M2M) <i>is a broad label that can be used to describe any technology that enables networked devices to exchange information and perform actions without the manual assistance of humans</i> [<a href="https://internetofthingsagenda.techtarget.com/definition/machine-to-machine-M2M">Sharon</a> Shea]
+
+Par ce biais des communication M2M, les objets integrants des technologies de telecommunications et communicante avec son environnement,appeler <i> smart object</i> formemt un ensemble que l'on nomme Internet of Things (IoT).
+
+Cependant, cette definition des IoT est assez simpliste. La litterature et les acteurs de ce domaines peut donnée des définitions assez varier dans le fond [<a href="https://www.sciencedirect.com/science/article/pii/S1570870516303316#sec0023">Atzori </a> et al.]. Pour notre part il est possible de ce comptanter de celle ci: <i>Group of infrastructures interconnecting connected objects and allowing their management, data mining and the access to the data they generate.</i> [<a href="https://ieeexplore.ieee.org/abstract/document/7373221">Dorsemaine<a> et al.]
+
+AJOUTER DES TRUCS
+
+Financer par Ericsson et le NSERC (National Science and Engineering Research Council of Canada). Le projet de l'équipe de télécommunication du Pr Brunilde <a href="https://www.polymtl.ca/expertises/en/sanso-brunilde">Sanso</a> vise à reproduire, par le prisme d'un modèle, de créer un profil du trafic M2M avec des interaction de multiple domaines et dans un lieu géographique réel.
+
+Actuellement, 2021, l'infrastructure de télécommunication choisie est le réseau réel de LTE de l'ile de Montréal
+
+L'avancement du projet est disponible sur le site <a href="https://www.trafficm2modelling.com/">web</a> de l'équipe
+
+<h2 align="center" id="transport_part">Partie Transport</h2>
+
+De nombreuse piste sont abordé par la mise en place de ITS dans le modèle. Un premier travaux à été de construire une taxonomie des applications communicantes. Cette classification à permis de mettre en évidences les requirement des différents applications de transport en termes de telecommunicant. Puis, ces travaux ont également pu éclairé sur les technologies possible et disponible pour la mise ne place de ces applications.
+
+Suite à cette classification, la suite du projet est de proposé un modèle de circulation qui permettra d'interagire avec la simulation LTE afin de determiner les exigences "totals" des transports pour le traffic M2M.
+
+Pour ce faire, le principale cheminement de la construction du modèle suit le figure XX [Hakim Mellah]:
 
 <p align="center">
   <img  width="650" height="450" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Sumo_M2M.png">	
 </p>
 
+La demarche est la suivantes:
+
+  <ol>
+    <li>Urban scénarios: Determination du scénario de circulation a étudier</li>
+    <li>SUMO: Construction du modèle à l'aide du logiciel de microsimualtion de la circulation SUMO</li>
+    <li>Urban KPIs: Identifier les sorties du modèle utile au modèle de télécommunication</li>
+    <li><i> Boucle de rétroaction des telecom KPI afin de changer les entréer du modèle </i></li>
+  </ol> 
+
+
+Selon les sorties choisies, le modèle de circulation servira d'entrée au modèle de LTE, decrit dans la figure XX. 
+
 <p align="center">
   <img  width="650" height="450" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/V2X_App.png">	
 </p>
 
+<h2 align="center" id="urban_scenario">Urban scenario</h2>
 
-<h2 align="center" id="doc">Documentation SUMO</h2>
+Ce scenario de circulation progresse en fonction du modèle du traffic M2M, donc l'étude ce portera sur la région métropolitaine de Montréal exclusivement. 
 
+La grande majorité de la simulation ce déroulera sur un point de matin de 5h à 9h du matin pour un journée d'autonme, sauf indication contraire reletif pour l'étude de scénario scécifique.
 
+Même si le modèle tend a être reproduire un circulation multimodale, la plus part des scéanarios ce passera avec des deplacements automobile, voir automobile et bus.
 
-<h2 align="center" >Génération du reseau de l'ile de Montréal</h2>
+ECT...
 
-<h3 align="center" id="carte">Topologie de l'ile de Montréal</h3>
+<h2 align="center" >Construction du modèle</h2>
 
+Par le prisme du modèle de circulation sur l'ile de Montréal. Les démarches de ce github tentent le plus possible de généraliser la construction d'un 'Large scale metropolitan microscopic simulation'. Notamment dans la prespective de déplacer ce modèle vers les villes de Toronto ou Vancouver par exemple.
 
-Le cadre de cette étude est de prendre la circulation sur l'ile de Montréal. Afin de reprondre au exigences du reseau, les informations concernant l'ile sont importé avec <a href="https://www.openstreetmap.org/">OpenStreetMap (OSM)</a>. Neanmoins, comme le simulateur est une entrée du logiciel <a href="https://www.trafficm2modelling.com/"> M2M</a> et que les données topologiques et que une certaines formes de l'ile est necessaire, la stratégie à été de prendre la relation de OSM de l'<a href="https://fr.wikipedia.org/wiki/fr:Agglom%C3%A9ration%20de%20Montr%C3%A9al?uselang=fr"> Agglomeration </a> de Montréal, qui s'est fait assigner le code <i> <a href="https://www.openstreetmap.org/relation/8508277">Q2826806 </a></i>
+<h3 align="center" >Calculateur utilisé</h3>
 
+Dans la suite du projet, differentes notions de temps de calcule seront mentionner. Cependant le temps calcule des differents peuvent diverger selon les ordinateurs utilisées, mais certains informations pouront rester valide, par exemple entre deux scenarios, des temps de rapide plus rapides pour un scénario choises sans mentionner d'aspect unitaire.
+
+ENCORE DU DETAILLE 
+
+<h3 align="center" >Génération du Réseau</h3>
+
+La section presente décrit la premiere étapes de la construction du modèle, à savoir la sélétion et la construction du réseau étudier.
+
+<h4 align="center" id="carte">Topologie du réseau</h4>
+
+Comme expliquer dans les sections précedentes, ;e cadre de cette étude est de prendre la circulation sur l'ile de Montréal. 
+
+Il existe une mutlitude de manière d'importer et de créer un réseaux dans SUMO. Dans le cas de l'étude et afin de reprondre au exigences du reseau, les informations de  l'ile sont importés avec <a href="https://www.openstreetmap.org/">OpenStreetMap (OSM)</a>. 
+
+Néamoins, pour répondre au exigence du simulation LTE et de répresenter au mieux les limites adminsitratives de l'ile de Montréal, il est décider de prendre la relation de OSM de l'<a href="https://fr.wikipedia.org/wiki/fr:Agglom%C3%A9ration%20de%20Montr%C3%A9al?uselang=fr"> Agglomeration </a> de Montréal, qui s'est fait assigner le code <i> <a href="https://www.openstreetmap.org/relation/8508277">Q2826806 </a></i>
+
+  ```
+  A relations in OpenStreetMap is an ordered set of nodes, routes, and even relation, to be made up of logical or geographic relation. [Wiki <a href="https://wiki.openstreetmap.org/wiki/Relation">.OSM</a>]
+
+  ```
+
+Ainsi, il est possible de visualisées et comparer les deux topographies, avec d'un coté la relation dans OSM sur la Fig XX et la delimitation topographique du simulateur sur la Fig XX
 <p align="center">
-	
   <img  width="800"  src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_BBBike.png">
     <figcaption>Fig.X - Relation de l'ile de Montréal</figcaption>
 </p>
-
-
 <p align="center"> 
   <img  width="800"  src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/capture_M2M.png">
      <figcaption>Fig.X - Delimitateur du simulateur</figcaption>
@@ -64,22 +128,30 @@ Le cadre de cette étude est de prendre la circulation sur l'ile de Montréal. A
 
 <h4 align="center" id="Type de Route">Type de Route</h3>
 
-L'etude pourtant sur la mobilité terrestre, la simulation de compte qu'une certains type de route spécifiques. Dont la liste* ce trouve en <a href="Route_Type"> annexe </a> 
+  ```
+  Les TAG sont des données de bases, comme les noueds, routes et relation qui decrivent des des attribut geograhpiques de chaque entité comme des routes ou des buildings, par exemple avec les Key et Value [Wiki <a href="https://wiki.openstreetmap.org/wiki/Map_features"/>OSM</a>]
+  
+  ```
+Les routes dans OSM sont representer par des tags et leurs natures sont parfois mutliple. Il est possible d'extraire de nombreuse informations sur routes variers, comme des routes terrestre, routes maritime ect..
 
+Cependant l'etude pourtant sur la mobilité terrestre et sur les capacités de SUMo, la simulation de compte qu'une certains type de route spécifiques. Dont la liste* ce trouve en <a href="Route_Type"> annexe </a> 
 
- * Information pris dans le <a href="https://wiki.openstreetmap.org/wiki/Key:highway">wiki</a> OSM 
+Comme la construction du modèle priorise les deplacements automobiles, par exemple les routes exclusivement pour les velos ont été filter dans un premier temps.
 
+* Information pris dans le <a href="https://wiki.openstreetmap.org/wiki/Key:highway">wiki</a> OSM 
 
 <h4 align="center" id="carte">OverPass API</h4>
 
-L'API Overpass permet d'extraite des zones de la base de données OSM à l'aide de requette 
+```
+An application programming interface (API) is an interface that defines interactions between multiple software applications or mixed hardware-software intermediaries. It defines the kinds of calls or requests that can be made, how to make them, the data formats that should be used, the conventions to follow, etc.. [<a href="https://en.wikipedia.org/wiki/API">Wikipedia</a>]
+```
+
+L'API Overpass permet d'extraite des zones et des informations diversent de la base de données OSM à l'aide de requette spécifiques. Il est possible pour s'entrainer et/ou visualiser les commandes d'utilisé certaines interface comme <i><a href=https://overpass-turbo.eu/> overpass-turbo </a></i>
 
 
-
-Ainsi la commande suivante à été pris en compte pour la prise en compte du reseau
+Pour extraire les données utile a la construitre le reseau dans SUMO, il a été préconiser de prendre seulement les routes definies dans la section precedentes.
 
 ```ql
-
 area[wikidata="Q2826806"]->.montreal;
 rel(area.montreal)[highway~"(motorway|primary|secondary|tertiary|motorway_link|primary_link|secondary_link|tertiary_link|trunk|trunk_link|unclassified|residential)"];
 node(area.montreal)[highway~"(motorway|primary|secondary|tertiary|motorway_link|primary_link|secondary_link|tertiary_link|trunk|trunk_link|unclassified|residential)"];
@@ -87,142 +159,70 @@ way(area.montreal)[highway~"(motorway|primary|secondary|tertiary|motorway_link|p
 (._;>;);
 out;
 ```
-WGET
+Cette commande est disponible dans le fichier batch URL
 
-Avec un appelle dans netconvert sans commande spécifique, il est possible de relever certaines caractéristiques topologiques des données extraite disponible en <a ref="Description_du_reseau"> annexe </a>
+<h5 align="center" id="carte">WGET</h5>
 
 
+<i>Wget, or GNU WGET is a computer program that retrieves content from web servers. It supports downloading via HTTP, HTTPS, and FTP. </i> [<a href="https://en.wikipedia.org/wiki/Wget">Wikipedia</a>]
 
+Le telechargemment du contenue topologie du reseau se fait via une commande <a href="https://www.gnu.org/software/wget/">WGET </a> afin d'automatisé un maximun le construction du réseau sans intervantion humaine.
+
+Puis avec un appelle dans netconvert sans commande spécifique, il est possible de relever certaines caractéristiques topologiques des données extraite disponible en <a ref="Description_du_reseau"> annexe </a>
 
 <h4 align="center" id="carte">Filtrage des types de route</h4>
 
-Comme les données OSM sont trop lourd pour les temps de calcule de la simulation et selon le calculateur pris en compte. Ainsi un certain nombre de route du reseau peut être supprimé ou gradé lors de la commande NETCONVERT avec les instructions <i>keeg.egdes-by.types</i> ou <i>remove.egdes-by.types</i>
+Comme il sera mentionné dans les section suivantes. Selon les données choisies, et notamment les types de routes selectionner, les données de sorties seront totalement differentes. Notamment lors des trajets des voitures. De plus les données OSM sont parfois lourd et impacte les temps de calcules de la simulation et selon le calculateur pris en compte. Ainsi un certains nombre de route du reseau peut être supprimé ou gardé lors de la commande NETCONVERT avec les instructions <i>keeg.egdes-by.types</i> ou <i>remove.egdes-by.types</i>.
 
 Les figures suivant representes les differents filtrages possibles:
 
 
 <div align="center">
   <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/comparaison_net/CarteSumo.png">
-
 <table>	
-  <tr>
-    <th>Entité</th>
-    <th>Unité</th> 
-  
-  </tr>
-<tr>
-    <td>Edge Lenght (km)</td>
-    <td>7935 </td> 
+<tr><th>Entité</th><th>Unité</th> </tr>
+<tr><td>Edge Lenght (km)</td><td>7935 </td> </tr>
+<tr><td>Pourcentage</td><td>100</td> </tr>
+<tr><td>Temps de chargement (s)</td><td>33,7</td> </tr>
+<tr><td>Pourcentage</td><td>100</td> </tr>
+<tr><td>Taille du Fichier (Ko)</td><td>187697</td> 
 </tr>
-<tr>
-    <td>Pourcentage</td>
-    <td>100</td> 
-</tr>
-<tr>
-    <td>Temps de chargement (s)</td>
-    <td>33,7</td> 
-</tr>
-<tr>
-    <td>Pourcentage</td>
-    <td>100</td> 
-</tr>
-<tr>
-    <td>Taille du Fichier (Ko)</td>
-    <td>187697</td> 
-</tr>
-  </table>
+</table>
 <figcaption>Fig.X - Topologie sans filtrage</figcaption>	
 </div>
 
-
- 
- 
 <div align="center">
   <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/comparaison_net/CarteSans_UN.png">
-
 <table>	
-  <tr>
-    <th>Entité</th>
-    <th>Unité</th> 
-  
-  </tr>
-<tr>
-    <td>Edge Lenght (km)</td>
-    <td>7672</td> 
-</tr>
-<tr>
-    <td>Pourcentage</td>
-    <td>96,7</td> 
-</tr>
-
-<tr>
-    <td>Temps de chargement (s)</td>
-    <td>33,1</td> 
-</tr>
-<tr>
-    <td>Taille du Fichier (Ko)</td>
-    <td>183078</td> 
-</tr>
-  </table>
+<tr><th>Entité</th><th>Unité</th> </tr>
+<tr><td>Edge Lenght (km)</td><td>7672</td></tr>
+<tr><td>Pourcentage</td><td>96,7</td> </tr>
+<tr><td>Temps de chargement (s)</td><td>33,1</td> </tr>
+<tr><td>Taille du Fichier (Ko)</td><td>183078</td> </tr>
+</table>
 <figcaption>Fig.X - Topologie sans les underclassified</figcaption>	
 </div> 
 
 <div align="center">
   <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/comparaison_net/CarteSans_Un_Res.png">
-
 <table>	
-  <tr>
-    <th>Entité</th>
-    <th>Unité</th> 
-  
-  </tr>
-<tr>
-    <td>Edge Lenght (km)</td>
-    <td>2696</td> 
-</tr>
-<tr>
-    <td>Pourcentage</td>
-    <td>34</td> 
-</tr>
-
-<tr>
-    <td>Temps de chargement (s)</td>
-    <td>4.7</td> 
-</tr>
-<tr>
-    <td>Taille du Fichier (Ko)</td>
-    <td>45515</td> 
-</tr>
-  </table>
+<tr><th>Entité</th><th>Unité</th></tr>
+<tr> <td>Edge Lenght (km)</td>   <td>2696</td> </tr>
+<tr>    <td>Pourcentage</td>    <td>34</td> </tr>
+<tr>    <td>Temps de chargement (s)</td>    <td>4.7</td> </tr>
+<tr>    <td>Taille du Fichier (Ko)</td>    <td>45515</td> </tr>
+</table>
 <figcaption>Fig.X - Topologie sans les underclassified et residentielle</figcaption>	
 </div> 
 
 <div align="center">
   <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/comparaison_net/CarteSans_Un_Res_Ter.png">
-
-<table>	
-  <tr>
-    <th>Entité</th>
-    <th>Unité</th> 
-  
-  </tr>
-<tr>
-    <td>Edge Lenght (km)</td>
-    <td>1603</td> 
-</tr>
-<tr>
-    <td>Pourcentage</td>
-    <td>20</td> 
-</tr>
-
-<tr>
-    <td>Temps de chargement (s)</td>
-    <td>3.77</td> 
-</tr>
-<tr>
-    <td>Taille du Fichier (Ko)</td>
-    <td>27460</td> 
-</tr>
+<table>	  
+<tr>   <th>Entité</th>   <th>Unité</th>  </tr>
+<tr>   <td>Edge Lenght (km)</td>    <td>1603</td> </tr>
+<tr>   <td>Pourcentage</td>    <td>20</td> </tr>
+<tr>   <td>Temps de chargement (s)</td>   <td>3.77</td> </tr>
+<tr>   <td>Taille du Fichier (Ko)</td>    <td>27460</td> </tr>
   </table>
 <figcaption>Fig.X - Topologie sans les underclassified,residentielle et Tersiary</figcaption>	
 </div> 
@@ -230,29 +230,11 @@ Les figures suivant representes les differents filtrages possibles:
 <div align="center">
   <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/comparaison_net/CarteSans_Un_Res_Ter_Sec.png">
 
-<table>	
-  <tr>
-    <th>Entité</th>
-    <th>Unité</th> 
-  
-  </tr>
-<tr>
-    <td>Edge Lenght (km)</td>
-    <td>675</td> 
-</tr>
-<tr>
-    <td>Pourcentage</td>
-    <td>8.5</td> 
-</tr>
-
-<tr>
-    <td>Temps de chargement (s)</td>
-    <td>2.16</td> 
-</tr>
-<tr>
-    <td>Taille du Fichier (Ko)</td>
-    <td>8469</td> 
-</tr>
+<table>	<tr> <th>Entité</th>    <th>Unité</th>   </tr>
+<tr>   <td>Edge Lenght (km)</td>   <td>675</td> </tr>
+<tr>   <td>Pourcentage</td>   <td>8.5</td> </tr>
+<tr>   <td>Temps de chargement (s)</td>   <td>2.16</td> </tr>
+<tr>   <td>Taille du Fichier (Ko)</td>   <td>8469</td> </tr>
   </table>
 <figcaption>Fig.X - Topologie sans les underclassified,residentielle,Tersiary et Secondary</figcaption>	
 </div> 
@@ -261,105 +243,77 @@ Les figures suivant representes les differents filtrages possibles:
   <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/comparaison_net/CarteSans_Un_Res_Ter_Sec_Pri.png">
 
 <table>	
-  <tr>
-    <th>Entité</th>
-    <th>Unité</th> 
-  
-  </tr>
-<tr>
-    <td>Edge Lenght (km)</td>
-    <td>481</td> 
-</tr>
-<tr>
-    <td>Pourcentage</td>
-    <td>6.1</td> 
-</tr>
-
-<tr>
-    <td>Temps de chargement (s)</td>
-    <td>0.74</td> 
-</tr>
-<tr>
-    <td>Taille du Fichier (Ko)</td>
-    <td>3903</td> 
-</tr>
+ <tr>   <th>Entité</th>   <th>Unité</th>  </tr>
+<tr>   <td>Edge Lenght (km)</td>   <td>481</td> </tr>
+<tr> <td>Pourcentage</td><td>6.1</td> </tr>
+<tr>   <td>Temps de chargement (s)</td>   <td>0.74</td> </tr>
+<tr>   <td>Taille du Fichier (Ko)</td>   <td>3903</td> </tr>
   </table>
 <figcaption>Fig.X - Topologie sans les underclassified,residentielle,Tersiary, Secondary et Primary</figcaption>	
 </div> 
-
 
 <div align="center">
   <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/comparaison_net/CarteSans_Un_Res_Ter_Sec_Pri_Trunk.png">
 
 <table>	
-  <tr>
-    <th>Entité</th>
-    <th>Unité</th> 
-  
-  </tr>
-<tr>
-    <td>Edge Lenght (km)</td>
-    <td>466.8</td> 
-</tr>
-<tr>
-    <td>Pourcentage</td>
-    <td>5.88</td> 
-</tr>
-
-<tr>
-    <td>Temps de chargement (s)</td>
-    <td>0.2414</td> 
-</tr>
-<tr>
-    <td>Taille du Fichier (Ko)</td>
-    <td>3728</td> 
-</tr>
+<tr><th>Entité</th> <th>Unité</th>  </tr>
+<tr> <td>Edge Lenght (km)</td>  <td>466.8</td> </tr>
+<tr>   <td>Pourcentage</td>   <td>5.88</td> </tr>
+<tr>  <td>Temps de chargement (s)</td>  <td>0.2414</td> </tr>
+<tr>  <td>Taille du Fichier (Ko)</td>  <td>3728</td> </tr>
   </table>
 <figcaption>Fig.X - Topologie sans les underclassified,residentielle,Tersiary, Secondary,Primary et Trunk</figcaption>	
 </div> 
+
    
-   
+Il est donc possible de comparer le temps de charge de la carte avec la taille du reseau:
   
-Ainsi, il est possible de comparer le temps de charge de la carte avec la taille du reseau:
-
-
-  
-
 <p align="center">
   <img src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/temp_netconvert.png">
 	<figcaption>Fig.X - Comparaison entre taille du reseau et temps de chargement avec netconvert</figcaption>	
 </p>
 
 
-Il est bien de relever qu'il y a une nette difference de chargement lors du filtrage des rues residentielles pour la commande netconvert. Ceci ce traduit par le pourcentage de rues residentielles que representes le reseau, environ 63% du reseau. Le choix pour la simulation et de ca performance sera donc de selectionner le type de topologie et le temps que cela engendre pour les calcules. Pour la suite de l'etude, seul les reseaux ayant l'ensemble des routes ou celle pour laquelle les routes residentielles et unclassifieds seront pris en compte.
+Il est bien de relever qu'il y a une nette difference de chargement lors du filtrage des rues residentielles pour la commande netconvert. Ceci ce traduit par le pourcentage de rues residentielles que representes le reseau, environ 63% du reseau.
 
+Le choix pour la simulation et de ça performance sera donc de selectionner le type de topologie et le temps que cela engendre pour les calcules. Mais aussi de prendre les reseaux qui permettra de representer au mieux la circulation.
+
+Le choix pour la suite de l'étude a été de seulement prendre en compte la topologie englobant l'ensemble des routes et celle ayant enlever les routes residentielles et unclassifieds.
+
+Ce choix est du simplifier le nombreux de scénario à rouler mais aussi pour essayer de se reprocher au mieux de la réalité de la circulation. En effet il est difficilement imaginable, pour notre part, de defendre l'idée que seulement 20% du reseau de l'ile de Montréal suffise à representer un réalité de la circulation. Et ceux même si il existe un sous regime comme il sera mentionner dans les sections suivantes.
 
 <h3 align="center" id="feux">Intersection et feux de circulation</h3>
 
+Cette section enumerer les differents paramettre choisies de bases pour la construction du reseau
 
 <h4 align="center" id="feux">Temps de cycle</h4>
 
+De maniere general, les importations des OSM ne fournisent pas d'information relatif au temps de cycle des feux de ciruclation. Ainsi un problème recurant dans SUMo est que le temps de cycle est difinie par default comme etant à 90s.
 
-Un des probleme recurant dans SUMO est le temps de cycle des feux de circulation qui parfois ne correspondes pas à la valeurs des villes etudier. Or n'ayant pas acces au plan de feux de la ville de Montréal, les cycles seront defini par default à 90 secondes  
+N'ayant pas acces au plan de feux de la ville de Montréal, les cycles seront defini par default à 90 secondes, comme la plus part des feux de la ville. [SOURCE]
 
+Il est toute fois possible de changer les temps de cycle avec la commande dans netconvert <i>tls.cycle.time</i>. Et ceux notamement selon les scénarios choisies, par exemple l'etude de la ville de Québéc dont la temps de cycle moyenne vaut 120 secondes [SOURCE]
 
-<h4 align="center" id="feux">Paramètres</h4>
-
-No turn
+D'autre commande sont aussi disponible comme:
+<ul>
+  <li>tls.green.time : Permet d'assignier les valeurs de la durée de phase verte</li>
+  <li>tls.yellow.time : Permet d'assignier les valeurs de la durée de phase jaune</li>
+  <li>tls.red.time : Permet d'assignier les valeurs de la durée de phase red</li>
+</ul>  
 
 <h4 align="center" id="feux">Fusion de jonction</h4>
 
-Un des problèmes qui peut subvenir lors du téléchargement de certains secteurs : parfois les feux de circulation d'un carrefour à plusieurs branches passent au vert simultanément. 
+Un des problemes des encodages des feux de ciruclations, notamment lors des importation des cartes OSM est la problemes de coordinations des feux de circulations 'très' proches. Et ainsi, il est possible de constaté des phases verts et rouge simulatnément pour les feux circulation comme le represente la Fig XX pour l'intersection Avenue du Parc et Avenue des Pins .
 
 <p align="center">
-  <img width="460" height="300" src="https://user-images.githubusercontent.com/65184943/86969904-82825700-c13c-11ea-963b-cac24d041739.png">
-    <img width="460" height="300" src="https://user-images.githubusercontent.com/65184943/86971270-ddb54900-c13e-11ea-9607-de2aabbc94c1.png">
+  <img width="400" height="300" src="https://user-images.githubusercontent.com/65184943/86969904-82825700-c13c-11ea-963b-cac24d041739.png">
+    <img width="400" height="300" src="https://user-images.githubusercontent.com/65184943/86971270-ddb54900-c13e-11ea-9607-de2aabbc94c1.png">
  
 </p>
 
-Si un probleme preciste, comme vu plus haut, une des solutions est de "fusionner" les jonction proche pour en créer un seul, et donc un seul feux de circulation. Pour cela, il existe de nombreux paramètre sur <a href="https://sumo.dlr.de/docs/netconvert.html#junctions">netconvert</a> dont le --junctions.join, qui  permet de joindre deux feux de circulation proche. 
+Si un probleme preciste, ou que de nombreux feux sont simulaire, une des solutions est de "fusionner" les jonctions proche pour en créer une seule jonction, et donc un seul feux de circulation. Pour cela, il existe de nombreux paramètre sur <a href="https://sumo.dlr.de/docs/netconvert.html#junctions">netconvert</a> dont le --junctions.join, qui  permet de joindre deux feux de circulation proche. 
 
-Après avoir lancer la construction du reseau on peut remarquer que le problème est "resolu" en partie. Car le feux est synchronisé en fonction des voies de circulation, comme le montre l'image si dessous. 
+Après avoir lancer la construction du reseau on peut remarquer que le problème est transformer en partie. Car le feux est synchronisé en fonction des voies de circulation, comme le montre l'image si dessous. 
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/65184943/93613822-59cdd780-f99f-11ea-84a9-460a3d6725dc.png">
@@ -368,9 +322,11 @@ Après avoir lancer la construction du reseau on peut remarquer que le problème
 
 <h5 align="center" >Impacte sur la simualation</h5>
 
+Afin d'étudier l'impacte de ce changement de configuration, il a été decider de faire un simulation en generant 5000 vehicules identique à laire de la fonction Randomtrips.py et en prenant la sortie TripInfo (plus de detaile dans la section collectes de <a href="#tripinfo"> données </a>)
+
 <h6 align="center" >Temps de parcours</h6>
 
-Nous pouvons d'abord regarder la differance au niveau du temps de parcours (duration,WaitingTime,TimeLose) des deux types de cartes que nous avons produit (feux de circulation fusionner, pas de chagement à l'importation). Pour cela nous allons prendre une base d'un peu plus de 5000 vehicules identique, et nous allons vusaliser les données du TripInfo (expliqué dans la section collectes de <a href="#tripinfo"> données </a>). Ainsi nous trouvons: 
+Il est d'abord possible de regarder la difference au niveau du temps de parcours (duration,WaitingTime,TimeLose) des deux types de cartes produit (feux de circulation fusionner, pas de chagement à l'importation). Ainsi nous trouvons: 
 
 <table  align="center"><a align="center">
 <tr><th>Carte</th><th>Temps de parcours moyen (en s)</th> <th>Ecart Type</th>
@@ -380,15 +336,20 @@ Nous pouvons d'abord regarder la differance au niveau du temps de parcours (dura
 <tr><td>Reduction (en %)</td><td>35%</td><td>...</td><td>59%</td><td>...</td><td>51%</td><td>...</td> </tr>
 	</a></table>
 
-Donc en rectifiant cette erreur de synchronisation des feux de circulation, on peut voir que les facteurs temps peuvent être reduit de parfois de moitier. Il est donc important de prendre en compte ce genre de detaille, car il peut affecter les decisions que l'on peut avoir qvec ce type de modèle (exemple: Lien entre temps perdu et economie perdu...)
 
-On peut aussi le voir sur la repartition des vitesses comme sur le boxplot qui suit, oû l'on constate que la vitesse est relativement plus grades avec une simulation avec fusion 
+En rectifiant cette erreur de synchronisation des feux de circulation, on peut constater que les facteurs temps peuvent être reduit de parfois de moitier. Il est surment imaginable pour la simulation réel de la circulation un changement plus important entre les deux types de topologies. Et sur ce, ce type de choix peut affecteur d'autre modele et decision possible avec ce type de modèle, comme le lien entre temps perdu et impacte sur l'economie ou la polution.
+
+<h6 align="center" >Distribution des vitesses</h6>
+
+Il est possible d'étudier la repartition des vitisse comme sur le boxplot de la Fig XX qui suit.
+
 
 
 <p align="center">
-  <img width="560" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/dist_vitess_junct.png">
+  <img width="500" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/dist_vitess_junct.png">
 </p>
 
+Il est possible de voire une difference minime mais visible entre les deux simulation. Où la simualation avec des fusions d'interction traduit une plus grandre 'vitesse' moyenne de véhciules. Toutefois, il est possible des constatés que l'emplitutde des vitesses sans la fusion des jonctions est plus repartient.
 
 
 <h6 align="center" >Teleportation</h6>
@@ -399,7 +360,12 @@ Mise à part le temps de parcours, il faut aussi regarder du cote des vehicules 
   <img width="560" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/teleportation.png">
 </p>
 
-Au vu de la sensibilité de ses deux scénariosn, dans la suite du projet nous prendrons pour la simulation les reseaux avec des fusions des jonctions
+
+Au vu de la sensibilité de ses deux scénarios et d'un grand nombre de voiture teleporter dans les scérions sans fuite, pour la suite du projet il a été décider de seulement prendre en compte les topologies avec les fusions des feux de circulation.
+
+<h4 align="center" id="feux">Autres paramètres</h4>
+
+D'autres problematiques subsites lors de l'importation des cartes, notamment le demi-tour autorisé dans les feux de cirucaltion et dans les intersections, qu'il est possible d'enlever avec la commandes <i>no-turnarounds</i>
 
 <h3 align="center" id="TC">Implantation des arrets de bus</h3>
 
@@ -1221,7 +1187,7 @@ Moyene
 
 <p align="center">
 <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/runningvehicules_meso_mean.png">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/endedvehicules_meso_mean.png">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/runningvehicules_meso_mean.png">
 </p>
 
 
@@ -1262,6 +1228,10 @@ Il est relever que le temps de parcours moyenne equivaut à 21.5 min
 - Difference 24h et AM
 
 Discuter de la calibration et insertitudes
+
+<h3 align="center" id="PartieModale">Feux de circulation</h3>
+
+Definition du temps de cycle de chaque feux de circulation
 
 <h3 align="center" id="PartieModale">Partie Multimodale</h3>
 
