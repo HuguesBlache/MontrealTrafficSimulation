@@ -993,11 +993,12 @@ Nous n'avons pas calibrer les données de la matrice OD à la "realité", ce qui
 
 Le choix s'est egalement tourner en prennant en compte les comptages des véhciules au interesection, dont voici quelques representation pour des passage de voiture et de camion leger en heure de pointe:
 
+	
 <p align="center">
-<img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/compatage_voiture.png">
-
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/compatage_voiture.png">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/vehicules_cumul%C3%A9.png">
 </p>
- 
+
 Étant donnéer que les decoupage sont en tranche de 15 min, il à etait choisie de faire de meme pour le decoupage de la matrice OD, dont les valeurs sont dispoblible en annexe du document
 
 
