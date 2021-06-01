@@ -1106,30 +1106,11 @@ Moyene
 </p>
 
 	
-	<p align="center">
+<p align="center">
 <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/reel_int_meso.png">
 <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/ended_vehicules.png">
 </p>
 
-
-
-
-
-
-Dans ce cas, pour cette exemple seul les deplacements de la matrice interieurs ont été pris en compte pour les calcules. Avec seulement pour les véhicules insert nous avons 
-
-
-
-<h4 align="center" id="TC">Summary</h4>
-
-Il est possible de visualisées directement les sorties des vehicules cumuler et dans le reseau dans le temps
-
-<p align="center">
-<img width="400"  src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Pointe5%4010.png">
-<img width="400"  src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/running.png">
-</p>
-
-Il est relever que le temps de parcours moyenne equivaut à 21.5 min
 
 <h4 align="center" id="TC">DataLane</h4>
 
