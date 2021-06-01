@@ -779,54 +779,24 @@ La demarche est la même que pour la definition des véhicules, mais pour simpli
 
 <table  align="center">
 	<a align="center">
-  <tr>
-    <th>Modele</th>
-    <th>Longueur (m)</th> 
-    <th>Hauteur (m)</th>
-    <th>vClass </th>
-    <th>maxSpeed (m/s) </th>
-    <th>Consomation</th> 
-    <th>Nomre Euro</th>
-    <th>SUMO</th>
-  </tr>
-  <tr>
-    <td>Nova Bus</td>
-    <td>12,2</td>
-    <td>3.25</td>
-    <td>Bus</td>
-    <td>27.78</td>
-    <td><a href="http://www.bv.transports.gouv.qc.ca/mono/1018809.pdf"> 45</a></td>
-    <td>Euro6</td>
-    <td>PC_G_EU6</td>
-  </tr>
-	</a>
+  <tr><th>Modele</th><th>Longueur (m)</th>   <th>Hauteur (m)</th>  <th>vClass </th>  <th>maxSpeed (m/s) </th>  <th>Consomation</th>   <th>Nomre Euro</th>  <th>SUMO</th></tr>
+  <tr>  <td>Nova Bus</td>  <td>12,2</td>  <td>3.25</td>  <td>Bus</td>  <td>27.78</td>  <td><a href="http://www.bv.transports.gouv.qc.ca/mono/1018809.pdf"> 45</a></td>  <td>Euro6</td>  <td>PC_G_EU6</td></tr>
+</a>
 </table>
 
 
-<h2 align="center" id="autos" >Génération de la demande</h2>
+<h3 align="center" id="autos" >Génération de la demande</h3>
 
 
-<h3 align="center">Affectation des parcours dans SUMO</h3>
+Les sections precedentes, ce focalisié sur la création de la demande et sur la construction topologique du reseau. Cette section se focalise sur la générations de la demande, donc la construction des déplacements dans notre reseau.
 
+Il existe  de nombreuse possibilité dans Sumo pour générer de la demander, dans le cas du modèle de Montréal il a été choisie de prendre et de comparer trois types de génération de la demande. Deux générations avec la fonction od2trips et une génrération avec duarouter.
 
 <h4 align="center">od2trips</h4>
 
+La fonction interne à Sumo <i> <a href="https://sumo.dlr.de/docs/od2trips.html"> od2trips</a></i> permet de de créer des itinaires pour chaque véhicules (trajet Origine-Destination) à partir des matrice OD et des TAZ spécifié dans les sections precedentes. 
 
-Lors que la simulation toutes les voitures seront générées aléatoirement dans cette zone rouge d'origine selon les stragies choisies.
-
-Après avoir construit le fichier TAZ et créé la Matrice OD, nous pouvons maintenant construire les déplacements sur notre modèle. La fonction <i> <a href="https://sumo.dlr.de/docs/od2trips.html"> od2trips.py </a> </i> permet d'affecter les voyages de chaques véhicules (traject Origine jusqu'à la destination) dans un nouveau fichier à partir de la matrice OD et des TAZ que nous avons definies. Pour notre simulation, nous voulons que la repartitions des trajets soit uniforme, on peut l'utiliser avec la commande <i>spread.uniform </i>
-
-
-<p align="center">
-  <img width="600" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/od2trips.png">
-  
-</p>
-
-
-On peut créer un fichier des different paramettre enoncer plus haute ainsi qu'un prefix des véhciles afin de construire les types véhicles. Nous nommerons ce fichier <i> od2trips.config.xml</i>
-
-
-Nous prendrons les paramètres suivant pour notre simulation
+Il exite de nombreux parametres possibles pour l'execustion de od2trips, voici la liste utilisé pour la simulation
 
  <ul  align="center">
   <li  align="center" >Scale: Permet de definir le pourcentage que l'on veut inserer de la matrice OD de notre simulation</li>
@@ -835,6 +805,14 @@ Nous prendrons les paramètres suivant pour notre simulation
   <li  align="center" >Timeline : Premet de decouper la matrice en tranche horraire et definir des probabilité d'insertion de véhicules pour ces tranche</li>	
 </ul> 
 
+Lors de l'exicution de la commande deux choix possible pour la sortie sont possible.
+
+<ul  align="center">
+  <li  align="center" >Trips: Od2trips créer des déplacements uniques pour chaques véhicules. En definisant un lien de départ comme un point aléatoire de la zones d'origine (c'est à dire un edge aléatoire dans le TAZ) et de même pour la zones d'arrivé. De plus, selon les paramettres choisies, les instant de départ du trajet sont définies dans les tranches horraires definies.</li>
+  <li  align="center" >Flow: Od2trips définies des flues de véhicules, c'est à dire un nombre de véhicules se déplacent d'une origine et un destination pour une date precise. Pour ce cas, le edges ne sont pas spécfier mais seulement le numero du TAZ de l'OD</li>
+</ul> 
+
+Ainsi il est possible de créer un fichier xml de la sorte pour la configuration de la commande od2trips:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -846,22 +824,32 @@ Nous prendrons les paramètres suivant pour notre simulation
 	</input>
 	
 	<output>
-		<output-file value=<Name_file>/>
+		<output-file value=<trips_file>/>
+    <flow-output value=<flow_file>/>
 	</output>
 	
 	<processing>
+    <scale value=<scale_value>/>
 		<prefix value=<String_value> />
-		<spread.uniform value="true" />
+		<spread.uniform value="false" />
 		<timeline value="<TIME>:<PROB>"/>
 	</processing>
 </configuration>
 
 ```
-Pour execter le fihcier od2trips il suffit de prendre suivre la commande suivante:
+
+L'ensemble de c'est parametre peut-être spécifier dans un fichier de configuration que l'on peut nommer <i>od2trips.config.xml</i>. Et pour execter le fihcier od2trips il suffit de prendre suivre la commande suivante:
 
 ```
 od2trips -c od2trips.config.xml 
 ```
+
+La demarche de la fonction od2trips est visible sur la Fig XX:
+
+<p align="center">
+  <img width="600" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/od2trips.png"> 
+</p>
+
 
 <h4 align="center" id="duarouter">duarouter</h4>
 
@@ -880,6 +868,7 @@ Nous prendrons les paramètres suivant pour notre simulation
   <li  align="center">no-step-log: Permet de désactiver les sortie de la console sur les etapes d'analyse</li>
 </ul> 
 
+Il est possible de repartir les trajets de manière uniforme à l'aide de l'utilisation de la commande <i>spread.uniform </i>. Comme le décopage horaire est utilisé (voir plus bas), od2trips permettre de calculer les heures de départ de chaque véhicules dans des tranches de 15 min
 
 On peut créer un fichier des different paramettre enoncer plus haute. Nous nommerons ce fichier <i> duarouter_configuration.xml</i>
 
