@@ -995,8 +995,8 @@ Le choix s'est egalement tourner en prennant en compte les comptages des véhciu
 
 	
 <p align="center">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/compatage_voiture.png">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/vehicules_cumul%C3%A9.png">
+<img width="600" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/compatage_voiture.png">
+<img width="600" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/vehicules_cumul%C3%A9.png">
 </p>
 
 Étant donnéer que les decoupage sont en tranche de 15 min, il à etait choisie de faire de meme pour le decoupage de la matrice OD, dont les valeurs sont dispoblible en annexe du document
