@@ -340,6 +340,7 @@ En rectifiant cette erreur de synchronisation des feux de circulation, on peut c
 
 <h6 align="center" >Distribution des vitesses</h6>
 
+
 Il est possible d'étudier la repartition des vitisse comme sur le boxplot de la Fig XX qui suit.
 
 
@@ -1106,6 +1107,8 @@ Comme vu plus haut, il est choisie de prendre les temps de parcours pour voir la
 </p>
 
 Il est fort de constater que les temps de trajets moyennes ne depassent pas les 12 minutes, contrairement au données du recensement du Canada qui avancer un temps moyennes parcours de 26.8 min pour les autos. Il semblerait qu'il y est une sensibilité assez forte dans le choix du parametre mesosime. Comme dit plus haut, le modèle simplifier la circulation car le modele est baser sur les edges et non sur les lanes.
+	
+ANOVA
 
 <h4 align="center" id="TC">Running</h4>
 
