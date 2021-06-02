@@ -1051,32 +1051,53 @@ Avec comme données <a href="https://www150.statcan.gc.ca/n1/daily-quotidien/171
 <tr><td>Montréal</td><td>30</td><td>26.8</td><td>44.4</td><td>16.3</td><td>26.0</td> </tr>
 </a></table>
 
-<h3 align="center" id="TC">Originie et destination dans l'île</h3>
+<h3 align="center" id="TC">Originie et destination dans l'île et reseau simplifier</h3>
 
-La section precente, presente les differentes simulation ne prennnans en compte que les deplacements 'interne' à l'ile de Montréal. C'est à dire les deplacements dont l'origine et la destination provienne des secteurs municipales de l'ile de Montréal definie plus haut
+La section precente, presente les differentes simulation ne prennnans en compte que les deplacements 'interne' à l'ile de Montréal. C'est à dire les deplacements dont l'origine et la destination provienne des secteurs municipales de l'ile de Montréal definie plus haut. Mais aussi avec une topologie simplifier, c'est à dire sans les rue residentielles et les rues unclassifier
 
-<h4 align="center" id="TC">Vitesse de calcul</h4>
+<h4 align="center" id="TC">Vitesse de calcul initialisation</h4>
+	
+Selon les stratégies choisies et dans la prespective d'une cosimulation entre le simulation de circulation et le lte simulator, il est utile de se pencher sur le temps de calcul des differents programme executer. Apres avoir tourner XX simulation pour les commandes duarouter et od2trips, il est possible de voir la vitesse de calcul sur la Fig XX
 <p align="center">
 <img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/od2trip_computation_int.png">
 <img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/duarouter_computation.png">
->
 </p>
+
+Il n'est pas surprennant de constater difference notoire entre les od2trips et les duarouter. En effet, le calcul sous duarouter n'assige que des points de depart et des points d'arriver pour les differents trips pris en comptes. Tandis que pour duarouter, l'algorithme, notamment celui de Dikjstra, prendre en compte l'ensemble du parcours de chaque trajets pris indivuelles pour une entrées Trips, et ceux pour l'ensemble des trajets pour atteindre un equilibre de la circulation. L'enjeux du temps de calcule reside plus lors de la simulation sur SUMO comme mentionner dans les sections suivantes.
+	
+
+<h5 align="center" id="TC">Simulation Microscopoque</h5>
+
+Cette section traite de la simualtion des trois options, od2trips, flow et duarouter lors du simulation microscopique pour les parametre énumer plus haut
+
+	
 <h4 align="center" id="TC">Mesoscopic</h4>
 
-Au vu de la grandeur du reseau il est possible de faire des simulation mésoscopique. Ce modèle utilise les mêmes fichiers qu'une simualtions microscopiques classiques mais en ayant des choix plus grossier avec le changementr de voie.
+	
+Au vu des resultats des temps assez grandes vu dans la sections, notamment lors des simulations et au vu du nombre de vehicules injecter dans le reseau, il est possible de faire des simulation mésocopique de la circulation.
 
-Par exemple en utilisant les parametres spécifier plus haute, et en utilisant le paramètre --mesosim dans le fichier
+Le modèle proposé par SUMO sur les travaux de Eissfeldt, Nils Gustaf [<a href="https://kups.ub.uni-koeln.de/1274/1/thesis_nils_eissfeldt.pdf">ref<a> AJOUT
+	
+Plusieurs impacte sont possible du au choix de cette configuration, notamment le calcule sont possiblement moins precis sur les interesection, notamment au feux de circualation, mais aussi les vitesses de l'ensemble des véhicules et les changement de voies.
+
+Par exemple en utilisant les parametres spécifier plus haute, et en utilisant le paramètre --mesosim dans le fichier.
 
 <h4 align="center" id="TC">Vitesse de calcul</h4>
+	
+Comme dans la section precedentes, il est possible des retirer les temps de calcules de chaque scénarios choises dans la simulation.
 <p align="center">
 <img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/sumo_comput_int.png">
 <img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_flow/sumo_comput_int.png">
 <img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/sumo_comput_int.png">
 </p>
+	
+Comme le stipule la documenation de SUMO, le choix de l'option de prendre une simulation mésocopique reduit drastriquement le temps de calcule pour une simulation. Il est remarque de constater que chaque scénario, od2trips, flow ou duarouter est netemment plus rapide que les scénarios microscopique. As ce stade, les simulations mésocopique pour des simulations avec des trajets interieurs pour une reseau simplifier sont envisagable en terme de co-simulation
+	
+
 <h4 align="center" id="TC">Mean-Travel_Time</h4>
 
-Comme vu plus haut, il est choisie de prendre les temps de parcours pour voir la represenation avec la réalité. ainsi apres avoir rouler XX simulations pour les differentes parametre od2trips, flow, duarouter. Il est possible de representer les temps moyennes:
 
+Comme vu plus haut, il est choisie de prendre les temps de parcours pour voir la represenation avec la réalité. ainsi apres avoir rouler XX simulations pour les differentes parametre od2trips, flow, duarouter. Il est possible de representer les temps moyennes:
 
 <p align="center">
 <img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/Mean_travel_int.png">
@@ -1084,7 +1105,11 @@ Comme vu plus haut, il est choisie de prendre les temps de parcours pour voir la
 <img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/Mean_travel_int.png">
 </p>
 
+Il est fort de constater que les temps de trajets moyennes ne depassent pas les 12 minutes, contrairement au données du recensement du Canada qui avancer un temps moyennes parcours de 26.8 min pour les autos. Il semblerait qu'il y est une sensibilité assez forte dans le choix du parametre mesosime. Comme dit plus haut, le modèle simplifier la circulation car le modele est baser sur les edges et non sur les lanes.
+
 <h4 align="center" id="TC">Running</h4>
+
+Comme pour la simulation microscopique, il est possible de visalisées les differentes courbe de running vehicules et de vehiucles cummulé.
 <p align="center">
 <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/running_od_int.png">
 <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/ended_od_int.png">
@@ -1099,23 +1124,26 @@ Comme vu plus haut, il est choisie de prendre les temps de parcours pour voir la
 </p>
 
 
-Moyene
+Si nous faisons la moyennes de chaques simulations:
 
 <p align="center">
 <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/runningvehicules_meso_mean.png">
 <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/endedvehicules_meso_mean.png">
 </p>
 
-	
+Comme pour la simulation precedentes, il est constaté qu'il y a également une difference assez remarquable entre chaque simulation. Cette fois le od2trips à premieres vu semble suivre un courbe de comptage presenter dans la section presente, ainsi que les flow. À noter également, que même si la "pointe" de la courbe de duarouter est legerment décaler avec les autres courbe, la courbes n'est pas arrete nette mais d'autres véhcules sans encore inserer comme on peut le voir sur la figure des ended vehicules.
+
+La comparaison avec la courbe esperer est presente sur la Fig XX
 <p align="center">
 <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/reel_int_meso.png">
 <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/ended_vehicules.png">
 </p>
 
+Il est assez remarcable de voir un assez grande difference entre les courbes simulées et la courbes esperée. Cependant la courbe de la simulation od2trips semble devoir suivre la tendance de la courbe esperer. Neamoins il est constaté que l'ensemble de ces simulation soit en "sous" regime des non prise en compte de trajet dans les calculs des differentes fonctions.
 
 <h4 align="center" id="TC">DataLane</h4>
 
-
+<h4 align="center" id="TC">Impacte sur la simulation</h4>
 
 <h3 align="center" id="TC">Données Bluetooth</h3>
 
