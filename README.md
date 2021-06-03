@@ -922,6 +922,16 @@ En resumer, voici la demarche de la generation de trajet dans notre simulation
 
 La section suivante presente énumerer les étapes pour la simulation
 
+<h4 align="center" id="TC">Nombre de simulation à excecuté</h4>
+
+Le logiciel SUMO, comme les autres logiciels de microsmulation de la circulation, prendre un representation de la circualtion de manière stochastique, la question du nombre de simualtions à effectuer pour recuper des données conveneme et acceptables se posent. [Gauthier][HollanderetLiu]
+	
+<p align="center">
+  <img  width="250" src="https://render.githubusercontent.com/render/math?math=N=(t_\alpha_/_2\frac{s}{\overline{x}\epsilon})^2">	
+</p>
+	
+Avec <img width="10" src="https://render.githubusercontent.com/render/math?math=t"/> suivant une loi de student de N-1 degrées de liberté, <img width="10" src="https://render.githubusercontent.com/render/math?math=\alpha"/> le niveau de confiance,  <img width="10" src="https://render.githubusercontent.com/render/math?math=s"/> l'ecart type de l'échantillon étdudier, <img width="10" src="https://render.githubusercontent.com/render/math?math=\overline{x}"/> la valeur moyenne de l'echantillon et <img width="10" src="https://render.githubusercontent.com/render/math?math=\epsilon"/> la tolérance choisie
+
 <h3 align="center">Graine</h3>
 
 Un aspect important dans la simulation du traffic est l'apect stochastiques d'une simulation afin de s'approcher au mieux des phénomes réel de la simulation grâce à la simulation. Or Sumo utilise  un algorithm, <i> <a href="https://sumo.dlr.de/docs/Simulation/Randomness.html">Mersenne Twister </a> </i> qui fixe le nombres aléatoires choisies pour la construction du modèle et de ce fait rend les simulations déterministes. Et ceci impacte de nombreuse valeur:
@@ -1026,9 +1036,8 @@ Pour ce faire on utilisera la commande --scale dans od2trips
 >
 </p>
 
-<h4 align="center" id="TC">Nombre de simulation à excecuté</h4>
 
-Le logiciel SUMO, comme les autres logiciels de microsmulation de la circulation, prendre un representation de la circualtion de manière stochastique, la question du nombre de simualtions à effectuer pour recuper des données conveneme et acceptables se posent. [Gauthier][HollanderetLiu]
+
 
 <h4 align="center" id="TC">Mean Travel Time</h4>
 
