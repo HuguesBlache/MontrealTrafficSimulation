@@ -18,7 +18,7 @@ La construction du modèle de microsimulation fait partie du projet de Maitrise 
 5. <a href="#autos">Génération de la demande</a><br>
 6. <a href="#Simulation">Simulation</a><br>
 7. <a href="#Collecte">Collecte de données</a><br>
-8. <a href="#Calibration">Calibration</a><br>
+8. <a href="#Calibration">Analyse des sorties/a><br>
 9. <a href="#Discusion">Discusion et reste</a><br>
 10. <a href="#Annexe">Annexe</a><br>
 
@@ -990,7 +990,39 @@ Voici quelques differences visible entre chaque simulation pour une simulation a
 
 <h2 align="center" id="Collecte">Collecte de données</h2>
 
-<h2 align="center" id="Calibration">Calibration</h2>
+La section suivante traite de la collecte de données utilisées à la fois pour la visualisation des données et pour le LTE simulateur
+	
+<h3 align="center" >Visualisation des données</h3>
+	
+<h3 align="center">LTE simulator input</h3>
+
+<h4 align="center">Floating Car Data</h4>
+
+Le principe de FCD dans l'étude du traffic est de collecter les informations indivuellement de chaque véhicles afin d'en retirer les vitesses, les localisations et le sens de circulation [<a href="https://fr.wikipedia.org/wiki/Floating_car_data">Wikipedia</a>]. Dans SUMo, la simulation generer un fichier de sortie sur les informations de chaques vehicules en fonction du pas de temps choisies. Par default, la precission de localisation est de 1cm, mais il est possible de le regler avec la commande <i>precision</i>. Egalement, il est possible de restreindre l'information retirer, ce qui peut être utile lors de simulation avec de nombreux vehicules et un large reseaux.Le fichier de sortie sera de la sorte:
+
+```xml
+<fcd-export>
+  <timestep time="<TIME_STEP>">
+      <vehicle id="<VEHICLE_ID>" x="<VEHICLE_POS_X>" y="<VEHICLE_POS_Y>" angle="<VEHICLE_ANGLE>" type="<VEHICLE_TYPE>"
+      speed="<VEHICLE_SPEED>"/>
+      ... more vehicles ...
+  </timestep>
+  ... next timestep ...
+</fcd-export>
+```
+
+Pour appeler cette fonction, il faut precesier dans la simulation la commande <i> fcd-output</i> comme decrit ci dessous:
+	
+```
+sumo -c Montreal.sumocfg --fcd-output FCD.xml
+```
+
+Après la simulation,les données brute du FCD peuvent être traitées avec <a href="https://sumo.dlr.de/docs/Tools/TraceExporter.html"> TraceExporter </a> ou bien avec différent graphique. Dans le cas de la co-simulation, se seront en partie ces données qui servirons d'entrer à la simulation.
+
+
+	
+<h2 align="center" id="Calibration">Analyse des sorties</h2>
+
 
 <h3 align="center" id="TC">Heure de pointe</h3>
 
@@ -1160,7 +1192,7 @@ Il est assez remarcable de voir un assez grande difference entre les courbes sim
 <h3 align="center" id="TC">Données Bluetooth</h3>
 
 
-<h2 align="center" id="Discussion">Discussion ou reste</h2>
+<h2 align="center" id="Discusion">Discussion ou reste</h2>
 
 
 - Prise en compte des données Bluetooth (Corelation avec spearman ?), temps de parcours,speed mean
