@@ -1129,6 +1129,34 @@ Il est relever que le temps de parcours moyenne equivaut à 21.5 min
 
 <h3 align="center" id="TC">Données Bluetooth</h3>
 
+La taxonomie des applications communicantes a relevé que la technologies Bluetooth sont difficlement deployable et envisagable pour la mise en place des ITS. Néamoins, cette technologie est utilisée aujourd'hui pour de la collecte de données. Même si l'interer dans les transport n'est que recentes, les premieres apparation academique date de 2010 [<a href="https://link.springer.com/article/10.1007/s13177-014-0092-1">Friesen</a> and McLeaod], les capteurs bluetooths ont eu un interet grandissant dans la collecte de données de la circulation ces 10 dernières années.
+
+Le principe actuelle et general de cette collecte repose sur de la communication V2I, avec un recepeteur (les bornes bluetooth) et un emeteur (generalement un cellulaire). Le principe de la collecte est le suivant: Le capteur Bluetooth cherche des appareils Bluetooth dans son rayon de communication (de l'ordre du 100 m). Lorsqu'il detecte un appareil, le capteur recuper l'addresse MAC, unique pour chaque apareil, pour en recolter quelques informations
+relative à l'emetteur, comme sont emplacement, la date d'arrivées et de sorties de la zones de detection, et par deduction sa vitesse.
+Pour la circulation, les données de transport sont generalement pris pour une section routier comportant deux capteurs bluetooth, une capteur en amont et un en aval à distance fixe. Cette strategie permet au permer capteurs de tirer les information d'une addresse MAC à l'instant t0 puis le deuxieme capteur tire les information t1. Comme d'ecrit sur l'image suivante:
+
+<p align="center">
+  <img width="600" src="https://www.libelium.com/libelium-images/generico2/bluetooth_speed_big.png">
+</p>
+Source: libelium 2011
+
+Grace a cette stratégie,les données collectées par les capteurs sont de maniere general des débits, temps de parcours et des données d'origine-destination.L'avantage de ces capteurs le prix faible que les autres collecte de données, comme les enregistrements vidéo avec les lectures de plaques [Alizadeh H. (2020) Circulation]. 
+
+Néamoins, les données resorties et sur la qualité notamment dependant grandement des utilisateurs. Car pour que le capteur puisse lire l'adresse MAC d'un émetteur, souvent un cellulaire, le mode bluetooth d'autre activé. Cependant, l'explication de l'interer de cette technolgie peut avoir un liens avec le nombre grandissant de smartphone dans la population, 34 Millions d'abonnement mobile au Canada en 2019 [<a href="https://www.ceicdata.com/en/indicator/canada/number-of-subscriber-mobile">Ceicdata </a>]
+
+C'est ainsi qu'afin de mieux comprendre certain phénomes de la circulation sur l'ile, la ville de Montréal à déployer des capteurs communicant équipé de technologies Bluetooth  dans des segments routiers stratégiques. [Ville de <a href="https://donnees.montreal.ca/ville-de-montreal/temps-de-parcours-sur-des-segments-routiers-historique">Montréal</a>]. Ces données, en libre d'accées, resortre certaines cartéristiques de la circulation, comme les temps de parcours, les vitesse moyennes et la longueur du segments, et ceux sur une paire de capteur données. La ville à mise sur un deployement de 369 capteurs reparties dans un ensemble spacial definie dont les territoires sont definies en annexes.
+
+Pour l'impentation de ces capteurs, la ville de Montréal a fais appelle à l'entreprise Québecoise Orange Traffic spécialisé dans le "domaine de la technologie de la signalisation et des feux de circulation". Entreprise tres présente dans la signalisation Montréalaise, propose pour système de détection Bluetooth un detecteurs BTM-232, qui à une porter de maximal de 125 mètres [<a href="https://www.orangetraffic.com/fr/product/unite-de-detection-bluetooth-btm-232/?pdf=1050">Fiche technique</a>].
+
+Il est possible de simulé des appareils embarqués, comme le Bluetooth [<a href="https://sumo.dlr.de/docs/Simulation/Bluetooth.html">Bluetooth<a>], dans sumo. Pour cela, il possible d'"implanter" à chaque véhicule un capateur qui reprendre la dectection sur les signaux radio (comme le Bluetooth)  afin qu'il puisse émettre (btsender) ou recevoir (btreceiver) des informations diverse sur son état. Néamoins, il est actuellement imposible d'implanter des RSU pour recrer de la communication V2I comme decrit dans la figure XX
+
+<p align="center">
+  <img width="600" src="https://www.researchgate.net/profile/Mukhtar-Sofi/publication/315689107/figure/fig1/AS:669020269326348@1536518270511/The-Bluetooth-detection-principle.jpg">
+</p>
+
+Pour remedier à ce problème, il est possible de placer un véhicule à l'arret sur un parking au lieu de l'emplacement choisie pour le detecteur bluetooth et lui arribuer un fonction receiver.
+
+A continue
 
 <h2 align="center" id="Discussion">Discussion ou reste</h2>
 
@@ -1327,6 +1355,24 @@ Description des differents limitations administratifs utiliser dans le modèle
 <tr><td>31500</td><td>9,3</td></tr>
 <tr><td>32400</td><td>7,2</td></tr>
 </a></table>
+
+<h3 align="center" id="Road_Type">Secteur des capteurs <a href="">Bluetooth</a></h3>
+
+<table  align="center"><a align="center">
+<tr><th>Nom du secteur</th><th>Nombre de capteur</th><tr>
+  <tr><td>Artère Pie-IX</td><td>7,2</td></tr>
+  <tr><td>Artère Sherbrooke</td><td>7,2</td></tr>
+  <tr><td>Artère Saint-Michel</td><td>7,2</td></tr>
+  <tr><td>Artère Saint-Denis (en partie)</td><td>7,2</td></tr>
+  <tr><td>Artère Parc</td><td>7,2</td></tr>
+  <tr><td>Artère De Lorimier (en partie)</td><td>7,2</td></tr>
+   <tr><td> Artère Rosemont (en partie)</td><td>7,2</td></tr>
+   <tr><td> Artère Saint-Joseph (en partie)</td><td>7,2</td></tr>
+    <tr><td>Artère Jean-Talon (en partie)</td><td>7,2</td></tr>
+    <tr><td>Artère Crémazie (en partie)</td><td>7,2</td></tr>
+   <tr><td> Secteur Quartier des spectacles</td><td>7,2</td></tr>
+</a></table>
+
 
 # SUITE
 # NON
