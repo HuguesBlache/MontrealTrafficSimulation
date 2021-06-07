@@ -18,7 +18,7 @@ La construction du modèle de microsimulation fait partie du projet de Maitrise 
 5. <a href="#autos">Génération de la demande</a><br>
 6. <a href="#Simulation">Simulation</a><br>
 7. <a href="#Collecte">Collecte de données</a><br>
-8. <a href="#Calibration">Calibration</a><br>
+8. <a href="#Calibration">Analyse des sorties/a><br>
 9. <a href="#Discusion">Discusion et reste</a><br>
 10. <a href="#Annexe">Annexe</a><br>
 
@@ -339,6 +339,7 @@ Il est d'abord possible de regarder la difference au niveau du temps de parcours
 En rectifiant cette erreur de synchronisation des feux de circulation, on peut constater que les facteurs temps peuvent être reduit de parfois de moitier. Il est surment imaginable pour la simulation réel de la circulation un changement plus important entre les deux types de topologies. Et sur ce, ce type de choix peut affecteur d'autre modele et decision possible avec ce type de modèle, comme le lien entre temps perdu et impacte sur l'economie ou la polution.
 
 <h6 align="center" >Distribution des vitesses</h6>
+
 
 Il est possible d'étudier la repartition des vitisse comme sur le boxplot de la Fig XX qui suit.
 
@@ -921,6 +922,16 @@ En resumer, voici la demarche de la generation de trajet dans notre simulation
 
 La section suivante presente énumerer les étapes pour la simulation
 
+<h4 align="center" id="TC">Nombre de simulation à excecuté</h4>
+
+Le logiciel SUMO, comme les autres logiciels de microsmulation de la circulation, prendre un representation de la circualtion de manière stochastique, la question du nombre de simualtions à effectuer pour recuper des données conveneme et acceptables se posent. [Gauthier][HollanderetLiu]
+	
+<p align="center">
+  <img  width="250" src="https://render.githubusercontent.com/render/math?math=N=(t_\alpha_/_2\frac{s}{\overline{x}\epsilon})^2">	
+</p>
+	
+Avec <img width="10" src="https://render.githubusercontent.com/render/math?math=t"/> suivant une loi de student de N-1 degrées de liberté, <img width="10" src="https://render.githubusercontent.com/render/math?math=\alpha"/> le niveau de confiance,  <img width="10" src="https://render.githubusercontent.com/render/math?math=s"/> l'ecart type de l'échantillon étdudier, <img width="10" src="https://render.githubusercontent.com/render/math?math=\overline{x}"/> la valeur moyenne de l'echantillon et <img width="10" src="https://render.githubusercontent.com/render/math?math=\epsilon"/> la tolérance choisie
+
 <h3 align="center">Graine</h3>
 
 Un aspect important dans la simulation du traffic est l'apect stochastiques d'une simulation afin de s'approcher au mieux des phénomes réel de la simulation grâce à la simulation. Or Sumo utilise  un algorithm, <i> <a href="https://sumo.dlr.de/docs/Simulation/Randomness.html">Mersenne Twister </a> </i> qui fixe le nombres aléatoires choisies pour la construction du modèle et de ce fait rend les simulations déterministes. Et ceci impacte de nombreuse valeur:
@@ -979,7 +990,39 @@ Voici quelques differences visible entre chaque simulation pour une simulation a
 
 <h2 align="center" id="Collecte">Collecte de données</h2>
 
-<h2 align="center" id="Calibration">Calibration</h2>
+La section suivante traite de la collecte de données utilisées à la fois pour la visualisation des données et pour le LTE simulateur
+	
+<h3 align="center" >Visualisation des données</h3>
+	
+<h3 align="center">LTE simulator input</h3>
+
+<h4 align="center">Floating Car Data</h4>
+
+Le principe de FCD dans l'étude du traffic est de collecter les informations indivuellement de chaque véhicles afin d'en retirer les vitesses, les localisations et le sens de circulation [<a href="https://fr.wikipedia.org/wiki/Floating_car_data">Wikipedia</a>]. Dans SUMo, la simulation generer un fichier de sortie sur les informations de chaques vehicules en fonction du pas de temps choisies. Par default, la precission de localisation est de 1cm, mais il est possible de le regler avec la commande <i>precision</i>. Egalement, il est possible de restreindre l'information retirer, ce qui peut être utile lors de simulation avec de nombreux vehicules et un large reseaux.Le fichier de sortie sera de la sorte:
+
+```xml
+<fcd-export>
+  <timestep time="<TIME_STEP>">
+      <vehicle id="<VEHICLE_ID>" x="<VEHICLE_POS_X>" y="<VEHICLE_POS_Y>" angle="<VEHICLE_ANGLE>" type="<VEHICLE_TYPE>"
+      speed="<VEHICLE_SPEED>"/>
+      ... more vehicles ...
+  </timestep>
+  ... next timestep ...
+</fcd-export>
+```
+
+Pour appeler cette fonction, il faut precesier dans la simulation la commande <i> fcd-output</i> comme decrit ci dessous:
+	
+```
+sumo -c Montreal.sumocfg --fcd-output FCD.xml
+```
+
+Après la simulation,les données brute du FCD peuvent être traitées avec <a href="https://sumo.dlr.de/docs/Tools/TraceExporter.html"> TraceExporter </a> ou bien avec différent graphique. Dans le cas de la co-simulation, se seront en partie ces données qui servirons d'entrer à la simulation.
+
+
+	
+<h2 align="center" id="Calibration">Analyse des sorties</h2>
+
 
 <h3 align="center" id="TC">Heure de pointe</h3>
 
@@ -993,11 +1036,12 @@ Nous n'avons pas calibrer les données de la matrice OD à la "realité", ce qui
 
 Le choix s'est egalement tourner en prennant en compte les comptages des véhciules au interesection, dont voici quelques representation pour des passage de voiture et de camion leger en heure de pointe:
 
+	
 <p align="center">
-<img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/compatage_voiture.png">
-
+<img width="600" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/compatage_voiture.png">
+<img width="600" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/vehicules_cumul%C3%A9.png">
 </p>
- 
+
 Étant donnéer que les decoupage sont en tranche de 15 min, il à etait choisie de faire de meme pour le decoupage de la matrice OD, dont les valeurs sont dispoblible en annexe du document
 
 
@@ -1024,9 +1068,8 @@ Pour ce faire on utilisera la commande --scale dans od2trips
 >
 </p>
 
-<h4 align="center" id="TC">Nombre de simulation à excecuté</h4>
 
-Le logiciel SUMO, comme les autres logiciels de microsmulation de la circulation, prendre un representation de la circualtion de manière stochastique, la question du nombre de simualtions à effectuer pour recuper des données conveneme et acceptables se posent. [Gauthier][HollanderetLiu]
+
 
 <h4 align="center" id="TC">Mean Travel Time</h4>
 
@@ -1050,40 +1093,67 @@ Avec comme données <a href="https://www150.statcan.gc.ca/n1/daily-quotidien/171
 <tr><td>Montréal</td><td>30</td><td>26.8</td><td>44.4</td><td>16.3</td><td>26.0</td> </tr>
 </a></table>
 
-<h3 align="center" id="TC">Originie et destination dans l'île</h3>
+<h3 align="center" id="TC">Originie et destination dans l'île et reseau simplifier</h3>
 
-La section precente, presente les differentes simulation ne prennnans en compte que les deplacements 'interne' à l'ile de Montréal. C'est à dire les deplacements dont l'origine et la destination provienne des secteurs municipales de l'ile de Montréal definie plus haut
+La section precente, presente les differentes simulation ne prennnans en compte que les deplacements 'interne' à l'ile de Montréal. C'est à dire les deplacements dont l'origine et la destination provienne des secteurs municipales de l'ile de Montréal definie plus haut. Mais aussi avec une topologie simplifier, c'est à dire sans les rue residentielles et les rues unclassifier
 
-<h4 align="center" id="TC">Vitesse de calcul</h4>
+<h4 align="center" id="TC">Vitesse de calcul initialisation</h4>
+	
+Selon les stratégies choisies et dans la prespective d'une cosimulation entre le simulation de circulation et le lte simulator, il est utile de se pencher sur le temps de calcul des differents programme executer. Apres avoir tourner XX simulation pour les commandes duarouter et od2trips, il est possible de voir la vitesse de calcul sur la Fig XX
 <p align="center">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/od2trip_computation_int.png">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/duarouter_computation.png">
->
+<img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/od2trip_computation_int.png">
+<img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/duarouter_computation.png">
 </p>
+
+Il n'est pas surprennant de constater difference notoire entre les od2trips et les duarouter. En effet, le calcul sous duarouter n'assige que des points de depart et des points d'arriver pour les differents trips pris en comptes. Tandis que pour duarouter, l'algorithme, notamment celui de Dikjstra, prendre en compte l'ensemble du parcours de chaque trajets pris indivuelles pour une entrées Trips, et ceux pour l'ensemble des trajets pour atteindre un equilibre de la circulation. L'enjeux du temps de calcule reside plus lors de la simulation sur SUMO comme mentionner dans les sections suivantes.
+	
+
+<h5 align="center" id="TC">Simulation Microscopoque</h5>
+
+Cette section traite de la simualtion des trois options, od2trips, flow et duarouter lors du simulation microscopique pour les parametre énumer plus haut
+
+	
 <h4 align="center" id="TC">Mesoscopic</h4>
 
-Au vu de la grandeur du reseau il est possible de faire des simulation mésoscopique. Ce modèle utilise les mêmes fichiers qu'une simualtions microscopiques classiques mais en ayant des choix plus grossier avec le changementr de voie.
+	
+Au vu des resultats des temps assez grandes vu dans la sections, notamment lors des simulations et au vu du nombre de vehicules injecter dans le reseau, il est possible de faire des simulation mésocopique de la circulation.
 
-Par exemple en utilisant les parametres spécifier plus haute, et en utilisant le paramètre --mesosim dans le fichier
+Le modèle proposé par SUMO sur les travaux de Eissfeldt, Nils Gustaf [<a href="https://kups.ub.uni-koeln.de/1274/1/thesis_nils_eissfeldt.pdf">ref<a> AJOUT
+	
+Plusieurs impacte sont possible du au choix de cette configuration, notamment le calcule sont possiblement moins precis sur les interesection, notamment au feux de circualation, mais aussi les vitesses de l'ensemble des véhicules et les changement de voies.
+
+Par exemple en utilisant les parametres spécifier plus haute, et en utilisant le paramètre --mesosim dans le fichier.
 
 <h4 align="center" id="TC">Vitesse de calcul</h4>
+	
+Comme dans la section precedentes, il est possible des retirer les temps de calcules de chaque scénarios choises dans la simulation.
 <p align="center">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/Mean_travel_int.png">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_flow/sumo_comput_int.png">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/sumo_comput_int.png">
+<img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/sumo_comput_int.png">
+<img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_flow/sumo_comput_int.png">
+<img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/sumo_comput_int.png">
 </p>
+	
+Comme le stipule la documenation de SUMO, le choix de l'option de prendre une simulation mésocopique reduit drastriquement le temps de calcule pour une simulation. Il est remarque de constater que chaque scénario, od2trips, flow ou duarouter est netemment plus rapide que les scénarios microscopique. As ce stade, les simulations mésocopique pour des simulations avec des trajets interieurs pour une reseau simplifier sont envisagable en terme de co-simulation
+	
+
 <h4 align="center" id="TC">Mean-Travel_Time</h4>
+
 
 Comme vu plus haut, il est choisie de prendre les temps de parcours pour voir la represenation avec la réalité. ainsi apres avoir rouler XX simulations pour les differentes parametre od2trips, flow, duarouter. Il est possible de representer les temps moyennes:
 
-
 <p align="center">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/Mean_travel_int.png">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_flow/Mean_travel_int.png">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/Mean_travel_int.png">
+<img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/Mean_travel_int.png">
+<img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_flow/Mean_travel_int.png">
+<img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/Mean_travel_int.png">
 </p>
 
+Il est fort de constater que les temps de trajets moyennes ne depassent pas les 12 minutes, contrairement au données du recensement du Canada qui avancer un temps moyennes parcours de 26.8 min pour les autos. Il semblerait qu'il y est une sensibilité assez forte dans le choix du parametre mesosime. Comme dit plus haut, le modèle simplifier la circulation car le modele est baser sur les edges et non sur les lanes.
+	
+ANOVA
+
 <h4 align="center" id="TC">Running</h4>
+
+Comme pour la simulation microscopique, il est possible de visalisées les differentes courbe de running vehicules et de vehiucles cummulé.
 <p align="center">
 <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/running_od_int.png">
 <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/ended_od_int.png">
@@ -1098,34 +1168,26 @@ Comme vu plus haut, il est choisie de prendre les temps de parcours pour voir la
 </p>
 
 
-Moyene
+Si nous faisons la moyennes de chaques simulations:
 
 <p align="center">
 <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/runningvehicules_meso_mean.png">
-<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/runningvehicules_meso_mean.png">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/endedvehicules_meso_mean.png">
 </p>
 
+Comme pour la simulation precedentes, il est constaté qu'il y a également une difference assez remarquable entre chaque simulation. Cette fois le od2trips à premieres vu semble suivre un courbe de comptage presenter dans la section presente, ainsi que les flow. À noter également, que même si la "pointe" de la courbe de duarouter est legerment décaler avec les autres courbe, la courbes n'est pas arrete nette mais d'autres véhcules sans encore inserer comme on peut le voir sur la figure des ended vehicules.
 
-
-
-Dans ce cas, pour cette exemple seul les deplacements de la matrice interieurs ont été pris en compte pour les calcules. Avec seulement pour les véhicules insert nous avons 
-
-
-
-<h4 align="center" id="TC">Summary</h4>
-
-Il est possible de visualisées directement les sorties des vehicules cumuler et dans le reseau dans le temps
-
+La comparaison avec la courbe esperer est presente sur la Fig XX
 <p align="center">
-<img width="400"  src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Pointe5%4010.png">
-<img width="400"  src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/running.png">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/reel_int_meso.png">
+<img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/ended_vehicules.png">
 </p>
 
-Il est relever que le temps de parcours moyenne equivaut à 21.5 min
+Il est assez remarcable de voir un assez grande difference entre les courbes simulées et la courbes esperée. Cependant la courbe de la simulation od2trips semble devoir suivre la tendance de la courbe esperer. Neamoins il est constaté que l'ensemble de ces simulation soit en "sous" regime des non prise en compte de trajet dans les calculs des differentes fonctions.
 
 <h4 align="center" id="TC">DataLane</h4>
 
-
+<h4 align="center" id="TC">Impacte sur la simulation</h4>
 
 <h3 align="center" id="TC">Données Bluetooth</h3>
 
@@ -1144,7 +1206,7 @@ Grace a cette stratégie,les données collectées par les capteurs sont de manie
 
 Néamoins, les données resorties et sur la qualité notamment dependant grandement des utilisateurs. Car pour que le capteur puisse lire l'adresse MAC d'un émetteur, souvent un cellulaire, le mode bluetooth d'autre activé. Cependant, l'explication de l'interer de cette technolgie peut avoir un liens avec le nombre grandissant de smartphone dans la population, 34 Millions d'abonnement mobile au Canada en 2019 [<a href="https://www.ceicdata.com/en/indicator/canada/number-of-subscriber-mobile">Ceicdata </a>]
 
-C'est ainsi qu'afin de mieux comprendre certain phénomes de la circulation sur l'ile, la ville de Montréal à déployer des capteurs communicant équipé de technologies Bluetooth  dans des segments routiers stratégiques. [Ville de <a href="https://donnees.montreal.ca/ville-de-montreal/temps-de-parcours-sur-des-segments-routiers-historique">Montréal</a>]. Ces données, en libre d'accées, resortre certaines cartéristiques de la circulation, comme les temps de parcours, les vitesse moyennes et la longueur du segments, et ceux sur une paire de capteur données. La ville à mise sur un deployement de 369 capteurs reparties dans un ensemble spacial definie dont les territoires sont definies en annexes.
+C'est ainsi qu'afin de mieux comprendre certain phénomes de la circulation sur l'ile, la ville de Montréal à déployer des capteurs communicant équipé de technologies Bluetooth  dans des segments routiers stratégiques. [Ville de <a href="https://donnees.montreal.ca/ville-de-montreal/temps-de-parcours-sur-des-segments-routiers-historique">Montréal</a>]. Ces données, en libre d'accées, resortre certaines cartéristiques de la circulation, comme les temps de parcours, les vitesse moyennes et la longueur du segments, et ceux sur une paire de capteur données. La ville à mise sur un deployement de 114 capteurs reparties dans un ensemble spacial definie dont les territoires sont definies en annexes.
 
 Pour l'impentation de ces capteurs, la ville de Montréal a fais appelle à l'entreprise Québecoise Orange Traffic spécialisé dans le "domaine de la technologie de la signalisation et des feux de circulation". Entreprise tres présente dans la signalisation Montréalaise, propose pour système de détection Bluetooth un detecteurs BTM-232, qui à une porter de maximal de 125 mètres [<a href="https://www.orangetraffic.com/fr/product/unite-de-detection-bluetooth-btm-232/?pdf=1050">Fiche technique</a>].
 
@@ -1156,7 +1218,30 @@ Il est possible de simulé des appareils embarqués, comme le Bluetooth [<a href
 
 Pour remedier à ce problème, il est possible de placer un véhicule à l'arret sur un parking au lieu de l'emplacement choisie pour le detecteur bluetooth et lui arribuer un fonction receiver.
 
-A continue
+<h4 align="center" id="TC">Modélisation dans Sumo</h4>
+
+Pour modéliser la communication Bluetooth dans Sumo, la stratégie adopté dans le modèle de Montréal à été de créer des parkings sur la bordure de routes pour y placer des véhicules immobiles communicant avec le reste du traffic routier.
+
+Les aires de stationnements dans SUMO peut être definie dans un fihcier additionnel à l'aide de la balise `<parkingArea>`, dont-il faut renseigner au minumun l'identifier, la voie en bordure et la position de départ sur la voies [<a href="https://sumo.dlr.de/docs/Simulation/ParkingArea.html">ParkingArea</a>]. De plus dans le cas de la simulation le `roadsideCapacity` vaut 1 pour y placer une voiture à l'arret et `endPos` pour definir la longueur du station en combinaison avec `startPos`
+
+Afin de positionner les differents Parking, les données ouvert de la ville de Montréal, concernant le positionnement des bornes Bluetooth, ont été prises. De plus, pour implanter et traduire les possitionnement des bornes en coordonnées géometrique en données local du réseau dans SUMO, les diffrentes fonctions de Sumolib [<a href="https://sumo.dlr.de/docs/Tools/Sumolib.html">Sumolib<a>] ont été choisies. Pour ce faire, la conversion des cordonnées ont été faite grâce à la fonction `convertLonLat2XY`. Puis la fonction `getNeighboringEdges` est utilisé pour trouver les `Edges` les plus proches des coordonnées dans un rayon données, qu'y vaut  métres dans le cas de la modélisation. 
+Cependant, les `Edges` ne donne aucun information du noeud le plus proches des coordonnées choises. En effet, lors de l'asignation de la position initial du parking, il est necessaire de savoir qu'elle est la jonction la plus proche de cette position pour ne pas assigné un parking trop "loin de la réalité. Pour resoudre ce probleme, la fonction `getEdge` à été pris en compte pour trouver les deux noeuds du egdes, noeuds du debut et noeud de fin. Et une fonction de distance cartesiennes à été pris en compte à fin de trouver la plus courtes distances entre les deux noeuds et les coordonées choises, ainsi la distance la plus courtes est dfinies comme le point le plus proches du parking. Cette demarche permet ensuite de definir le point de depart du parking. Ainsi, si le noeud le plus proche correspond au debut de la ligne la startPos se verra assigner la valeur 0 et au contraire si le noeud le plus proche se citue à la fin de la ligne, c'est la endPos qui se verra assigner la valeur de la longueur de la ligne, relever grâce à la fonction `getLength`. Le choix d'un parking le plus ponctuelle possible et sans dependre du type de route à ammener a fixer comme longueur du parking une valeur de 2 métres, comme le montre la figure XX du croissement Jean-Talon/Papineau.
+
+<p align="center">
+  FIGURE DU Capteur JEan_Talon
+</p>
+
+L'étape de suivante est d'implanter à chaque parking des véhicules à l'arrer. Pour ce faire, il est possible de créer des fichiers .rou qui renseigne les arrets de chaques véhicules grace à la balise `stop` et en reseignement de l'emplacement du parking grâce à la valeur de `parkingArea` et de la durée de stationnement avec `duration`. Néamoins, un default actuelle dans Sumo et que les routes de chaques véhciules ne peuvent contenir seulement des stops et doivent au minimun avoir un trajet. Pour remedier à cela, le stratégie adopter à été de faire partir, 5 min avant les autres véhicules (modéliser plus), les véhicules qui seront assigner comme "borne bluetooth" sur la ligne du parking afin de minimeser les deplacements, puis faire attendre le véhicule sur le parking jusqu'a la fin de la simulation. De plus pour des raisons de praticité, les id de chaques véhicules correspond au id des capteurs fixer par la ville de Montréal. Puis l'implentation de capteur type "receiver" à chaque véhicule c'est faite grâce à la commande `device.btreceiver.explicit`. Et comme les capteurs bluetooth de l'ile de Montréal ont une portée de l'ordre du 100 m, il a été choisie de prendre en compte la commande `device.btreceiver.range` pour assigner à chaque capteur une portée égale à 10 mètres.
+
+<h4 align="center">Paramètre Bluetooth</h4>
+
+Concernant les véhicules `sender`, pour des questions de stratégie, notammenet de la grandeur des données de sortie, le nombre de voiture porteur d'un capteur bluetooth correspond à 5% de la flotte.
+
+Au vu du nombre de paire (trajet) disponible dans les données de la ville de Montréal, une filtrage du nombre de données et de paires de capteurs à été priviliger à fin de limité le nombre d'analyse. Pour ce faire, un choix de filtrage spacialé et de la longueur des segments à été pris en compte. Il a été décider de prendre les 40 premieres paires dont les segements sont les plus longs. Ce qui donne un repartition spaciale visible sur la figure XX
+
+<p align="center">
+  <img width="400" src="https://www.researchgate.net/profile/Mukhtar-Sofi/publication/315689107/figure/fig1/AS:669020269326348@1536518270511/The-Bluetooth-detection-principle.jpg">
+</p>
 
 <h2 align="center" id="Discussion">Discussion ou reste</h2>
 
