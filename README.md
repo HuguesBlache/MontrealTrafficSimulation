@@ -1240,7 +1240,7 @@ Concernant les véhicules `sender`, pour des questions de stratégie, notammenet
 Au vu du nombre de paire (trajet) disponible dans les données de la ville de Montréal, une filtrage du nombre de données et de paires de capteurs à été priviliger à fin de limité le nombre d'analyse. Pour ce faire, un choix de filtrage spacialé et de la longueur des segments à été pris en compte. Il a été décider de prendre les 40 premieres paires dont les segements sont les plus longs. Ce qui donne un repartition spaciale visible sur la figure XX
 
 <p align="center">
-  <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Bluetooth/39_capteur.png">
+  <img width="1000" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Bluetooth/39_capteur.png">
 </p>
 
 <h2 align="center" id="Discussion">Discussion ou reste</h2>
