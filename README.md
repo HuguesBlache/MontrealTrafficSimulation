@@ -1228,7 +1228,7 @@ Afin de positionner les differents Parking, les données ouvert de la ville de M
 Cependant, les `Edges` ne donne aucun information du noeud le plus proches des coordonnées choises. En effet, lors de l'asignation de la position initial du parking, il est necessaire de savoir qu'elle est la jonction la plus proche de cette position pour ne pas assigné un parking trop "loin de la réalité. Pour resoudre ce probleme, la fonction `getEdge` à été pris en compte pour trouver les deux noeuds du egdes, noeuds du debut et noeud de fin. Et une fonction de distance cartesiennes à été pris en compte à fin de trouver la plus courtes distances entre les deux noeuds et les coordonées choises, ainsi la distance la plus courtes est dfinies comme le point le plus proches du parking. Cette demarche permet ensuite de definir le point de depart du parking. Ainsi, si le noeud le plus proche correspond au debut de la ligne la startPos se verra assigner la valeur 0 et au contraire si le noeud le plus proche se citue à la fin de la ligne, c'est la endPos qui se verra assigner la valeur de la longueur de la ligne, relever grâce à la fonction `getLength`. Le choix d'un parking le plus ponctuelle possible et sans dependre du type de route à ammener a fixer comme longueur du parking une valeur de 2 métres, comme le montre la figure XX du croissement Jean-Talon/Papineau.
 
 <p align="center">
- <img width="400" src="  https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Bluetooth/Capteur_Jean_Talon_Papipeau.png
+ <img width="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Bluetooth/Capteur_Jean_Talon_Papipeau.png
 ">
 </p>
 
@@ -1241,7 +1241,7 @@ Concernant les véhicules `sender`, pour des questions de stratégie, notammenet
 Au vu du nombre de paire (trajet) disponible dans les données de la ville de Montréal, une filtrage du nombre de données et de paires de capteurs à été priviliger à fin de limité le nombre d'analyse. Pour ce faire, un choix de filtrage spacialé et de la longueur des segments à été pris en compte. Il a été décider de prendre les 40 premieres paires dont les segements sont les plus longs. Ce qui donne un repartition spaciale visible sur la figure XX
 
 <p align="center">
-  <img width="400" src="https://www.researchgate.net/profile/Mukhtar-Sofi/publication/315689107/figure/fig1/AS:669020269326348@1536518270511/The-Bluetooth-detection-principle.jpg">
+  <img width="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Bluetooth/39_capteur.png">
 </p>
 
 <h2 align="center" id="Discussion">Discussion ou reste</h2>
