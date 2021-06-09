@@ -992,7 +992,10 @@ Voici quelques differences visible entre chaque simulation pour une simulation a
 
 La section suivante traite de la collecte de données utilisées à la fois pour la visualisation des données et pour le LTE simulateur
 	
-<h3 align="center" >Visualisation des données</h3>
+<h3 align="center" >Visualisation des données</h3>	
+
+	
+	
 	
 <h3 align="center">LTE simulator input</h3>
 
