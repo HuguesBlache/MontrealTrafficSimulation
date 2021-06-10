@@ -993,7 +993,25 @@ Voici quelques differences visible entre chaque simulation pour une simulation a
 La section suivante traite de la collecte de données utilisées à la fois pour la visualisation des données et pour le LTE simulateur
 	
 <h3 align="center" >Visualisation des données</h3>	
+<h4 align="center">Déplacement MTL Trajet et TripInfo</h4>	
+	
+Afin de mieux comprendre et d'améloré le deplacements des usagers de la route de l'ile, la ville de Montréal à lancé une applications de trackage nommées MTL <a href="https://ville.montreal.qc.ca/mtltrajet/">Trajet<a/>.
 
+La méthodologie est la <a href="https://donnees.montreal.ca/ville-de-montreal/mtl-trajet">suivant<a>: Chaque utilisateurs, avant de réaliser le trajet, renseigne quelques information sur leurs profils sociodémographique. Puis lors du déplacement de l'usage, un algorithme determiner le debut et la fin du trajet de l'utilsateur, en lui demandant la raison de sont deplacement. Cependant, pour des raison de confitiendalité, aucun coordonnées du domicile et du travail n'est diponible. Pour palier, à d'éventielle porbleme, le lieu d'origine et de destination sont pris à l'intersection le plus proche. 
+	
+	
+Deux type de données sont disponible, les données relatifs au trajet et les données relatifs au points.
+Les trajet correspondents aux données, filtrer, de chaque individus. Ces données renseigne sur le mode de transport utiliser, les motifs, mais egalements les starttimes et les endtimes. Deplus les trajets ont été construit sur OSRM et des fichies SHP sont diponibles.
+
+Les points cooresponds à chaque point relever lors de la trajet d'un individu. En prennant en compte les coordonnées spacial mais écalement la vitesse et la precission du calcul.
+	
+Les données tripInfo, générer à l'aide de la commande <a href="https://sumo.dlr.de/docs/Simulation/Output/TripInfo.html"><i>--tripinfo-output</i></a>, permet de renseigner sur les informations generals sur chaques trips, donc individuelle à chaque deplacement. Ces informations contiennet les points de depart et d'arrivé ainsi que l'heure mais également les vitesses moyennes ect...
+
+
+Pour traiter les données trips sur SUMO, le choix c'est porter sur des études des SM d'origine et de destination. Pour se faire, la demarche est la suivante. A partir des données ouverte de la ville de Montréal, tout les trajets qui ont pour point d'Origine et Destination en dehors de l'ile de Montréal sont exclu au vu du choix fait dans les parties precedentes. Puis, tous les trajets qui parties d'un point appartenant à un SM i, sont automatiquement assigner comme point de depart du SM i et de même pour les SM d'arrivée. Finalement, les moyennes de deplacemement, de vitesse, et de distance se font à partie de trajets ayant le même SM d'origine et d'arrivée.
+
+Longueur géodesique des coubres
+	
 	
 	
 	
@@ -1270,8 +1288,31 @@ Definition du temps de cycle de chaque feux de circulation
 <h3 align="center" id="PartieModale">Partie Multimodale</h3>
 
 Dans la poursuite d'une simulations multimodale, la prise en compte des modes actifs peut-être envisage et peut faire partie d'une études à part entiere
+<h3 align="center">Simulation piétonnes</h3>
 
-<h3 align="center">Vélo</h3>
+Pour chaque déplacement generer dans Simulation, il est possible de generer des routes qui assignes des deplacements de véhicules comme vu dans les sections precedentes. Or il est également possible de désigner des trajet selon des personnes qui definisses les differentes étapes d'un deplacement, par exemple utilise un véhicules ou marche. Ainsi pour le modèle pieton, ce sont les personnes qui sont assigner sur tout, ou un partie, leurs chemins comme pietons.
+
+Pour créer un simulation réaliste de pietons dans SUMO, il faut au préalable créer ou ne pas filtre les trotoires et les passages pietons. En effet, le pietons marches le long des trotoires, route exclusivement pietonnes, mais en cas d'absence de troitoire et si il n'y a pas de restriction sur les informations de la route, les pietons se mettent a marches sur les routes.
+
+Il existe dans SUMO plusieures manières pour integrer des trotoires dans le modèle. Soit il sont deja present dans le la carte OSM à traver les differentes routes ou l'on peut les integrer sur les bords des routes du reseau. Pour cela il suffit de rajouter quelques lignes dans la construiction de la <a href="#carte"> carte </a> : ``` --sidewalks.guess``` permet de creer les trotoire ``` --crossings.guess``` creer les passage pietons ``` --walkingareas``` creer les zones de marches sans croisement. Puis comme les simulations de véhicules motorisées, la fonction od2trips étulisé, en specifiant le paramettrage ``` --pedestrians ``` ou ``` --persontrips  ``` pour de la demande intermodale. 
+
+La recherche sur la microsimulation pietonnes ont permis de théorisé une multiplicité d'approche. Maus aussi d'explicer certains phénomenes visible sur le terrain comme les  les files d'attente, les passages niveau ou les effets sabliers. Les modèles les plus present dans la litterature sont:
+
+- Le modèles à base de force, modèle permettant de decrire les mouvement de foules[12] ou les files d'attente [4] mais très peu réaliste à faible densité, s'impire de la physique de Newton. Appel parfois base de force social, ce modèle, décrit les mouvement d'accélération (attraction) et de décélation (répultion) des pietons comme le produite de force et d'interaction social [<a href="https://tel.archives-ouvertes.fr/tel-00724072/file/LEMERCIER_Samuel.pdf">Kanmeugne<a>] [ <a href="https://arxiv.org/ftp/arxiv/papers/1610/1610.00029.pdf">Teknomo<a>]
+
+- Modèle à base de règles, decrit en premier lieu par  Craig  Reynolds, suposse que chaque pietons se deplaces selon des regles predéfinies, comme suivre un groupe, un leader ou éviter un objet ou un collision. Ce regles predéfinis, semblable à des forces sociales, tente de prendre en compte les traits psychologique de chaque usager
+
+- Le modèles geometrique, posé par  Fiorini et Shiller et amélioré par Van Den Berg et al., est basé sur la vitesse de chaque pietons. Il permet de determiner si de determiner si de futur collisions vont arrivé si la vitesse et la possition d'un piéton avec un obstacle ou un autre pietons n'est pas modifier.
+
+- Le modèle automates cellulaires, en juxtapostion avec un modèle macroscopique, decrit l'espace comme des cellules ou les pietons ce deplace sur chacune d'entre elle. Pour ce deplacer d'une cellule à la cellule voisines (le pieton etant sur au milleu d'une matrice 3*3), le peiton emet des problabilité, des choix de preferance. C'est probabilité etatn influance par la presence de pieton, d'objet mais egalement la possibilité de se deplacer ou non.
+
+Il existe une mutlitude d'autres modèle dans la recherche, notamment des emergent avec l'evolution des techniique, avec le modèles basées vision et le modèle basés données. Mais contrairement au recherche disponible, un point faible actuellement des simulations SUMO est le manque critique de modèle disponible pour la modèlisation fiable des pietons. En effet il existe suelement deux modele dans SUMO, le modele dit <i>nonInteracting</i> et le modele <i>striping</i>
+
+Le modele <i>nonInteracting</i> très rapide à excuté, represente simplicitement les mouvements des pietons. Chaque individu marche le long des troitoire sont avoir d'interaction avec les autres pietons ou les véhcules. Le temps de parcours depend soit de la vitesse fixe de chaque troitoire soit du temps assigner au pieton pour effectuer le trajet
+
+S emblable au modèle des automate,le modele <i>striping</i>, , assimile à chaque pietons une coordonnées sur le plan de reseau à des lieu reservé au pietons. Et à chaque etape le pieton se deplace sur la longueur de la route en modifiant ces coordonnées en evitant les collisions avec les autres pietons. Pour ce faire, si l'on considere comme x la longueur de la route et y sa largeur, le modèle considere que chaque pietons doivent respecter un espace y minimun entre les autres usages. Si la largeur se reduit trop, les pietons tente de ce de deplacer "lateralement' pour soit changer de voie ou augmenter la distance.
+
+<h3 align="center">Simulation vélo</h3>
 
 Selon l'estimation de l'entquete Origine Destination, en 2013 sur l'ile de montréal 2.5\% des deplacements sont du au <a href="https://raw.githubusercontent.com/HuguesBlache/ProjetPoly/master/MatriceOD/Velo/etat_velo_2015.pdf?token=APRKJL4HPHP5WFIJC7LPXW3AQA3OS}">vélo</a>. Et peuvent atteindre un part modele de 10.8\% dans le secteur du plateau Mont-real representer dans la Fig. XX
 
@@ -1279,16 +1320,20 @@ Selon l'estimation de l'entquete Origine Destination, en 2013 sur l'ile de montr
   <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/part_mod_velo.png">
 </p>
 
-Il nous été donc tres important que dans notre simulation de prendre en compte ces deplacement, notamment si nous avons integrer le vélo dans les communication V2P des véhicules communicants.
+Dans le but de refleter une certaines realité dans la simulation et de le modèle de traffic à l'echelle de Montréal, il est donc primordiale de prendre en compte les deplacements vélo. Et ceux notamment avec le cas des applications V2P, vu dans la taxonomiedes applications communicantes.
+Contrairement au modèle pietons, il existe peu de modèle cycliste dans la litterature, et donc de théorisation propes au vélo. Néamoins il existe notamment deux approches [<a href="https://www.tandfonline.com/doi/full/10.1080/23249935.2019.1708512"> </a>] qui inclue avec le reste de la flotte, les approche individuelle [<a href="https://www.worldscientific.com/doi/abs/10.1142/S0129183110015038">Tang</a>], et comme les pietons une approche par automates cellulaire[<a href="https://www.sciencedirect.com/science/article/pii/S2095756415302889?via%3Dihub#s0020">Luo</a>]
 
-Pour implanter les modes actifs vélo dans notres modèle, les choix sera en plus d'importer les routes "automobiles", de prendre en compte les routes suivantes.
+
+Il n'existe pas de modèle à prporpement dit dans SUMO pour la modélisationd des deplacement vélo. Pour pallier à ce problème, le modèle peut assigner le vélo comme un véhicule lent qui à pour attribut ``` vClass="bicycle"```. Le <a href="https://sumo.dlr.de/docs/Simulation/Bicycles.html">probleme<a> avec cette approche si aucune sous voie n'est specifier, les depacement dans les routes à voies unique d'un véhicule ne sont pas possible. Il n'existe egalement pas d'espace partagé entre vélos et les pietons. Et finalement les ecarts de sécurité sont parfois vu irrealiste pour les vélos. Une autre solution pour pallier à ce probleme est de faire comme VISSIM, d'assimiler les vélos comme des pietons rapides.
+
+Cependant, même si le mouvement bidirectionnels n'existe pas, il est egalement possible d'importer les piste cyclables dans le reseau, notamment avec l'attribut ```cycleway``` grâce au module ```wget```decrit plus haut. Cette route à pour caracteristique:
 
 <table  align="center"><a align="center">
 <tr><th>Key</th><th>Value</th><th>Comment</th></tr>
 <tr><td>Highway</td><td>cycleway</td><td>For designated cycleways. Add foot=*, though it may be avoided if default-access-restrictions do apply. </td></tr>
 	</a></table>
 	
-Mais aussi en utilisant les differentes <a href="https://wiki.openstreetmap.org/wiki/Key:highway">configuration </a> et relations des reseaux expresse de l'ile de Montréal avec par exemple la commande:
+Il est aussi envisagable d'importer<a href="https://wiki.openstreetmap.org/wiki/Key:highway">configuration </a> et relations des reseaux expresse de l'ile de Montréal avec par exemple la commande:
 	
 ```ql
 area[wikidata="Q2826806"]->.montreal;
@@ -1296,41 +1341,31 @@ rel(area.montreal)[route="bicycle"];
 (._;>;);
 out;
 ```
-
 Le choix de véhicules sera pris en fonction des vélos et pour aller plus lons en prennent en compte les plages des differentes types de véhicules (éléctrique, route, de ville ...)
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/65184943/88848400-6fe8c400-d1b6-11ea-8e7c-98ca7cbf0b7b.png">
 </p>
 	
-POur le verifier, nous pouvons visualiser les données ouvertes de <a href="https://www.bixi.com/fr/page-27"> Bixi </a> qui permetra de voire la tendance sur la plage horraire 5h-9h.
+Piur le verifier, calibrer et valider la simulation, il sera possible de prendre en compte les données ouvertes de <a href="https://www.bixi.com/fr/page-27"> Bixi </a> qui permetra de voire la tendance sur la plage horraire 5h-9h. Comme decrit sur la figure XX
 
-Apres exploitation des <a href="https://github.com/HuguesBlache/MontrealTrafficSimulation/tree/master/Data/Bixi">données</a> nous avons des courbes du type.
 
 <p align="center">
 <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Pointe5%4010.png">
 <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/PointeJourn%C3%A9e.png">
 </p>
 
+Il sera aussi possible dans la mesure du detaille de prendre en compte les données ouverte de la ville de Montreal sur les point de comptage au interection et ceux specifique sur les vélos.
 
-https://www.artm.quebec/eod/2013/
-https://github.com/HuguesBlache/ProjetPoly/blob/master/MatriceOD/Velo/etat_velo_2015.pdf
-Puis la suite <a href="#duarouter"> duarouter </a>.
-
-
-
-<h3 align="center">Marche</h3>
-
-Pour le mode actif marche, la construction du modèle requirer quelques modification du reseau. Car dans ce cas, SUMO ne considère pas les pietons comme des vehicules. Pour cela il faut donc contruires des voies pietonnes pour pouvoir ensuire implanter la matrice OD
-
-
-Il existe dans SUMO plusieures manières pour integrer des trotoires dans le modèle. Soit il sont deja present dans le la carte OSM à traver les differentes routes ou l'on peut les integrer sur les bords des routes du reseau.
-
-Pour cela il suffit de rajouter quelques lignes dans la construiction de la <a href="#carte"> carte </a> : ``` --sidewalks.guess``` permet de creer les trotoire ``` --crossings.guess``` creer les passage pietons ``` --walkingareas``` creer les zones de marches sans croisement.
 
 <h3 align="center">Deplacement multimodale</h3>
 
+Comme specifier dans la section de la simulation petionnes, il est possible d'effectuer des simulation multimodale dans SUMO, c'est à dire simulé des trajets utilisant une pluralité de mode pour être réalisé, comme par exemple utilisant de la voiture et de TC pour effectuer un deplacement. Pour ce faire plusieurs technique sont possible:
 
+Le routage Intermodale, qui conciste
+
+
+Donnes carte OPUS
 <h5 align="center">Emissions</h5>
 
 
