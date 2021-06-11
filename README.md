@@ -1022,24 +1022,84 @@ Voici quelques differences visible entre chaque simulation pour une simulation a
 La section suivante traite de la collecte de données utilisées à la fois pour la visualisation des données et pour le LTE simulateur
 	
 <h3 align="center" >Visualisation des données</h3>	
+	
+<h4 align="center" id="TC">Données Bluetooth</h4>
+
+La taxonomie des applications communicantes a relevé que la technologies Bluetooth sont difficlement deployable et envisagable pour la mise en place des ITS. Néamoins, cette technologie est utilisée aujourd'hui pour de la collecte de données. Même si l'interer dans les transport n'est que recentes, les premieres apparation academique date de 2010 [<a href="https://link.springer.com/article/10.1007/s13177-014-0092-1">Friesen</a> and McLeaod], les capteurs bluetooths ont eu un interet grandissant dans la collecte de données de la circulation ces 10 dernières années.
+
+Le principe actuelle et general de cette collecte repose sur de la communication V2I, avec un recepeteur (les bornes bluetooth) et un emeteur (generalement un cellulaire). Le principe de la collecte est le suivant: Le capteur Bluetooth cherche des appareils Bluetooth dans son rayon de communication (de l'ordre du 100 m). Lorsqu'il detecte un appareil, le capteur recuper l'addresse MAC, unique pour chaque apareil, pour en recolter quelques informations
+relative à l'emetteur, comme sont emplacement, la date d'arrivées et de sorties de la zones de detection, et par deduction sa vitesse.
+Pour la circulation, les données de transport sont generalement pris pour une section routier comportant deux capteurs bluetooth, une capteur en amont et un en aval à distance fixe. Cette strategie permet au permer capteurs de tirer les information d'une addresse MAC à l'instant t0 puis le deuxieme capteur tire les information t1. Comme d'ecrit sur l'image suivante:
+
+<p align="center">
+  <img width="600" src="https://www.libelium.com/libelium-images/generico2/bluetooth_speed_big.png">
+</p>
+Source: libelium 2011
+
+Grace a cette stratégie,les données collectées par les capteurs sont de maniere general des débits, temps de parcours et des données d'origine-destination.L'avantage de ces capteurs le prix faible que les autres collecte de données, comme les enregistrements vidéo avec les lectures de plaques [Alizadeh H. (2020) Circulation]. 
+
+Néamoins, les données resorties et sur la qualité notamment dependant grandement des utilisateurs. Car pour que le capteur puisse lire l'adresse MAC d'un émetteur, souvent un cellulaire, le mode bluetooth d'autre activé. Cependant, l'explication de l'interer de cette technolgie peut avoir un liens avec le nombre grandissant de smartphone dans la population, 34 Millions d'abonnement mobile au Canada en 2019 [<a href="https://www.ceicdata.com/en/indicator/canada/number-of-subscriber-mobile">Ceicdata </a>]
+
+C'est ainsi qu'afin de mieux comprendre certain phénomes de la circulation sur l'ile, la ville de Montréal à déployer des capteurs communicant équipé de technologies Bluetooth  dans des segments routiers stratégiques. [Ville de <a href="https://donnees.montreal.ca/ville-de-montreal/temps-de-parcours-sur-des-segments-routiers-historique">Montréal</a>]. Ces données, en libre d'accées, resortre certaines cartéristiques de la circulation, comme les temps de parcours, les vitesse moyennes et la longueur du segments, et ceux sur une paire de capteur données. La ville à mise sur un deployement de 114 capteurs reparties dans un ensemble spacial definie dont les territoires sont definies en annexes.
+
+Pour l'impentation de ces capteurs, la ville de Montréal a fais appelle à l'entreprise Québecoise Orange Traffic spécialisé dans le "domaine de la technologie de la signalisation et des feux de circulation". Entreprise tres présente dans la signalisation Montréalaise, propose pour système de détection Bluetooth un detecteurs BTM-232, qui à une porter de maximal de 125 mètres [<a href="https://www.orangetraffic.com/fr/product/unite-de-detection-bluetooth-btm-232/?pdf=1050">Fiche technique</a>].
+
+Il est possible de simulé des appareils embarqués, comme le Bluetooth [<a href="https://sumo.dlr.de/docs/Simulation/Bluetooth.html">Bluetooth<a>], dans sumo. Pour cela, il possible d'"implanter" à chaque véhicule un capateur qui reprendre la dectection sur les signaux radio (comme le Bluetooth)  afin qu'il puisse émettre (btsender) ou recevoir (btreceiver) des informations diverse sur son état. Néamoins, il est actuellement imposible d'implanter des RSU pour recrer de la communication V2I comme decrit dans la figure XX
+
+<p align="center">
+  <img width="600" src="https://www.researchgate.net/profile/Mukhtar-Sofi/publication/315689107/figure/fig1/AS:669020269326348@1536518270511/The-Bluetooth-detection-principle.jpg">
+</p>
+
+Pour remedier à ce problème, il est possible de placer un véhicule à l'arret sur un parking au lieu de l'emplacement choisie pour le detecteur bluetooth et lui arribuer un fonction receiver.
+
+<h5 align="center" id="TC">Modélisation dans Sumo</h5>
+
+Pour modéliser la communication Bluetooth dans Sumo, la stratégie adopté dans le modèle de Montréal à été de créer des parkings sur la bordure de routes pour y placer des véhicules immobiles communicant avec le reste du traffic routier.
+
+Les aires de stationnements dans SUMO peut être definie dans un fihcier additionnel à l'aide de la balise `<parkingArea>`, dont-il faut renseigner au minumun l'identifier, la voie en bordure et la position de départ sur la voies [<a href="https://sumo.dlr.de/docs/Simulation/ParkingArea.html">ParkingArea</a>]. De plus dans le cas de la simulation le `roadsideCapacity` vaut 1 pour y placer une voiture à l'arret et `endPos` pour definir la longueur du station en combinaison avec `startPos`
+
+Afin de positionner les differents Parking, les données ouvert de la ville de Montréal, concernant le positionnement des bornes Bluetooth, ont été prises. De plus, pour implanter et traduire les possitionnement des bornes en coordonnées géometrique en données local du réseau dans SUMO, les diffrentes fonctions de Sumolib [<a href="https://sumo.dlr.de/docs/Tools/Sumolib.html">Sumolib<a>] ont été choisies. Pour ce faire, la conversion des cordonnées ont été faite grâce à la fonction `convertLonLat2XY`. Puis la fonction `getNeighboringEdges` est utilisé pour trouver les `Edges` les plus proches des coordonnées dans un rayon données, qu'y vaut  métres dans le cas de la modélisation. 
+Cependant, les `Edges` ne donne aucun information du noeud le plus proches des coordonnées choises. En effet, lors de l'asignation de la position initial du parking, il est necessaire de savoir qu'elle est la jonction la plus proche de cette position pour ne pas assigné un parking trop "loin de la réalité. Pour resoudre ce probleme, la fonction `getEdge` à été pris en compte pour trouver les deux noeuds du egdes, noeuds du debut et noeud de fin. Et une fonction de distance cartesiennes à été pris en compte à fin de trouver la plus courtes distances entre les deux noeuds et les coordonées choises, ainsi la distance la plus courtes est dfinies comme le point le plus proches du parking. Cette demarche permet ensuite de definir le point de depart du parking. Ainsi, si le noeud le plus proche correspond au debut de la ligne la startPos se verra assigner la valeur 0 et au contraire si le noeud le plus proche se citue à la fin de la ligne, c'est la endPos qui se verra assigner la valeur de la longueur de la ligne, relever grâce à la fonction `getLength`. Le choix d'un parking le plus ponctuelle possible et sans dependre du type de route à ammener a fixer comme longueur du parking une valeur de 2 métres, comme le montre la figure XX du croissement Jean-Talon/Papineau.
+
+<p align="center">
+ <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Bluetooth/Capteur_Jean_Talon_Papipeau.png">
+</p>
+
+L'étape de suivante est d'implanter à chaque parking des véhicules à l'arrer. Pour ce faire, il est possible de créer des fichiers .rou qui renseigne les arrets de chaques véhicules grace à la balise `stop` et en reseignement de l'emplacement du parking grâce à la valeur de `parkingArea` et de la durée de stationnement avec `duration`. Néamoins, un default actuelle dans Sumo et que les routes de chaques véhciules ne peuvent contenir seulement des stops et doivent au minimun avoir un trajet. Pour remedier à cela, le stratégie adopter à été de faire partir, 5 min avant les autres véhicules (modéliser plus), les véhicules qui seront assigner comme "borne bluetooth" sur la ligne du parking afin de minimeser les deplacements, puis faire attendre le véhicule sur le parking jusqu'a la fin de la simulation. De plus pour des raisons de praticité, les id de chaques véhicules correspond au id des capteurs fixer par la ville de Montréal. Puis l'implentation de capteur type "receiver" à chaque véhicule c'est faite grâce à la commande `device.btreceiver.explicit`. Et comme les capteurs bluetooth de l'ile de Montréal ont une portée de l'ordre du 100 m, il a été choisie de prendre en compte la commande `device.btreceiver.range` pour assigner à chaque capteur une portée égale à 10 mètres.
+
+<h5 align="center">Paramètre Bluetooth</h5>
+
+Concernant les véhicules `sender`, pour des questions de stratégie, notammenet de la grandeur des données de sortie, le nombre de voiture porteur d'un capteur bluetooth correspond à 5% de la flotte.
+
+Au vu du nombre de paire (trajet) disponible dans les données de la ville de Montréal, une filtrage du nombre de données et de paires de capteurs à été priviliger à fin de limité le nombre d'analyse. Pour ce faire, un choix de filtrage spacialé et de la longueur des segments à été pris en compte. Il a été décider de prendre les 40 premieres paires dont les segements sont les plus longs. Ce qui donne un repartition spaciale visible sur la figure XX
+
+<p align="center">
+  <img width="1000" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Bluetooth/39_capteur.png">
+</p>	
+	
 <h4 align="center">Déplacement MTL Trajet et TripInfo</h4>	
 	
 Afin de mieux comprendre et d'améloré le deplacements des usagers de la route de l'ile, la ville de Montréal à lancé une applications de trackage nommées MTL <a href="https://ville.montreal.qc.ca/mtltrajet/">Trajet<a/>.
 
 La méthodologie est la <a href="https://donnees.montreal.ca/ville-de-montreal/mtl-trajet">suivant<a>: Chaque utilisateurs, avant de réaliser le trajet, renseigne quelques information sur leurs profils sociodémographique. Puis lors du déplacement de l'usage, un algorithme determiner le debut et la fin du trajet de l'utilsateur, en lui demandant la raison de sont deplacement. Cependant, pour des raison de confitiendalité, aucun coordonnées du domicile et du travail n'est diponible. Pour palier, à d'éventielle porbleme, le lieu d'origine et de destination sont pris à l'intersection le plus proche. 
 	
+Deux type de données sont disponible, les données relatifs au trajet et les données relatifs au points. Les trajet correspondents aux données, filtrer, de chaque individus. Ces données renseigne sur le mode de transport utiliser, les motifs, mais egalements les starttimes et les endtimes. Deplus les trajets ont été construit sur OSRM et des fichies SHP sont diponibles.Les points cooresponds à chaque point relever lors de la trajet d'un individu. En prennant en compte les coordonnées spacial mais écalement la vitesse et la precission du calcul. La figure XX represente une partie des trajets enregistre sur l'ile de Montréal:
 	
-Deux type de données sont disponible, les données relatifs au trajet et les données relatifs au points.
-Les trajet correspondents aux données, filtrer, de chaque individus. Ces données renseigne sur le mode de transport utiliser, les motifs, mais egalements les starttimes et les endtimes. Deplus les trajets ont été construit sur OSRM et des fichies SHP sont diponibles.
-
-Les points cooresponds à chaque point relever lors de la trajet d'un individu. En prennant en compte les coordonnées spacial mais écalement la vitesse et la precission du calcul.
+<p align="center">
+  <img width="1000" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Trajet/Trajet_mtl.png">
+</p>	
+	
 	
 Les données tripInfo, générer à l'aide de la commande <a href="https://sumo.dlr.de/docs/Simulation/Output/TripInfo.html"><i>--tripinfo-output</i></a>, permet de renseigner sur les informations generals sur chaques trips, donc individuelle à chaque deplacement. Ces informations contiennet les points de depart et d'arrivé ainsi que l'heure mais également les vitesses moyennes ect...
 
+Pour traiter les données trips sur SUMO, le choix c'est porter sur des études des SM d'origine et de destination. Pour se faire, la demarche est la suivante. A partir des données ouverte de la ville de Montréal, tout les trajets qui ont pour point d'Origine et Destination en dehors de l'ile de Montréal sont exclu au vu du choix fait dans les parties precedentes. Puis, tous les trajets qui parties d'un point appartenant à un SM i, sont automatiquement regrouper comme point de depart du SM i et de même pour les SM d'arrivée. Finalement, les moyennes de deplacemement, de vitesse, et de distance se font à partie de trajets ayant le même SM d'origine et d'arrivée. Ainsi la Figure XX represente tout les deplacements à vol d'oiseau partie du SM 106 (plateau Montreal) ou SM 106 et le regroupement en un seul 'itinairaire' moyenne:
+	
+<p align="center">
+  <img width="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Trajet/Trajet_103_106_non_rectifier.png">
+  <img width="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Trajet/Trajet_103_106_modificiation.png">
+</p>	
+		
 
-Pour traiter les données trips sur SUMO, le choix c'est porter sur des études des SM d'origine et de destination. Pour se faire, la demarche est la suivante. A partir des données ouverte de la ville de Montréal, tout les trajets qui ont pour point d'Origine et Destination en dehors de l'ile de Montréal sont exclu au vu du choix fait dans les parties precedentes. Puis, tous les trajets qui parties d'un point appartenant à un SM i, sont automatiquement assigner comme point de depart du SM i et de même pour les SM d'arrivée. Finalement, les moyennes de deplacemement, de vitesse, et de distance se font à partie de trajets ayant le même SM d'origine et d'arrivée.
-
-Longueur géodesique des coubres
 	
 	
 	
@@ -1239,59 +1299,7 @@ Il est assez remarcable de voir un assez grande difference entre les courbes sim
 
 <h4 align="center" id="TC">Impacte sur la simulation</h4>
 
-<h3 align="center" id="TC">Données Bluetooth</h3>
 
-La taxonomie des applications communicantes a relevé que la technologies Bluetooth sont difficlement deployable et envisagable pour la mise en place des ITS. Néamoins, cette technologie est utilisée aujourd'hui pour de la collecte de données. Même si l'interer dans les transport n'est que recentes, les premieres apparation academique date de 2010 [<a href="https://link.springer.com/article/10.1007/s13177-014-0092-1">Friesen</a> and McLeaod], les capteurs bluetooths ont eu un interet grandissant dans la collecte de données de la circulation ces 10 dernières années.
-
-Le principe actuelle et general de cette collecte repose sur de la communication V2I, avec un recepeteur (les bornes bluetooth) et un emeteur (generalement un cellulaire). Le principe de la collecte est le suivant: Le capteur Bluetooth cherche des appareils Bluetooth dans son rayon de communication (de l'ordre du 100 m). Lorsqu'il detecte un appareil, le capteur recuper l'addresse MAC, unique pour chaque apareil, pour en recolter quelques informations
-relative à l'emetteur, comme sont emplacement, la date d'arrivées et de sorties de la zones de detection, et par deduction sa vitesse.
-Pour la circulation, les données de transport sont generalement pris pour une section routier comportant deux capteurs bluetooth, une capteur en amont et un en aval à distance fixe. Cette strategie permet au permer capteurs de tirer les information d'une addresse MAC à l'instant t0 puis le deuxieme capteur tire les information t1. Comme d'ecrit sur l'image suivante:
-
-<p align="center">
-  <img width="600" src="https://www.libelium.com/libelium-images/generico2/bluetooth_speed_big.png">
-</p>
-Source: libelium 2011
-
-Grace a cette stratégie,les données collectées par les capteurs sont de maniere general des débits, temps de parcours et des données d'origine-destination.L'avantage de ces capteurs le prix faible que les autres collecte de données, comme les enregistrements vidéo avec les lectures de plaques [Alizadeh H. (2020) Circulation]. 
-
-Néamoins, les données resorties et sur la qualité notamment dependant grandement des utilisateurs. Car pour que le capteur puisse lire l'adresse MAC d'un émetteur, souvent un cellulaire, le mode bluetooth d'autre activé. Cependant, l'explication de l'interer de cette technolgie peut avoir un liens avec le nombre grandissant de smartphone dans la population, 34 Millions d'abonnement mobile au Canada en 2019 [<a href="https://www.ceicdata.com/en/indicator/canada/number-of-subscriber-mobile">Ceicdata </a>]
-
-C'est ainsi qu'afin de mieux comprendre certain phénomes de la circulation sur l'ile, la ville de Montréal à déployer des capteurs communicant équipé de technologies Bluetooth  dans des segments routiers stratégiques. [Ville de <a href="https://donnees.montreal.ca/ville-de-montreal/temps-de-parcours-sur-des-segments-routiers-historique">Montréal</a>]. Ces données, en libre d'accées, resortre certaines cartéristiques de la circulation, comme les temps de parcours, les vitesse moyennes et la longueur du segments, et ceux sur une paire de capteur données. La ville à mise sur un deployement de 114 capteurs reparties dans un ensemble spacial definie dont les territoires sont definies en annexes.
-
-Pour l'impentation de ces capteurs, la ville de Montréal a fais appelle à l'entreprise Québecoise Orange Traffic spécialisé dans le "domaine de la technologie de la signalisation et des feux de circulation". Entreprise tres présente dans la signalisation Montréalaise, propose pour système de détection Bluetooth un detecteurs BTM-232, qui à une porter de maximal de 125 mètres [<a href="https://www.orangetraffic.com/fr/product/unite-de-detection-bluetooth-btm-232/?pdf=1050">Fiche technique</a>].
-
-Il est possible de simulé des appareils embarqués, comme le Bluetooth [<a href="https://sumo.dlr.de/docs/Simulation/Bluetooth.html">Bluetooth<a>], dans sumo. Pour cela, il possible d'"implanter" à chaque véhicule un capateur qui reprendre la dectection sur les signaux radio (comme le Bluetooth)  afin qu'il puisse émettre (btsender) ou recevoir (btreceiver) des informations diverse sur son état. Néamoins, il est actuellement imposible d'implanter des RSU pour recrer de la communication V2I comme decrit dans la figure XX
-
-<p align="center">
-  <img width="600" src="https://www.researchgate.net/profile/Mukhtar-Sofi/publication/315689107/figure/fig1/AS:669020269326348@1536518270511/The-Bluetooth-detection-principle.jpg">
-</p>
-
-Pour remedier à ce problème, il est possible de placer un véhicule à l'arret sur un parking au lieu de l'emplacement choisie pour le detecteur bluetooth et lui arribuer un fonction receiver.
-
-<h4 align="center" id="TC">Modélisation dans Sumo</h4>
-
-Pour modéliser la communication Bluetooth dans Sumo, la stratégie adopté dans le modèle de Montréal à été de créer des parkings sur la bordure de routes pour y placer des véhicules immobiles communicant avec le reste du traffic routier.
-
-Les aires de stationnements dans SUMO peut être definie dans un fihcier additionnel à l'aide de la balise `<parkingArea>`, dont-il faut renseigner au minumun l'identifier, la voie en bordure et la position de départ sur la voies [<a href="https://sumo.dlr.de/docs/Simulation/ParkingArea.html">ParkingArea</a>]. De plus dans le cas de la simulation le `roadsideCapacity` vaut 1 pour y placer une voiture à l'arret et `endPos` pour definir la longueur du station en combinaison avec `startPos`
-
-Afin de positionner les differents Parking, les données ouvert de la ville de Montréal, concernant le positionnement des bornes Bluetooth, ont été prises. De plus, pour implanter et traduire les possitionnement des bornes en coordonnées géometrique en données local du réseau dans SUMO, les diffrentes fonctions de Sumolib [<a href="https://sumo.dlr.de/docs/Tools/Sumolib.html">Sumolib<a>] ont été choisies. Pour ce faire, la conversion des cordonnées ont été faite grâce à la fonction `convertLonLat2XY`. Puis la fonction `getNeighboringEdges` est utilisé pour trouver les `Edges` les plus proches des coordonnées dans un rayon données, qu'y vaut  métres dans le cas de la modélisation. 
-Cependant, les `Edges` ne donne aucun information du noeud le plus proches des coordonnées choises. En effet, lors de l'asignation de la position initial du parking, il est necessaire de savoir qu'elle est la jonction la plus proche de cette position pour ne pas assigné un parking trop "loin de la réalité. Pour resoudre ce probleme, la fonction `getEdge` à été pris en compte pour trouver les deux noeuds du egdes, noeuds du debut et noeud de fin. Et une fonction de distance cartesiennes à été pris en compte à fin de trouver la plus courtes distances entre les deux noeuds et les coordonées choises, ainsi la distance la plus courtes est dfinies comme le point le plus proches du parking. Cette demarche permet ensuite de definir le point de depart du parking. Ainsi, si le noeud le plus proche correspond au debut de la ligne la startPos se verra assigner la valeur 0 et au contraire si le noeud le plus proche se citue à la fin de la ligne, c'est la endPos qui se verra assigner la valeur de la longueur de la ligne, relever grâce à la fonction `getLength`. Le choix d'un parking le plus ponctuelle possible et sans dependre du type de route à ammener a fixer comme longueur du parking une valeur de 2 métres, comme le montre la figure XX du croissement Jean-Talon/Papineau.
-
-<p align="center">
- <img width="600" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Bluetooth/Capteur_Jean_Talon_Papipeau.png">
-</p>
-
-L'étape de suivante est d'implanter à chaque parking des véhicules à l'arrer. Pour ce faire, il est possible de créer des fichiers .rou qui renseigne les arrets de chaques véhicules grace à la balise `stop` et en reseignement de l'emplacement du parking grâce à la valeur de `parkingArea` et de la durée de stationnement avec `duration`. Néamoins, un default actuelle dans Sumo et que les routes de chaques véhciules ne peuvent contenir seulement des stops et doivent au minimun avoir un trajet. Pour remedier à cela, le stratégie adopter à été de faire partir, 5 min avant les autres véhicules (modéliser plus), les véhicules qui seront assigner comme "borne bluetooth" sur la ligne du parking afin de minimeser les deplacements, puis faire attendre le véhicule sur le parking jusqu'a la fin de la simulation. De plus pour des raisons de praticité, les id de chaques véhicules correspond au id des capteurs fixer par la ville de Montréal. Puis l'implentation de capteur type "receiver" à chaque véhicule c'est faite grâce à la commande `device.btreceiver.explicit`. Et comme les capteurs bluetooth de l'ile de Montréal ont une portée de l'ordre du 100 m, il a été choisie de prendre en compte la commande `device.btreceiver.range` pour assigner à chaque capteur une portée égale à 10 mètres.
-
-<h4 align="center">Paramètre Bluetooth</h4>
-
-Concernant les véhicules `sender`, pour des questions de stratégie, notammenet de la grandeur des données de sortie, le nombre de voiture porteur d'un capteur bluetooth correspond à 5% de la flotte.
-
-Au vu du nombre de paire (trajet) disponible dans les données de la ville de Montréal, une filtrage du nombre de données et de paires de capteurs à été priviliger à fin de limité le nombre d'analyse. Pour ce faire, un choix de filtrage spacialé et de la longueur des segments à été pris en compte. Il a été décider de prendre les 40 premieres paires dont les segements sont les plus longs. Ce qui donne un repartition spaciale visible sur la figure XX
-
-<p align="center">
-  <img width="1000" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Bluetooth/39_capteur.png">
-</p>
 
 <h2 align="center" id="Discussion">Discussion ou reste</h2>
 
