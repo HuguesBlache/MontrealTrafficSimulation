@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<link href="style.css">
 </head>
+	
 <body>
 <h1 align="center">Montréal Traffic Simulation </h1>
 	
@@ -30,10 +31,11 @@ Ce projet se réfère principalement à la documentation de <a href="https://sum
 
 <h2 align="center" id="doc">Introdution et contexte</h2>
 
-Les nouveaux paradigmes concernant les axes de recherche des villes intelligents, ont pu montrer la necessité d'utilisé les technologies de telecommunication pour sont deployemment et pour optimiser des nombreux services. Comme la gestion des reseaux electrique, la gestion du drénages des eau, les services de santé et bien évidemment la gestion de la circulation et transport (par le prisme des ITS notamment).
 
-  <i> Intelligent Transportation Systems (ITS) is a combination of leading-edge information and communication technologies used in transportation and traffic management systems to improve the safety, efficiency, and sustainability of transportation networks, to reduce traffic congestion and to enhance drivers’ experiences. </i> [<a href="https://www.wsp.com/en-CA/services/intelligent-transportation-systems-its">WSP</a>]
- 
+Les nouveaux paradigmes concernant les axes de recherche des villes intelligents, ont pu montrer la necessité d'utilisé les technologies de telecommunication pour sont deployemment et pour optimiser des nombreux services. Comme la gestion des reseaux electrique, la gestion du drénages des eau, les services de santé et bien évidemment la gestion de la circulation et transport (par le prisme des ITS notamment)
+
+<i> Intelligent Transportation Systems (ITS) is a combination of leading-edge information and communication technologies used in transportation and traffic management systems to improve the safety, efficiency, and sustainability of transportation networks, to reduce traffic congestion and to enhance drivers’ experiences. </i> [<a href="https://www.wsp.com/en-CA/services/intelligent-transportation-systems-its">WSP</a>]
+
 
 Néanmois, pour le bon fonctionnement de ces <i> smart cities </i> et pour la communications de ces services et applications pluridisplinaires, il est necessaire de mettre en place des communications M2M
 
@@ -81,11 +83,7 @@ Selon les sorties choisies, le modèle de circulation servira d'entrée au modè
 
 <h2 align="center" id="urban_scenario">Urban scenario</h2>
 
-Ce scenario de circulation progresse en fonction du modèle du traffic M2M, donc l'étude ce portera sur la région métropolitaine de Montréal exclusivement. 
-
-La grande majorité de la simulation ce déroulera sur un point de matin de 5h à 9h du matin pour un journée d'autonme, sauf indication contraire reletif pour l'étude de scénario scécifique.
-
-Même si le modèle tend a être reproduire un circulation multimodale, la plus part des scéanarios ce passera avec des deplacements automobile, voir automobile et bus.
+Ce scenario de circulation progresse en fonction que le M2M simulateur progresse, donc l'étude ce portera exclusivement sur la région métropolitaine de Montréal exclusivement.De plus, au vu de simplifier les premieres demarche,la simulation se déroulera sur un point du matin de 5h à 9h du matin pour un journée d'autonme, sauf indication contraire relatif pour l'étude de scénario spécifique.Même si le modèle tend a être reproduire un circulation multimodale, la plus part des scéanarios ce passera avec des deplacements automobile, voir automobile et bus.
 
 ECT...
 
@@ -93,11 +91,18 @@ ECT...
 
 Par le prisme du modèle de circulation sur l'ile de Montréal. Les démarches de ce github tentent le plus possible de généraliser la construction d'un 'Large scale metropolitan microscopic simulation'. Notamment dans la prespective de déplacer ce modèle vers les villes de Toronto ou Vancouver par exemple.
 
-<h3 align="center" >Calculateur utilisé</h3>
+<h3 align="center" >Processeur utilisé</h3>
 
-Dans la suite du projet, differentes notions de temps de calcule seront mentionner. Cependant le temps calcule des differents peuvent diverger selon les ordinateurs utilisées, mais certains informations pouront rester valide, par exemple entre deux scenarios, des temps de rapide plus rapides pour un scénario choises sans mentionner d'aspect unitaire.
+Dans la suite du projet, differentes notions de temps de calcule seront mentionner. Cependant le temps calcule des differents peuvent diverger selon les processeurs utilisées, mais certains informations pouront rester valide, par exemple entre deux scenarios, des temps plus rapides pour un scénario choisent sans mentionner d'aspect numerique.Le processeur utilisées lors de ces simulations est un  ``` <a href="https://ark.intel.com/content/www/us/en/ark/products/196449/intel-core-i7-10510u-processor-8m-cache-up-to-4-90-ghz.html">Intel(R) Core(TM) i7-10510U</a> ``` dont les principales performances sont performances du calculateur utilisée sont les suivantes:
+	
+<table>	
+<tr><th>Entité</th><th>Unité</th></tr>
+<tr> <td>Vitesse de base</td>   <td>2,30 GHz</td> </tr>
+<tr>    <td>Coeurs</td>    <td>4</td> </tr>
+<tr>    <td>Processeurs logique</td>    <td>8</td> </tr>
+<tr>    <td>Max Turbo Frequency</td>    <td>4.90 GHz</td> </tr>
+</table>
 
-ENCORE DU DETAILLE 
 
 <h3 align="center" >Génération du Réseau</h3>
 
@@ -105,11 +110,11 @@ La section presente décrit la premiere étapes de la construction du modèle, �
 
 <h4 align="center" id="carte">Topologie du réseau</h4>
 
-Comme expliquer dans les sections précedentes, ;e cadre de cette étude est de prendre la circulation sur l'ile de Montréal. 
-
-Il existe une mutlitude de manière d'importer et de créer un réseaux dans SUMO. Dans le cas de l'étude et afin de reprondre au exigences du reseau, les informations de  l'ile sont importés avec <a href="https://www.openstreetmap.org/">OpenStreetMap (OSM)</a>. 
-
-Néamoins, pour répondre au exigence du simulation LTE et de répresenter au mieux les limites adminsitratives de l'ile de Montréal, il est décider de prendre la relation de OSM de l'<a href="https://fr.wikipedia.org/wiki/fr:Agglom%C3%A9ration%20de%20Montr%C3%A9al?uselang=fr"> Agglomeration </a> de Montréal, qui s'est fait assigner le code <i> <a href="https://www.openstreetmap.org/relation/8508277">Q2826806 </a></i>
+Comme expliquer dans les sections précedentes, le cadre de cette étude est de prendre la circulation sur l'ile de Montréal. 
+	
+	Un réseau dans SUMO est composé de 4 principales entitées. Les  ```edges ``` qui est la connection en deux ```nodes```, peut-être nommer tronçons en français.Les ```lane```, qui correspondent au nombre de lignes inclues dans les ```edges ```, par exemple pour une autoroute il peut y avoir 3 ```lane``` dans le ```edges ```. Les ```junction ```, correspondent au carrefour, c'est à dire les points de croissement entre deux  ```edges ``` sur un même niveau. Et les ```connections``` entre deux ```edges ```. Ainsi, il existe une mutlitude de manière de créer ou d'importer un réseaux dans SUMO, comme de la création manuelle grâce à ``` netedit```  ou bien en encodant des fichier XML et les lancers dans ``` netedit```. Dans le cas de l'étude et afin de reprondre au exigences du reseau, les informations de  l'ile sont importés avec <a href="https://www.openstreetmap.org/">OpenStreetMap (OSM)</a>. 
+	
+	Néamoins, pour répondre au exigence du simulation LTE et de répresenter au mieux les limites adminsitratives de l'ile de Montréal, il est décider de prendre la relation de OSM de l'<a href="https://fr.wikipedia.org/wiki/fr:Agglom%C3%A9ration%20de%20Montr%C3%A9al?uselang=fr"> Agglomeration </a> de Montréal, qui s'est fait assigner le code <i> <a href="https://www.openstreetmap.org/relation/8508277">Q2826806 </a></i>
 
 
  <i> A relations in OpenStreetMap is an ordered set of nodes, routes, and even relation, to be made up of logical or geographic relation. </i> [Wiki <a href="https://wiki.openstreetmap.org/wiki/Relation">.OSM</a>]
@@ -507,10 +512,11 @@ Les données proviennent à la fois de données d'enquête telephonique, d'enque
 Facteur de Ponderation ?
 
 En terme de granularité spaciale, l'enquete OD à de nombreux echellons, partant du agglomeration specifique, par exemple tout Laval, à l'adresse individuelles de chaque personnes enquêter. Dans le cas de cette simulation, le choix de conserver plus où mois certains type de routes, à reprocher conclue pour prendre les decoupages des secteurs municipaux comme plus petite echelles spaciales de notres études. Ces resulats sont de la formes:
-
-<div class="cmath">
- `O_i-D_j=Nb_Deplacement_i_j`   
- </div>
+	
+<p align="center">
+  <img  width="250" src="https://render.githubusercontent.com/render/math?math=O_i-D_j=Nbdeplacement_i_j">	
+</p>	
+	
 
 Avec `O_i` l'Origine i du deplacement du trajets et `D_i` la destination j du déplacement.
 
@@ -854,6 +860,10 @@ La demarche de la fonction od2trips est visible sur la Fig XX:
 
 <h4 align="center" id="duarouter">duarouter</h4>
 
+
+Le Dynamic User Assignement, est une technique de routage qui consiste à prendre en compte 
+La fonction ```duarouter``` 
+	
 Après avoir créer des trajets indivuelle a partir de la matrice OD grace à od2Trips, on peut utiliser la fonction <i> <a href="https://sumo.dlr.de/docs/duarouter.html"> duarouter.py </a> </i> qui permet de generer des itiniraires de plus court chemin à l'aide des trajet que nous avons construit. Nous avons pris l'option ignore-error afin de ne pas interroptre les calculs en cas d'erreur de calcule.
 
 <p align="center">
@@ -929,6 +939,7 @@ Le logiciel SUMO, comme les autres logiciels de microsmulation de la circulation
 <p align="center">
   <img  width="250" src="https://render.githubusercontent.com/render/math?math=N=(t_\alpha_/_2\frac{s}{\overline{x}\epsilon})^2">	
 </p>
+
 	
 Avec <img width="10" src="https://render.githubusercontent.com/render/math?math=t"/> suivant une loi de student de N-1 degrées de liberté, <img width="10" src="https://render.githubusercontent.com/render/math?math=\alpha"/> le niveau de confiance,  <img width="10" src="https://render.githubusercontent.com/render/math?math=s"/> l'ecart type de l'échantillon étdudier, <img width="10" src="https://render.githubusercontent.com/render/math?math=\overline{x}"/> la valeur moyenne de l'echantillon et <img width="10" src="https://render.githubusercontent.com/render/math?math=\epsilon"/> la tolérance choisie
 
