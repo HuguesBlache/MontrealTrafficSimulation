@@ -861,25 +861,36 @@ La demarche de la fonction od2trips est visible sur la Fig XX:
 <h4 align="center" id="duarouter">duarouter</h4>
 
 
-Le Dynamic User Assignement, est une technique de routage qui consiste à prendre en compte 
-La fonction ```duarouter``` 
+Le Dynamic User Assignement, est une technique de routage qui consiste à prendre en compte l'ensemble des trajets et leurs affecter un itinaires pour arriver destination.  Plusieurs méthodes existes, donc celle frequement utiliser dans SUMO en assignant un algorithme du plus cours chemin et du temps de type Dijkstra. 
 	
-Après avoir créer des trajets indivuelle a partir de la matrice OD grace à od2Trips, on peut utiliser la fonction <i> <a href="https://sumo.dlr.de/docs/duarouter.html"> duarouter.py </a> </i> qui permet de generer des itiniraires de plus court chemin à l'aide des trajet que nous avons construit. Nous avons pris l'option ignore-error afin de ne pas interroptre les calculs en cas d'erreur de calcule.
+L'algorithme de Dijkstra, utiliser fréquement en modèlisation de transport, consite à résoudre des problèmes de plus cours chemin dans des graphiques. Pour ce faire, l'agorithme assimile un poid à chaque lien entre chaques point du graprs, cela peut être un distance un temps, un cout, puis definies le chemin à prendre entre une origines et une destination pour le quelles la sommes des poids de chaque lien pris soit le plus faible. Pour SUMO, le temps de parcours ne peut être difinies avant la simulation, notamment avec le temps de parcours car les temps de trajet dependande du nombre de vehicule dans le reseau.
 
-<p align="center">
-  <img width="600" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/duarouter.png">
+Ainsi la fonction ```duarouter``` permet d'effectuer une affectation dynamique de l'utilisateur lorsqu'il est appeller de maniere iterative. Pour ce faire le fonction prend en compte le reseau et les trips generer dans la parties ```od2Trips``` et qui permet de generer des itiniraires de plus court chemin et des chemins alternatifs. De plus deux type d'algortihme de pris de decission concernant le choix de route, le modele Gawron et le modele Logit:
+	
+- Le modèle de Gawron, utiliser par default dans SUMO, deteminer la probabilité de choix du conducteur parmis l'ensemble d'itinairies definis dans SUMO. Pour cela l'agoritme prendre en compte le temps de trajet de l'iteraire avec l'etape precedent de la simulation, il prendre aussi en compte le temps des itenaires alternative et anfi la probabilité de choisir un iterraire à l'etape precedente.
+	
+- Le modèle logit, contrairement à l'autre modèle, ne prend pas en compte les anciens cout du trajet et prend seuelement les cout actuelles des trajets et des trajets alternatif. La probabilité de choix étant exprimer comme: 
+	
+	<p align="center">
+  <img  width="250" src="https://render.githubusercontent.com/render/math?math=p^%27_r=\frac{exp(\theta%20*%20c^%27_r)}{\sum_{s%20\in%20\mathbb{R}}exp(\theta%20*%20c^%27_r)}">	
 </p>
-
-Nous prendrons les paramètres suivant pour notre simulation
-
+	
+Pour ce faire les paramettre suivant ont été pris:
+	
  <ul  align="center">
   <li  align="center" >ignore-error: Permet de continuer le calcul des itenaires en cas d'erreur de calcul pour un trajet individuelle</li>
   <li  align="center">with-taz: Permet d'utiliser les zones OD pour l'entrée et la sortie des trajets, dans notre cas cette configuration est esensielle pour recalculer des alternative de trajet si il y a une erreur de trajet</li>
   <li  align="center">routing-algorithm: Permet de definir l'algorthime de routage, dans notre cas nous prendrons l'alogorithme de dijkstra</li>
   <li  align="center">no-step-log: Permet de désactiver les sortie de la console sur les etapes d'analyse</li>
-</ul> 
+  <li  align="center">route-choice-method: Choisire le mode d'itinaire, par default le choix s'est porter vers gawron</li>
+</ul> 	
 
-Il est possible de repartir les trajets de manière uniforme à l'aide de l'utilisation de la commande <i>spread.uniform </i>. Comme le décopage horaire est utilisé (voir plus bas), od2trips permettre de calculer les heures de départ de chaque véhicules dans des tranches de 15 min
+La Fg XX visualiser les differentes entrees et sorties pris en compte dans la simulation:
+	
+<p align="center">
+  <img width="600" height="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/duarouter.png">
+</p>
+
 
 On peut créer un fichier des different paramettre enoncer plus haute. Nous nommerons ce fichier <i> duarouter_configuration.xml</i>
 
@@ -910,10 +921,17 @@ On peut créer un fichier des different paramettre enoncer plus haute. Nous nomm
 
 Pour execter le fihcier avec duarouter il suffit de prendre suivre la commande suivante:
 
-
 ```
 duarouter -c duarouter_configuration.xml
 ```
+ 
+D'autres possiblilité de routage existe, qui ne sont pas pris en compte dans le projet actuelles.Dons voici un set:
+	
+- L'outil ```duaiterate.py``` permet d'effectuer une DUA en prennant en compte les routes alternatif du routage. Pour ce faire, l'agorithme destribue des routes alternatif à des véhicules definies en fonction du trajet comme expliquer plus huat et tante d'effectuer un trafic d'equilidbe de l'utilisatuer (DUE)
+	
+- L'outil ```cadytsIterate.py```, construit par <a hef="https://github.com/gunnarfloetteroed/java"><i> Gunnar Flötteröd à l'EPFL, Suisse</i></a>, utiliser les mêmes principes que ```duaiterate.py``` en prennent en compte les couts de chaques liens
+	
+- L'outil ```one-shot.py``` affecte les trakets a chaque véhicule et les mets à jours selon un pas de temps definies, par defaults de 900s. Mais cette approche n'atteint pas un exqieulie de l'utilisateur (DUE)
 
 <h4 align="center" id="duarouter">Resumer de la generation de la demande</h4>
 
