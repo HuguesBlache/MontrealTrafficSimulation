@@ -24,7 +24,6 @@ La construction du modèle de microsimulation fait partie du projet de Maitrise 
 10. <a href="#Annexe">Annexe</a><br>
 
 
-
 <h2 align="center" id="doc">Documentation SUMO</h2>
 
 Ce projet se réfère principalement à la documentation de <a href="https://sumo.dlr.de/docs/SUMO_User_Documentation.html">Sumo</a> et du Professeur Nicolas Saunier pour le cours <a href="https://github.com/nsaunier/CIV8740/blob/master/guide-sumo.md">CIV8740</a>. Les autres sources seront citées à la fin du document.
@@ -1099,9 +1098,13 @@ Pour traiter les données trips sur SUMO, le choix c'est porter sur des études 
   <img width="400" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Trajet/Trajet_103_106_modificiation.png">
 </p>	
 		
-
+Il est possible de representer c'est données sous une forme de matrice OD, comme la figure XX qui enconce le nombre de véhicule circulons selon les differentes origine et destination
 	
+<p align="center">
+  <img   src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Trajet/nombre.png">	
+</p>	
 	
+Les choix pour avoir des données representatif à été de ne pas prendre les données ayant moins de 10 comptages. Les autres données relatifs à la vitesse, longueur et temps moyennes sont disponible dans l'annexe.
 	
 	
 <h3 align="center">LTE simulator input</h3>
@@ -1533,6 +1536,22 @@ Description des differents limitations administratifs utiliser dans le modèle
    <tr><td> Secteur Quartier des spectacles</td><td>7,2</td></tr>
 </a></table>
 
+	
+	
+
+<h3 align="center" id="Annexe_trajet">Annexe des matrices des trajet</h3>
+<h4 align="center">Longueur moyenne des trajets</h4>	
+<p align="center">
+  <img  src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Trajet/longueur.png">	
+</p>
+<h4 align="center">Vitesse moyenne des trajets</h4>
+<p align="center">
+  <img  src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Trajet/speed.png">	
+</p>
+<h4 align="center">Temps moyenne des trajets</h4>
+<p align="center">
+  <img  src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Trajet/trajet.png">	
+</p>
 
 # SUITE
 # NON
