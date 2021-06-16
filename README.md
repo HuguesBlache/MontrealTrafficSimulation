@@ -948,7 +948,42 @@ En resumer, voici la demarche de la generation de trajet dans notre simulation
 <h2 align="center" id="Simulation">Simulation</h2>
 
 La section suivante presente énumerer les étapes pour la simulation
+<h4 align="center" id="TC">Type de scénario tester</h4>
+	
+Pour comprendre et visualiser les differentes routages disponilbe dans SUMO, il a ete decider de prendre en compte 3 type de routage. Un scenario en n'injectant que les trips de od2trips dans SUMO, un autres injectant seuelemnt les flows de od2trips puis un autres scenarios prennant le routage duaritera
+		
+Quelques types de scenario ont été choisis pour cette simulation. Tout d'abord les recherche se sont concentrer sur deux cas extremes de la simulation microscopique. À savoir les scenarios microscopique ayant une faible demande (matrice exclusivement à l'interieur de l'ile) et dont le reseau ne contient pas les routes residentielles et unclassifiers. L'autre scenario extreme correspond au scenario avec l'ensemble de la demande (interieur et exterieur de l'ile) et sans filtre dans le reseau. Le deux reseau ne prennons pas en compte les deplacement intraSM. Dont voici le tableau recaputalitaif:
+	
+<table border align=center>
+        <tr><th><th><th rowspan=4><th colspan=3>Routage</th>
+        <tr><th>Reseau<th>Demande<th>od2trips<th>flow<th>duaiterate</th>
+        <tr><th align=left>Routes residentielle<td>Matrice entiere</td>
+        <tr><th align=left>Sans Routes Residentielle<td>Deplacement interieur</td>
+</table>
 
+
+	
+A fin de prendre en compte les simulation mescocopique, deux autres scenarios ont été pris egalement en compte les scenarios avec l'ensemble de la demande et sans les routes residentielles et avec les routes residentielles. Et ceux sans les deplacements intraSM.
+
+<table border align=center>
+        <tr><th><th><th rowspan=4><th colspan=3>Routage</th>
+        <tr><th>Reseau<th>Demande<th>od2trips<th>flow<th>duaiterate</th>
+        <tr><th align=left>Routes residentielle<td>Matrice entiere</td>
+        <tr><th align=left>Sans Routes Residentielle<td>Matrice entiere</td>
+</table>
+
+	
+Enfin deux autres scenarion mescocopique prenant en compte les reseau residentielles et en ajoutant les deplacement intraSM
+	
+	
+<table border align=center>
+        <tr><th><th><th rowspan=4><th colspan=3>Routage</th>
+        <tr><th>Reseau<th>Demande<th>od2trips<th>flow<th>duaiterate</th>
+        <tr><th align=left>Routes residentielle<td>Matrice entiere</td>
+        <tr><th align=left>Routes residentielle<td>Matrice entiere avec IntraSM</td>
+</table>
+
+	
 <h4 align="center" id="TC">Nombre de simulation à excecuté</h4>
 
 Le logiciel SUMO, comme les autres logiciels de microsmulation de la circulation, prendre un representation de la circualtion de manière stochastique, la question du nombre de simualtions à effectuer pour recuper des données conveneme et acceptables se posent. [Gauthier][HollanderetLiu]
