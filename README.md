@@ -22,7 +22,7 @@ La construction du modèle de microsimulation fait partie du projet de Maitrise 
 6. <a href="#Simulation">Simulation</a><br>
 7. <a href="#Collecte">Collecte de données</a><br>
 8. <a href="#Calibration">Analyse des sorties/a><br>
-9. <a href="#Discusion">Discusion et reste</a><br>
+9. <a href="#Discusion">Discusion et reste<br>
 10. <a href="#Annexe">Annexe</a><br>
 
 
@@ -1200,7 +1200,7 @@ Le principe reste le même, à savoir determiner si deux échantillons suivent u
 	
 	
 <p align="center">
-  <img  width="250" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/KS_distribution.png">	
+  <img   src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/KS_distribution.png">	
 </p>
 	
 
