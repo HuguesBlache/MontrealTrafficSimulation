@@ -1197,6 +1197,12 @@ Les hypothéses de recherche nulle et bilatérale sont les suivante:
 Néeamois ce test n'est fiable que lorsque taille de l'echantillon est petite. En general inferieur de 20. Pour pallier à ce probleme d'autres statistique sont disponible, comme le test de Kolmogorov-smirnov.
 	
 Le principe reste le même, à savoir determiner si deux échantillons suivent un même loi, cependantn la demarche est differentes. Ce test aussi non paramettrique, calcul la distance maximal D entre les finction de repartition des deux echantillons. Comme l'illustre l'image suivante:
+	
+	
+<p align="center">
+  <img  width="250" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/KS_distribution.png">	
+</p>
+	
 
 
 <h3 align="center" id="TC">Heure de pointe</h3>
