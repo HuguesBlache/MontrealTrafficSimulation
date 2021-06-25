@@ -9,7 +9,9 @@
 <h1 align="center">Montréal Traffic Simulation </h1>
 	
 La construction du modèle de microsimulation fait partie du projet de Maitrise de Hugues Blache pour Polytechnique de Montréal 
- 
+	
+
+
 <h2 align="center">Table des matières</h2>
 
 1. <a href="#doc">Documentation SUMO</a><br>
@@ -109,11 +111,14 @@ La section presente décrit la premiere étapes de la construction du modèle, �
 
 <h4 align="center" id="carte">Topologie du réseau</h4>
 
+ 
+	
+	
 Comme expliquer dans les sections précedentes, le cadre de cette étude est de prendre la circulation sur l'ile de Montréal. 
 	
-	Un réseau dans SUMO est composé de 4 principales entitées. Les  ```edges ``` qui est la connection en deux ```nodes```, peut-être nommer tronçons en français.Les ```lane```, qui correspondent au nombre de lignes inclues dans les ```edges ```, par exemple pour une autoroute il peut y avoir 3 ```lane``` dans le ```edges ```. Les ```junction ```, correspondent au carrefour, c'est à dire les points de croissement entre deux  ```edges ``` sur un même niveau. Et les ```connections``` entre deux ```edges ```. Ainsi, il existe une mutlitude de manière de créer ou d'importer un réseaux dans SUMO, comme de la création manuelle grâce à ``` netedit```  ou bien en encodant des fichier XML et les lancers dans ``` netedit```. Dans le cas de l'étude et afin de reprondre au exigences du reseau, les informations de  l'ile sont importés avec <a href="https://www.openstreetmap.org/">OpenStreetMap (OSM)</a>. 
+Un réseau dans SUMO est composé de 4 principales entitées. Les  ```edges ``` qui est la connection en deux ```nodes```, peut-être nommer tronçons en français.Les ```lane```, qui correspondent au nombre de lignes inclues dans les ```edges ```, par exemple pour une autoroute il peut y avoir 3 ```lane``` dans le ```edges ```. Les ```junction ```, correspondent au carrefour, c'est à dire les points de croissement entre deux  ```edges ``` sur un même niveau. Et les ```connections``` entre deux ```edges ```. Ainsi, il existe une mutlitude de manière de créer ou d'importer un réseaux dans SUMO, comme de la création manuelle grâce à ``` netedit```  ou bien en encodant des fichier XML et les lancers dans ``` netedit```. Dans le cas de l'étude et afin de reprondre au exigences du reseau, les informations de  l'ile sont importés avec <a href="https://www.openstreetmap.org/">OpenStreetMap (OSM)</a>.
 	
-	Néamoins, pour répondre au exigence du simulation LTE et de répresenter au mieux les limites adminsitratives de l'ile de Montréal, il est décider de prendre la relation de OSM de l'<a href="https://fr.wikipedia.org/wiki/fr:Agglom%C3%A9ration%20de%20Montr%C3%A9al?uselang=fr"> Agglomeration </a> de Montréal, qui s'est fait assigner le code <i> <a href="https://www.openstreetmap.org/relation/8508277">Q2826806 </a></i>
+Néamoins, pour répondre au exigence du simulation LTE et de répresenter au mieux les limites adminsitratives de l'ile de Montréal, il est décider de prendre la relation de OSM de l'<a href="https://fr.wikipedia.org/wiki/fr:Agglom%C3%A9ration%20de%20Montr%C3%A9al?uselang=fr"> Agglomeration </a> de Montréal, qui s'est fait assigner le code <i> <a href="https://www.openstreetmap.org/relation/8508277">Q2826806 </a></i>
 
 
  <i> A relations in OpenStreetMap is an ordered set of nodes, routes, and even relation, to be made up of logical or geographic relation. </i> [Wiki <a href="https://wiki.openstreetmap.org/wiki/Relation">.OSM</a>]
@@ -1043,9 +1048,7 @@ Voici quelques differences visible entre chaque simulation pour une simulation a
 
 
 <p align="center">
-  <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/endedvehicles.png">
-  <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/runningvehicules.png">
-  <img width="400" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/meanTravelTime.png">
+  <img src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/duplication_tranche_5.png">
 </p>
 
 
@@ -1170,6 +1173,30 @@ Après la simulation,les données brute du FCD peuvent être traitées avec <a h
 
 	
 <h2 align="center" id="Calibration">Analyse des sorties</h2>
+	
+
+<h3 align="center" id="Stastitique">Test non parametrique d'echantillon independant</h3>
+	
+Un test est dit non paramétriques lorsque l'étude ne prends pas en compte de la loi de distribution d'un ou plusieur échantillon. L'avantage de ce type de test est qu'il n'a pas besoin d'un distribution préalable pour être deployer, quand d'autres test necessite un type de distribtion precis, comme une distribution normale.
+	
+De nombreux test existe dans la litterature des statistique. Dans le cas de la simulation, les sorties seront comparer avec des données observées. Ainsi, la comparaison se fera avec deux echantillons independant, ainsi le test préconniser est un test de Wilcoxon-Mann-Whitney (parfois nommées test U de Mann-Whitney)
+	
+Ce test, qui est une alternative du test de Student, permet de determiner si deux échantillon suivent ou non un même distribution. Le principe est le suivant, les deux echantillons X et Y sont trier, puis assemble de manier alternative, xi puis yi, de manier croissante. Puis chaque valeurs est attributer à un rang. Et finalement les ranges de chaques echantillons sont additionner pour calculer la statisitque du test:
+	
+<p align="center">
+  <img  width="250" src="https://render.githubusercontent.com/render/math?math=U_1=R_1-\frac{n_1(n_1+1)}{2}">	
+</p>
+	
+Les hypothéses de recherche nulle et bilatérale sont les suivante:
+	
+ <ul  align="center">
+  <li  align="center" >Ho: Les deux populations ont la meme distribution</li>
+  <li  align="center">H1: Les deux populations n'ont pas la meme distribution</li>	
+</ul> 
+
+Néeamois ce test n'est fiable que lorsque taille de l'echantillon est petite. En general inferieur de 20. Pour pallier à ce probleme d'autres statistique sont disponible, comme le test de Kolmogorov-smirnov.
+	
+Le principe reste le même, à savoir determiner si deux échantillons suivent un même loi, cependantn la demarche est differentes. Ce test aussi non paramettrique, calcul la distance maximal D entre les finction de repartition des deux echantillons. Comme l'illustre l'image suivante:
 
 
 <h3 align="center" id="TC">Heure de pointe</h3>
