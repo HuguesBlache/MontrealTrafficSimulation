@@ -1280,9 +1280,16 @@ La section precente, presente les differentes simulation ne prennnans en compte 
 
 <h4 align="center" id="TC">Vitesse de calcul initialisation</h4>
 	
-Selon les stratégies choisies et dans la prespective d'une cosimulation entre le simulation de circulation et le lte simulator, il est utile de se pencher sur le temps de calcul des differents programme executer. Apres avoir tourner XX simulation pour les commandes duarouter et od2trips, il est possible de voir la vitesse de calcul sur la Fig XX
-<p align="center">
-<img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_od2trips/od2trip_computation_int.png">
+Selon les stratégies choisies et dans la prespective d'une cosimulation entre le simulation de circulation et le lte simulator, il est utile de se pencher sur le temps de calcul des differents programme executer. Apres avoir tourner XX simulation pour laod2trips, il est possible de voir la vitesse de calcul sur la Fig XX. Il y a une certaines differences de temps entre chaques scenario pris en compte, le scenario ayayn les rues residentielles enlever en prennnant les trajets venant de l'exterieur de l'ile de Montréal compte des temps de calcul plus long, que les autres scenarios. Il parait logique que le temps soit plus par rapport à la simulation sans les trajets exterieur, car le nombre de voitures ecrit sont nettement plus faible pour le deuxiemes scenario, comme le montre la figure XX. (A VERIFIER ->), la difference avec le scenario avec les routes residentielles peut s'expliqué à l'aides des fig XX (filtrage des routes). En effet, la fonction od2trips pige au hasard des emplacements de depart et d'arrivé pour chaque trajet, cependant, cette fonction selon les paramettre choises ne prendrea pas deux fois le même trajet. Donc au vu de la demande des deux simulations, qui sont identique, il ya aura un probabilité plus éléve de piege deux foix le meme trajet pour le scenario sans rues residenteilles et donc de recaculer les points de depart et d'arrivées, se qui fatalement prendre plus de temps.
+
+	
+<p align="center">	
+<img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/od2tripscomputation.png">
+<img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/vehicules_written_od2trips.png">
+</p>
+	
+	
+<p align="center">	
 <img width="700" height="300" src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/Summary/meso_duarouter/duarouter_computation.png">
 </p>
 
@@ -1304,7 +1311,7 @@ Le modèle proposé par SUMO sur les travaux de Eissfeldt, Nils Gustaf [<a href=
 Plusieurs impacte sont possible du au choix de cette configuration, notamment le calcule sont possiblement moins precis sur les interesection, notamment au feux de circualation, mais aussi les vitesses de l'ensemble des véhicules et les changement de voies.
 
 Par exemple en utilisant les parametres spécifier plus haute, et en utilisant le paramètre --mesosim dans le fichier.
-
+Vitesse de calcul initialisation
 <h4 align="center" id="TC">Vitesse de calcul</h4>
 	
 Comme dans la section precedentes, il est possible des retirer les temps de calcules de chaque scénarios choises dans la simulation.
