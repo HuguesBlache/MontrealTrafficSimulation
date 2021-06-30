@@ -24,7 +24,12 @@ La construction du modèle de microsimulation fait partie du projet de Maitrise 
 8. <a href="#Calibration">Analyse des sorties/a><br>
 9. <a href="#Discusion">Discusion et reste<br>
 10. <a href="#Annexe">Annexe</a><br>
+<p align="center">
+  <img   src="https://github.com/HuguesBlache/MontrealTrafficSimulation/blob/master/Image/dia_sumo.png">	
+</p>
 
+	
+	
 
 <h2 align="center" id="doc">Documentation SUMO</h2>
 
