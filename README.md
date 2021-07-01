@@ -410,7 +410,7 @@ Pour notre simulation nous prendrons les <a href="https://wiki.openstreetmap.org
 <img width="30" height="30" src="https://user-images.githubusercontent.com/65184943/87172123-bb880c00-c2a1-11ea-8b11-ff689734475f.jpg"> Les <i> ptstop </i> et les <i> ptline </i> peuvent parfois ne pas prendre en compte certaines lignes et arrêts si les <a href="https://wiki.openstreetmap.org/wiki/Relation"> relations </a>  dans OSM ne sont pas bien construites. Comme le renseigne le tableau suivant:
 
 <table  align="center"><a align="center">
-<tr><th>Colour</th><th> 	Meaning </th>	<th>To do</th></tr>
+<tr><th>Color</th><th> 	Meaning </th>	<th>To do</th></tr>
 <tr><td><img src="https://wiki.openstreetmap.org/w/images/3/3b/State_Routing.svg"><img src="https://wiki.openstreetmap.org/w/images/0/00/State_Stop.svg"></td><td>	The map data is unknown </td><td>	Please verify and/or complete</td></tr>
 <tr><td><img src="https://wiki.openstreetmap.org/w/images/f/f4/State_Routing0.svg"><img src="https://wiki.openstreetmap.org/w/images/archive/a/af/20150922051209%21State_Stop0.svg"></td><td> The map contains no or little data </td><td>	Please complete</td></tr>
 <tr><td><img src="https://wiki.openstreetmap.org/w/images/1/10/State_Routing1.svg"><img src="https://wiki.openstreetmap.org/w/images/archive/b/b9/20150922051220%21State_Stop1.svg"></td><td>The map contains partial data </td><td>	Please complete</td></tr>
