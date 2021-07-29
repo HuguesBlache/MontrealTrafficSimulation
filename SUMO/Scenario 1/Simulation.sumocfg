@@ -1,8 +1,9 @@
 <configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
 		
 <input>
+
 		<route-files value="gtfs_publictransport.rou.xml"/>
-		<additional-files value="gtfs_publictransport.add.xml"/>
+		<additional-files value="gtfs_publictransport.add.xml,bus_type.add.xml"/>
 	</input>
 
  
