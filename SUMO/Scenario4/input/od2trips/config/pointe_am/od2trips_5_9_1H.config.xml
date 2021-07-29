@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<configuration>
+		<processing>
+			<prefix value="voiture"/>
+			<spread.uniform  value="true" />
+			<vtype value="delivery" />
+			<timeline value="18000:0.1082,21600:0.1743,25200:0.2479,28800:0.2343,32400:0.1947"/>
+		</processing>
+</configuration>
+
+
+

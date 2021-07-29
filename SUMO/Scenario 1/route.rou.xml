@@ -1,0 +1,362 @@
+<routes>
+<vehicle depart="17360" id="48">
+    <route edges="453483726"/>
+    <stop duration="18000" parkingArea="48"/>
+</vehicle>
+<vehicle depart="17360" id="44">
+    <route edges="459551276"/>
+    <stop duration="18000" parkingArea="44"/>
+</vehicle>
+<vehicle depart="17360" id="1E">
+    <route edges="393827232#1"/>
+    <stop duration="18000" parkingArea="1E"/>
+</vehicle>
+<vehicle depart="17360" id="6">
+    <route edges="680923344"/>
+    <stop duration="18000" parkingArea="6"/>
+</vehicle>
+<vehicle depart="17360" id="15">
+    <route edges="567770353#0"/>
+    <stop duration="18000" parkingArea="15"/>
+</vehicle>
+<vehicle depart="17360" id="40">
+    <route edges="453266468"/>
+    <stop duration="18000" parkingArea="40"/>
+</vehicle>
+<vehicle depart="17360" id="1">
+    <route edges="827392078#3"/>
+    <stop duration="18000" parkingArea="1"/>
+</vehicle>
+<vehicle depart="17360" id="10">
+    <route edges="452695795#2"/>
+    <stop duration="18000" parkingArea="10"/>
+</vehicle>
+<vehicle depart="17360" id="24">
+    <route edges="465585475"/>
+    <stop duration="18000" parkingArea="24"/>
+</vehicle>
+<vehicle depart="17360" id="46">
+    <route edges="435627721"/>
+    <stop duration="18000" parkingArea="46"/>
+</vehicle>
+<vehicle depart="17360" id="3">
+    <route edges="454275963"/>
+    <stop duration="18000" parkingArea="3"/>
+</vehicle>
+<vehicle depart="17360" id="33">
+    <route edges="452083265"/>
+    <stop duration="18000" parkingArea="33"/>
+</vehicle>
+<vehicle depart="17360" id="2">
+    <route edges="451902817"/>
+    <stop duration="18000" parkingArea="2"/>
+</vehicle>
+<vehicle depart="17360" id="4">
+    <route edges="459835305#0"/>
+    <stop duration="18000" parkingArea="4"/>
+</vehicle>
+<vehicle depart="17360" id="30">
+    <route edges="215446977#1"/>
+    <stop duration="18000" parkingArea="30"/>
+</vehicle>
+<vehicle depart="17360" id="47">
+    <route edges="452044715"/>
+    <stop duration="18000" parkingArea="47"/>
+</vehicle>
+<vehicle depart="17360" id="45">
+    <route edges="434335538"/>
+    <stop duration="18000" parkingArea="45"/>
+</vehicle>
+<vehicle depart="17360" id="18">
+    <route edges="464696730"/>
+    <stop duration="18000" parkingArea="18"/>
+</vehicle>
+<vehicle depart="17360" id="16">
+    <route edges="465627006#2"/>
+    <stop duration="18000" parkingArea="16"/>
+</vehicle>
+<vehicle depart="17360" id="1Q">
+    <route edges="360154162"/>
+    <stop duration="18000" parkingArea="1Q"/>
+</vehicle>
+<vehicle depart="17360" id="36">
+    <route edges="452641477"/>
+    <stop duration="18000" parkingArea="36"/>
+</vehicle>
+<vehicle depart="17360" id="1B">
+    <route edges="450724846"/>
+    <stop duration="18000" parkingArea="1B"/>
+</vehicle>
+<vehicle depart="17360" id="35">
+    <route edges="464944660"/>
+    <stop duration="18000" parkingArea="35"/>
+</vehicle>
+<vehicle depart="17360" id="1M">
+    <route edges="561017136#1"/>
+    <stop duration="18000" parkingArea="1M"/>
+</vehicle>
+<vehicle depart="17360" id="12">
+    <route edges="460753676"/>
+    <stop duration="18000" parkingArea="12"/>
+</vehicle>
+<vehicle depart="17360" id="32">
+    <route edges="121183812"/>
+    <stop duration="18000" parkingArea="32"/>
+</vehicle>
+<vehicle depart="17360" id="80">
+    <route edges="453981162#0"/>
+    <stop duration="18000" parkingArea="80"/>
+</vehicle>
+<vehicle depart="17360" id="42">
+    <route edges="452019786"/>
+    <stop duration="18000" parkingArea="42"/>
+</vehicle>
+<vehicle depart="17360" id="1P">
+    <route edges="436519245"/>
+    <stop duration="18000" parkingArea="1P"/>
+</vehicle>
+<vehicle depart="17360" id="50">
+    <route edges="451072402#0"/>
+    <stop duration="18000" parkingArea="50"/>
+</vehicle>
+<vehicle depart="17360" id="5">
+    <route edges="452610967"/>
+    <stop duration="18000" parkingArea="5"/>
+</vehicle>
+<vehicle depart="17360" id="7">
+    <route edges="452652512#0"/>
+    <stop duration="18000" parkingArea="7"/>
+</vehicle>
+<vehicle depart="17360" id="29">
+    <route edges="329989226#0"/>
+    <stop duration="18000" parkingArea="29"/>
+</vehicle>
+<vehicle depart="17360" id="1N">
+    <route edges="607069768"/>
+    <stop duration="18000" parkingArea="1N"/>
+</vehicle>
+<vehicle depart="17360" id="41">
+    <route edges="464080252"/>
+    <stop duration="18000" parkingArea="41"/>
+</vehicle>
+<vehicle depart="17360" id="39">
+    <route edges="341093398#2"/>
+    <stop duration="18000" parkingArea="39"/>
+</vehicle>
+<vehicle depart="17360" id="43">
+    <route edges="341094444"/>
+    <stop duration="18000" parkingArea="43"/>
+</vehicle>
+<vehicle depart="17360" id="25">
+    <route edges="692788659#0"/>
+    <stop duration="18000" parkingArea="25"/>
+</vehicle>
+<vehicle depart="17360" id="28">
+    <route edges="452676131"/>
+    <stop duration="18000" parkingArea="28"/>
+</vehicle>
+<vehicle depart="17360" id="11">
+    <route edges="461311216"/>
+    <stop duration="18000" parkingArea="11"/>
+</vehicle>
+<vehicle depart="17360" id="54">
+    <route edges="24881915#2"/>
+    <stop duration="18000" parkingArea="54"/>
+</vehicle>
+<vehicle depart="17360" id="53">
+    <route edges="452652551"/>
+    <stop duration="18000" parkingArea="53"/>
+</vehicle>
+<vehicle depart="17360" id="26">
+    <route edges="456314148"/>
+    <stop duration="18000" parkingArea="26"/>
+</vehicle>
+<vehicle depart="17360" id="37">
+    <route edges="48809471#1"/>
+    <stop duration="18000" parkingArea="37"/>
+</vehicle>
+<vehicle depart="17360" id="99">
+    <route edges="451899893"/>
+    <stop duration="18000" parkingArea="99"/>
+</vehicle>
+<vehicle depart="17360" id="52">
+    <route edges="453478509#1"/>
+    <stop duration="18000" parkingArea="52"/>
+</vehicle>
+<vehicle depart="17360" id="1K">
+    <route edges="607269174"/>
+    <stop duration="18000" parkingArea="1K"/>
+</vehicle>
+<vehicle depart="17360" id="1F">
+    <route edges="393676886#0"/>
+    <stop duration="18000" parkingArea="1F"/>
+</vehicle>
+<vehicle depart="17360" id="1L">
+    <route edges="455030890"/>
+    <stop duration="18000" parkingArea="1L"/>
+</vehicle>
+<vehicle depart="17360" id="98">
+    <route edges="20316498"/>
+    <stop duration="18000" parkingArea="98"/>
+</vehicle>
+<vehicle depart="17360" id="1I">
+    <route edges="451899892"/>
+    <stop duration="18000" parkingArea="1I"/>
+</vehicle>
+<vehicle depart="17360" id="1D">
+    <route edges="453483738"/>
+    <stop duration="18000" parkingArea="1D"/>
+</vehicle>
+<vehicle depart="17360" id="1H">
+    <route edges="607269182"/>
+    <stop duration="18000" parkingArea="1H"/>
+</vehicle>
+<vehicle depart="17360" id="1G">
+    <route edges="453483737"/>
+    <stop duration="18000" parkingArea="1G"/>
+</vehicle>
+<vehicle depart="17360" id="1C">
+    <route edges="453483743"/>
+    <stop duration="18000" parkingArea="1C"/>
+</vehicle>
+<vehicle depart="17360" id="93">
+    <route edges="464892586"/>
+    <stop duration="18000" parkingArea="93"/>
+</vehicle>
+<vehicle depart="17360" id="1R">
+    <route edges="630097219#1"/>
+    <stop duration="18000" parkingArea="1R"/>
+</vehicle>
+<vehicle depart="17360" id="34">
+    <route edges="239893804"/>
+    <stop duration="18000" parkingArea="34"/>
+</vehicle>
+<vehicle depart="17360" id="63">
+    <route edges="453963142"/>
+    <stop duration="18000" parkingArea="63"/>
+</vehicle>
+<vehicle depart="17360" id="91">
+    <route edges="465381269"/>
+    <stop duration="18000" parkingArea="91"/>
+</vehicle>
+<vehicle depart="17360" id="95">
+    <route edges="26699202#1"/>
+    <stop duration="18000" parkingArea="95"/>
+</vehicle>
+<vehicle depart="17360" id="94">
+    <route edges="48921997#7"/>
+    <stop duration="18000" parkingArea="94"/>
+</vehicle>
+<vehicle depart="17360" id="84">
+    <route edges="458245870"/>
+    <stop duration="18000" parkingArea="84"/>
+</vehicle>
+<vehicle depart="17360" id="88">
+    <route edges="329989915#2"/>
+    <stop duration="18000" parkingArea="88"/>
+</vehicle>
+<vehicle depart="17360" id="85">
+    <route edges="561733177"/>
+    <stop duration="18000" parkingArea="85"/>
+</vehicle>
+<vehicle depart="17360" id="83">
+    <route edges="39368249#1"/>
+    <stop duration="18000" parkingArea="83"/>
+</vehicle>
+<vehicle depart="17360" id="89">
+    <route edges="465380604#0"/>
+    <stop duration="18000" parkingArea="89"/>
+</vehicle>
+<vehicle depart="17360" id="19">
+    <route edges="453530971"/>
+    <stop duration="18000" parkingArea="19"/>
+</vehicle>
+<vehicle depart="17360" id="55">
+    <route edges="22909967"/>
+    <stop duration="18000" parkingArea="55"/>
+</vehicle>
+<vehicle depart="17360" id="69">
+    <route edges="356391517#0"/>
+    <stop duration="18000" parkingArea="69"/>
+</vehicle>
+<vehicle depart="17360" id="75">
+    <route edges="165334551"/>
+    <stop duration="18000" parkingArea="75"/>
+</vehicle>
+<vehicle depart="17360" id="74">
+    <route edges="48921991#1"/>
+    <stop duration="18000" parkingArea="74"/>
+</vehicle>
+<vehicle depart="17360" id="71">
+    <route edges="415626772#0"/>
+    <stop duration="18000" parkingArea="71"/>
+</vehicle>
+<vehicle depart="17360" id="79">
+    <route edges="41258632"/>
+    <stop duration="18000" parkingArea="79"/>
+</vehicle>
+<vehicle depart="17360" id="68">
+    <route edges="329384210"/>
+    <stop duration="18000" parkingArea="68"/>
+</vehicle>
+<vehicle depart="17360" id="1J">
+    <route edges="243082507#4"/>
+    <stop duration="18000" parkingArea="1J"/>
+</vehicle>
+<vehicle depart="17360" id="81">
+    <route edges="165265050#2"/>
+    <stop duration="18000" parkingArea="81"/>
+</vehicle>
+<vehicle depart="17360" id="90">
+    <route edges="329795964"/>
+    <stop duration="18000" parkingArea="90"/>
+</vehicle>
+<vehicle depart="17360" id="82">
+    <route edges="454215276#1"/>
+    <stop duration="18000" parkingArea="82"/>
+</vehicle>
+<vehicle depart="17360" id="77">
+    <route edges="4320454#2"/>
+    <stop duration="18000" parkingArea="77"/>
+</vehicle>
+<vehicle depart="17360" id="92">
+    <route edges="828600802"/>
+    <stop duration="18000" parkingArea="92"/>
+</vehicle>
+<vehicle depart="17360" id="70">
+    <route edges="453989310"/>
+    <stop duration="18000" parkingArea="70"/>
+</vehicle>
+<vehicle depart="17360" id="65">
+    <route edges="465416568"/>
+    <stop duration="18000" parkingArea="65"/>
+</vehicle>
+<vehicle depart="17360" id="66">
+    <route edges="329384213#2"/>
+    <stop duration="18000" parkingArea="66"/>
+</vehicle>
+<vehicle depart="17360" id="78">
+    <route edges="465381659"/>
+    <stop duration="18000" parkingArea="78"/>
+</vehicle>
+<vehicle depart="17360" id="76">
+    <route edges="332695584#3"/>
+    <stop duration="18000" parkingArea="76"/>
+</vehicle>
+<vehicle depart="17360" id="73">
+    <route edges="828600790#4"/>
+    <stop duration="18000" parkingArea="73"/>
+</vehicle>
+<vehicle depart="17360" id="87">
+    <route edges="329989915#1"/>
+    <stop duration="18000" parkingArea="87"/>
+</vehicle>
+<vehicle depart="17360" id="86">
+    <route edges="36675287"/>
+    <stop duration="18000" parkingArea="86"/>
+</vehicle>
+<vehicle depart="17360" id="72">
+    <route edges="41258630#0"/>
+    <stop duration="18000" parkingArea="72"/>
+</vehicle>
+</routes>
