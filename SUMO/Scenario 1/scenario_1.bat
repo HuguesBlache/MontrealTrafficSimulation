@@ -2,7 +2,7 @@
 FOR /L %%s IN (1100,200,4900)  DO (
 
 REM ###################ODTRIPS
-	od2trips --scale 0.01 --configuration-file .\input\od2trips\config\pointe_am\od2trips_5_9_15min.config.xml --taz-files ./input/TAZ/districts.taz.xml --od-matrix-files ./input/Matrice_OD\trajet_interieur_interieur\OD_Int_Int_Sans_SM.txt --seed %%s  --output-prefix seed%%s --output-file .\input\od2trips\result\point_am\scenario_1.odtrips.xml --log  .\input\od2trips\result\point_am\scenario_1_od2trips --flow-output .\input\flow\scenario_1_flow.xml
+	od2trips  --configuration-file .\input\od2trips\config\pointe_am\od2trips_5_9_15min.config.xml --taz-files ./input/TAZ/districts.taz.xml --od-matrix-files ./input/Matrice_OD\trajet_interieur_interieur\OD_Int_Int_Sans_SM.txt --seed %%s  --output-prefix seed%%s --output-file .\input\od2trips\result\point_am\scenario_1.odtrips.xml --log  .\input\od2trips\result\point_am\scenario_1_od2trips --flow-output .\input\flow\scenario_1_flow.xml
 
 REM ################### Duarouter
 
