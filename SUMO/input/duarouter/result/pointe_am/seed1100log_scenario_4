@@ -1,0 +1,629 @@
+Loading net ... done.
+Loading additional file './input/Vtype/Vtype.xml'  ... done.
+Loading additional file './input/TAZ/districts.taz.xml'  ... done.
+Skipped until: 18013.37
+Warning: No connection between edge '-785471646#0' and edge '926760103#1' found.
+Warning: Mandatory edge '926760103#1' not reachable by vehicle 'voiture148'.
+Warning: The vehicle 'voiture148' has no valid route.
+Warning: No connection between edge '393829334#2' and edge '-463622898#1' found.
+Warning: Mandatory edge '-463622898#1' not reachable by vehicle 'voiture56'.
+Warning: The vehicle 'voiture56' has no valid route.
+Warning: No connection between edge '-22662967#0' and edge '462531876#2' found.
+Warning: Mandatory edge '462531876#2' not reachable by vehicle 'voiture18'.
+Warning: The vehicle 'voiture18' has no valid route.
+Warning: No connection between edge '-293435420' and edge '230126432' found.
+Warning: Mandatory edge '230126432' not reachable by vehicle 'voiture159'.
+Warning: The vehicle 'voiture159' has no valid route.
+Warning: No connection between edge '47472069#12' and edge '-314062442' found.
+Warning: Mandatory edge '-314062442' not reachable by vehicle 'voiture142'.
+Warning: The vehicle 'voiture142' has no valid route.
+Warning: No connection between edge '-23027170#1' and edge '-26134692' found.
+Warning: Mandatory edge '-26134692' not reachable by vehicle 'voiture15'.
+Warning: The vehicle 'voiture15' has no valid route.
+Warning: No connection between edge '-885229596' and edge '-543113474#3' found.
+Warning: Mandatory edge '-543113474#3' not reachable by vehicle 'voiture156'.
+Warning: The vehicle 'voiture156' has no valid route.
+Warning: No connection between edge '40662014#0' and edge '48432562' found.
+Warning: Mandatory edge '48432562' not reachable by vehicle 'voiture106'.
+Warning: The vehicle 'voiture106' has no valid route.
+Warning: No connection between edge '-110346882#0' and edge '454833482' found.
+Warning: Mandatory edge '454833482' not reachable by vehicle 'voiture86'.
+Warning: The vehicle 'voiture86' has no valid route.
+Warning: No connection between edge '187743164#2' and edge '-454197084' found.
+Warning: Mandatory edge '-454197084' not reachable by vehicle 'voiture131'.
+Warning: The vehicle 'voiture131' has no valid route.
+Warning: No connection between edge '453282634#3' and edge '20187413' found.
+Warning: Mandatory edge '20187413' not reachable by vehicle 'voiture274'.
+Warning: The vehicle 'voiture274' has no valid route.
+Warning: No connection between edge '157712467#0' and edge '806947114#0' found.
+Warning: Mandatory edge '806947114#0' not reachable by vehicle 'voiture292'.
+Warning: The vehicle 'voiture292' has no valid route.
+Warning: No connection between edge '-423936425' and edge '466406354#1' found.
+Warning: Mandatory edge '466406354#1' not reachable by vehicle 'voiture309'.
+Warning: The vehicle 'voiture309' has no valid route.
+Warning: No connection between edge '-45570307#9' and edge '-944286014' found.
+Warning: Mandatory edge '-944286014' not reachable by vehicle 'voiture317'.
+Warning: The vehicle 'voiture317' has no valid route.
+Warning: No connection between edge '-420831453' and edge '555001964' found.
+Warning: Mandatory edge '555001964' not reachable by vehicle 'voiture362'.
+Warning: The vehicle 'voiture362' has no valid route.
+Warning: No connection between edge '-453483732#0' and edge '-22892005#0' found.
+Warning: Mandatory edge '-22892005#0' not reachable by vehicle 'voiture233'.
+Warning: The vehicle 'voiture233' has no valid route.
+Warning: No connection between edge '-451899899' and edge '78456291' found.
+Warning: Mandatory edge '78456291' not reachable by vehicle 'voiture227'.
+Warning: The vehicle 'voiture227' has no valid route.
+Warning: Vehicle 'voiture315' is not allowed to arrive on edge '942882279'.
+Warning: The vehicle 'voiture315' has no valid route.
+Warning: No connection between edge '-48432601' and edge '413002634' found.
+Warning: Mandatory edge '413002634' not reachable by vehicle 'voiture357'.
+Warning: The vehicle 'voiture357' has no valid route.
+Warning: No connection between edge '-20904778#0' and edge '-696276261' found.
+Warning: Mandatory edge '-696276261' not reachable by vehicle 'voiture190'.
+Warning: The vehicle 'voiture190' has no valid route.
+Warning: No connection between edge '-538851393#1' and edge '47653029' found.
+Warning: Mandatory edge '47653029' not reachable by vehicle 'voiture346'.
+Warning: The vehicle 'voiture346' has no valid route.
+Warning: No connection between edge '-478018150#3' and edge '198357035#0' found.
+Warning: Mandatory edge '198357035#0' not reachable by vehicle 'voiture499'.
+Warning: The vehicle 'voiture499' has no valid route.
+Warning: Vehicle 'voiture432' is not allowed to arrive on edge '971811011'.
+Warning: The vehicle 'voiture432' has no valid route.
+Warning: No connection between edge '20112623#2' and edge '-22894889#4' found.
+Warning: Mandatory edge '-22894889#4' not reachable by vehicle 'voiture382'.
+Warning: The vehicle 'voiture382' has no valid route.
+Warning: No connection between edge '20113484#2' and edge '423936400#3' found.
+Warning: Mandatory edge '423936400#3' not reachable by vehicle 'voiture385'.
+Warning: The vehicle 'voiture385' has no valid route.
+Warning: No connection between edge '-785471646#0' and edge '-12717953#3' found.
+Warning: Mandatory edge '-12717953#3' not reachable by vehicle 'voiture549'.
+Warning: The vehicle 'voiture549' has no valid route.
+Warning: No connection between edge '-471787069#0' and edge '22894872#2' found.
+Warning: Mandatory edge '22894872#2' not reachable by vehicle 'voiture439'.
+Warning: The vehicle 'voiture439' has no valid route.
+Warning: No connection between edge '-25381678#0' and edge '-932670880' found.
+Warning: Mandatory edge '-932670880' not reachable by vehicle 'voiture719'.
+Warning: The vehicle 'voiture719' has no valid route.
+Warning: No connection between edge '-913188310' and edge '13684861' found.
+Warning: Mandatory edge '13684861' not reachable by vehicle 'voiture779'.
+Warning: The vehicle 'voiture779' has no valid route.
+Warning: No connection between edge '22909389#12' and edge '-22894996' found.
+Warning: Mandatory edge '-22894996' not reachable by vehicle 'voiture643'.
+Warning: The vehicle 'voiture643' has no valid route.
+Warning: No connection between edge '461136116' and edge '127570933#0' found.
+Warning: Mandatory edge '127570933#0' not reachable by vehicle 'voiture637'.
+Warning: The vehicle 'voiture637' has no valid route.
+Warning: No connection between edge '453282634#3' and edge '-22911170#0' found.
+Warning: Mandatory edge '-22911170#0' not reachable by vehicle 'voiture685'.
+Warning: The vehicle 'voiture685' has no valid route.
+Warning: No connection between edge '20180835#1' and edge '12203277#3' found.
+Warning: Mandatory edge '12203277#3' not reachable by vehicle 'voiture700'.
+Warning: The vehicle 'voiture700' has no valid route.
+Warning: No connection between edge '11393950' and edge '393788401#0' found.
+Warning: Mandatory edge '393788401#0' not reachable by vehicle 'voiture731'.
+Warning: The vehicle 'voiture731' has no valid route.
+Warning: No connection between edge '920267676' and edge '20196781' found.
+Warning: Mandatory edge '20196781' not reachable by vehicle 'voiture775'.
+Warning: The vehicle 'voiture775' has no valid route.
+Warning: No connection between edge '-48432629#0' and edge '474838162' found.
+Warning: Mandatory edge '474838162' not reachable by vehicle 'voiture780'.
+Warning: The vehicle 'voiture780' has no valid route.
+Warning: No connection between edge '164818757#1' and edge '35160264' found.
+Warning: Mandatory edge '35160264' not reachable by vehicle 'voiture711'.
+Warning: The vehicle 'voiture711' has no valid route.
+Warning: No connection between edge '435434445' and edge '463631282' found.
+Warning: Mandatory edge '463631282' not reachable by vehicle 'voiture790'.
+Warning: The vehicle 'voiture790' has no valid route.
+Warning: No connection between edge '25168474' and edge '-4889406#1' found.
+Warning: Mandatory edge '-4889406#1' not reachable by vehicle 'voiture954'.
+Warning: The vehicle 'voiture954' has no valid route.
+Warning: No connection between edge '-966439481#4' and edge '-916274510' found.
+Warning: Mandatory edge '-916274510' not reachable by vehicle 'voiture909'.
+Warning: The vehicle 'voiture909' has no valid route.
+Warning: No connection between edge '-22894166' and edge '479572754#1' found.
+Warning: Mandatory edge '479572754#1' not reachable by vehicle 'voiture830'.
+Warning: The vehicle 'voiture830' has no valid route.
+Warning: No connection between edge '-475308627' and edge '-27342452#1' found.
+Warning: Mandatory edge '-27342452#1' not reachable by vehicle 'voiture856'.
+Warning: The vehicle 'voiture856' has no valid route.
+Warning: No connection between edge '20202916#3' and edge '20112435#2' found.
+Warning: Mandatory edge '20112435#2' not reachable by vehicle 'voiture926'.
+Warning: The vehicle 'voiture926' has no valid route.
+Warning: No connection between edge '-47225419' and edge '60116376#1' found.
+Warning: Mandatory edge '60116376#1' not reachable by vehicle 'voiture953'.
+Warning: The vehicle 'voiture953' has no valid route.
+Warning: No connection between edge '440261889#0' and edge '-22915869' found.
+Warning: Mandatory edge '-22915869' not reachable by vehicle 'voiture801'.
+Warning: The vehicle 'voiture801' has no valid route.
+Warning: Vehicle 'voiture973' is not allowed to arrive on edge '-105391581'.
+Warning: The vehicle 'voiture973' has no valid route.
+Warning: No connection between edge '-367854751#7' and edge '-22781486#3' found.
+Warning: Mandatory edge '-22781486#3' not reachable by vehicle 'voiture862'.
+Warning: The vehicle 'voiture862' has no valid route.
+Warning: No connection between edge '969836930' and edge '31015672#7' found.
+Warning: Mandatory edge '31015672#7' not reachable by vehicle 'voiture1009'.
+Warning: The vehicle 'voiture1009' has no valid route.
+Warning: No connection between edge '933567548#3' and edge '-804254970#4' found.
+Warning: Mandatory edge '-804254970#4' not reachable by vehicle 'voiture1047'.
+Warning: The vehicle 'voiture1047' has no valid route.
+Warning: No connection between edge '21844923#2' and edge '605583450' found.
+Warning: Mandatory edge '605583450' not reachable by vehicle 'voiture1236'.
+Warning: The vehicle 'voiture1236' has no valid route.
+Warning: No connection between edge '-46678256#1' and edge '607792130' found.
+Warning: Mandatory edge '607792130' not reachable by vehicle 'voiture1120'.
+Warning: The vehicle 'voiture1120' has no valid route.
+Warning: No connection between edge '305480334' and edge '-12214707' found.
+Warning: Mandatory edge '-12214707' not reachable by vehicle 'voiture1196'.
+Warning: The vehicle 'voiture1196' has no valid route.
+Warning: No connection between edge '339583579' and edge '110354288#1' found.
+Warning: Mandatory edge '110354288#1' not reachable by vehicle 'voiture1123'.
+Warning: The vehicle 'voiture1123' has no valid route.
+Warning: No connection between edge '-462591690#0' and edge '-11861862' found.
+Warning: Mandatory edge '-11861862' not reachable by vehicle 'voiture1076'.
+Warning: The vehicle 'voiture1076' has no valid route.
+Warning: No connection between edge '108154740' and edge '-19936416' found.
+Warning: Mandatory edge '-19936416' not reachable by vehicle 'voiture1032'.
+Warning: The vehicle 'voiture1032' has no valid route.
+Warning: No connection between edge '454228586' and edge '-435429736#1' found.
+Warning: Mandatory edge '-435429736#1' not reachable by vehicle 'voiture1048'.
+Warning: The vehicle 'voiture1048' has no valid route.
+Warning: No connection between edge '20293968#7' and edge '463631292' found.
+Warning: Mandatory edge '463631292' not reachable by vehicle 'voiture1053'.
+Warning: The vehicle 'voiture1053' has no valid route.
+Warning: No connection between edge '329066839' and edge '-472516413' found.
+Warning: Mandatory edge '-472516413' not reachable by vehicle 'voiture1095'.
+Warning: The vehicle 'voiture1095' has no valid route.
+Warning: No connection between edge '881166613' and edge '463624801#0' found.
+Warning: Mandatory edge '463624801#0' not reachable by vehicle 'voiture1243'.
+Warning: The vehicle 'voiture1243' has no valid route.
+Warning: No connection between edge '-454843543' and edge '-942007961' found.
+Warning: Mandatory edge '-942007961' not reachable by vehicle 'voiture1381'.
+Warning: The vehicle 'voiture1381' has no valid route.
+Warning: No connection between edge '803146337' and edge '20216704#5' found.
+Warning: Mandatory edge '20216704#5' not reachable by vehicle 'voiture1355'.
+Warning: The vehicle 'voiture1355' has no valid route.
+Warning: No connection between edge '26719554' and edge '-110354287#0' found.
+Warning: Mandatory edge '-110354287#0' not reachable by vehicle 'voiture1368'.
+Warning: The vehicle 'voiture1368' has no valid route.
+Warning: No connection between edge '359252715' and edge '38651788' found.
+Warning: Mandatory edge '38651788' not reachable by vehicle 'voiture1443'.
+Warning: The vehicle 'voiture1443' has no valid route.
+Warning: No connection between edge '26187177' and edge '-385754262#1' found.
+Warning: Mandatory edge '-385754262#1' not reachable by vehicle 'voiture1424'.
+Warning: The vehicle 'voiture1424' has no valid route.
+Warning: No connection between edge '-112835721#0' and edge '19908071#1' found.
+Warning: Mandatory edge '19908071#1' not reachable by vehicle 'voiture1291'.
+Warning: The vehicle 'voiture1291' has no valid route.
+Warning: No connection between edge '471492589#2' and edge '138872550' found.
+Warning: Mandatory edge '138872550' not reachable by vehicle 'voiture1396'.
+Warning: The vehicle 'voiture1396' has no valid route.
+Warning: No connection between edge '-22894973#1' and edge '-562426445' found.
+Warning: Mandatory edge '-562426445' not reachable by vehicle 'voiture1392'.
+Warning: The vehicle 'voiture1392' has no valid route.
+Warning: No connection between edge '110353770' and edge '22910172#0' found.
+Warning: Mandatory edge '22910172#0' not reachable by vehicle 'voiture1346'.
+Warning: The vehicle 'voiture1346' has no valid route.
+Warning: No connection between edge '-46688842#0' and edge '460563640' found.
+Warning: Mandatory edge '460563640' not reachable by vehicle 'voiture1332'.
+Warning: The vehicle 'voiture1332' has no valid route.
+Warning: No connection between edge '484976066' and edge '-20904777#0' found.
+Warning: Mandatory edge '-20904777#0' not reachable by vehicle 'voiture1467'.
+Warning: The vehicle 'voiture1467' has no valid route.
+Warning: No connection between edge '26526056' and edge '-25336353#4' found.
+Warning: Mandatory edge '-25336353#4' not reachable by vehicle 'voiture1431'.
+Warning: The vehicle 'voiture1431' has no valid route.
+Warning: No connection between edge '-47471848' and edge '38742074#1' found.
+Warning: Mandatory edge '38742074#1' not reachable by vehicle 'voiture1459'.
+Warning: The vehicle 'voiture1459' has no valid route.
+Warning: No connection between edge '608435179' and edge '455664108' found.
+Warning: Mandatory edge '455664108' not reachable by vehicle 'voiture1270'.
+Warning: The vehicle 'voiture1270' has no valid route.
+Warning: No connection between edge '45573710#0' and edge '40290655#0' found.
+Warning: Mandatory edge '40290655#0' not reachable by vehicle 'voiture1453'.
+Warning: The vehicle 'voiture1453' has no valid route.
+Warning: No connection between edge '-47467118#16' and edge '-472516413' found.
+Warning: Mandatory edge '-472516413' not reachable by vehicle 'voiture1702'.
+Warning: The vehicle 'voiture1702' has no valid route.
+Warning: No connection between edge '29257759#4' and edge '965925406' found.
+Warning: Mandatory edge '965925406' not reachable by vehicle 'voiture1728'.
+Warning: The vehicle 'voiture1728' has no valid route.
+Warning: No connection between edge '165215478#0' and edge '312772522' found.
+Warning: Mandatory edge '312772522' not reachable by vehicle 'voiture1520'.
+Warning: The vehicle 'voiture1520' has no valid route.
+Warning: No connection between edge '-725240414' and edge '-464718641' found.
+Warning: Mandatory edge '-464718641' not reachable by vehicle 'voiture1723'.
+Warning: The vehicle 'voiture1723' has no valid route.
+Warning: No connection between edge '-110558544#5' and edge '21019649' found.
+Warning: Mandatory edge '21019649' not reachable by vehicle 'voiture1587'.
+Warning: The vehicle 'voiture1587' has no valid route.
+Warning: No connection between edge '45568163' and edge '-27172586#3' found.
+Warning: Mandatory edge '-27172586#3' not reachable by vehicle 'voiture1555'.
+Warning: The vehicle 'voiture1555' has no valid route.
+Warning: No connection between edge '491981505' and edge '20279302#1' found.
+Warning: Mandatory edge '20279302#1' not reachable by vehicle 'voiture1541'.
+Warning: The vehicle 'voiture1541' has no valid route.
+Warning: No connection between edge '181647730' and edge '453981160#0' found.
+Warning: Mandatory edge '453981160#0' not reachable by vehicle 'voiture1500'.
+Warning: The vehicle 'voiture1500' has no valid route.
+Warning: No connection between edge '12717922#1' and edge '-444489007' found.
+Warning: Mandatory edge '-444489007' not reachable by vehicle 'voiture1686'.
+Warning: The vehicle 'voiture1686' has no valid route.
+Warning: No connection between edge '-453736473#0' and edge '-20320554' found.
+Warning: Mandatory edge '-20320554' not reachable by vehicle 'voiture1602'.
+Warning: The vehicle 'voiture1602' has no valid route.
+Warning: No connection between edge '22884597' and edge '-420427004' found.
+Warning: Mandatory edge '-420427004' not reachable by vehicle 'voiture1551'.
+Warning: The vehicle 'voiture1551' has no valid route.
+Warning: No connection between edge '297302633#1' and edge '23946213' found.
+Warning: Mandatory edge '23946213' not reachable by vehicle 'voiture1753'.
+Warning: The vehicle 'voiture1753' has no valid route.
+Warning: No connection between edge '32818237#0' and edge '-32799572#1' found.
+Warning: Mandatory edge '-32799572#1' not reachable by vehicle 'voiture1962'.
+Warning: The vehicle 'voiture1962' has no valid route.
+Warning: No connection between edge '184692882' and edge '684244570#2' found.
+Warning: Mandatory edge '684244570#2' not reachable by vehicle 'voiture1983'.
+Warning: The vehicle 'voiture1983' has no valid route.
+Warning: No connection between edge '445221328' and edge '164954762#2' found.
+Warning: Mandatory edge '164954762#2' not reachable by vehicle 'voiture2009'.
+Warning: The vehicle 'voiture2009' has no valid route.
+Warning: No connection between edge '566210472#2' and edge '11875841#0' found.
+Warning: Mandatory edge '11875841#0' not reachable by vehicle 'voiture1938'.
+Warning: The vehicle 'voiture1938' has no valid route.
+Warning: No connection between edge '-22915752#2' and edge '-110097190#1' found.
+Warning: Mandatory edge '-110097190#1' not reachable by vehicle 'voiture1839'.
+Warning: The vehicle 'voiture1839' has no valid route.
+Warning: No connection between edge '45568163' and edge '164976438#0' found.
+Warning: Mandatory edge '164976438#0' not reachable by vehicle 'voiture1787'.
+Warning: The vehicle 'voiture1787' has no valid route.
+Warning: No connection between edge '-371603802' and edge '598651454#5' found.
+Warning: Mandatory edge '598651454#5' not reachable by vehicle 'voiture1812'.
+Warning: The vehicle 'voiture1812' has no valid route.
+Warning: No connection between edge '47652940#1' and edge '413000974' found.
+Warning: Mandatory edge '413000974' not reachable by vehicle 'voiture1941'.
+Warning: The vehicle 'voiture1941' has no valid route.
+Warning: No connection between edge '22910160#2' and edge '20194962' found.
+Warning: Mandatory edge '20194962' not reachable by vehicle 'voiture1830'.
+Warning: The vehicle 'voiture1830' has no valid route.
+Warning: No connection between edge '963229750' and edge '-426646174' found.
+Warning: Mandatory edge '-426646174' not reachable by vehicle 'voiture1777'.
+Warning: The vehicle 'voiture1777' has no valid route.
+Warning: No connection between edge '-435137143' and edge '-20411156#5' found.
+Warning: Mandatory edge '-20411156#5' not reachable by vehicle 'voiture1944'.
+Warning: The vehicle 'voiture1944' has no valid route.
+Warning: No connection between edge '-334786310#4' and edge '939094333#1' found.
+Warning: Mandatory edge '939094333#1' not reachable by vehicle 'voiture1953'.
+Warning: The vehicle 'voiture1953' has no valid route.
+Warning: No connection between edge '184240975' and edge '-35152246#1' found.
+Warning: Mandatory edge '-35152246#1' not reachable by vehicle 'voiture1974'.
+Warning: The vehicle 'voiture1974' has no valid route.
+Warning: No connection between edge '-46620461#0' and edge '-933303155#1' found.
+Warning: Mandatory edge '-933303155#1' not reachable by vehicle 'voiture1867'.
+Warning: The vehicle 'voiture1867' has no valid route.
+Warning: No connection between edge '107583310#1' and edge '20187406#0' found.
+Warning: Mandatory edge '20187406#0' not reachable by vehicle 'voiture2028'.
+Warning: The vehicle 'voiture2028' has no valid route.
+Warning: No connection between edge '22894529#2' and edge '-971639555' found.
+Warning: Mandatory edge '-971639555' not reachable by vehicle 'voiture2074'.
+Warning: The vehicle 'voiture2074' has no valid route.
+Warning: No connection between edge '46686966' and edge '462064439' found.
+Warning: Mandatory edge '462064439' not reachable by vehicle 'voiture2170'.
+Warning: The vehicle 'voiture2170' has no valid route.
+Warning: No connection between edge '-131249729#0' and edge '-164822352#0' found.
+Warning: Mandatory edge '-164822352#0' not reachable by vehicle 'voiture2262'.
+Warning: The vehicle 'voiture2262' has no valid route.
+Warning: No connection between edge '26158831' and edge '22892132#0' found.
+Warning: Mandatory edge '22892132#0' not reachable by vehicle 'voiture2230'.
+Warning: The vehicle 'voiture2230' has no valid route.
+Warning: No connection between edge '-463869346#3' and edge '-20113489#4' found.
+Warning: Mandatory edge '-20113489#4' not reachable by vehicle 'voiture2043'.
+Warning: The vehicle 'voiture2043' has no valid route.
+Warning: No connection between edge '23026688#0' and edge '-20904775#1' found.
+Warning: Mandatory edge '-20904775#1' not reachable by vehicle 'voiture2072'.
+Warning: The vehicle 'voiture2072' has no valid route.
+Warning: No connection between edge '26663329#6' and edge '-152517112#6' found.
+Warning: Mandatory edge '-152517112#6' not reachable by vehicle 'voiture2140'.
+Warning: The vehicle 'voiture2140' has no valid route.
+Warning: No connection between edge '22892099#0' and edge '423936407' found.
+Warning: Mandatory edge '423936407' not reachable by vehicle 'voiture2207'.
+Warning: The vehicle 'voiture2207' has no valid route.
+Warning: No connection between edge '922779900' and edge '20180823#0' found.
+Warning: Mandatory edge '20180823#0' not reachable by vehicle 'voiture2294'.
+Warning: The vehicle 'voiture2294' has no valid route.
+Warning: No connection between edge '-110413909' and edge '465401964' found.
+Warning: Mandatory edge '465401964' not reachable by vehicle 'voiture2137'.
+Warning: The vehicle 'voiture2137' has no valid route.
+Warning: No connection between edge '21817404' and edge '184241118' found.
+Warning: Mandatory edge '184241118' not reachable by vehicle 'voiture2277'.
+Warning: The vehicle 'voiture2277' has no valid route.
+Warning: No connection between edge '37625472' and edge '-933381139' found.
+Warning: Mandatory edge '-933381139' not reachable by vehicle 'voiture2117'.
+Warning: The vehicle 'voiture2117' has no valid route.
+Warning: No connection between edge '184692882' and edge '-20415446#7' found.
+Warning: Mandatory edge '-20415446#7' not reachable by vehicle 'voiture2579'.
+Warning: The vehicle 'voiture2579' has no valid route.
+Warning: No connection between edge '10509462' and edge '561741710' found.
+Warning: Mandatory edge '561741710' not reachable by vehicle 'voiture2517'.
+Warning: The vehicle 'voiture2517' has no valid route.
+Warning: No connection between edge '-45573088' and edge '684244504#1' found.
+Warning: Mandatory edge '684244504#1' not reachable by vehicle 'voiture2569'.
+Warning: The vehicle 'voiture2569' has no valid route.
+Warning: No connection between edge '555505970#14' and edge '-20194984' found.
+Warning: Mandatory edge '-20194984' not reachable by vehicle 'voiture2540'.
+Warning: The vehicle 'voiture2540' has no valid route.
+Warning: No connection between edge '-110353373#3' and edge '-961119812' found.
+Warning: Mandatory edge '-961119812' not reachable by vehicle 'voiture2441'.
+Warning: The vehicle 'voiture2441' has no valid route.
+Warning: No connection between edge '-46678137#0' and edge '22894975#1' found.
+Warning: Mandatory edge '22894975#1' not reachable by vehicle 'voiture2465'.
+Warning: The vehicle 'voiture2465' has no valid route.
+Warning: No connection between edge '-941443295#3' and edge '-22770759#1' found.
+Warning: Mandatory edge '-22770759#1' not reachable by vehicle 'voiture2592'.
+Warning: The vehicle 'voiture2592' has no valid route.
+Warning: No connection between edge '-110696657#5' and edge '-164954742' found.
+Warning: Mandatory edge '-164954742' not reachable by vehicle 'voiture2460'.
+Warning: The vehicle 'voiture2460' has no valid route.
+Warning: Vehicle 'voiture2545' is not allowed to depart on edge '-944794694'.
+Warning: The vehicle 'voiture2545' has no valid route.
+Warning: No connection between edge '49156085#1' and edge '339976283#3' found.
+Warning: Mandatory edge '339976283#3' not reachable by vehicle 'voiture2439'.
+Warning: The vehicle 'voiture2439' has no valid route.
+Warning: No connection between edge '445214302' and edge '27208443#1' found.
+Warning: Mandatory edge '27208443#1' not reachable by vehicle 'voiture2622'.
+Warning: The vehicle 'voiture2622' has no valid route.
+Warning: No connection between edge '-106665038#1' and edge '423936410#1' found.
+Warning: Mandatory edge '423936410#1' not reachable by vehicle 'voiture2621'.
+Warning: The vehicle 'voiture2621' has no valid route.
+Warning: No connection between edge '-35160264' and edge '475873781#0' found.
+Warning: Mandatory edge '475873781#0' not reachable by vehicle 'voiture2520'.
+Warning: The vehicle 'voiture2520' has no valid route.
+Warning: No connection between edge '-454008096#2' and edge '-562455813' found.
+Warning: Mandatory edge '-562455813' not reachable by vehicle 'voiture2559'.
+Warning: The vehicle 'voiture2559' has no valid route.
+Warning: No connection between edge '931572642' and edge '-396983242#1' found.
+Warning: Mandatory edge '-396983242#1' not reachable by vehicle 'voiture2609'.
+Warning: The vehicle 'voiture2609' has no valid route.
+Warning: No connection between edge '-110350134#0' and edge '22894970#6' found.
+Warning: Mandatory edge '22894970#6' not reachable by vehicle 'voiture2767'.
+Warning: The vehicle 'voiture2767' has no valid route.
+Warning: Vehicle 'voiture2700' is not allowed to depart on edge '-934374059#1'.
+Warning: The vehicle 'voiture2700' has no valid route.
+Warning: No connection between edge '452676134#1' and edge '-174247758' found.
+Warning: Mandatory edge '-174247758' not reachable by vehicle 'voiture2675'.
+Warning: The vehicle 'voiture2675' has no valid route.
+Warning: No connection between edge '-22894673' and edge '-52077428' found.
+Warning: Mandatory edge '-52077428' not reachable by vehicle 'voiture2807'.
+Warning: The vehicle 'voiture2807' has no valid route.
+Warning: No connection between edge '787491582' and edge '723869799#8' found.
+Warning: Mandatory edge '723869799#8' not reachable by vehicle 'voiture2652'.
+Warning: The vehicle 'voiture2652' has no valid route.
+Warning: No connection between edge '943412713#0' and edge '-197528152' found.
+Warning: Mandatory edge '-197528152' not reachable by vehicle 'voiture2879'.
+Warning: The vehicle 'voiture2879' has no valid route.
+Warning: No connection between edge '42720293' and edge '453733901' found.
+Warning: Mandatory edge '453733901' not reachable by vehicle 'voiture2834'.
+Warning: The vehicle 'voiture2834' has no valid route.
+Warning: No connection between edge '-351533902#9' and edge '27126962#0' found.
+Warning: Mandatory edge '27126962#0' not reachable by vehicle 'voiture2730'.
+Warning: The vehicle 'voiture2730' has no valid route.
+Warning: No connection between edge '20904775#1' and edge '-964696604#2' found.
+Warning: Mandatory edge '-964696604#2' not reachable by vehicle 'voiture2659'.
+Warning: The vehicle 'voiture2659' has no valid route.
+Warning: No connection between edge '22894674' and edge '727865488' found.
+Warning: Mandatory edge '727865488' not reachable by vehicle 'voiture2801'.
+Warning: The vehicle 'voiture2801' has no valid route.
+Warning: No connection between edge '84916180#1' and edge '164954760#6' found.
+Warning: Mandatory edge '164954760#6' not reachable by vehicle 'voiture2729'.
+Warning: The vehicle 'voiture2729' has no valid route.
+Warning: No connection between edge '48262911' and edge '112979429#0' found.
+Warning: Mandatory edge '112979429#0' not reachable by vehicle 'voiture2940'.
+Warning: The vehicle 'voiture2940' has no valid route.
+Warning: No connection between edge '490755723' and edge '-22797590' found.
+Warning: Mandatory edge '-22797590' not reachable by vehicle 'voiture2859'.
+Warning: The vehicle 'voiture2859' has no valid route.
+Warning: No connection between edge '46678318#2' and edge '-285027588' found.
+Warning: Mandatory edge '-285027588' not reachable by vehicle 'voiture2781'.
+Warning: The vehicle 'voiture2781' has no valid route.
+Warning: No connection between edge '929042093#4' and edge '-37624512' found.
+Warning: Mandatory edge '-37624512' not reachable by vehicle 'voiture2726'.
+Warning: The vehicle 'voiture2726' has no valid route.
+Warning: No connection between edge '-45249908#0' and edge '-22307532' found.
+Warning: Mandatory edge '-22307532' not reachable by vehicle 'voiture2906'.
+Warning: The vehicle 'voiture2906' has no valid route.
+Warning: No connection between edge '-941834313' and edge '42903212#0' found.
+Warning: Mandatory edge '42903212#0' not reachable by vehicle 'voiture2920'.
+Warning: The vehicle 'voiture2920' has no valid route.
+Warning: No connection between edge '453526412#5' and edge '110615650' found.
+Warning: Mandatory edge '110615650' not reachable by vehicle 'voiture2764'.
+Warning: The vehicle 'voiture2764' has no valid route.
+Warning: No connection between edge '-164822350' and edge '928292381' found.
+Warning: Mandatory edge '928292381' not reachable by vehicle 'voiture2861'.
+Warning: The vehicle 'voiture2861' has no valid route.
+Warning: No connection between edge '433802570#0' and edge '-422275234' found.
+Warning: Mandatory edge '-422275234' not reachable by vehicle 'voiture2944'.
+Warning: The vehicle 'voiture2944' has no valid route.
+Warning: No connection between edge '452385238' and edge '-22781485' found.
+Warning: Mandatory edge '-22781485' not reachable by vehicle 'voiture2665'.
+Warning: The vehicle 'voiture2665' has no valid route.
+Warning: No connection between edge '-462531876#12' and edge '-164954762#4' found.
+Warning: Mandatory edge '-164954762#4' not reachable by vehicle 'voiture2697'.
+Warning: The vehicle 'voiture2697' has no valid route.
+Warning: No connection between edge '-22894968#5' and edge '-431329868' found.
+Warning: Mandatory edge '-431329868' not reachable by vehicle 'voiture3144'.
+Warning: The vehicle 'voiture3144' has no valid route.
+Warning: No connection between edge '370735526#8' and edge '-471787071#1' found.
+Warning: Mandatory edge '-471787071#1' not reachable by vehicle 'voiture3040'.
+Warning: The vehicle 'voiture3040' has no valid route.
+Warning: No connection between edge '-20113823#0' and edge '27829417' found.
+Warning: Mandatory edge '27829417' not reachable by vehicle 'voiture2973'.
+Warning: The vehicle 'voiture2973' has no valid route.
+Warning: No connection between edge '47220428' and edge '-47470896#1' found.
+Warning: Mandatory edge '-47470896#1' not reachable by vehicle 'voiture3243'.
+Warning: The vehicle 'voiture3243' has no valid route.
+Warning: No connection between edge '46678056' and edge '20413513#1' found.
+Warning: Mandatory edge '20413513#1' not reachable by vehicle 'voiture3090'.
+Warning: The vehicle 'voiture3090' has no valid route.
+Warning: No connection between edge '24535423#1' and edge '21297957#2' found.
+Warning: Mandatory edge '21297957#2' not reachable by vehicle 'voiture2966'.
+Warning: The vehicle 'voiture2966' has no valid route.
+Warning: No connection between edge '-222721287' and edge '920361819' found.
+Warning: Mandatory edge '920361819' not reachable by vehicle 'voiture3253'.
+Warning: The vehicle 'voiture3253' has no valid route.
+Warning: No connection between edge '-37722304' and edge '-20679867' found.
+Warning: Mandatory edge '-20679867' not reachable by vehicle 'voiture2977'.
+Warning: The vehicle 'voiture2977' has no valid route.
+Warning: No connection between edge '688915065' and edge '352392845' found.
+Warning: Mandatory edge '352392845' not reachable by vehicle 'voiture3254'.
+Warning: The vehicle 'voiture3254' has no valid route.
+Warning: No connection between edge '19940850#1' and edge '455664108' found.
+Warning: Mandatory edge '455664108' not reachable by vehicle 'voiture3060'.
+Warning: The vehicle 'voiture3060' has no valid route.
+Warning: No connection between edge '546081341' and edge '21302206' found.
+Warning: Mandatory edge '21302206' not reachable by vehicle 'voiture3156'.
+Warning: The vehicle 'voiture3156' has no valid route.
+Warning: No connection between edge '453749089' and edge '316470331#1' found.
+Warning: Mandatory edge '316470331#1' not reachable by vehicle 'voiture3166'.
+Warning: The vehicle 'voiture3166' has no valid route.
+Warning: No connection between edge '27208867' and edge '11869992#0' found.
+Warning: Mandatory edge '11869992#0' not reachable by vehicle 'voiture3207'.
+Warning: The vehicle 'voiture3207' has no valid route.
+Warning: No connection between edge '453735816#0' and edge '-22915639' found.
+Warning: Mandatory edge '-22915639' not reachable by vehicle 'voiture3106'.
+Warning: The vehicle 'voiture3106' has no valid route.
+Warning: No connection between edge '-22810893#1' and edge '-32798984' found.
+Warning: Mandatory edge '-32798984' not reachable by vehicle 'voiture3155'.
+Warning: The vehicle 'voiture3155' has no valid route.
+Warning: No connection between edge '47470857' and edge '-21817398#2' found.
+Warning: Mandatory edge '-21817398#2' not reachable by vehicle 'voiture3221'.
+Warning: The vehicle 'voiture3221' has no valid route.
+Warning: No connection between edge '157711488#0' and edge '-198402048' found.
+Warning: Mandatory edge '-198402048' not reachable by vehicle 'voiture3177'.
+Warning: The vehicle 'voiture3177' has no valid route.
+Warning: No connection between edge '-517663376' and edge '367853095#6' found.
+Warning: Mandatory edge '367853095#6' not reachable by vehicle 'voiture3138'.
+Warning: The vehicle 'voiture3138' has no valid route.
+Warning: Vehicle 'voiture3047' is not allowed to arrive on edge '959887968'.
+Warning: The vehicle 'voiture3047' has no valid route.
+Warning: No connection between edge '931580753' and edge '-192586991' found.
+Warning: Mandatory edge '-192586991' not reachable by vehicle 'voiture3257'.
+Warning: The vehicle 'voiture3257' has no valid route.
+Warning: No connection between edge '-45570269#0' and edge '-462570675' found.
+Warning: Mandatory edge '-462570675' not reachable by vehicle 'voiture3225'.
+Warning: The vehicle 'voiture3225' has no valid route.
+Warning: No connection between edge '20187412' and edge '45558414' found.
+Warning: Mandatory edge '45558414' not reachable by vehicle 'voiture2984'.
+Warning: The vehicle 'voiture2984' has no valid route.
+Warning: No connection between edge '20411156#4' and edge '-361815167' found.
+Warning: Mandatory edge '-361815167' not reachable by vehicle 'voiture3472'.
+Warning: The vehicle 'voiture3472' has no valid route.
+Warning: No connection between edge '-110617785#0' and edge '112599443' found.
+Warning: Mandatory edge '112599443' not reachable by vehicle 'voiture3407'.
+Warning: The vehicle 'voiture3407' has no valid route.
+Warning: No connection between edge '25079294#1' and edge '453745827#1' found.
+Warning: Mandatory edge '453745827#1' not reachable by vehicle 'voiture3488'.
+Warning: The vehicle 'voiture3488' has no valid route.
+Warning: No connection between edge '12203284#5' and edge '292490777#1' found.
+Warning: Mandatory edge '292490777#1' not reachable by vehicle 'voiture3511'.
+Warning: The vehicle 'voiture3511' has no valid route.
+Warning: No connection between edge '-46689005#4' and edge '40294466#0' found.
+Warning: Mandatory edge '40294466#0' not reachable by vehicle 'voiture3429'.
+Warning: The vehicle 'voiture3429' has no valid route.
+Warning: No connection between edge '-491942322' and edge '-121941510#2' found.
+Warning: Mandatory edge '-121941510#2' not reachable by vehicle 'voiture3527'.
+Warning: The vehicle 'voiture3527' has no valid route.
+Warning: No connection between edge '460536607' and edge '-437986278#3' found.
+Warning: Mandatory edge '-437986278#3' not reachable by vehicle 'voiture3369'.
+Warning: The vehicle 'voiture3369' has no valid route.
+Warning: No connection between edge '47468064' and edge '177235876' found.
+Warning: Mandatory edge '177235876' not reachable by vehicle 'voiture3542'.
+Warning: The vehicle 'voiture3542' has no valid route.
+Warning: No connection between edge '165090603#0' and edge '-25381786' found.
+Warning: Mandatory edge '-25381786' not reachable by vehicle 'voiture3347'.
+Warning: The vehicle 'voiture3347' has no valid route.
+Warning: No connection between edge '453942887' and edge '-12199811#1' found.
+Warning: Mandatory edge '-12199811#1' not reachable by vehicle 'voiture3546'.
+Warning: The vehicle 'voiture3546' has no valid route.
+Warning: No connection between edge '-22781448' and edge '-198362542#1' found.
+Warning: Mandatory edge '-198362542#1' not reachable by vehicle 'voiture3506'.
+Warning: The vehicle 'voiture3506' has no valid route.
+Warning: No connection between edge '929218244' and edge '22790868' found.
+Warning: Mandatory edge '22790868' not reachable by vehicle 'voiture3530'.
+Warning: The vehicle 'voiture3530' has no valid route.
+Warning: No connection between edge '-47653038' and edge '885229596' found.
+Warning: Mandatory edge '885229596' not reachable by vehicle 'voiture3469'.
+Warning: The vehicle 'voiture3469' has no valid route.
+Warning: Vehicle 'voiture3380' is not allowed to arrive on edge '-165149837'.
+Warning: The vehicle 'voiture3380' has no valid route.
+Warning: No connection between edge '-109909598' and edge '-462591695#3' found.
+Warning: Mandatory edge '-462591695#3' not reachable by vehicle 'voiture3314'.
+Warning: The vehicle 'voiture3314' has no valid route.
+Warning: No connection between edge '47470896#0' and edge '-11310659#0' found.
+Warning: Mandatory edge '-11310659#0' not reachable by vehicle 'voiture3525'.
+Warning: The vehicle 'voiture3525' has no valid route.
+Warning: No connection between edge '165087299' and edge '-453534185' found.
+Warning: Mandatory edge '-453534185' not reachable by vehicle 'voiture3325'.
+Warning: The vehicle 'voiture3325' has no valid route.
+Warning: No connection between edge '46678065#2' and edge '20411161#3' found.
+Warning: Mandatory edge '20411161#3' not reachable by vehicle 'voiture3718'.
+Warning: The vehicle 'voiture3718' has no valid route.
+Warning: No connection between edge '30176465#1' and edge '46620463#0' found.
+Warning: Mandatory edge '46620463#0' not reachable by vehicle 'voiture3741'.
+Warning: The vehicle 'voiture3741' has no valid route.
+Warning: No connection between edge '459144153' and edge '20196782#0' found.
+Warning: Mandatory edge '20196782#0' not reachable by vehicle 'voiture3630'.
+Warning: The vehicle 'voiture3630' has no valid route.
+Warning: No connection between edge '-47565697' and edge '20575686' found.
+Warning: Mandatory edge '20575686' not reachable by vehicle 'voiture3798'.
+Warning: The vehicle 'voiture3798' has no valid route.
+Warning: No connection between edge '110696662#1' and edge '-20296273' found.
+Warning: Mandatory edge '-20296273' not reachable by vehicle 'voiture3701'.
+Warning: The vehicle 'voiture3701' has no valid route.
+Warning: No connection between edge '-25123754#0' and edge '-165217769#0' found.
+Warning: Mandatory edge '-165217769#0' not reachable by vehicle 'voiture3779'.
+Warning: The vehicle 'voiture3779' has no valid route.
+Warning: No connection between edge '58472958' and edge '442511549#5' found.
+Warning: Mandatory edge '442511549#5' not reachable by vehicle 'voiture3659'.
+Warning: The vehicle 'voiture3659' has no valid route.
+Warning: No connection between edge '942617346' and edge '47470882#2' found.
+Warning: Mandatory edge '47470882#2' not reachable by vehicle 'voiture3791'.
+Warning: The vehicle 'voiture3791' has no valid route.
+Warning: No connection between edge '452676184#3' and edge '-455713848' found.
+Warning: Mandatory edge '-455713848' not reachable by vehicle 'voiture3628'.
+Warning: The vehicle 'voiture3628' has no valid route.
+Warning: No connection between edge '929233493' and edge '184514710#4' found.
+Warning: Mandatory edge '184514710#4' not reachable by vehicle 'voiture3755'.
+Warning: The vehicle 'voiture3755' has no valid route.
+Warning: No connection between edge '965382773' and edge '-436528997#2' found.
+Warning: Mandatory edge '-436528997#2' not reachable by vehicle 'voiture3916'.
+Warning: The vehicle 'voiture3916' has no valid route.
+Warning: No connection between edge '165257078#2' and edge '134811808#1' found.
+Warning: Mandatory edge '134811808#1' not reachable by vehicle 'voiture4035'.
+Warning: The vehicle 'voiture4035' has no valid route.
+Warning: No connection between edge '24770638' and edge '-20703158' found.
+Warning: Mandatory edge '-20703158' not reachable by vehicle 'voiture4030'.
+Warning: The vehicle 'voiture4030' has no valid route.
+Warning: No connection between edge '114865807#27' and edge '-26929278#0' found.
+Warning: Mandatory edge '-26929278#0' not reachable by vehicle 'voiture3975'.
+Warning: The vehicle 'voiture3975' has no valid route.
+Warning: No connection between edge '-455252470#16' and edge '939094331' found.
+Warning: Mandatory edge '939094331' not reachable by vehicle 'voiture4076'.
+Warning: The vehicle 'voiture4076' has no valid route.
+Warning: No connection between edge '463643461' and edge '-45558428' found.
+Warning: Mandatory edge '-45558428' not reachable by vehicle 'voiture3867'.
+Warning: The vehicle 'voiture3867' has no valid route.
+Warning: No connection between edge '20113497#1' and edge '114145861#0' found.
+Warning: Mandatory edge '114145861#0' not reachable by vehicle 'voiture3868'.
+Warning: The vehicle 'voiture3868' has no valid route.
+Warning: No connection between edge '-561503289#0' and edge '47623882' found.
+Warning: Mandatory edge '47623882' not reachable by vehicle 'voiture3882'.
+Warning: The vehicle 'voiture3882' has no valid route.
+Warning: No connection between edge '455466855' and edge '-469008663#0' found.
+Warning: Mandatory edge '-469008663#0' not reachable by vehicle 'voiture3920'.
+Warning: The vehicle 'voiture3920' has no valid route.
+Warning: No connection between edge '-920267676' and edge '-22775270#0' found.
+Warning: Mandatory edge '-22775270#0' not reachable by vehicle 'voiture4106'.
+Warning: The vehicle 'voiture4106' has no valid route.
+Warning: No connection between edge '219035199#4' and edge '22770785#0' found.
+Warning: Mandatory edge '22770785#0' not reachable by vehicle 'voiture3921'.
+Warning: The vehicle 'voiture3921' has no valid route.
+DijkstraRouter answered 4109 queries and explored 22268.69 edges on average.
+DijkstraRouter spent 76.21s answering queries (18.55ms on average).

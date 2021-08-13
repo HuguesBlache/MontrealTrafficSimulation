@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- generated on 2021-08-11 11:56:04.929973 by gtfs2pt.py v1_9_2+0000-4206cfae24
+  options: <doubleminus>network input\carte\CarteMontreal_Sans_Un_Res.net.xml <doubleminus>gtfs gtfs_stm.zip <doubleminus>date 20210822 <doubleminus>mapperlib MAPPERLIB <doubleminus>repair <doubleminus>vtype-output bus_type.add.xml <doubleminus>route-output ptline_without.rou.xml <doubleminus>additional-output ptstop_without.add.xml
+-->
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+    <vType id="bus" vClass="bus"/>
+    <vType id="subway" vClass="rail_urban"/>
+</additional>

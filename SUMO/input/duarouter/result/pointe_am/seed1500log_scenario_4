@@ -1,0 +1,4 @@
+Loading net ... done.
+Loading additional file './input/Vtype/Vtype.xml'  ... done.
+Loading additional file './input/TAZ/districts.taz.xml'  ... done.
+Error: File '.\input\od2trips\result\point_am\seed1500scenario_4.odtrips.xml' is not accessible (No such file or directory).
